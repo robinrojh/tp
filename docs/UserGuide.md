@@ -1,40 +1,21 @@
----
-layout: page
-title: User Guide
----
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+*Networkers* is a **desktop app for managing contacts for networks, 
+optimised for use via a Command Line Interface** (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, Networkers can get your contact management tasks 
+done faster than traditional GUI apps.
 
---------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+- **Features (v1.2)**
+  1. Add a client
+  2. Delete a client
+  3. Add a procedure to the client
+  4. Delete a procedure from the client
+  5. View all clients and associated procedures in the client
+- **Command Summary**
 
-1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -64,28 +45,32 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+### Add a Client: `addClient`
 
-![help message](images/helpMessage.png)
+Adds a Client with an empty procedure list to the address book
 
-Format: `help`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+ - `addClient` refers to the command of adding a client to the address book
+ - Mandatory details include a name, phone_number and an address for the client
 
+[comment]: <> (<div markdown="span" class="alert alert-primary">:bulb: **Tip:**)
 
-### Adding a person: `add`
+[comment]: <> (A person can have any number of tags &#40;including 0&#41;)
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+[comment]: <> (</div>)
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+Non GUI format:
+-  User: `addClient n/Apple Inc p/9XXXXXXX a/apple road`
+   
+   Terminal returns: `Added client apple inc to the tasklist`
+
+
+GUI format:
+    ![Ui](images/addClient.png)
+
 
 ### Listing all persons : `list`
 
