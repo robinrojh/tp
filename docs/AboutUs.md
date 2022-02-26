@@ -19,6 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
+### Teo Ming Huang
+
+<img src="images/teominghuang.png" width="200px">
+
+[[github](http://github.com/teominghuang)]
+[[portfolio](team/teominghuang.md)]
+
+* Role: To be added soon
+* Responsibilities: To be added soon
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
