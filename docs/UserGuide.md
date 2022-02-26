@@ -2,11 +2,7 @@
 Networkers is a desktop app for managing contacts for networks, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Networkers can get your contact management tasks done faster than traditional GUI apps.
 
 ##Features (v1.2)
-- Add a client
-- Delete a client
-- Add a procedure to the client
 - Delete a procedure from the client
-- View all clients and associated procedures in the client
 - Command Summary
 
 ##Features
