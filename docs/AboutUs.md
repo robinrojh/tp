@@ -9,15 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Isaac Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/iztanpy.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/iztanpy)]
+[[portfolio](team/iztanpy.md)]
 
-* Role: Project Advisor
+* Role: To be added
+* Responsibilites: To be added
+
 
 ### Jane Doe
 
