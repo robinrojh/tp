@@ -9,6 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Yong Gi Roh
+
+<img src="images/robinrojh.png" width="200px">
+
+- [[github](https://github.com/robinrojh)]
+- [[portfolio](team/robinrojh.md)]
+
+* Role: To be added
+* Responsibilities: To be added
+
 ### JB Jungbae Kim
 
 <img src="images/jbkim1999.png" width="200px">
