@@ -9,15 +9,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
+### Isaac Tan
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/iztanpy.png" width="200px">
 
-* Role: Project Advisor
+[[github](https://github.com/iztanpy)]
+[[portfolio](team/iztanpy.md)]
 
 ### Teo Ming Huang
 
@@ -29,41 +27,34 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: To be added soon
 * Responsibilities: To be added soon
 
-### Jane Doe
+### Alexander Er
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aceszhenwei.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/aceszhenwei)]
+[[portfolio](team/aceszhenwei.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: To be added
+* Responsibilities: To be added
 
-### Johnny Doe
+### Yong Gi Roh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/robinrojh.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+- [[github](https://github.com/robinrojh)]
+- [[portfolio](team/robinrojh.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: To be added
+* Responsibilities: To be added
 
-### Jean Doe
+### JB Jungbae Kim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jbkim1999.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jbkim1999)]
+[[portfolio](team/jbkim1999.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: To be added soon
+* Responsibilities: To be added soon
 
-### James Doe
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
