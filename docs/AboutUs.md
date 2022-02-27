@@ -18,3 +18,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: To be added
 * Responsibilities: To be added
+
+### JB Jungbae Kim
+
+<img src="images/jbkim1999.png" width="200px">
+
+[[github](https://github.com/jbkim1999)]
+[[portfolio](team/jbkim1999.md)]
+
+* Role: To be added soon
+* Responsibilities: To be added soon
+
+### Jane Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Team Lead
+* Responsibilities: UI
+
+### Johnny Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Data
+
+### Jean Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
+
+### James Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: UI
