@@ -9,6 +9,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+
+### Alexander Er
+
+<img src="images/aceszhenwei.png" width="200px">
+
+[[github](https://github.com/aceszhenwei)]
+[[portfolio](team/aceszhenwei.md)]
+
+* Role: To be added
+* Responsibilities: To be added
+
 ### Yong Gi Roh
 
 <img src="images/robinrojh.png" width="200px">
@@ -28,6 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: To be added soon
 * Responsibilities: To be added soon
+
 
 ### Jane Doe
 
