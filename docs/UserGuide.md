@@ -128,7 +128,7 @@ GUI Format:
 ![list](images/list.png)
 
 
-##Command Summary
+## Command Summary
 | Command | Syntax | Example |
 | --- | --- | --- |
 | Add Client | `addClient n/<NAME> p/<PHONE_NUMBER> a/<ADDRESS>`| `addClient n/Apple Inc p/9XXXXXXX a/apple road` |
