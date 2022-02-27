@@ -1,4 +1,7 @@
-
+---
+layout: page
+title: User Guide
+---
 
 *Networkers* is a **desktop app for managing contacts for networks, 
 optimised for use via a Command Line Interface** (CLI) 
