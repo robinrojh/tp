@@ -9,7 +9,6 @@ while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, Networkers can get your contact management tasks 
 done faster than traditional GUI apps.
 
-
 - **Features (v1.2)**
   1. Add a client
   2. Delete a client
@@ -18,13 +17,9 @@ done faster than traditional GUI apps.
   5. View all clients and associated procedures in the client
 - **Command Summary**
 
-
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-
 
 ### Add a Client: `addClient`
 
@@ -37,16 +32,10 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 Examples:
 
 Non GUI format:
--  User: `addClient n/Apple Inc p/9XXXXXXX a/apple road`
-   
-   Terminal returns: `Added client apple inc to the tasklist`
+- User: `addClient n/Apple Inc p/9XXXXXXX a/apple road`
+  - Terminal returns: `Added client apple inc to the tasklist`
 
-
-GUI format:
-    ![Ui](images/addClient.png)
-
-
-
+GUI format: ![Ui](images/addClient.png)
 
 ### Deleting a client: `deleteClient`
 
@@ -62,14 +51,12 @@ User must then type `confirm` in order to delete the client. Users may type canc
 
 Examples:
 
-
 Non-GUI Format:
 * `deleteClient 1` will trigger an attempt to delete the 1st client in the contact list .
 * Users must type `confirm` to delete, or cancel to return to the main command line.
 
 GUI Format:
 ![list](images/deleteClient.png)
-
 
 ### Add a Procedure to a Client: `addProc`
 
@@ -111,7 +98,6 @@ Terminal returns: The procedure you listed does not exist, add more procedures.
 User: deleteProc 3
 Terminal returns: Do add in the procedure you would like to delete and try again :).
 
-
 GUI Format:
 ![deleteProc](images/deleteProc.png)
 
@@ -133,7 +119,6 @@ Non-GUI Format
 
 GUI Format:
 ![list](images/list.png)
-
 
 ## Command Summary
 

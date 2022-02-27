@@ -41,8 +41,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/robinrojh.png" width="200px">
 
-- [[github](https://github.com/robinrojh)]
-- [[portfolio](team/robinrojh.md)]
+[[github](https://github.com/robinrojh)]
+[[portfolio](team/robinrojh.md)]
 
 * Role: To be added
 * Responsibilities: To be added
