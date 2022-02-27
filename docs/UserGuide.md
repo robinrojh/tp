@@ -89,17 +89,20 @@ Non-GUI Format:
 GUI Format:
 ![addProc](images/addProc.png)
 
-###Delete a Procedure from the client: deleteProc
+### Delete a Procedure from the client: `deleteProc`
+
 Deletes a procedure associated with the client. This is important as it allows the user to maintain and make changes to the database - creation and deletion.
 
-Format: deleteProc <clientIndex> <Proc Index>
-deleteProc refers to the command of adding a procedure to the client at the specified Index.
-<Client Index> refers to the index number shown in the displayed client list. The index must be a positive integer 1, 2, 3, …​
-<Procedure> refers to the tasks or problems that need to be addressed in the future visits to the client’s business sight.
-Note that a client’s list of procedures is a numbered list. A new procedure will be added on to the existing numbered list (to the last index).
+**Format:** `deleteProc <clientIndex> <Proc_Index>`
+A new procedure will be deleted from the existing numbered list.
+* `deleteProc` refers to the command of deleting a procedure from the client at the specified Index.
+* `<Client Index>` refers to the index number shown in the displayed client list. 
+The index must be a positive integer 1, 2, 3, ...
+* `<Procedure>` refers to the tasks or problems that need to be addressed 
+in the future visits to the client’s business sight.
+Note that a client’s list of procedures is a numbered list. 
 
-Example:
-
+**Example:**
 Non-GUI format:
 User: deleteProc 1 3
 Terminal returns: The procedure “Bring a new Singtel router to replace the old Apple one” has been successfully deleted! :)
@@ -107,6 +110,10 @@ User: deleteProc 3 500
 Terminal returns: The procedure you listed does not exist, add more procedures.
 User: deleteProc 3
 Terminal returns: Do add in the procedure you would like to delete and try again :).
+
+
+GUI Format:
+![deleteProc](images/deleteProc.png)
 
 ### View All Clients and Procedures: `list`
 
