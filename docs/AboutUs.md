@@ -17,9 +17,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/iztanpy)]
 [[portfolio](team/iztanpy.md)]
 
-* Role: To be added
-* Responsibilites: To be added
+### Teo Ming Huang
 
+<img src="images/teominghuang.png" width="200px">
+
+[[github](http://github.com/teominghuang)]
+[[portfolio](team/teominghuang.md)]
+
+* Role: To be added soon
+* Responsibilities: To be added soon
 
 ### Alexander Er
 
