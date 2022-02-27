@@ -1,4 +1,7 @@
-
+---
+layout: page
+title: User Guide
+---
 
 *Networkers* is a **desktop app for managing contacts for networks, 
 optimised for use via a Command Line Interface** (CLI) 
@@ -6,11 +9,6 @@ while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, Networkers can get your contact management tasks 
 done faster than traditional GUI apps.
 
-
-
-# User Guide
-
-*Networkers* is a **desktop app for managing contacts for networks, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Networkers can get your contact management tasks done faster than traditional GUI apps.
 
 - **Features (v1.2)**
   1. Add a client
@@ -70,8 +68,7 @@ Non-GUI Format:
 * Users must type `confirm` to delete, or cancel to return to the main command line.
 
 GUI Format:
-
-<img width="590" alt="Screenshot 2022-02-27 at 9 34 01 PM" src="https://user-images.githubusercontent.com/70692871/155884523-849617d8-15fb-4267-9a9c-96e7f257b518.png">
+![list](images/deleteClient.png)
 
 
 ### Add a Procedure to a Client: `addProc`
@@ -114,6 +111,7 @@ Terminal returns: The procedure you listed does not exist, add more procedures.
 User: deleteProc 3
 Terminal returns: Do add in the procedure you would like to delete and try again :).
 
+
 GUI Format:
 ![deleteProc](images/deleteProc.png)
 
@@ -124,6 +122,8 @@ This feature will be used to show clients on GUI. No arguments required.
 Example: 
 - User: list
 - Terminal returns: 
+
+Non-GUI Format
 1. Apple, 9XXXXXXX, Apple Road
     1. Fixed the intranet issue
     2. Replace router in 3rd floor
@@ -131,9 +131,13 @@ Example:
     1. Cable split
     2. Reconnected broadband services
 
+GUI Format:
+![list](images/list.png)
+
+
 ##Command Summary
 | Command | Syntax | Example |
-| ----- | ----- | ----- |
+| --- | --- | --- |
 | Add Client | _addClient n/\<NAME> p/\<PHONE_NUMBER> a/\<ADDRESS>_| _addClient n/Apple Inc p/9XXXXXXX a/apple road_ |
 | Delete Client | _deleteClient \<INDEX>_ | deleteClient 1 |
 | Add Procedure | _addProc \<CLIENT INDEX> \<Procedure>_ | _addProc 1 Check router’s connection with the modem_ |
