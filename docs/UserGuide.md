@@ -1,4 +1,14 @@
 
+
+
+*Networkers* is a **desktop app for managing contacts for networks, 
+optimised for use via a Command Line Interface** (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, Networkers can get your contact management tasks 
+done faster than traditional GUI apps.
+
+
+
 # User Guide
 
 *Networkers* is a **desktop app for managing contacts for networks, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Networkers can get your contact management tasks done faster than traditional GUI apps.
@@ -11,7 +21,35 @@
   5. View all clients and associated procedures in the client
 - **Command Summary**
 
-# Features
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features
+
+
+### Add a Client: `addClient`
+
+Adds a Client with an empty procedure list to the address book
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+ - `addClient` refers to the command of adding a client to the address book
+ - Mandatory details include a name, phone_number and an address for the client
+
+Examples:
+
+Non GUI format:
+-  User: `addClient n/Apple Inc p/9XXXXXXX a/apple road`
+   
+   Terminal returns: `Added client apple inc to the tasklist`
+
+
+GUI format:
+    ![Ui](images/addClient.png)
+
+
+
 
 ### Deleting a client: `deleteClient`
 
@@ -26,6 +64,7 @@ Format: `deleteClient <INDEX>`
 User must then type `confirm` in order to delete the client. Users may type cancel instead to return to the main command line.
 
 Examples:
+
 
 Non-GUI Format:
 * `deleteClient 1` will trigger an attempt to delete the 1st client in the contact list .

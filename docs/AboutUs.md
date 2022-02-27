@@ -10,6 +10,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ## Project team
 
 
+### Isaac Tan
+
+<img src="images/iztanpy.png" width="200px">
+
+[[github](https://github.com/iztanpy)]
+[[portfolio](team/iztanpy.md)]
+
+* Role: To be added
+* Responsibilites: To be added
+
+
 ### Alexander Er
 
 <img src="images/aceszhenwei.png" width="200px">
@@ -41,41 +52,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: To be added soon
 
 
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
