@@ -14,8 +14,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/aceszhenwei.png" width="200px">
 
 [[github](https://github.com/aceszhenwei)]
+[[portfolio](team/aceszhenwei.md)]
 
-* Role: Project Advisor
+* Role: To be added
+* Responsibilities: To be added
 
 ### Jane Doe
 
