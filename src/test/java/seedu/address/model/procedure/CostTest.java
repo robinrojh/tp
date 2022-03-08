@@ -39,7 +39,7 @@ class CostTest {
         assertFalse(Cost.isValidCost("12.111")); // 3 decimal points
         assertFalse(Cost.isValidCost("-12")); // negative value
 
-        // valid Costs 
+        // valid Costs
         assertTrue(Cost.isValidCost("12345")); // numbers only
         assertTrue(Cost.isValidCost("12.1")); // numbers with 1 decimal point
         assertTrue(Cost.isValidCost("12.11")); // numbers with 2 decimal point
