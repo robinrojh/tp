@@ -1,7 +1,5 @@
 package seedu.address.model.procedure;
 
-import seedu.address.model.person.Name;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -22,6 +20,11 @@ public class Information {
 
     public final String info;
 
+    /**
+     * Constructs an {@code Information}.
+     *
+     * @param info A valid Information.
+     */
     public Information(String info) {
         requireNonNull(info);
         checkArgument(isValidInformation(info), MESSAGE_CONSTRAINTS);

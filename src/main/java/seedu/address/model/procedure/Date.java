@@ -15,9 +15,9 @@ import java.time.format.ResolverStyle;
 public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Please ensure that you have typed an existing date in the correct format. \n" +
-                    "Dates should be in the format DD/MM/YYYY, and it should not be blank \n" +
-                    "Year entered must be less than 10000";
+            "Please ensure that you have typed an existing date in the correct format. \n"
+        + "Dates should be in the format DD/MM/YYYY, and it should not be blank \n"
+        + "Year entered must be less than 10000";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -45,7 +45,8 @@ public class Date {
         if (test.matches(VALIDATION_REGEX)) {
             try {
                 System.out.println("correct format");
-                LocalDate.parse(test, DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT));
+                LocalDate.parse(test,
+                        DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT));
 
                 return true;
             } catch (DateTimeParseException err) {
