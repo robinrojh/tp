@@ -20,7 +20,7 @@ import seedu.address.model.procedure.Procedure;
         private Information info;
         private Date date;
         private Cost cost;
-        
+
         /**
          * Creates a {@code ProcedureBuilder} with the default details.
          */
