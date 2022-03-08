@@ -31,23 +31,23 @@ public class ProcedureBuilder {
      * Initializes the ProcedureBuilder with the data of {@code ProcedureToCopy}.
      */
     public ProcedureBuilder(Procedure procedureToCopy) {
-        info = ProcedureToCopy.getInfo();
-        date = ProcedureToCopy.getDate();
-        cost = ProcedureToCopy.getCost();
+        info = procedureToCopy.getInfo();
+        date = procedureToCopy.getDate();
+        cost = procedureToCopy.getCost();
     }
 
     /**
      * Sets the {@code Info} of the {@code Procedure} that we are building.
      */
     public seedu.address.testutil.ProcedureBuilder withInfo(String info) {
-        this.info = new Info(info);
+        this.info = new Information(info);
         return this;
     }
 
     /**
      * Sets the {@code Date} of the {@code Procedure} that we are building.
      */
-    public seedu.address.testutil.ProcedureBuilder withDate(Date date) {
+    public seedu.address.testutil.ProcedureBuilder withDate(String date) {
         this.date = new Date(date);
         return this;
     }

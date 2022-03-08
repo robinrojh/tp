@@ -1,11 +1,10 @@
 package seedu.address.model.procedure;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.procedure.Date;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 class DateTest {
     @Test
@@ -33,7 +32,7 @@ class DateTest {
         assertFalse(Date.isValidDate("29/02/2019")); // leap year in an invalid leap year
 
 
-//         valid Date
+        //valid Date
         assertTrue(Date.isValidDate("29/01/2000")); // proper date in specified format
         assertTrue(Date.isValidDate("29/02/2020")); // leap year in a valid leap year
     }

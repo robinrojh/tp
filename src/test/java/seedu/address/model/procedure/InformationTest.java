@@ -1,11 +1,10 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import seedu.address.model.procedure.Information;
+package seedu.address.model.procedure;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 class InformationTest {
 
@@ -31,7 +30,7 @@ class InformationTest {
 
         // valid Information
         assertTrue(Information.isValidInformation("^")); // only non-alphanumeric characters
-        assertTrue(Information.isValidInformation("fixed, cleaned, replaced router")); // contains non-alphanumeric characters
+        assertTrue(Information.isValidInformation("fixed, cleaned, replaced router")); // non-alphanumeric characters
         assertTrue(Information.isValidInformation("fix router")); // alphabets only
         assertTrue(Information.isValidInformation("12")); // numbers only
         assertTrue(Information.isValidInformation("fix 1 router")); // alphanumeric characters

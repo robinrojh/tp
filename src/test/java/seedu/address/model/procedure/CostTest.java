@@ -1,14 +1,12 @@
 package seedu.address.model.procedure;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.procedure.Cost;
-import java.math.BigDecimal;
-
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.math.BigDecimal;
+
+import org.junit.jupiter.api.Test;
 
 class CostTest {
 
