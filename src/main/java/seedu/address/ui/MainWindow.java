@@ -8,6 +8,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -32,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+//    private ProcessListPanel processListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -40,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private GridPane personListGridPane;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -110,8 +117,22 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setPercentWidth(50);
+        column1.setHgrow(Priority.ALWAYS);
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setPercentWidth(50);
+        column2.setHgrow(Priority.ALWAYS);
+        personListGridPane.getColumnConstraints().addAll(column1, column2); // each get 50% of width
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+//        procedureListPanel = new ProcedureListPanel();
+//        procedureListPanelPlaceHolder.getChildren().add(procedureListPanel.getRoot());
+
+        GridPane.setColumnIndex(personListPanelPlaceholder,0);
+//        GridPane.setColumnIndex(procedureListPanelPlaceHolder, 1);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
