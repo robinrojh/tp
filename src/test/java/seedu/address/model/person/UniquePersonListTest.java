@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -60,7 +59,7 @@ public class UniquePersonListTest {
 
     @Test
     public void add_duplicateAddress_throwsDuplicatePersonException() {
-        Person editedBob =  new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+        Person editedBob = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
         uniquePersonList.add(BOB);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(editedBob));
@@ -121,7 +120,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasNonUniqueAddress_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
-        Person editedAlice =  new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
         uniquePersonList.add(editedAlice);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, editedAlice));
@@ -182,7 +181,7 @@ public class UniquePersonListTest {
 
     @Test
     public void setPersons_listWithDuplicateAddress_throwsDuplicatePersonException() {
-        Person editedBob =  new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+        Person editedBob = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
         List<Person> listWithDuplicateAddresses = Arrays.asList(BOB, editedBob);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicateAddresses));

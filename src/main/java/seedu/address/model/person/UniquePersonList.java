@@ -11,13 +11,14 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
+
 /**
  * A list of Clients that enforces uniqueness between its elements and does not allow nulls.
  * A Client is considered unique by comparing using {@code Client#isSameClient(Client)}. As such, adding and updating of
  * Clients uses Client#isSameClient(Client) for equality so as to ensure that the Client being added or updated is
  * unique in terms of identity in the UniqueClientList. However, the removal of a Client uses Client#equals(Object) so
  * as to ensure that the Client with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Client#isSameClient(Client)
@@ -112,7 +113,7 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override
@@ -126,9 +127,6 @@ public class UniquePersonList implements Iterable<Person> {
     private boolean personsAreUnique(List<Person> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
-                System.out.println(persons.get(i).getAddress());
-                System.out.println(persons.get(j).getAddress());
-                System.out.println(persons.get(i).isSameClient(persons.get(j)));
                 if (persons.get(i).isSameClient(persons.get(j))) {
                     return false;
                 }

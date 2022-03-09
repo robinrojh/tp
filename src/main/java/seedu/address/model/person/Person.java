@@ -61,19 +61,6 @@ public class Person {
     }
 
     /**
-     * Returns true if both clients have the same name.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
-    }
-
-    /**
      * Returns true if both clients have the same address.
      * This defines a weaker notion of equality between two persons.
      */
