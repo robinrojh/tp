@@ -12,11 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 
 /**
-<<<<<<< HEAD
- * Adds a Client to the address book.
-=======
  * Adds a client to the address book.
->>>>>>> branch-person-to-client
  */
 public class AddCommand extends Command {
 

@@ -11,11 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 
 /**
-<<<<<<< HEAD
- * Deletes a Client identified using it's displayed index from the address book.
-=======
  * Deletes a client identified using it's displayed index from the address book.
->>>>>>> branch-person-to-client
  */
 public class DeleteCommand extends Command {
 
