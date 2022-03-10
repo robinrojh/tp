@@ -31,14 +31,14 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_ClientAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_clientAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
         Client validClient = new ClientBuilder().build();
 
         CommandResult commandResult = new AddCommand(validClient).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validClient), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validClient), modelStub.ClientsAdded);
+        assertEquals(Arrays.asList(validClient), modelStub.clientsAdded);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different Client -> returns false
+        // different client -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -150,7 +150,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single Client.
+     * A Model stub that contains a single client.
      */
     private class ModelStubWithClient extends ModelStub {
         private final Client client;
@@ -168,21 +168,21 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the Client being added.
+     * A Model stub that always accept the client being added.
      */
     private class ModelStubAcceptingClientAdded extends ModelStub {
-        final ArrayList<Client> ClientsAdded = new ArrayList<>();
+        final ArrayList<Client> clientsAdded = new ArrayList<>();
 
         @Override
         public boolean hasClient(Client client) {
             requireNonNull(client);
-            return ClientsAdded.stream().anyMatch(client::isSameClient);
+            return clientsAdded.stream().anyMatch(client::isSameClient);
         }
 
         @Override
         public void addClient(Client client) {
             requireNonNull(client);
-            ClientsAdded.add(client);
+            clientsAdded.add(client);
         }
 
         @Override

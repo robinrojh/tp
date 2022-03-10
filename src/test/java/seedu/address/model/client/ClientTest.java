@@ -65,7 +65,7 @@ public class ClientTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different Client -> returns false
+        // different client -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false

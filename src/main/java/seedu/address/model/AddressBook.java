@@ -40,8 +40,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the Client list with {@code Clients}.
-     * {@code Clients} must not contain duplicate Clients.
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
      */
     public void setClients(List<Client> clients) {
         this.clients.setClients(clients);
@@ -56,10 +56,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         setClients(newData.getClientList());
     }
 
-    //// Client-level operations
+    //// client-level operations
 
     /**
-     * Returns true if a Client with the same identity as {@code Client} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
@@ -67,17 +67,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a Client to the address book.
-     * The Client must not already exist in the address book.
+     * Adds a client to the address book.
+     * The client must not already exist in the address book.
      */
     public void addClient(Client p) {
         clients.add(p);
     }
 
     /**
-     * Replaces the given Client {@code target} in the list with {@code editedClient}.
+     * Replaces the given client {@code target} in the list with {@code editedClient}.
      * {@code target} must exist in the address book.
-     * The Client identity of {@code editedClient} must not be the same as another existing Client in the address book.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
      */
     public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
@@ -97,7 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return clients.asUnmodifiableObservableList().size() + " Clients";
+        return clients.asUnmodifiableObservableList().size() + " clients";
         // TODO: refine later
     }
 
