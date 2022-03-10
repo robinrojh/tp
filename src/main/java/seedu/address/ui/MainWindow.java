@@ -35,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-//    private ProcessListPanel processListPanel;
+    private ProcedureListPanel procedureListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -50,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane procedureListPanelPlaceHolder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -132,7 +135,7 @@ public class MainWindow extends UiPart<Stage> {
 //        procedureListPanelPlaceHolder.getChildren().add(procedureListPanel.getRoot());
 
         GridPane.setColumnIndex(personListPanelPlaceholder,0);
-//        GridPane.setColumnIndex(procedureListPanelPlaceHolder, 1);
+        GridPane.setColumnIndex(procedureListPanelPlaceHolder, 1);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
