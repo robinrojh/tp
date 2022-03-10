@@ -19,19 +19,22 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.client.*;
+import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Email;
+import seedu.address.model.client.Name;
+import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing Client in the address book.
+ * Edits the details of an existing client in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the Client identified "
-            + "by the index number used in the displayed Client list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
+            + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -45,14 +48,14 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This Client already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book.";
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
 
     /**
-     * @param index of the Client in the filtered Client list to edit
-     * @param editClientDescriptor details to edit the Client with
+     * @param index of the client in the filtered client list to edit
+     * @param editClientDescriptor details to edit the client with
      */
     public EditCommand(Index index, EditClientDescriptor editClientDescriptor) {
         requireNonNull(index);
@@ -84,7 +87,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Client} with the details of {@code ClientToEdit}
+     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
      * edited with {@code editClientDescriptor}.
      */
     private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
@@ -118,8 +121,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the Client with. Each non-empty field value will replace the
-     * corresponding field value of the Client.
+     * Stores the details to edit the client with. Each non-empty field value will replace the
+     * corresponding field value of the client.
      */
     public static class EditClientDescriptor {
         private Name name;

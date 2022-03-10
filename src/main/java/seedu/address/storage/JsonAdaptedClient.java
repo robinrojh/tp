@@ -10,8 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.client.*;
+import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Email;
+import seedu.address.model.client.Name;
+import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,7 +31,7 @@ class JsonAdaptedClient {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedClient} with the given Client details.
+     * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -57,14 +60,14 @@ class JsonAdaptedClient {
     }
 
     /**
-     * Converts this Jackson-friendly adapted Client object into the model's {@code Client} object.
+     * Converts this Jackson-friendly adapted client object into the model's {@code Client} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted Client.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
-        final List<Tag> ClientTags = new ArrayList<>();
+        final List<Tag> clientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            ClientTags.add(tag.toModelType());
+            clientTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -99,7 +102,7 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(ClientTags);
+        final Set<Tag> modelTags = new HashSet<>(clientTags);
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 

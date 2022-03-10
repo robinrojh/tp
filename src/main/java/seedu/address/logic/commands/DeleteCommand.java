@@ -11,14 +11,18 @@ import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 
 /**
+<<<<<<< HEAD
  * Deletes a Client identified using it's displayed index from the address book.
+=======
+ * Deletes a client identified using it's displayed index from the address book.
+>>>>>>> branch-person-to-client
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the Client identified by the index number used in the displayed Client list.\n"
+            + ": Deletes the client identified by the index number used in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

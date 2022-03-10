@@ -45,7 +45,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicateClients_throwsDuplicateClientException() {
-        // Two Clients with the same identity fields
+        // Two clients with the same identity fields
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Client> newClients = Arrays.asList(ALICE, editedAlice);
@@ -60,18 +60,18 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasClient_ClientNotInAddressBook_returnsFalse() {
+    public void hasClient_clientNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasClient(ALICE));
     }
 
     @Test
-    public void hasClient_ClientInAddressBook_returnsTrue() {
+    public void hasClient_clientInAddressBook_returnsTrue() {
         addressBook.addClient(ALICE);
         assertTrue(addressBook.hasClient(ALICE));
     }
 
     @Test
-    public void hasClient_ClientWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasClient_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addClient(ALICE);
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -84,7 +84,7 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose Clients list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose clients list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
