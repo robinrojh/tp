@@ -22,17 +22,19 @@ public class Client {
 
     // Data fields
     private final Address address;
+    private final Plan plan;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Client(Name name, Phone phone, Email email, Address address, Plan plan, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.plan = plan;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +52,10 @@ public class Client {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Plan getPlan() {
+        return plan;
     }
 
     /**
@@ -92,13 +98,14 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
+                && otherClient.getPlan().equals(getPlan())
                 && otherClient.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, plan, tags);
     }
 
     @Override
@@ -110,7 +117,9 @@ public class Client {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Plan: ")
+                .append(getPlan());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

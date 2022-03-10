@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
@@ -24,6 +25,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Plan;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,6 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_PLAN + "PLAN] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -97,9 +100,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        Plan updatedPlan = editClientDescriptor.getPlan().orElse(clientToEdit.getPlan());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
 
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedPlan, updatedTags);
     }
 
     @Override
@@ -129,6 +133,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Plan plan;
         private Set<Tag> tags;
 
         public EditClientDescriptor() {}
@@ -142,6 +147,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setPlan(toCopy.plan);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +155,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, plan, tags);
         }
 
         public void setName(Name name) {
@@ -182,6 +188,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setPlan(Plan plan) {
+            this.plan = plan;
+        }
+
+        public Optional<Plan> getPlan() {
+            return Optional.ofNullable(plan);
         }
 
         /**
@@ -220,6 +234,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getPlan().equals(e.getPlan())
                     && getTags().equals(e.getTags());
         }
     }

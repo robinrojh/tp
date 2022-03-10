@@ -37,6 +37,8 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
+    private Label plan;
+    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
@@ -51,6 +53,7 @@ public class ClientCard extends UiPart<Region> {
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         address.setText(client.getAddress().value);
+        plan.setText(client.getPlan().value);
         email.setText(client.getEmail().value);
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
