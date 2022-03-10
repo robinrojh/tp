@@ -2,19 +2,12 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
 import seedu.address.model.procedure.Cost;
 import seedu.address.model.procedure.Date;
 import seedu.address.model.procedure.Information;
 import seedu.address.model.procedure.Procedure;
-import seedu.address.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class JsonAdaptedProcedure {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Procedure's %s field is missing!";
@@ -23,6 +16,9 @@ public class JsonAdaptedProcedure {
     private final String date;
     private final String cost;
 
+    /**
+     * Constructs a {@code JsonAdaptedProcedure} with the given procedure details.
+     */
     @JsonCreator
     public JsonAdaptedProcedure(@JsonProperty("information") String information, @JsonProperty("date") String date,
                                 @JsonProperty("cost") String cost) {
