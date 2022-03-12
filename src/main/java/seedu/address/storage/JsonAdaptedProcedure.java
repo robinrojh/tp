@@ -20,8 +20,8 @@ public class JsonAdaptedProcedure {
      * Constructs a {@code JsonAdaptedProcedure} with the given procedure details.
      */
     @JsonCreator
-    public JsonAdaptedProcedure(@JsonProperty("information") String information, @JsonProperty("date") String date,
-                                @JsonProperty("cost") String cost) {
+    public JsonAdaptedProcedure(@JsonProperty("information") String information,
+            @JsonProperty("date") String date, @JsonProperty("cost") String cost) {
         this.information = information;
         this.date = date;
         this.cost = cost;
@@ -52,7 +52,8 @@ public class JsonAdaptedProcedure {
         final Information modelInfo = new Information(information);
 
         if (date == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Date.class.getSimpleName()));
         }
         if (!Date.isValidDate(date)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
@@ -60,7 +61,8 @@ public class JsonAdaptedProcedure {
         final Date modelDate = new Date(date);
 
         if (cost == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Cost.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Cost.class.getSimpleName()));
         }
         if (!Cost.isValidCost(cost)) {
             throw new IllegalValueException(Cost.MESSAGE_CONSTRAINTS);
