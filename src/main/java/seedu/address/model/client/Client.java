@@ -2,11 +2,14 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.List;
 
+import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,9 +26,10 @@ public class Client {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Procedure> procedures = new ArrayList<Procedure>();
 
     /**
-     * Every field must be present and not null.
+     * Every field, less Procedures, must be present and not null.
      */
     public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -34,6 +38,19 @@ public class Client {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Procedure> procedures) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.procedures.addAll(procedures);
     }
 
     public Name getName() {
@@ -58,6 +75,14 @@ public class Client {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable procedure set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Procedure> getProcedures() {
+        return Collections.unmodifiableList(procedures);
     }
 
     /**

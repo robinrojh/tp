@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +25,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -98,8 +100,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
+        List<Procedure> updatedProcedures = editClientDescriptor.getProcedures().orElse(clientToEdit.getProcedures());
 
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedProcedures);
     }
 
     @Override
@@ -130,6 +133,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private List<Procedure> procedures;
 
         public EditClientDescriptor() {}
 
@@ -143,13 +147,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setProcedures(toCopy.procedures);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, procedures);
         }
 
         public void setName(Name name) {
@@ -199,6 +204,23 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code Procedures} to this object's {@code Procedures}.
+         * A defensive copy of {@code Procedures} is used internally.
+         */
+        public void setProcedures(List<Procedure> procedures) {
+            this.procedures = (procedures != null) ? new ArrayList<>(procedures) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<List<Procedure>> getProcedures() {
+            return (procedures != null) ? Optional.of(Collections.unmodifiableList(procedures)) : Optional.empty();
         }
 
         @Override
