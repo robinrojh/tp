@@ -37,9 +37,9 @@ public class JsonAdaptedProcedure {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Procedure} object.
+     * Converts this Jackson-friendly adapted client object into the model's {@code Procedure} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Procedure toModelType() throws IllegalValueException {
         if (information == null) {
