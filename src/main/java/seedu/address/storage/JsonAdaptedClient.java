@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Client}.
  */
 class JsonAdaptedClient {
-
+    // TODO: add procedures
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
 
     private final String name;
