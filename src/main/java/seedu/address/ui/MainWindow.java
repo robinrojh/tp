@@ -34,8 +34,12 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+<<<<<<< HEAD
     private PersonListPanel personListPanel;
     private ProcedureListPanel procedureListPanel;
+=======
+    private ClientListPanel clientListPanel;
+>>>>>>> e5a4e36bec0e4a5987bd16804f8249b9d139e2f3
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -46,10 +50,14 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+<<<<<<< HEAD
     private GridPane personListGridPane;
 
     @FXML
     private StackPane personListPanelPlaceholder;
+=======
+    private StackPane clientListPanelPlaceholder;
+>>>>>>> e5a4e36bec0e4a5987bd16804f8249b9d139e2f3
 
     @FXML
     private StackPane procedureListPanelPlaceHolder;
@@ -120,6 +128,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+<<<<<<< HEAD
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setPercentWidth(50);
         column1.setHgrow(Priority.ALWAYS);
@@ -130,6 +139,10 @@ public class MainWindow extends UiPart<Stage> {
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+=======
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+>>>>>>> e5a4e36bec0e4a5987bd16804f8249b9d139e2f3
 
 //        procedureListPanel = new ProcedureListPanel();
 //        procedureListPanelPlaceHolder.getChildren().add(procedureListPanel.getRoot());
@@ -187,8 +200,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ClientListPanel getClientListPanel() {
+        return clientListPanel;
     }
 
     /**
