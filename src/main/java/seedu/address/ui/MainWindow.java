@@ -126,9 +126,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up all the placeholders of this window.
+     * Sets up the client column and procedure column of clientListGridPane.
      */
-    void fillInnerParts() {
+    void setUpColumnConstraints() {
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setPercentWidth(50);
         column1.setHgrow(Priority.ALWAYS);
@@ -136,6 +136,21 @@ public class MainWindow extends UiPart<Stage> {
         column2.setPercentWidth(50);
         column2.setHgrow(Priority.ALWAYS);
         clientListGridPane.getColumnConstraints().addAll(column1, column2); // each get 50% of width
+    }
+
+    /**
+     * Adds the placeholder panes into the grid pane,
+     */
+    void addPlaceholdersToGridPane() {
+        clientListGridPane.add(clientListPanelPlaceholder, 0, 0);
+        clientListGridPane.add(procedureListPanelPlaceholder, 1, 0);
+    }
+
+    /**
+     * Fills up all the placeholders of this window.
+     */
+    void fillInnerParts() {
+        setUpColumnConstraints();
 
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
@@ -149,8 +164,7 @@ public class MainWindow extends UiPart<Stage> {
         procedureListPanelPlaceholder.getChildren()
                 .add(procedureListPanel.getRoot());
 
-        clientListGridPane.add(clientListPanelPlaceholder, 0, 0);
-        clientListGridPane.add(procedureListPanelPlaceholder, 1, 0);
+        addPlaceholdersToGridPane();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
