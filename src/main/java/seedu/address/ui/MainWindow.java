@@ -140,6 +140,7 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
+        // Must add a getFilteredProcedureList in logic for a single client-- works with the list method
         List<Procedure> procList = new ArrayList<>();
         procList.add(new Procedure(new Information("info"), new Date("14/03/2022"), new Cost("30")));
         ObservableList<Procedure> procedureObservableList = FXCollections.observableList(procList);
