@@ -16,6 +16,7 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.procedure.Cost;
 import seedu.address.model.procedure.Date;
 import seedu.address.model.procedure.Information;
+import seedu.address.model.client.Plan;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -81,6 +82,21 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String plan} into an {@code Plan}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code plan} is invalid.
+     */
+    public static Plan parsePlan(String plan) throws ParseException {
+        requireNonNull(plan);
+        String trimmedPlan = plan.trim();
+        if (!Plan.isValidPlan(trimmedPlan)) {
+            throw new ParseException(Plan.MESSAGE_CONSTRAINTS);
+        }
+        return new Plan(trimmedPlan);
     }
 
     /**
