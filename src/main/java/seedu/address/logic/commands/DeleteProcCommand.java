@@ -4,15 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Address;
@@ -99,7 +95,8 @@ public class DeleteProcCommand extends Command {
 			throw new CommandException(Messages.MESSAGE_INVALID_PROCEDURE_DISPLAYED_INDEX);
 		}
 
-		return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedProcedures);
+		return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress,
+				updatedTags, updatedProcedures);
 	}
 
 	private List<Procedure> deleteProcedure(List<Procedure> procedureList) throws CommandException {
