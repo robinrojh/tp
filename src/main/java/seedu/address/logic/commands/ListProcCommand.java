@@ -13,22 +13,10 @@ public class ListProcCommand extends Command {
     public static final String COMMAND_WORD = "listProc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the procedures of a client in the index. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + "Parameters: INDEX"
+            + "Example: listProc 1";
 
-    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "Procedures successfully loaded.";
 
     private final Client target;
 
@@ -36,12 +24,8 @@ public class ListProcCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasClient(target)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
-        }
-
         model.addClient(target);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, target));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     /**
