@@ -5,13 +5,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
 import seedu.address.model.procedure.Procedure;
 
 import java.util.Comparator;
 
 public class ProcedureCard extends UiPart<Region> {
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ProcedureListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -35,7 +35,7 @@ public class ProcedureCard extends UiPart<Region> {
     private Label cost;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ProcedureCard} with the given {@code Procedure} and index to display.
      */
     public ProcedureCard(Procedure procedure, int displayedIndex) {
         super(FXML);

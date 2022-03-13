@@ -1,7 +1,12 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -19,6 +24,10 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.procedure.Cost;
+import seedu.address.model.procedure.Date;
+import seedu.address.model.procedure.Information;
+import seedu.address.model.procedure.Procedure;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,12 +43,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-<<<<<<< HEAD
-    private PersonListPanel personListPanel;
     private ProcedureListPanel procedureListPanel;
-=======
     private ClientListPanel clientListPanel;
->>>>>>> e5a4e36bec0e4a5987bd16804f8249b9d139e2f3
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -50,17 +55,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-<<<<<<< HEAD
-    private GridPane personListGridPane;
+    private GridPane clientListGridPane;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-=======
     private StackPane clientListPanelPlaceholder;
->>>>>>> e5a4e36bec0e4a5987bd16804f8249b9d139e2f3
 
     @FXML
-    private StackPane procedureListPanelPlaceHolder;
+    private StackPane procedureListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -128,27 +129,27 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-<<<<<<< HEAD
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setPercentWidth(50);
         column1.setHgrow(Priority.ALWAYS);
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setPercentWidth(50);
         column2.setHgrow(Priority.ALWAYS);
-        personListGridPane.getColumnConstraints().addAll(column1, column2); // each get 50% of width
+        clientListGridPane.getColumnConstraints().addAll(column1, column2); // each get 50% of width
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-=======
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
->>>>>>> e5a4e36bec0e4a5987bd16804f8249b9d139e2f3
 
-//        procedureListPanel = new ProcedureListPanel();
-//        procedureListPanelPlaceHolder.getChildren().add(procedureListPanel.getRoot());
+        List<Procedure> procList = new ArrayList<>();
+        procList.add(new Procedure(new Information("info"), new Date("14/03/2022"), new Cost("30")));
+        ObservableList<Procedure> procedureObservableList = FXCollections.observableList(procList);
 
-        GridPane.setColumnIndex(personListPanelPlaceholder,0);
-        GridPane.setColumnIndex(procedureListPanelPlaceHolder, 1);
+        procedureListPanel = new ProcedureListPanel(procedureObservableList);
+        procedureListPanelPlaceholder.getChildren()
+                .add(procedureListPanel.getRoot());
+
+        clientListGridPane.add(clientListPanelPlaceholder, 0, 0);
+        clientListGridPane.add(procedureListPanelPlaceholder, 1, 0);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

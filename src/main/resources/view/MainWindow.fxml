@@ -46,13 +46,14 @@
         </StackPane>
 
         <GridPane fx:id="clientListGridPane">
-          <VBox fx:id="clientList" styleClass="pane-with-border" minWidth="500" prefWidth="500" VBox.vgrow="ALWAYS">
+          <VBox fx:id="clientList" styleClass="pane-with-border" style="-fx-border-width: 5; -fx-border-color: white;"
+                VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
-          <VBox fx:id="procedureList" styleClass="pane-with-border" minWidth="500" prefWidth="500">
+          <VBox fx:id="procedureList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
             </padding>

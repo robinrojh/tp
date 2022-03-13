@@ -24,6 +24,7 @@ public class ProcedureListPanel extends UiPart<Region> {
         super(FXML);
         procedureListView.setItems(procedureList);
         procedureListView.setCellFactory(listView -> new ProcedureListViewCell());
+        procedureListView.setStyle("-fx-border-width: 0 0 0 2; -fx-border-color: white;");
     }
 
     /**
