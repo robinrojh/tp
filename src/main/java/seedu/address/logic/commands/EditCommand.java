@@ -100,7 +100,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-        List<Procedure> updatedProcedures = editClientDescriptor.getProcedures().orElse(clientToEdit.getProcedures());
+        List<Procedure> updatedProcedures = clientToEdit.getProcedures();
 
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedProcedures);
     }

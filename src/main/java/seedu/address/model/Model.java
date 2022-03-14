@@ -62,13 +62,13 @@ public interface Model {
      * Deletes the given client.
      * The client must exist in the address book.
      */
-    void deleteClient(Client client);
+    void deleteClient(Client target);
 
     /**
      * Adds the given client.
      * {@code Client} must not already exist in the address book.
      */
-    void addClient(Client client);
+    void addClient(Client target);
 
     /**
      * Delete the given Procedure.
@@ -76,7 +76,7 @@ public interface Model {
     void deleteProcedure(Procedure procedure);
 
     /**
-     * Delete the given Procedure.
+     * Add the given Procedure.
      */
     void addProcedure(Procedure procedure);
 

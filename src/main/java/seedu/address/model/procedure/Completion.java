@@ -1,5 +1,7 @@
 package seedu.address.model.procedure;
 
+import java.util.regex.Pattern;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,6 +11,7 @@ public class Completion {
 	public static final String MESSAGE_CONSTRAINTS =
 			"1. Completion should be a Boolean value, Boolean.TRUE or Boolean.FALSE";
 
+	public static final String VALIDATION_REGEX = "^([Tt][Rr][Uu][Ee]|[Ff][Aa][Ll][Ss][Ee])$";
 	public final Boolean completion;
 
 	/**
@@ -16,17 +19,17 @@ public class Completion {
 	 *
 	 * @param completion A valid Boolean value indicating completion of Procedure.
 	 */
-	public Completion(Boolean completion) {
+	public Completion(String completion) {
 		requireNonNull(completion);
 		checkArgument(isValidCompletion(completion), MESSAGE_CONSTRAINTS);
-		this.completion = completion;
+		this.completion = Boolean.getBoolean(completion);
 	}
 
 	/**
 	 * Returns true if a given string is a valid boolean.
 	 */
-	public static boolean isValidCompletion(Boolean test) {
-		return test == ( Boolean.TRUE || Boolean.FALSE );
+	public static boolean isValidCompletion(String test) {
+		return test.matches(VALIDATION_REGEX);
 	}
 
 	public Boolean getCompletion() {
