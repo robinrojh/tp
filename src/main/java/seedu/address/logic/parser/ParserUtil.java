@@ -13,10 +13,10 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Plan;
 import seedu.address.model.procedure.Cost;
 import seedu.address.model.procedure.Date;
 import seedu.address.model.procedure.Information;
-import seedu.address.model.client.Plan;
 import seedu.address.model.tag.Tag;
 
 /**

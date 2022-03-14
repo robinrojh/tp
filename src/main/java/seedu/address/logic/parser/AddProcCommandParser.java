@@ -47,7 +47,7 @@ public class AddProcCommandParser implements Parser<AddProcCommand> {
         Cost cost = ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         // New Procedure is not completed by default
-        Completion completion = new Completion("FALSE");
+        Completion completion = new Completion("false");
 
         Procedure procedure = new Procedure(information, date, cost, completion);
 
