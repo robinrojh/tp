@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
+import seedu.address.model.procedure.Procedure;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -102,6 +103,14 @@ public class ModelManager implements Model {
     public void addClient(Client client) {
         addressBook.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+    }
+
+    @Override
+    public void deleteProcedure(Procedure procedure) {
+    }
+
+    @Override
+    public void addProcedure(Procedure procedure) {
     }
 
     @Override

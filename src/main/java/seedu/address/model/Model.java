@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
+import seedu.address.model.procedure.Procedure;
 
 /**
  * The API of the Model component.
@@ -53,7 +54,7 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * Returns true if a client with the same identity as {@code Client} exists in the address book.
      */
     boolean hasClient(Client client);
 
@@ -65,9 +66,19 @@ public interface Model {
 
     /**
      * Adds the given client.
-     * {@code client} must not already exist in the address book.
+     * {@code Client} must not already exist in the address book.
      */
-    void addClient(Client client);
+    void addClient(Client target);
+
+    /**
+     * Delete the given Procedure.
+     */
+    void deleteProcedure(Procedure procedure);
+
+    /**
+     * Add the given Procedure.
+     */
+    void addProcedure(Procedure procedure);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.

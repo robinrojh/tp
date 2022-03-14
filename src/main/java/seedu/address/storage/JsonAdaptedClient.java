@@ -16,6 +16,7 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Plan;
+import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ class JsonAdaptedClient {
     private final String address;
     private final String plan;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedProcedure> procedures = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -38,7 +40,8 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("plan") String plan, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("plan") String plan, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("procedures") List<JsonAdaptedProcedure> procedures) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,6 +49,9 @@ class JsonAdaptedClient {
         this.plan = plan;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (procedures != null) {
+            this.procedures.addAll(procedures);
         }
     }
 
@@ -61,6 +67,9 @@ class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        procedures.addAll(source.getProcedures().stream()
+                .map(JsonAdaptedProcedure::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -72,6 +81,11 @@ class JsonAdaptedClient {
         final List<Tag> clientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toModelType());
+        }
+
+        final List<Procedure> clientProcedures = new ArrayList<>();
+        for (JsonAdaptedProcedure procedure : procedures) {
+            clientProcedures.add(procedure.toModelType());
         }
 
         if (name == null) {
@@ -115,7 +129,10 @@ class JsonAdaptedClient {
         final Plan modelPlan = new Plan(plan);
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelPlan, modelTags);
+
+        final ArrayList<Procedure> modelProcedures = new ArrayList<>(clientProcedures);
+
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelPlan, modelTags, modelProcedures);
     }
 
 }
