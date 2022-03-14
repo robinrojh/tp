@@ -4,15 +4,24 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INFORMATION;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Email;
+import seedu.address.model.client.Name;
+import seedu.address.model.client.Phone;
+import seedu.address.model.client.Plan;
 import seedu.address.model.procedure.Procedure;
+import seedu.address.model.tag.Tag;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -27,7 +36,7 @@ public class AddProcCommand extends Command {
             + PREFIX_INFORMATION + "INFORMATION "
             + PREFIX_COST + "COST "
             + PREFIX_DATE + "DATE \n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INFORMATION + "Install modem "
             + PREFIX_COST + "10.5 "
             + PREFIX_DATE + "20/03/2022 ";
@@ -59,13 +68,74 @@ public class AddProcCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        Client clientToAddProc = lastShownList.get(index.getZeroBased());
-        model.addProcedure(clientToAddProc, procedure);
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
+        Client editedClient = null;
 
-        if (model.hasProcedureInClient(procedure)) {
+        try {
+            editedClient = addClientProcedure(clientToEdit);
+        } catch (CommandException err) {
             throw new CommandException(MESSAGE_DUPLICATE_PROCEDURE);
         }
 
+        model.setClient(clientToEdit, editedClient);
+        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, procedure));
+    }
+
+    /**
+     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
+     * edited with {@code addProcedureDescriptor}.
+     */
+    private Client addClientProcedure(Client clientToEdit) throws CommandException {
+        assert clientToEdit != null;
+
+        Name updatedName = clientToEdit.getName();
+        Phone updatedPhone = clientToEdit.getPhone();
+        Email updatedEmail = clientToEdit.getEmail();
+        Plan updatedPlan = clientToEdit.getPlan();
+        Address updatedAddress = clientToEdit.getAddress();
+        Set<Tag> updatedTags = clientToEdit.getTags();
+        List<Procedure> updatedProcedures = new ArrayList<>();
+
+        try {
+            updatedProcedures.addAll(addProcedure(clientToEdit.getProcedures()));
+        } catch (CommandException err) {
+            throw new CommandException(MESSAGE_DUPLICATE_PROCEDURE);
+        }
+
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedPlan,
+                updatedTags, updatedProcedures);
+    }
+
+    private List<Procedure> addProcedure(List<Procedure> procedureList)
+            throws CommandException {
+
+        List<Procedure> updatedProcedureList = new ArrayList<>();
+        for (int i = 0; i < procedureList.size(); i++) {
+            if (procedureList.get(i).equals(procedure)) {
+                throw new CommandException(MESSAGE_DUPLICATE_PROCEDURE);
+            }
+            updatedProcedureList.add(procedureList.get(i));
+        }
+        updatedProcedureList.add(procedure);
+        return updatedProcedureList;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddProcCommand)) {
+            return false;
+        }
+
+        // state check
+        AddProcCommand e = (AddProcCommand) other;
+        return index.equals(e.index)
+                && procedure.equals(e.procedure);
     }
 }

@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddProcCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.procedure.Completion;
 import seedu.address.model.procedure.Cost;
 import seedu.address.model.procedure.Date;
 import seedu.address.model.procedure.Information;
@@ -38,16 +39,17 @@ public class AddProcCommandParser implements Parser<AddProcCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProcCommand.MESSAGE_USAGE), pe);
         }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_INFORMATION, PREFIX_COST, PREFIX_DATE)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_INFORMATION, PREFIX_COST, PREFIX_DATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProcCommand.MESSAGE_USAGE));
         }
 
         Information information = ParserUtil.parseInformation(argMultimap.getValue(PREFIX_INFORMATION).get());
         Cost cost = ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        // New Procedure is not completed by default
+        Completion completion = new Completion("FALSE");
 
-        Procedure procedure = new Procedure(information, date, cost);
+        Procedure procedure = new Procedure(information, date, cost, completion);
 
         return new AddProcCommand(index, procedure);
     }
