@@ -90,9 +90,19 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredClientList();
 
+    /** Returns an unmodifiable view of the filtered procedure list */
+    ObservableList<Procedure> getFilteredProcedureList(Client client);
+
     /**
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+
+    /**
+     * Updates the filter of the filtered procedure list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredProcedureList(Client client, Predicate<Procedure> predicate);
 }

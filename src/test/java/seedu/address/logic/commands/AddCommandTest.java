@@ -155,7 +155,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Procedure> getFilteredProcedureList(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredProcedureList(Client client, Predicate<Procedure> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
