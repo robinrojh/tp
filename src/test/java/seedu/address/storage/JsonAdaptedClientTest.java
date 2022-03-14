@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedClient.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalClients.BENSON;
+import static seedu.address.testutil.TypicalClients.BOSS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,26 +19,26 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.client.Plan;
 
 public class JsonAdaptedClientTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = " ";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_PLAN = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final String VALID_PLAN = BENSON.getPlan().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_NAME = BOSS.getName().toString();
+    private static final String VALID_PHONE = BOSS.getPhone().toString();
+    private static final String VALID_EMAIL = BOSS.getEmail().toString();
+    private static final String VALID_ADDRESS = BOSS.getAddress().toString();
+    private static final String VALID_PLAN = BOSS.getPlan().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = BOSS.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validClientDetails_returnsClient() throws Exception {
-        JsonAdaptedClient client = new JsonAdaptedClient(BENSON);
-        assertEquals(BENSON, client.toModelType());
+        JsonAdaptedClient client = new JsonAdaptedClient(BOSS);
+        assertEquals(BOSS, client.toModelType());
     }
 
     @Test

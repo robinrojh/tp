@@ -3,11 +3,11 @@ package seedu.address.model.client;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalClients.ALICE;
-import static seedu.address.testutil.TypicalClients.BOB;
+import static seedu.address.testutil.TypicalClients.ARTFRIEND;
+import static seedu.address.testutil.TypicalClients.BURGER;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,19 +30,19 @@ public class UniqueClientListTest {
 
     @Test
     public void contains_clientNotInList_returnsFalse() {
-        assertFalse(uniqueClientList.contains(ALICE));
+        assertFalse(uniqueClientList.contains(ARTFRIEND));
     }
 
     @Test
     public void contains_clientInList_returnsTrue() {
-        uniqueClientList.add(ALICE);
-        assertTrue(uniqueClientList.contains(ALICE));
+        uniqueClientList.add(ARTFRIEND);
+        assertTrue(uniqueClientList.contains(ARTFRIEND));
     }
 
     @Test
     public void contains_clientWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueClientList.add(ALICE);
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        uniqueClientList.add(ARTFRIEND);
+        Client editedAlice = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).withTags(VALID_TAG_TECH)
                 .build();
         assertTrue(uniqueClientList.contains(editedAlice));
     }
@@ -54,40 +54,40 @@ public class UniqueClientListTest {
 
     @Test
     public void add_duplicateClient_throwsDuplicateClientException() {
-        uniqueClientList.add(ALICE);
-        assertThrows(DuplicateClientException.class, () -> uniqueClientList.add(ALICE));
+        uniqueClientList.add(ARTFRIEND);
+        assertThrows(DuplicateClientException.class, () -> uniqueClientList.add(ARTFRIEND));
     }
 
     @Test
     public void setClient_nullTargetClient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClientList.setClient(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClient(null, ARTFRIEND));
     }
 
     @Test
     public void setClient_nullEditedClient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClientList.setClient(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClient(ARTFRIEND, null));
     }
 
     @Test
     public void setClient_targetClientNotInList_throwsClientNotFoundException() {
-        assertThrows(ClientNotFoundException.class, () -> uniqueClientList.setClient(ALICE, ALICE));
+        assertThrows(ClientNotFoundException.class, () -> uniqueClientList.setClient(ARTFRIEND, ARTFRIEND));
     }
 
     @Test
     public void setClient_editedClientIsSameClient_success() {
-        uniqueClientList.add(ALICE);
-        uniqueClientList.setClient(ALICE, ALICE);
+        uniqueClientList.add(ARTFRIEND);
+        uniqueClientList.setClient(ARTFRIEND, ARTFRIEND);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
-        expectedUniqueClientList.add(ALICE);
+        expectedUniqueClientList.add(ARTFRIEND);
         assertEquals(expectedUniqueClientList, uniqueClientList);
     }
 
     @Test
     public void setClient_editedClientHasSameIdentity_success() {
-        uniqueClientList.add(ALICE);
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        uniqueClientList.add(ARTFRIEND);
+        Client editedAlice = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).withTags(VALID_TAG_TECH)
                 .build();
-        uniqueClientList.setClient(ALICE, editedAlice);
+        uniqueClientList.setClient(ARTFRIEND, editedAlice);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
         expectedUniqueClientList.add(editedAlice);
         assertEquals(expectedUniqueClientList, uniqueClientList);
@@ -95,18 +95,18 @@ public class UniqueClientListTest {
 
     @Test
     public void setClient_editedClientHasDifferentIdentity_success() {
-        uniqueClientList.add(ALICE);
-        uniqueClientList.setClient(ALICE, BOB);
+        uniqueClientList.add(ARTFRIEND);
+        uniqueClientList.setClient(ARTFRIEND, BURGER);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
-        expectedUniqueClientList.add(BOB);
+        expectedUniqueClientList.add(BURGER);
         assertEquals(expectedUniqueClientList, uniqueClientList);
     }
 
     @Test
     public void setClient_editedClientHasNonUniqueIdentity_throwsDuplicateClientException() {
-        uniqueClientList.add(ALICE);
-        uniqueClientList.add(BOB);
-        assertThrows(DuplicateClientException.class, () -> uniqueClientList.setClient(ALICE, BOB));
+        uniqueClientList.add(ARTFRIEND);
+        uniqueClientList.add(BURGER);
+        assertThrows(DuplicateClientException.class, () -> uniqueClientList.setClient(ARTFRIEND, BURGER));
     }
 
     @Test
@@ -116,13 +116,13 @@ public class UniqueClientListTest {
 
     @Test
     public void remove_clientDoesNotExist_throwsClientNotFoundException() {
-        assertThrows(ClientNotFoundException.class, () -> uniqueClientList.remove(ALICE));
+        assertThrows(ClientNotFoundException.class, () -> uniqueClientList.remove(ARTFRIEND));
     }
 
     @Test
     public void remove_existingClient_removesClient() {
-        uniqueClientList.add(ALICE);
-        uniqueClientList.remove(ALICE);
+        uniqueClientList.add(ARTFRIEND);
+        uniqueClientList.remove(ARTFRIEND);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
         assertEquals(expectedUniqueClientList, uniqueClientList);
     }
@@ -134,9 +134,9 @@ public class UniqueClientListTest {
 
     @Test
     public void setClients_uniqueClientList_replacesOwnListWithProvidedUniqueClientList() {
-        uniqueClientList.add(ALICE);
+        uniqueClientList.add(ARTFRIEND);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
-        expectedUniqueClientList.add(BOB);
+        expectedUniqueClientList.add(BURGER);
         uniqueClientList.setClients(expectedUniqueClientList);
         assertEquals(expectedUniqueClientList, uniqueClientList);
     }
@@ -148,17 +148,17 @@ public class UniqueClientListTest {
 
     @Test
     public void setClients_list_replacesOwnListWithProvidedList() {
-        uniqueClientList.add(ALICE);
-        List<Client> clientList = Collections.singletonList(BOB);
+        uniqueClientList.add(ARTFRIEND);
+        List<Client> clientList = Collections.singletonList(BURGER);
         uniqueClientList.setClients(clientList);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
-        expectedUniqueClientList.add(BOB);
+        expectedUniqueClientList.add(BURGER);
         assertEquals(expectedUniqueClientList, uniqueClientList);
     }
 
     @Test
     public void setClients_listWithDuplicateClients_throwsDuplicateClientException() {
-        List<Client> listWithDuplicateClients = Arrays.asList(ALICE, ALICE);
+        List<Client> listWithDuplicateClients = Arrays.asList(ARTFRIEND, ARTFRIEND);
         assertThrows(DuplicateClientException.class, () -> uniqueClientList.setClients(listWithDuplicateClients));
     }
 
