@@ -2,14 +2,14 @@ package seedu.address.model.client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalClients.ALICE;
-import static seedu.address.testutil.TypicalClients.BOB;
+import static seedu.address.testutil.TypicalClients.ARTFRIEND;
+import static seedu.address.testutil.TypicalClients.BURGER;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,66 +26,66 @@ public class ClientTest {
     @Test
     public void isSameClient() {
         // same object -> returns true
-        assertTrue(ALICE.isSameClient(ALICE));
+        assertTrue(ARTFRIEND.isSameClient(ARTFRIEND));
 
         // null -> returns false
-        assertFalse(ALICE.isSameClient(null));
+        assertFalse(ARTFRIEND.isSameClient(null));
 
         // same name, all other attributes different -> returns true
-        Client editedAlice = new ClientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameClient(editedAlice));
+        Client editedAlice = new ClientBuilder(ARTFRIEND).withPhone(VALID_PHONE_BURGER).withEmail(VALID_EMAIL_BURGER)
+                .withAddress(VALID_ADDRESS_BURGER).withTags(VALID_TAG_TECH).build();
+        assertTrue(ARTFRIEND.isSameClient(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new ClientBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameClient(editedAlice));
+        editedAlice = new ClientBuilder(ARTFRIEND).withName(VALID_NAME_BURGER).build();
+        assertFalse(ARTFRIEND.isSameClient(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Client editedBob = new ClientBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameClient(editedBob));
+        Client editedBurger = new ClientBuilder(BURGER).withName(VALID_NAME_BURGER.toLowerCase()).build();
+        assertFalse(BURGER.isSameClient(editedBurger));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new ClientBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameClient(editedBob));
+        String nameWithTrailingSpaces = VALID_NAME_BURGER + " ";
+        editedBurger = new ClientBuilder(BURGER).withName(nameWithTrailingSpaces).build();
+        assertFalse(BURGER.isSameClient(editedBurger));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Client aliceCopy = new ClientBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Client aliceCopy = new ClientBuilder(ARTFRIEND).build();
+        assertTrue(ARTFRIEND.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(ARTFRIEND.equals(ARTFRIEND));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(ARTFRIEND.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(ARTFRIEND.equals(5));
 
         // different client -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(ARTFRIEND.equals(BURGER));
 
         // different name -> returns false
-        Client editedAlice = new ClientBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Client editedAlice = new ClientBuilder(ARTFRIEND).withName(VALID_NAME_BURGER).build();
+        assertFalse(ARTFRIEND.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new ClientBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new ClientBuilder(ARTFRIEND).withPhone(VALID_PHONE_BURGER).build();
+        assertFalse(ARTFRIEND.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new ClientBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new ClientBuilder(ARTFRIEND).withEmail(VALID_EMAIL_BURGER).build();
+        assertFalse(ARTFRIEND.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).build();
+        assertFalse(ARTFRIEND.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new ClientBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new ClientBuilder(ARTFRIEND).withTags(VALID_TAG_TECH).build();
+        assertFalse(ARTFRIEND.equals(editedAlice));
     }
 }

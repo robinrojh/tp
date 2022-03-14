@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
@@ -54,11 +54,11 @@ public class EditCommandTest {
         Client lastClient = model.getFilteredClientList().get(indexLastClient.getZeroBased());
 
         ClientBuilder clientInList = new ClientBuilder(lastClient);
-        Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Client editedClient = clientInList.withName(VALID_NAME_BURGER).withPhone(VALID_PHONE_BURGER)
+                .withTags(VALID_TAG_TECH).build();
 
-        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BURGER)
+                .withPhone(VALID_PHONE_BURGER).withTags(VALID_TAG_TECH).build();
         EditCommand editCommand = new EditCommand(indexLastClient, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
@@ -86,9 +86,9 @@ public class EditCommandTest {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
 
         Client clientInFilteredList = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
-        Client editedClient = new ClientBuilder(clientInFilteredList).withName(VALID_NAME_BOB).build();
+        Client editedClient = new ClientBuilder(clientInFilteredList).withName(VALID_NAME_BURGER).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT,
-                new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditClientDescriptorBuilder().withName(VALID_NAME_BURGER).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
@@ -122,7 +122,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidClientIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
-        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BURGER).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
@@ -140,17 +140,17 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getClientList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditClientDescriptorBuilder().withName(VALID_NAME_BURGER).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_CLIENT, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_CLIENT, DESC_APPLE);
 
         // same values -> returns true
-        EditClientDescriptor copyDescriptor = new EditClientDescriptor(DESC_AMY);
+        EditClientDescriptor copyDescriptor = new EditClientDescriptor(DESC_APPLE);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_CLIENT, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -164,10 +164,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_CLIENT, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_CLIENT, DESC_APPLE)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_CLIENT, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_CLIENT, DESC_BURGER)));
     }
 
 }
