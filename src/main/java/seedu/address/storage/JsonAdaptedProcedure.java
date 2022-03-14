@@ -4,8 +4,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.client.Client;
-import seedu.address.model.procedure.*;
+import seedu.address.model.procedure.Completion;
+import seedu.address.model.procedure.Cost;
+import seedu.address.model.procedure.Date;
+import seedu.address.model.procedure.Information;
+import seedu.address.model.procedure.Procedure;
+
 
 public class JsonAdaptedProcedure {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Procedure's %s field is missing!";

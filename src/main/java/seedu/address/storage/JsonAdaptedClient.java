@@ -15,6 +15,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Plan;
 import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
 
@@ -29,6 +30,7 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final String address;
+    private final String plan;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedProcedure> procedures = new ArrayList<>();
 
@@ -38,12 +40,13 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("plan") String plan, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("procedures") List<JsonAdaptedProcedure> procedures) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.plan = plan;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,6 +63,7 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        plan = source.getPlan().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -116,11 +120,19 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
+        if (plan == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Plan.class.getSimpleName()));
+        }
+        if (!Plan.isValidPlan(plan)) {
+            throw new IllegalValueException(Plan.MESSAGE_CONSTRAINTS);
+        }
+        final Plan modelPlan = new Plan(plan);
+
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
         final ArrayList<Procedure> modelProcedures = new ArrayList<>(clientProcedures);
 
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelProcedures);
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelPlan, modelTags, modelProcedures);
     }
 
 }
