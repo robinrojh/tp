@@ -3,10 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.ARTFRIEND;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateClients_throwsDuplicateClientException() {
         // Two clients with the same identity fields
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedArtfriend = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).withTags(VALID_TAG_TECH)
                 .build();
-        List<Client> newClients = Arrays.asList(ALICE, editedAlice);
+        List<Client> newClients = Arrays.asList(ARTFRIEND, editedArtfriend);
         AddressBookStub newData = new AddressBookStub(newClients);
 
         assertThrows(DuplicateClientException.class, () -> addressBook.resetData(newData));
@@ -61,19 +61,19 @@ public class AddressBookTest {
 
     @Test
     public void hasClient_clientNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasClient(ALICE));
+        assertFalse(addressBook.hasClient(ARTFRIEND));
     }
 
     @Test
     public void hasClient_clientInAddressBook_returnsTrue() {
-        addressBook.addClient(ALICE);
-        assertTrue(addressBook.hasClient(ALICE));
+        addressBook.addClient(ARTFRIEND);
+        assertTrue(addressBook.hasClient(ARTFRIEND));
     }
 
     @Test
     public void hasClient_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addClient(ALICE);
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        addressBook.addClient(ARTFRIEND);
+        Client editedAlice = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).withTags(VALID_TAG_TECH)
                 .build();
         assertTrue(addressBook.hasClient(editedAlice));
     }

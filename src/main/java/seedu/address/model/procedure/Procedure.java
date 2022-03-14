@@ -14,15 +14,17 @@ public class Procedure {
     private final Information information;
     private final Date date;
     private final Cost cost;
+    private final Completion completion;
 
     /**
      * Every field must be present and not null.
      */
-    public Procedure(Information information, Date date, Cost cost) {
+    public Procedure(Information information, Date date, Cost cost, Completion completion) {
         requireAllNonNull(information, date, cost);
         this.information = information;
         this.date = date;
         this.cost = cost;
+        this.completion = completion;
     }
 
     public Information getInfo() {
@@ -35,6 +37,10 @@ public class Procedure {
 
     public Cost getCost() {
         return this.cost;
+    }
+
+    public Completion getCompletion() {
+        return this.completion;
     }
 
     /**
@@ -55,13 +61,14 @@ public class Procedure {
         Procedure otherPerson = (Procedure) other;
         return otherPerson.getInfo().equals(getInfo())
                 && otherPerson.getDate().equals(getDate())
-                && otherPerson.getCost().equals(getCost());
+                && otherPerson.getCost().equals(getCost())
+                && otherPerson.getCompletion().equals(getCompletion());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(information, date, cost);
+        return Objects.hash(information, date, cost, completion);
     }
 
     @Override
@@ -72,7 +79,9 @@ public class Procedure {
                 .append("; Date: ")
                 .append(getDate())
                 .append("; Cost: ")
-                .append(getCost());
+                .append(getCost())
+                .append("; Completion: ")
+                .append(getCompletion());
 
         return builder.toString();
     }

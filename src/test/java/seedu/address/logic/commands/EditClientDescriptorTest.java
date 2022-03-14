@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BURGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,39 +20,40 @@ public class EditClientDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditClientDescriptor descriptorWithSameValues = new EditClientDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditClientDescriptor descriptorWithSameValues = new EditClientDescriptor(DESC_APPLE);
+        assertTrue(DESC_APPLE.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_APPLE.equals(DESC_APPLE));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_APPLE.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_APPLE.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_APPLE.equals(DESC_BURGER));
 
         // different name -> returns false
-        EditClientDescriptor editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditClientDescriptor editedApple = new EditClientDescriptorBuilder(DESC_APPLE)
+                .withName(VALID_NAME_BURGER).build();
+        assertFalse(DESC_APPLE.equals(editedApple));
 
         // different phone -> returns false
-        editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedApple = new EditClientDescriptorBuilder(DESC_APPLE).withPhone(VALID_PHONE_BURGER).build();
+        assertFalse(DESC_APPLE.equals(editedApple));
 
         // different email -> returns false
-        editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedApple = new EditClientDescriptorBuilder(DESC_APPLE).withEmail(VALID_EMAIL_BURGER).build();
+        assertFalse(DESC_APPLE.equals(editedApple));
 
         // different address -> returns false
-        editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedApple = new EditClientDescriptorBuilder(DESC_APPLE).withAddress(VALID_ADDRESS_BURGER).build();
+        assertFalse(DESC_APPLE.equals(editedApple));
 
         // different tags -> returns false
-        editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedApple = new EditClientDescriptorBuilder(DESC_APPLE).withTags(VALID_TAG_TECH).build();
+        assertFalse(DESC_APPLE.equals(editedApple));
     }
 }
