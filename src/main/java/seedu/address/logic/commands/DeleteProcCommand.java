@@ -29,8 +29,8 @@ public class DeleteProcCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the Procedure under a Client"
             + "by the index numbers used in the displayed client list and the displayed procedure list. "
             + "Existing Procedures indicated (by the input value) will be deleted.\n"
-            + "Parameters: INDEX (must be a positive integer and an existing Client) "
-            + "INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer and an existing Client)\n"
+            + "INDEX (must be a positive integer and an existing Procedure)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Current Procedure List: %1$s";
