@@ -46,9 +46,9 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateClients_throwsDuplicateClientException() {
         // Two clients with the same identity fields
-        Client editedAlice = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).withTags(VALID_TAG_TECH)
+        Client editedArtfriend = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).withTags(VALID_TAG_TECH)
                 .build();
-        List<Client> newClients = Arrays.asList(ARTFRIEND, editedAlice);
+        List<Client> newClients = Arrays.asList(ARTFRIEND, editedArtfriend);
         AddressBookStub newData = new AddressBookStub(newClients);
 
         assertThrows(DuplicateClientException.class, () -> addressBook.resetData(newData));

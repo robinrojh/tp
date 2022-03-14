@@ -52,26 +52,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Client alice = new ClientBuilder().withName("Alice").build();
-        Client bob = new ClientBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Client applebees = new ClientBuilder().withName("AppleBee's").build();
+        Client burger = new ClientBuilder().withName("Burger King").build();
+        AddCommand addApplebeesCommand = new AddCommand(applebees);
+        AddCommand addBurgerCommand = new AddCommand(burger);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addApplebeesCommand.equals(addApplebeesCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addApplebeesCommandCopy = new AddCommand(applebees);
+        assertTrue(addApplebeesCommand.equals(addApplebeesCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addApplebeesCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addApplebeesCommand.equals(null));
 
         // different client -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addApplebeesCommand.equals(addBurgerCommand));
     }
 
     /**
