@@ -66,8 +66,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Procedure> getFilteredProcedureList(Client client) {
-        return null;
+    public ObservableList<Procedure> getFilteredProcedureList() {
+        return model.getFilteredProcedureList();
     }
 
     @Override

@@ -23,10 +23,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.procedure.Cost;
-import seedu.address.model.procedure.Date;
-import seedu.address.model.procedure.Information;
-import seedu.address.model.procedure.Procedure;
+import seedu.address.model.procedure.*;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -154,12 +151,7 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
-        // Must add a getFilteredProcedureList in logic for a single client-- works with the list method
-        List<Procedure> procList = new ArrayList<>();
-        procList.add(new Procedure(new Information("info"), new Date("14/03/2022"), new Cost("30")));
-        ObservableList<Procedure> procedureObservableList = FXCollections.observableList(procList);
-
-        procedureListPanel = new ProcedureListPanel(procedureObservableList);
+        procedureListPanel = new ProcedureListPanel(logic.getFilteredProcedureList());
         procedureListPanelPlaceholder.getChildren()
                 .add(procedureListPanel.getRoot());
 

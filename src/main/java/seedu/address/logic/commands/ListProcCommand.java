@@ -1,16 +1,13 @@
 package seedu.address.logic.commands;
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
-
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_CLIENT_PROCEDURES;
 
 public class ListProcCommand extends Command {
 
@@ -24,6 +21,14 @@ public class ListProcCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an ListProcCommand to add the specified {@code Client}
+     */
+    public ListProcCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
+        this.targetIndex = targetIndex;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -33,17 +38,8 @@ public class ListProcCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
         Client clientToShow = lastShownList.get(targetIndex.getZeroBased());
-        System.out.println(clientToShow.toString());
-        // TODO: get list of procedures and
+        model.updateFilteredProcedureList(clientToShow, PREDICATE_SHOW_CLIENT_PROCEDURES);
         return new CommandResult(MESSAGE_SUCCESS);
-    }
-
-    /**
-     * Creates an ListProcCommand to add the specified {@code Client}
-     */
-    public ListProcCommand(Index targetIndex) {
-        requireNonNull(targetIndex);
-        this.targetIndex = targetIndex;
     }
 
     @Override
