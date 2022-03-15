@@ -134,8 +134,8 @@ public class AddProcCommand extends Command {
         }
 
         // state check
-        AddProcCommand e = (AddProcCommand) other;
-        return index.equals(e.index)
-                && procedure.equals(e.procedure);
+        AddProcCommand otherCommand = (AddProcCommand) other;
+        return index.equals(otherCommand.index)
+                && procedure.equals(otherCommand.procedure);
     }
 }
