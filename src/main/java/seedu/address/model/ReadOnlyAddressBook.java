@@ -5,7 +5,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.procedure.Procedure;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an address book.
  */
 public interface ReadOnlyAddressBook {
 
