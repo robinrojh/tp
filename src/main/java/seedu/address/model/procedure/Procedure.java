@@ -14,17 +14,17 @@ public class Procedure {
     private final Information information;
     private final Date date;
     private final Cost cost;
-    private final Completion completion;
+    private final Completion hasCompleted;
 
     /**
      * Every field must be present and not null.
      */
-    public Procedure(Information information, Date date, Cost cost, Completion completion) {
+    public Procedure(Information information, Date date, Cost cost, Completion hasCompleted) {
         requireAllNonNull(information, date, cost);
         this.information = information;
         this.date = date;
         this.cost = cost;
-        this.completion = completion;
+        this.hasCompleted = hasCompleted;
     }
 
     public Information getInfo() {
@@ -39,8 +39,8 @@ public class Procedure {
         return this.cost;
     }
 
-    public Completion getCompletion() {
-        return this.completion;
+    public Completion getHasCompleted() {
+        return this.hasCompleted;
     }
 
     /**
@@ -62,13 +62,13 @@ public class Procedure {
         return otherPerson.getInfo().equals(getInfo())
                 && otherPerson.getDate().equals(getDate())
                 && otherPerson.getCost().equals(getCost())
-                && otherPerson.getCompletion().equals(getCompletion());
+                && otherPerson.getHasCompleted().equals(getHasCompleted());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(information, date, cost, completion);
+        return Objects.hash(information, date, cost, hasCompleted);
     }
 
     @Override
@@ -80,8 +80,8 @@ public class Procedure {
                 .append(getDate())
                 .append("; Cost: ")
                 .append(getCost())
-                .append("; Completion: ")
-                .append(getCompletion());
+                .append("; Completed: ")
+                .append(getHasCompleted());
 
         return builder.toString();
     }

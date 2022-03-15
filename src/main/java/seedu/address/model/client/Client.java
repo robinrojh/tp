@@ -153,6 +153,12 @@ public class Client {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        List<Procedure> procedures = getProcedures();
+        if (!procedures.isEmpty()) {
+            builder.append("; Procedures: ");
+            procedures.forEach(builder::append);
+        }
         return builder.toString();
     }
 

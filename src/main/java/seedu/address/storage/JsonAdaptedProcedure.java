@@ -17,7 +17,7 @@ public class JsonAdaptedProcedure {
     private final String information;
     private final String date;
     private final String cost;
-    private final String completion;
+    private final String hasCompleted;
 
     /**
      * Constructs a {@code JsonAdaptedProcedure} with the given procedure details.
@@ -25,11 +25,11 @@ public class JsonAdaptedProcedure {
     @JsonCreator
     public JsonAdaptedProcedure(@JsonProperty("information") String information,
             @JsonProperty("date") String date, @JsonProperty("cost") String cost,
-            @JsonProperty("completion") String completion) {
+            @JsonProperty("hasCompleted") String hasCompleted) {
         this.information = information;
         this.date = date;
         this.cost = cost;
-        this.completion = completion;
+        this.hasCompleted = hasCompleted;
     }
 
     /**
@@ -39,7 +39,7 @@ public class JsonAdaptedProcedure {
         information = source.getInfo().info;
         date = source.getDate().toString();
         cost = source.getCost().toString();
-        completion = source.getCompletion().toString();
+        hasCompleted = source.getHasCompleted().toString();
     }
 
     /**
@@ -75,14 +75,14 @@ public class JsonAdaptedProcedure {
         }
         final Cost modelCost = new Cost(cost);
 
-        if (completion == null) {
+        if (hasCompleted == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Completion.class.getSimpleName()));
         }
-        if (!Completion.isValidCompletion(completion)) {
+        if (!Completion.isValidHasCompleted(hasCompleted)) {
             throw new IllegalValueException(Completion.MESSAGE_CONSTRAINTS);
         }
-        final Completion modelCompletion = new Completion(completion);
+        final Completion modelCompletion = new Completion(hasCompleted);
 
 
         return new Procedure(modelInfo, modelDate, modelCost, modelCompletion);
