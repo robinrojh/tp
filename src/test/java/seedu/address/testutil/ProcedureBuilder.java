@@ -69,7 +69,7 @@ public class ProcedureBuilder {
      * Sets the {@code Completion} of the {@code Procedure} that we are building.
      */
     public seedu.address.testutil.ProcedureBuilder withCompletion(String hasCompleted) {
-        this.hasCompleted = new Completion("true");
+        this.hasCompleted = new Completion(hasCompleted);
         return this;
     }
 
