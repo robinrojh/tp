@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalClients.ALICE;
-import static seedu.address.testutil.TypicalClients.BENSON;
+import static seedu.address.testutil.TypicalClients.ARTFRIEND;
+import static seedu.address.testutil.TypicalClients.BOSS;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasClient_clientNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasClient(ALICE));
+        assertFalse(modelManager.hasClient(ARTFRIEND));
     }
 
     @Test
     public void hasClient_clientInAddressBook_returnsTrue() {
-        modelManager.addClient(ALICE);
-        assertTrue(modelManager.hasClient(ALICE));
+        modelManager.addClient(ARTFRIEND);
+        assertTrue(modelManager.hasClient(ARTFRIEND));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withClient(ARTFRIEND).withClient(BOSS).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = ARTFRIEND.getName().fullName.split("\\s+");
         modelManager.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 

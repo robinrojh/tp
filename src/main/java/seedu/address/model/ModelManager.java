@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
+import seedu.address.model.procedure.Procedure;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -105,6 +106,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteProcedure(Procedure procedure) {
+    }
+
+    @Override
+    public void addProcedure(Procedure procedure) {
+    }
+
+    @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
@@ -122,10 +131,28 @@ public class ModelManager implements Model {
         return filteredClients;
     }
 
+    /**
+     * Returns a filtered list of {@code Procedure} of {@code Client}.
+     */
     @Override
+    public ObservableList<Procedure> getFilteredProcedureList(Client client) {
+        return null;
+    }
+
+    /**
+     * Updates the filtered list of {@code Client} to match with a new {@code predicate}.
+     */
     public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
+    }
+
+    /**
+     * Updates the filtered list of {@code Procedure} to match with a new {@code predicate}.
+     */
+    @Override
+    public void updateFilteredProcedureList(Client client, Predicate<Procedure> predicate) {
+        return;
     }
 
     @Override

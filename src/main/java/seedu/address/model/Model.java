@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
+import seedu.address.model.procedure.Procedure;
 
 /**
  * The API of the Model component.
@@ -53,7 +54,7 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * Returns true if a client with the same identity as {@code Client} exists in the address book.
      */
     boolean hasClient(Client client);
 
@@ -65,9 +66,19 @@ public interface Model {
 
     /**
      * Adds the given client.
-     * {@code client} must not already exist in the address book.
+     * {@code Client} must not already exist in the address book.
      */
-    void addClient(Client client);
+    void addClient(Client target);
+
+    /**
+     * Delete the given Procedure.
+     */
+    void deleteProcedure(Procedure procedure);
+
+    /**
+     * Add the given Procedure.
+     */
+    void addProcedure(Procedure procedure);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
@@ -79,9 +90,19 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredClientList();
 
+    /** Returns an unmodifiable view of the filtered procedure list */
+    ObservableList<Procedure> getFilteredProcedureList(Client client);
+
     /**
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+
+    /**
+     * Updates the filter of the filtered procedure list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredProcedureList(Client client, Predicate<Procedure> predicate);
 }
