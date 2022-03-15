@@ -101,7 +101,9 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Procedure> getProcedureList() { return procedures; }
+        public ObservableList<Procedure> getProcedureList() {
+            return procedures;
+        }
     }
 
 }
