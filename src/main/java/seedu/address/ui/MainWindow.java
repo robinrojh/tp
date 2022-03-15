@@ -23,7 +23,11 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.procedure.*;
+import seedu.address.model.procedure.Completion;
+import seedu.address.model.procedure.Cost;
+import seedu.address.model.procedure.Date;
+import seedu.address.model.procedure.Information;
+import seedu.address.model.procedure.Procedure;
 
 /**
  * The Main Window. Provides the basic application layout containing
