@@ -35,7 +35,7 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        validDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/uuuu"));; // need to check
+        validDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/uuuu")); // need to check
     }
 
     /**
@@ -60,7 +60,7 @@ public class Date {
 
     @Override
     public String toString() {
-        return validDate.toString();
+        return validDate.format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
     }
 
     @Override

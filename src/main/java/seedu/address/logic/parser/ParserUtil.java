@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -13,6 +15,7 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Plan;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,6 +36,27 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndexes} into a list of {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
+        String trimmedInput = oneBasedIndexes.trim();
+        String[] listOfInputs = trimmedInput.split(" ");
+        List<Index> listofIndexes = new ArrayList<>();
+
+        for (String listOfInput : listOfInputs) {
+            if (!StringUtil.isNonZeroUnsignedInteger(listOfInput)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            listOfInput = listOfInput.trim();
+            listofIndexes.add(Index.fromOneBased(Integer.parseInt(listOfInput)));
+        }
+
+        return listofIndexes;
     }
 
     /**
@@ -78,6 +102,21 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String plan} into an {@code Plan}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code plan} is invalid.
+     */
+    public static Plan parsePlan(String plan) throws ParseException {
+        requireNonNull(plan);
+        String trimmedPlan = plan.trim();
+        if (!Plan.isValidPlan(trimmedPlan)) {
+            throw new ParseException(Plan.MESSAGE_CONSTRAINTS);
+        }
+        return new Plan(trimmedPlan);
     }
 
     /**

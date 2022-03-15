@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.model.procedure.Completion;
 import seedu.address.model.procedure.Cost;
 import seedu.address.model.procedure.Date;
 import seedu.address.model.procedure.Information;
@@ -13,10 +14,12 @@ public class ProcedureBuilder {
     public static final String DEFAULT_INFO = "Fix Router";
     public static final String DEFAULT_DATE = "01/01/2000";
     public static final String DEFAULT_COST = "13.50";
+    public static final String DEFAULT_COMPLETION = "true";
 
     private Information info;
     private Date date;
     private Cost cost;
+    private Completion hasCompleted;
 
     /**
      * Creates a {@code ProcedureBuilder} with the default details.
@@ -25,6 +28,7 @@ public class ProcedureBuilder {
         info = new Information(DEFAULT_INFO);
         date = new Date(DEFAULT_DATE);
         cost = new Cost(DEFAULT_COST);
+        hasCompleted = new Completion(DEFAULT_COMPLETION);
     }
 
     /**
@@ -34,6 +38,7 @@ public class ProcedureBuilder {
         info = procedureToCopy.getInfo();
         date = procedureToCopy.getDate();
         cost = procedureToCopy.getCost();
+        hasCompleted = procedureToCopy.getHasCompleted();
     }
 
     /**
@@ -60,7 +65,15 @@ public class ProcedureBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Completion} of the {@code Procedure} that we are building.
+     */
+    public seedu.address.testutil.ProcedureBuilder withCompletion(String hasCompleted) {
+        this.hasCompleted = new Completion("true");
+        return this;
+    }
+
     public Procedure build() {
-        return new Procedure(info, date, cost);
+        return new Procedure(info, date, cost, hasCompleted);
     }
 }
