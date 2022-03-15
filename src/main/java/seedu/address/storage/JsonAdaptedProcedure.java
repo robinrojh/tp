@@ -39,7 +39,7 @@ public class JsonAdaptedProcedure {
         information = source.getInfo().info;
         date = source.getDate().toString();
         cost = source.getCost().toString();
-        hasCompleted = source.getCompletion().toString();
+        hasCompleted = source.getHasCompleted().toString();
     }
 
     /**
@@ -79,7 +79,7 @@ public class JsonAdaptedProcedure {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Completion.class.getSimpleName()));
         }
-        if (!Completion.isValidCompletion(hasCompleted)) {
+        if (!Completion.isValidHasCompleted(hasCompleted)) {
             throw new IllegalValueException(Completion.MESSAGE_CONSTRAINTS);
         }
         final Completion modelCompletion = new Completion(hasCompleted);

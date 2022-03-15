@@ -39,7 +39,7 @@ public class Procedure {
         return this.cost;
     }
 
-    public Completion getCompletion() {
+    public Completion getHasCompleted() {
         return this.hasCompleted;
     }
 
@@ -62,7 +62,7 @@ public class Procedure {
         return otherPerson.getInfo().equals(getInfo())
                 && otherPerson.getDate().equals(getDate())
                 && otherPerson.getCost().equals(getCost())
-                && otherPerson.getCompletion().equals(getCompletion());
+                && otherPerson.getHasCompleted().equals(getHasCompleted());
     }
 
     @Override
@@ -80,8 +80,8 @@ public class Procedure {
                 .append(getDate())
                 .append("; Cost: ")
                 .append(getCost())
-                .append("; Completion: ")
-                .append(getCompletion());
+                .append("; Completed: ")
+                .append(getHasCompleted());
 
         return builder.toString();
     }

@@ -38,7 +38,7 @@ public class ProcedureBuilder {
         info = procedureToCopy.getInfo();
         date = procedureToCopy.getDate();
         cost = procedureToCopy.getCost();
-        hasCompleted = procedureToCopy.getCompletion();
+        hasCompleted = procedureToCopy.getHasCompleted();
     }
 
     /**

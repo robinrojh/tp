@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Completion {
-    public static final String MESSAGE_CONSTRAINTS = "1. Completion should be a Boolean value, "
+    public static final String MESSAGE_CONSTRAINTS = "1. hasCompleted should be a Boolean value, "
         + "Boolean.TRUE or Boolean.FALSE";
 
     public static final String VALIDATION_REGEX = "^([Tt][Rr][Uu][Ee]|[Ff][Aa][Ll][Ss][Ee])$";
@@ -17,7 +17,7 @@ public class Completion {
      */
     public Completion(String hasCompleted) {
         requireNonNull(hasCompleted);
-        checkArgument(isValidCompletion(hasCompleted), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidHasCompleted(hasCompleted), MESSAGE_CONSTRAINTS);
         this.hasCompleted = Boolean.getBoolean(hasCompleted);
     }
 
@@ -25,11 +25,11 @@ public class Completion {
      * Returns true if a given string is a valid boolean.
      *
      */
-    public static boolean isValidCompletion(String test) {
+    public static boolean isValidHasCompleted(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public Boolean getCompletion() {
+    public Boolean getHasCompleted() {
         return this.hasCompleted;
     }
 
