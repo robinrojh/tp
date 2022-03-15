@@ -19,7 +19,7 @@ public class ProcedureBuilder {
     private Information info;
     private Date date;
     private Cost cost;
-    private Completion completion;
+    private Completion hasCompleted;
 
     /**
      * Creates a {@code ProcedureBuilder} with the default details.
@@ -28,7 +28,7 @@ public class ProcedureBuilder {
         info = new Information(DEFAULT_INFO);
         date = new Date(DEFAULT_DATE);
         cost = new Cost(DEFAULT_COST);
-        completion = new Completion(DEFAULT_COMPLETION);
+        hasCompleted = new Completion(DEFAULT_COMPLETION);
     }
 
     /**
@@ -38,7 +38,7 @@ public class ProcedureBuilder {
         info = procedureToCopy.getInfo();
         date = procedureToCopy.getDate();
         cost = procedureToCopy.getCost();
-        completion = procedureToCopy.getCompletion();
+        hasCompleted = procedureToCopy.getCompletion();
     }
 
     /**
@@ -68,12 +68,12 @@ public class ProcedureBuilder {
     /**
      * Sets the {@code Completion} of the {@code Procedure} that we are building.
      */
-    public seedu.address.testutil.ProcedureBuilder withCompletion(String completion) {
-        this.completion = new Completion("true");
+    public seedu.address.testutil.ProcedureBuilder withCompletion(String hasCompleted) {
+        this.hasCompleted = new Completion("true");
         return this;
     }
 
     public Procedure build() {
-        return new Procedure(info, date, cost, completion);
+        return new Procedure(info, date, cost, hasCompleted);
     }
 }
