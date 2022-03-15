@@ -16,6 +16,9 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Plan;
+import seedu.address.model.procedure.Cost;
+import seedu.address.model.procedure.Date;
+import seedu.address.model.procedure.Information;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -160,4 +163,50 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String information} into an {@code Information}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code information} is invalid.
+     */
+    public static Information parseInformation(String information) throws ParseException {
+        requireNonNull(information);
+        String trimmedInformation = information.trim();
+        if (!Information.isValidInformation(trimmedInformation)) {
+            throw new ParseException(Information.MESSAGE_CONSTRAINTS);
+        }
+        return new Information(information);
+    }
+
+    /**
+     * Parses a {@code String cost} into a {@code Cost}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code cost} is invalid.
+     */
+    public static Cost parseCost(String cost) throws ParseException {
+        requireNonNull(cost);
+        String trimmedCost = cost.trim();
+        if (!Cost.isValidCost(trimmedCost)) {
+            throw new ParseException(Cost.MESSAGE_CONSTRAINTS);
+        }
+        return new Cost(cost);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(date);
+    }
+
 }
