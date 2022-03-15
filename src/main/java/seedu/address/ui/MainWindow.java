@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -19,11 +21,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.procedure.Completion;
-import seedu.address.model.procedure.Cost;
-import seedu.address.model.procedure.Date;
-import seedu.address.model.procedure.Information;
-import seedu.address.model.procedure.Procedure;
+import seedu.address.model.client.Client;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -147,13 +145,19 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         setUpColumnConstraints();
-
-        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        ObservableList<Client> clients = logic.getFilteredClientList();
+        clientListPanel = new ClientListPanel(clients);
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
-        procedureListPanel = new ProcedureListPanel(logic.getFilteredProcedureList());
+        if (clients.size() > 0) {
+            procedureListPanel = new ProcedureListPanel(
+                    FXCollections.observableArrayList(clients.get(0).getProcedures()));
+        } else {
+            procedureListPanel = new ProcedureListPanel(logic.getFilteredProcedureList());
+        }
         procedureListPanelPlaceholder.getChildren()
                 .add(procedureListPanel.getRoot());
+
 
         addPlaceholdersToGridPane();
 

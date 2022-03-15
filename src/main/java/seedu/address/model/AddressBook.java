@@ -40,7 +40,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
-        procedures = new ArrayList<>();
+        procedures = toBeCopied.getProcedureList();
     }
 
     //// list overwrite operations

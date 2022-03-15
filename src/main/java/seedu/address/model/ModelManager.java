@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +14,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
+import seedu.address.model.procedure.Cost;
+import seedu.address.model.procedure.Information;
 import seedu.address.model.procedure.Procedure;
 
 /**
@@ -123,6 +126,11 @@ public class ModelManager implements Model {
         addressBook.setClient(target, editedClient);
     }
 
+    @Override
+    public void setProcedures(List<Procedure> procedures) {
+        addressBook.setProcedures(procedures);
+    }
+
     //=========== Filtered Client List Accessors =============================================================
 
     /**
@@ -155,8 +163,10 @@ public class ModelManager implements Model {
      */
     @Override
     public void updateFilteredProcedureList(Client client, Predicate<Procedure> predicate) {
-        filteredProcedures = new FilteredList<>(FXCollections.observableList(client.getProcedures()));
+        requireAllNonNull(client, predicate);
+        filteredProcedures.setAll(client.getProcedures());
         filteredProcedures.setPredicate(predicate);
+//        filteredProcedures = new FilteredList<>(FXCollections.observableArrayList(client.getProcedures()), predicate);
     }
 
     @Override

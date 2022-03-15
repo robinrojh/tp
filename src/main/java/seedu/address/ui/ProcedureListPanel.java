@@ -1,6 +1,7 @@
 package seedu.address.ui;
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -34,7 +35,6 @@ public class ProcedureListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Procedure procedure, boolean empty) {
             super.updateItem(procedure, empty);
-
             if (empty || procedure == null) {
                 setGraphic(null);
                 setText(null);

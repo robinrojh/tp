@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -86,6 +87,8 @@ public interface Model {
      * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
      */
     void setClient(Client target, Client editedClient);
+
+    void setProcedures(List<Procedure> procedures);
 
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredClientList();
