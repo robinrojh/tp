@@ -153,11 +153,9 @@ public class MainWindow extends UiPart<Stage> {
             procedureListPanel = new ProcedureListPanel(
                     FXCollections.observableArrayList(clients.get(0).getProcedures()));
         } else {
-            procedureListPanel = new ProcedureListPanel(logic.getFilteredProcedureList());
+            procedureListPanel = new ProcedureListPanel(FXCollections.observableArrayList());
         }
-        procedureListPanelPlaceholder.getChildren()
-                .add(procedureListPanel.getRoot());
-
+        procedureListPanelPlaceholder.getChildren().add(procedureListPanel.getRoot());
 
         addPlaceholdersToGridPane();
 
@@ -225,6 +223,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            procedureListPanel = new ProcedureListPanel(logic.getFilteredProcedureList());
+            procedureListPanelPlaceholder.getChildren().add(procedureListPanel.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

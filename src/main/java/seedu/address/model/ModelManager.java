@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -164,9 +165,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredProcedureList(Client client, Predicate<Procedure> predicate) {
         requireAllNonNull(client, predicate);
-        filteredProcedures.setAll(client.getProcedures());
-        filteredProcedures.setPredicate(predicate);
-//        filteredProcedures = new FilteredList<>(FXCollections.observableArrayList(client.getProcedures()), predicate);
+        filteredProcedures = new FilteredList<>(FXCollections.observableArrayList(client.getProcedures()), predicate);
     }
 
     @Override

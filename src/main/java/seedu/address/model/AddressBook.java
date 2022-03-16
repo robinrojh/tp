@@ -100,6 +100,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /// procedure-related methods
+
+    /**
+     * updates the list of {@code Procedure}.
+     */
     public void setProcedures(List<Procedure> procedureList) {
         procedures = procedureList;
     }
