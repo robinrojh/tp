@@ -9,14 +9,11 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
-import seedu.address.model.procedure.Cost;
-import seedu.address.model.procedure.Information;
 import seedu.address.model.procedure.Procedure;
 
 /**
