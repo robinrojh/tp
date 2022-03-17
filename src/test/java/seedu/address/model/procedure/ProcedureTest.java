@@ -2,8 +2,8 @@ package seedu.address.model.procedure;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COST_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_FEB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COST_REPLACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_REPLACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INFO_REPLACE;
 import static seedu.address.testutil.TypicalProcedures.REPAIR;
 import static seedu.address.testutil.TypicalProcedures.REPLACE;
@@ -37,11 +37,11 @@ class ProcedureTest {
         assertFalse(REPAIR.equals(editedRepair));
 
         // different cost -> returns false
-        editedRepair = new ProcedureBuilder(REPAIR).withCost(VALID_COST_2).build();
+        editedRepair = new ProcedureBuilder(REPAIR).withCost(VALID_COST_REPLACE).build();
         assertFalse(REPAIR.equals(editedRepair));
 
         // different date -> returns false
-        editedRepair = new ProcedureBuilder(REPAIR).withDate(VALID_DATE_FEB).build();
+        editedRepair = new ProcedureBuilder(REPAIR).withDate(VALID_DATE_REPLACE).build();
         assertFalse(REPAIR.equals(editedRepair));
     }
 

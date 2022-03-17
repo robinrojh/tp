@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INFORMATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN;
@@ -53,12 +56,12 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FASTFOOD = " " + PREFIX_TAG + VALID_TAG_FASTFOOD;
     public static final String TAG_DESC_TECH = " " + PREFIX_TAG + VALID_TAG_TECH;
 
-    public static final String VALID_DATE_JAN = "01/01/2000";
-    public static final String VALID_DATE_FEB = "01/02/2000";
+    public static final String VALID_DATE_REPAIR = "21/04/2022";
+    public static final String VALID_DATE_REPLACE = "18/03/2022";
     public static final String VALID_INFO_REPAIR = "Repair Router";
     public static final String VALID_INFO_REPLACE = "Replace Wires";
-    public static final String VALID_COST_1 = "13.50";
-    public static final String VALID_COST_2 = "5.05";
+    public static final String VALID_COST_REPAIR = "13.50";
+    public static final String VALID_COST_REPLACE = "5.05";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME; // empty string not allowed for names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -72,6 +75,17 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditClientDescriptor DESC_APPLE;
     public static final EditCommand.EditClientDescriptor DESC_BURGER;
+
+    public static final String INFO_DESC_REPAIR = " " + PREFIX_INFORMATION + VALID_INFO_REPAIR;
+    public static final String INFO_DESC_REPLACE = " " + PREFIX_INFORMATION + VALID_INFO_REPLACE;
+    public static final String COST_DESC_REPAIR = " " + PREFIX_COST + VALID_COST_REPAIR;
+    public static final String COST_DESC_REPLACE = " " + PREFIX_COST + VALID_COST_REPLACE;
+    public static final String DATE_DESC_REPAIR = " " + PREFIX_DATE + VALID_DATE_REPAIR;
+    public static final String DATE_DESC_REPLACE = " " + PREFIX_DATE + VALID_DATE_REPLACE;
+
+    public static final String INVALID_INFO_DESC = " " + PREFIX_INFORMATION; // empty string not allowed for info
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "21-04-2022"; // hyphen not allowed in dates
+    public static final String INVALID_COST_DESC = " " + PREFIX_COST + "13.555"; // costs support two decimal places max
 
     static {
         DESC_APPLE = new EditClientDescriptorBuilder().withName(VALID_NAME_APPLE)

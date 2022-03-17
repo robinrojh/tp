@@ -24,7 +24,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.procedure.Procedure;
 import seedu.address.testutil.ClientBuilder;
 
-public class AddCommandTest {
+public class AddProcCommandTest {
 
     @Test
     public void constructor_nullClient_throwsNullPointerException() {
