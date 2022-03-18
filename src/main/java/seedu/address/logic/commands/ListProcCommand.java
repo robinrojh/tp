@@ -21,6 +21,8 @@ public class ListProcCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Procedures successfully loaded.";
 
+    public static final String MESSAGE_FAIL = "No Procedures to load!";
+
     private final Index targetIndex;
 
     /**
@@ -40,9 +42,16 @@ public class ListProcCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
         Client clientToShow = lastShownList.get(targetIndex.getZeroBased());
-        model.setProcedures(clientToShow.getProcedures());
-        model.updateFilteredProcedureList(clientToShow, PREDICATE_SHOW_CLIENT_PROCEDURES);
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (clientToShow.getProcedures().isEmpty()) {
+            model.setProcedures(clientToShow.getProcedures());
+            model.updateFilteredProcedureList(clientToShow, PREDICATE_SHOW_CLIENT_PROCEDURES);
+            return new CommandResult(MESSAGE_FAIL);
+        }
+        else {
+            model.setProcedures(clientToShow.getProcedures());
+            model.updateFilteredProcedureList(clientToShow, PREDICATE_SHOW_CLIENT_PROCEDURES);
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 
     @Override
