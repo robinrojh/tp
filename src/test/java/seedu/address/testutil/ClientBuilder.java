@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.client.Address;
@@ -9,6 +11,7 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Plan;
+import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,6 +32,7 @@ public class ClientBuilder {
     private Address address;
     private Plan plan;
     private Set<Tag> tags;
+    private List<Procedure> procedures;
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -40,6 +44,7 @@ public class ClientBuilder {
         address = new Address(DEFAULT_ADDRESS);
         plan = new Plan(DEFAULT_PLAN);
         tags = new HashSet<>();
+        procedures = new ArrayList<>();
     }
 
     /**
@@ -52,6 +57,7 @@ public class ClientBuilder {
         address = clientToCopy.getAddress();
         plan = clientToCopy.getPlan();
         tags = new HashSet<>(clientToCopy.getTags());
+        procedures = clientToCopy.getProcedures();
     }
 
     /**
@@ -102,7 +108,15 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code procedures} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withProcedures(List<Procedure> procedures) {
+        this.procedures = procedures;
+        return this;
+    }
+
     public Client build() {
-        return new Client(name, phone, email, address, plan, tags);
+        return new Client(name, phone, email, address, plan, tags, procedures);
     }
 }

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
+import seedu.address.model.procedure.Procedure;
 
 /**
  * Unmodifiable view of an address book.
@@ -14,4 +15,8 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Client> getClientList();
 
+    /**
+     * Returns a list of procedures.
+     */
+    ObservableList<Procedure> getProcedureList();
 }

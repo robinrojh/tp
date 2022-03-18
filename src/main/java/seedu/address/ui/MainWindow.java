@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -23,11 +21,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.procedure.Completion;
-import seedu.address.model.procedure.Cost;
-import seedu.address.model.procedure.Date;
-import seedu.address.model.procedure.Information;
-import seedu.address.model.procedure.Procedure;
+import seedu.address.model.client.Client;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -151,19 +145,17 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         setUpColumnConstraints();
-
-        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        ObservableList<Client> clients = logic.getFilteredClientList();
+        clientListPanel = new ClientListPanel(clients);
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
-        // Must add a getFilteredProcedureList in logic for a single client-- works with the list method
-        List<Procedure> procList = new ArrayList<>();
-        procList.add(new Procedure(new Information("info"), new Date("14/03/2022"), new Cost("30"),
-                new Completion("false")));
-        ObservableList<Procedure> procedureObservableList = FXCollections.observableList(procList);
-
-        procedureListPanel = new ProcedureListPanel(procedureObservableList);
-        procedureListPanelPlaceholder.getChildren()
-                .add(procedureListPanel.getRoot());
+        if (clients.size() > 0) {
+            procedureListPanel = new ProcedureListPanel(
+                    FXCollections.observableArrayList(clients.get(0).getProcedures()));
+        } else {
+            procedureListPanel = new ProcedureListPanel(FXCollections.observableArrayList());
+        }
+        procedureListPanelPlaceholder.getChildren().add(procedureListPanel.getRoot());
 
         addPlaceholdersToGridPane();
 
@@ -231,6 +223,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            procedureListPanel = new ProcedureListPanel(logic.getFilteredProcedureList());
+            procedureListPanelPlaceholder.getChildren().add(procedureListPanel.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
