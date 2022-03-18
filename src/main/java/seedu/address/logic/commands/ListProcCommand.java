@@ -15,7 +15,7 @@ public class ListProcCommand extends Command {
 
     public static final String COMMAND_WORD = "listProc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the procedures of a client in the index. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the procedures of a client in the index. \n"
             + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: listProc 1";
 
