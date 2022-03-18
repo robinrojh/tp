@@ -59,6 +59,8 @@ public class CommandTestUtil {
     public static final String VALID_INFO_REPLACE = "Replace Wires";
     public static final String VALID_COST_1 = "13.50";
     public static final String VALID_COST_2 = "5.05";
+    public static final String VALID_HASCOMPLETED_TRUE = "true";
+    public static final String VALID_HASCOMPLETED_FALSE = "false";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME; // empty string not allowed for names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

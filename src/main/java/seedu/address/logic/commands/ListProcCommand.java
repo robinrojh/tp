@@ -46,8 +46,7 @@ public class ListProcCommand extends Command {
             model.setProcedures(clientToShow.getProcedures());
             model.updateFilteredProcedureList(clientToShow, PREDICATE_SHOW_CLIENT_PROCEDURES);
             return new CommandResult(MESSAGE_FAIL);
-        }
-        else {
+        } else {
             model.setProcedures(clientToShow.getProcedures());
             model.updateFilteredProcedureList(clientToShow, PREDICATE_SHOW_CLIENT_PROCEDURES);
             return new CommandResult(MESSAGE_SUCCESS);
