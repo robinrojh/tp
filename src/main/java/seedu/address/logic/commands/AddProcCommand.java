@@ -6,10 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INFORMATION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -20,8 +16,15 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Plan;
+import seedu.address.model.procedure.Information;
 import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
+import java.util.Collections;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -118,6 +121,8 @@ public class AddProcCommand extends Command {
             updatedProcedureList.add(procedureList.get(i));
         }
         updatedProcedureList.add(procedure);
+        Comparator<Procedure> mapComparator = (Procedure m1, Procedure m2) -> m1.getDate().compareTo(m2.getDate().validDate);
+        Collections.sort(updatedProcedureList, mapComparator);
         return updatedProcedureList;
     }
 

@@ -58,6 +58,11 @@ public class Date {
     }
 
 
+    public int compareTo(LocalDate otherDate) {
+        return validDate.compareTo(otherDate);
+    }
+
+
     @Override
     public String toString() {
         return validDate.format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
