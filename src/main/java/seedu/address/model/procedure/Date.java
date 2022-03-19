@@ -3,7 +3,7 @@ package seedu.address.model.procedure;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -16,16 +16,15 @@ public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Please ensure that you have typed an existing date in the correct format. \n"
-        + "Dates should be in the format DD/MM/YYYY, and it should not be blank \n"
-        + "Year entered must be less than 10000";
+        + "Dates should be in the format DD/MM/YYYY hh:mm, and it should not be blank \n";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$";
+    public static final String VALIDATION_REGEX = "\\d{2}[/]\\d{2}[/]\\d{4} \\d{2}:\\d{2}";
 
-    public final LocalDate validDate;
+    public final LocalDateTime validDate;
 
     /**
      * Constructs a {@code Date}.
@@ -35,7 +34,7 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        validDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/uuuu")); // need to check
+        validDate = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm"));
     }
 
     /**
@@ -45,9 +44,8 @@ public class Date {
         if (test.matches(VALIDATION_REGEX)) {
             try {
                 System.out.println("correct format");
-                LocalDate.parse(test,
-                        DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT));
-
+                LocalDateTime.parse(test, DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm")
+                        .withResolverStyle(ResolverStyle.STRICT));
                 return true;
             } catch (DateTimeParseException err) {
                 System.out.println("invalid date");
@@ -60,7 +58,7 @@ public class Date {
 
     @Override
     public String toString() {
-        return validDate.format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+        return validDate.format(DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm"));
     }
 
     @Override
