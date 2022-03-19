@@ -24,7 +24,7 @@ import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Add a procedure of an existing client in the address book.
  */
 public class AddProcCommand extends Command {
 

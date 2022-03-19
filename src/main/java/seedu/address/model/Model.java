@@ -84,9 +84,6 @@ public interface Model {
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
      * {@code target} must exist in the address book.
-<<<<<<< HEAD
-     * The person address of {@code editedPerson} must not be the same as another existing person in the address book.
-=======
      * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
      */
     void setClient(Client target, Client editedClient);
