@@ -65,8 +65,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// client-level operations
 
     /**
-<<<<<<< HEAD
-     * Returns true if a person with the same address as {@code person} exists in the address book.
+     * Returns true if a client with the same address as {@code client} exists in the address book.
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
