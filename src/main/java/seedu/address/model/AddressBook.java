@@ -65,11 +65,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// client-level operations
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
+<<<<<<< HEAD
+     * Returns true if a person with the same address as {@code person} exists in the address book.
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return clients.contains(client);
+
     }
 
     /**

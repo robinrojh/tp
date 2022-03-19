@@ -128,10 +128,11 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
-    /**
+    /*
      * Edit filtered list where index is larger than size of filtered list,
      * but smaller than size of address book
      */
+
     @Test
     public void execute_invalidClientIndexFilteredList_failure() {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
@@ -169,5 +170,6 @@ public class EditCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_CLIENT, DESC_BURGER)));
     }
+
 
 }

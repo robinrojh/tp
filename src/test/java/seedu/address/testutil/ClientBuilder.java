@@ -23,7 +23,7 @@ public class ClientBuilder {
     public static final String DEFAULT_NAME = "APPLE";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "apple@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ADDRESS = "123, Apple Road, #08-111";
     public static final String DEFAULT_PLAN = "EXPRESS 200MBps";
 
     private Name name;
