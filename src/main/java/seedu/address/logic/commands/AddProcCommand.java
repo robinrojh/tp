@@ -39,7 +39,7 @@ public class AddProcCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INFORMATION + "Install modem "
             + PREFIX_COST + "10.5 "
-            + PREFIX_DATE + "20/03/2022 ";
+            + PREFIX_DATE + "20/03/2022 11:30 ";
 
     public static final String MESSAGE_SUCCESS = "New Procedure added: %1$s"; // Test needed
     public static final String MESSAGE_DUPLICATE_PROCEDURE = "This Procedure is already listed to the Client";
