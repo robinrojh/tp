@@ -118,6 +118,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void calculateCost(Procedure procedure) {
+    }
+
+    @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 

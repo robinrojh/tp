@@ -81,6 +81,12 @@ public interface Model {
      */
     void addProcedure(Procedure procedure);
 
+
+    /**
+     * Calculates cost on the given date.
+     */
+    void calculateCost(Procedure procedure);
+
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
      * {@code target} must exist in the address book.
