@@ -33,9 +33,9 @@ public class ListProcCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        sampleProcedures.add(new Procedure(new Information("hello"), new Date("15/06/2022"),
+        sampleProcedures.add(new Procedure(new Information("hello"), new Date("15/06/2022 10:15"),
                 new Cost("1.05"), new Completion("false")));
-        sampleProcedures.add(new Procedure(new Information("o no"), new Date("18/08/2022"),
+        sampleProcedures.add(new Procedure(new Information("o no"), new Date("18/08/2022 11:30"),
                 new Cost("1.10"), new Completion("false")));
     }
 
