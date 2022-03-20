@@ -24,6 +24,9 @@ public class Date {
      */
     public static final String VALIDATION_REGEX = "\\d{2}[/]\\d{2}[/]\\d{4} \\d{2}:\\d{2}";
 
+    public static final DateTimeFormatter FORMAT_WITH_DATE = DateTimeFormatter
+            .ofPattern("dd/MM/uuuu HH:mm");
+
     public final LocalDateTime validDate;
 
     /**
@@ -34,7 +37,7 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        validDate = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm"));
+        validDate = LocalDateTime.parse(date, FORMAT_WITH_DATE);
     }
 
     /**
@@ -44,7 +47,7 @@ public class Date {
         if (test.matches(VALIDATION_REGEX)) {
             try {
                 System.out.println("correct format");
-                LocalDateTime.parse(test, DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm")
+                LocalDateTime.parse(test, FORMAT_WITH_DATE
                         .withResolverStyle(ResolverStyle.STRICT));
                 return true;
             } catch (DateTimeParseException err) {
@@ -58,7 +61,7 @@ public class Date {
 
     @Override
     public String toString() {
-        return validDate.format(DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm"));
+        return validDate.format(FORMAT_WITH_DATE);
     }
 
     @Override
