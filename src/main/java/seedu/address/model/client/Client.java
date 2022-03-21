@@ -97,13 +97,14 @@ public class Client {
     }
 
     public List<Procedure> getProcsOnDate(String date) {
-        System.out.println("hi");
         List<Procedure> procsOnDate = new ArrayList<Procedure> ();
-        Date inputDate = new Date(date); // abstract out
+        Date startTime = new Date(date + " 00:00");
+        Date endTime = new Date(date + " 23:59");
         for (int i = 0; i < this.procedures.size(); i++) {
             Procedure currentProc = this.procedures.get(i);
             Date currentDate = currentProc.getDate();
-            if (currentDate.compareTo(inputDate) == 0) {
+            if (currentDate.compareTo(startTime) >= 0
+            && currentDate.compareTo(endTime) <= 0) {
                 procsOnDate.add(currentProc);
             }
         }
@@ -111,7 +112,6 @@ public class Client {
     }
 
     public String getCostOnDate(DateWithoutTime date) {
-        System.out.println("hil");
         List<Procedure> procsOnDate = getProcsOnDate(date.toString());
         BigDecimal totalCost = new BigDecimal(0);
         for (int i = 0; i < procsOnDate.size(); i++) {
