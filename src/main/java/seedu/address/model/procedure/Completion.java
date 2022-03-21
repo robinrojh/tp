@@ -7,7 +7,7 @@ public class Completion {
     public static final String MESSAGE_CONSTRAINTS = "1. hasCompleted should be a Boolean value, "
         + "Boolean.TRUE or Boolean.FALSE";
 
-    public static final String VALIDATION_REGEX = "^([Tt][Rr][Uu][Ee]|[Ff][Aa][Ll][Ss][Ee])$";
+    public static final String VALIDATION_REGEX = "^([t][r][u][e]|[f][a][l][s][e])$";
     public final Boolean hasCompleted;
 
     /**
@@ -18,7 +18,7 @@ public class Completion {
     public Completion(String hasCompleted) {
         requireNonNull(hasCompleted);
         checkArgument(isValidHasCompleted(hasCompleted), MESSAGE_CONSTRAINTS);
-        this.hasCompleted = Boolean.getBoolean(hasCompleted);
+        this.hasCompleted = Boolean.parseBoolean(hasCompleted);
     }
 
     /**
@@ -42,7 +42,7 @@ public class Completion {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Completion // instanceof handles nulls
-                && this.hasCompleted.equals(((Completion) other).hasCompleted)); // state check
+                && this.getHasCompleted().equals(((Completion) other).getHasCompleted())); // state check
     }
 
     @Override

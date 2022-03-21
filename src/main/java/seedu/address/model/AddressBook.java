@@ -2,11 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
+import seedu.address.model.procedure.Procedure;
 
 /**
  * Wraps all data at the address-book level
@@ -15,7 +18,7 @@ import seedu.address.model.client.UniqueClientList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueClientList clients;
-
+    private List<Procedure> procedures;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -27,7 +30,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients = new UniqueClientList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+        procedures = new ArrayList<>();
+    }
 
     /**
      * Creates an AddressBook using the Clients in the {@code toBeCopied}
@@ -35,6 +40,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+        procedures = toBeCopied.getProcedureList();
     }
 
     //// list overwrite operations
@@ -59,11 +65,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// client-level operations
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * Returns true if a client with the same address as {@code client} exists in the address book.
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return clients.contains(client);
+
     }
 
     /**
@@ -93,6 +100,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.remove(key);
     }
 
+    /// procedure-related methods
+
+    /**
+     * updates the list of {@code Procedure}.
+     */
+    public void setProcedures(List<Procedure> procedureList) {
+        procedures = procedureList;
+    }
+
     //// util methods
 
     @Override
@@ -104,6 +120,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Procedure> getProcedureList() {
+        return FXCollections.observableList(procedures);
     }
 
     @Override

@@ -53,12 +53,14 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FASTFOOD = " " + PREFIX_TAG + VALID_TAG_FASTFOOD;
     public static final String TAG_DESC_TECH = " " + PREFIX_TAG + VALID_TAG_TECH;
 
-    public static final String VALID_DATE_JAN = "01/01/2000";
-    public static final String VALID_DATE_FEB = "01/02/2000";
+    public static final String VALID_DATE_JAN = "01/01/2000 11:50";
+    public static final String VALID_DATE_FEB = "01/02/2000 14:55";
     public static final String VALID_INFO_REPAIR = "Repair Router";
     public static final String VALID_INFO_REPLACE = "Replace Wires";
     public static final String VALID_COST_1 = "13.50";
     public static final String VALID_COST_2 = "5.05";
+    public static final String VALID_HASCOMPLETED_TRUE = "true";
+    public static final String VALID_HASCOMPLETED_FALSE = "false";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME; // empty string not allowed for names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
