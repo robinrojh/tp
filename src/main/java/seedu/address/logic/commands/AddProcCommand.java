@@ -122,7 +122,7 @@ public class AddProcCommand extends Command {
         }
         updatedProcedureList.add(procedure);
         Comparator<Procedure> mapComparator = (Procedure m1, Procedure m2) -> m1.getDate()
-                .compareTo(m2.getDate().validDate);
+                .compareTo(m2.getDate());
         Collections.sort(updatedProcedureList, mapComparator);
         return updatedProcedureList;
     }

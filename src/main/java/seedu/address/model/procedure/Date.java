@@ -59,8 +59,8 @@ public class Date {
     }
 
 
-    public int compareTo(LocalDate otherDate) {
-        return validDate.compareTo(otherDate);
+    public int compareTo(Date otherDate) {
+        return validDate.compareTo(otherDate.validDate);
     }
 
 
