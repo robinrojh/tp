@@ -5,7 +5,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":CalculateCommandParser" as CalculateCommandParser LOGIC_COLOR
-participant "d:CalculateCommand" as CalculateCommand LOGIC_COLOR
+participant ":TotalCost" as TotalCost LOGIC_COLOR
+participant ":CalculateCommand" as CalculateCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -48,15 +49,31 @@ deactivate AddressBookParser
 LogicManager -> CalculateCommand : execute()
 activate CalculateCommand
 
-CalculateCommand -> Model : calculateCost(22/03/2022)
+CalculateCommand -> Model : getFiltereredClientList()
 activate Model
 
-Model --> CalculateCommand : totalCost
+
+Model --> CalculateCommand : lastshownlist
 deactivate Model
+
+Create TotalCost
+CalculateCommand -> TotalCost : create
+activate TotalCost
+
+loop number of clients
+CalculateCommand -> TotalCost : add cost of procedures on specified date for each client
+end
+TotalCost --> CalculateCommand : return totalCost
+deactivate TotalCost
+
+
 
 create CommandResult
 CalculateCommand -> CommandResult
 activate CommandResult
+
+deactivate CalculateCommand
+
 
 CommandResult --> CalculateCommand
 deactivate CommandResult
