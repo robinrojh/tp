@@ -8,6 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.procedure.DateWithoutTime;
 
 
+
 public class CalculateCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the CalculateCommand
@@ -21,7 +22,7 @@ public class CalculateCommandParser {
             return new CalculateCommand(date);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalculateCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DateWithoutTime.MESSAGE_CONSTRAINTS), pe);
         }
     }
 }
