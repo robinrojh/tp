@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.procedure.Procedure;
 import seedu.address.model.procedure.Date;
 import seedu.address.model.procedure.DateWithoutTime;
+import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -104,7 +104,7 @@ public class Client {
             Procedure currentProc = this.procedures.get(i);
             Date currentDate = currentProc.getDate();
             if (currentDate.compareTo(startTime) >= 0
-            && currentDate.compareTo(endTime) <= 0) {
+                    && currentDate.compareTo(endTime) <= 0) {
                 procsOnDate.add(currentProc);
             }
         }
