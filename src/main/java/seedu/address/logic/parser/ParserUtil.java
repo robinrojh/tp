@@ -220,10 +220,11 @@ public class ParserUtil {
             throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
+        System.out.println(DateWithoutTime.isValidDate(trimmedDate));
         if (!DateWithoutTime.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new DateWithoutTime(date);
+        return new DateWithoutTime(trimmedDate);
     }
 
 }

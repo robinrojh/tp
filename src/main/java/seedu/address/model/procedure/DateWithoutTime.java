@@ -24,6 +24,9 @@ public class DateWithoutTime {
      */
     public static final String VALIDATION_REGEX = "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$";
 
+    public static final DateTimeFormatter FORMAT_WITH_DATE = DateTimeFormatter
+            .ofPattern("dd/MM/uuuu");
+
     public final LocalDate validDate;
 
     /**
@@ -34,7 +37,7 @@ public class DateWithoutTime {
     public DateWithoutTime(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        validDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/uuuu")); // need to check
+        validDate = LocalDate.parse(date, FORMAT_WITH_DATE); // need to check
     }
 
     /**
@@ -44,7 +47,7 @@ public class DateWithoutTime {
         if (test.matches(VALIDATION_REGEX)) {
             try {
                 System.out.println("correct format");
-                LocalDate.parse(test, DateTimeFormatter.ofPattern("dd/MM/uuuu")
+                LocalDate.parse(test, FORMAT_WITH_DATE
                         .withResolverStyle(ResolverStyle.STRICT));
                 return true;
             } catch (DateTimeParseException err) {
@@ -53,6 +56,11 @@ public class DateWithoutTime {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return validDate.format(FORMAT_WITH_DATE);
     }
 
     @Override

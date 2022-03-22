@@ -96,10 +96,10 @@ public class Client {
         return Collections.unmodifiableList(procedures);
     }
 
-    public List<Procedure> getProcsOnDate(String date) {
+    public List<Procedure> getProcsOnDate(DateWithoutTime date) {
         List<Procedure> procsOnDate = new ArrayList<Procedure> ();
-        Date startTime = new Date(date + " 00:00");
-        Date endTime = new Date(date + " 23:59");
+        Date startTime = new Date(date.toString() + " 00:00");
+        Date endTime = new Date(date.toString() + " 23:59");
         for (int i = 0; i < this.procedures.size(); i++) {
             Procedure currentProc = this.procedures.get(i);
             Date currentDate = currentProc.getDate();
@@ -111,15 +111,15 @@ public class Client {
         return procsOnDate;
     }
 
-    public String getCostOnDate(DateWithoutTime date) {
-        List<Procedure> procsOnDate = getProcsOnDate(date.toString());
+    public float getCostOnDate(DateWithoutTime date) {
+        List<Procedure> procsOnDate = getProcsOnDate(date);
         BigDecimal totalCost = new BigDecimal(0);
         for (int i = 0; i < procsOnDate.size(); i++) {
             Procedure currentProc = this.procedures.get(i);
             BigDecimal currentCost = currentProc.getCost().value();
             totalCost = totalCost.add(currentCost);;
         }
-        return totalCost.toPlainString();
+        return totalCost.floatValue();
     }
 
     /**

@@ -17,6 +17,7 @@ public class CalculateCommandParser {
     public CalculateCommand parse(String args) throws ParseException {
         try {
             DateWithoutTime date = ParserUtil.parseDateWithoutTime(args);
+            System.out.println(date);
             return new CalculateCommand(date);
         } catch (ParseException pe) {
             throw new ParseException(

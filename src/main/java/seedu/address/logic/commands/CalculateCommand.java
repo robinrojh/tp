@@ -52,6 +52,7 @@ public class CalculateCommand extends Command {
         }
         String totalCostString = totalCost.toPlainString();
 
+        System.out.println(totalCostString);
         return new CommandResult(String.format(MESSAGE_CALCULATE_COST_SUCCESS, totalCostString));
     }
 }
