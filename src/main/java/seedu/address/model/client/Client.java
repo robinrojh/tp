@@ -103,7 +103,7 @@ public class Client {
         }
 
         return otherClient != null
-                && otherClient.getName().equals(getName());
+                && otherClient.getAddress().equals(getAddress());
     }
 
     /**

@@ -26,15 +26,17 @@ class DateTest {
         // invalid Date
         assertFalse(Date.isValidDate("")); // empty string
         assertFalse(Date.isValidDate(" ")); // spaces only
-        assertFalse(Date.isValidDate("29-01-2000")); // dashes instead of slashes
-        assertFalse(Date.isValidDate("32/01/2000")); // invalid date in correct format
-        assertFalse(Date.isValidDate("32/01/10000")); // date > 9999 years
-        assertFalse(Date.isValidDate("29/02/2019")); // leap year in an invalid leap year
+        assertFalse(Date.isValidDate("29-01-2000 23:59")); // dashes instead of slashes
+        assertFalse(Date.isValidDate("32/01/2000 23:59")); // invalid date in correct format
+        assertFalse(Date.isValidDate("32/01/2000 24:59")); // accurate date; inaccurate time
+        assertFalse(Date.isValidDate("31/01/2000")); // valid date without hours:minutes
+        assertFalse(Date.isValidDate("29/02/2019 01:00")); // leap year in an invalid leap year
 
 
         //valid Date
-        assertTrue(Date.isValidDate("29/01/2000")); // proper date in specified format
-        assertTrue(Date.isValidDate("29/02/2020")); // leap year in a valid leap year
+        assertTrue(Date.isValidDate("29/01/2000 23:59")); // proper date in specified format
+        assertTrue(Date.isValidDate("01/01/2000 11:30")); // proper date in specified format
+        assertTrue(Date.isValidDate("29/02/2020 00:00")); // leap year in a valid leap year
     }
 
 }

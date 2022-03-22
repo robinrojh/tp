@@ -21,7 +21,7 @@ import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing client in the address book.
+ * Delete a procedure of an existing client in the address book.
  */
 public class DeleteProcCommand extends Command {
 
@@ -34,14 +34,12 @@ public class DeleteProcCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Current Procedure List: %1$s";
-    public static final String MESSAGE_NOT_DELETED = "At least two fields must be provided.";
-    public static final String MESSAGE_NONEXISTING_CLIENT = "This client does not exist in the address book.";
 
     private final Index clientIndex;
     private final Index procedureIndex;
 
     /**
-     * @param clientIndex of the client in the filtered client list to edit
+     * @param clientIndex of the client in the filtered client list whose procedure to delete.
      * @param procedureIndex of the procedure in the filtered procedure list to delete
      */
     public DeleteProcCommand(Index clientIndex, Index procedureIndex) {
@@ -77,8 +75,8 @@ public class DeleteProcCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
-     * edited with {@code editProcedureDescriptor}.
+     * Creates and returns a {@code Client} with the updated Procedure editted after
+     * deletion with the {@code deleteProcedure} method.
      */
     private Client editClientProcedure(Client clientToEdit) throws CommandException {
         assert clientToEdit != null;

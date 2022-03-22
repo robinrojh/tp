@@ -36,7 +36,7 @@ public interface Logic {
     ObservableList<Client> getFilteredClientList();
 
     /** Returns an unmodifiable view of the filtered list of procedures */
-    ObservableList<Procedure> getFilteredProcedureList(Client client);
+    ObservableList<Procedure> getFilteredProcedureList();
 
     /**
      * Returns the user prefs' address book file path.

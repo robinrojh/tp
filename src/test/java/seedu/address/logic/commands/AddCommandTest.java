@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -145,6 +146,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setProcedures(List<Procedure> procedures) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setClient(Client target, Client editedClient) {
             throw new AssertionError("This method should not be called.");
         }
@@ -155,9 +161,10 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Procedure> getFilteredProcedureList(Client client) {
+        public ObservableList<Procedure> getFilteredProcedureList() {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
             throw new AssertionError("This method should not be called.");

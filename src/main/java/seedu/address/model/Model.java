@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -14,7 +15,7 @@ import seedu.address.model.procedure.Procedure;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
-
+    Predicate<Procedure> PREDICATE_SHOW_CLIENT_PROCEDURES = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -87,15 +88,18 @@ public interface Model {
      */
     void setClient(Client target, Client editedClient);
 
+    void setProcedures(List<Procedure> procedures);
+
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredClientList();
 
     /** Returns an unmodifiable view of the filtered procedure list */
-    ObservableList<Procedure> getFilteredProcedureList(Client client);
+    ObservableList<Procedure> getFilteredProcedureList();
 
     /**
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
+>>>>>>> master
      */
     void updateFilteredClientList(Predicate<Client> predicate);
 

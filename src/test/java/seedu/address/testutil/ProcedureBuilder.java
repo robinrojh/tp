@@ -12,7 +12,7 @@ import seedu.address.model.procedure.Procedure;
 public class ProcedureBuilder {
 
     public static final String DEFAULT_INFO = "Fix Router";
-    public static final String DEFAULT_DATE = "01/01/2000";
+    public static final String DEFAULT_DATE = "01/01/2000 11:30";
     public static final String DEFAULT_COST = "13.50";
     public static final String DEFAULT_COMPLETION = "false";
 
@@ -69,7 +69,7 @@ public class ProcedureBuilder {
      * Sets the {@code Completion} of the {@code Procedure} that we are building.
      */
     public seedu.address.testutil.ProcedureBuilder withCompletion(String hasCompleted) {
-        this.hasCompleted = new Completion("true");
+        this.hasCompleted = new Completion(hasCompleted);
         return this;
     }
 

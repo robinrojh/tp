@@ -31,30 +31,30 @@ public class ClientTest {
         // null -> returns false
         assertFalse(ARTFRIEND.isSameClient(null));
 
-        // same name, all other attributes different -> returns true
-        Client editedAlice = new ClientBuilder(ARTFRIEND).withPhone(VALID_PHONE_BURGER).withEmail(VALID_EMAIL_BURGER)
-                .withAddress(VALID_ADDRESS_BURGER).withTags(VALID_TAG_TECH).build();
-        assertTrue(ARTFRIEND.isSameClient(editedAlice));
+        // same address, all other attributes different -> returns true
+        Client editedArtfriend = new ClientBuilder(ARTFRIEND)
+                .withName(VALID_NAME_BURGER)
+                .withPhone(VALID_PHONE_BURGER)
+                .withEmail(VALID_EMAIL_BURGER)
+                .withTags(VALID_TAG_TECH).build();
+        assertTrue(ARTFRIEND.isSameClient(editedArtfriend));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new ClientBuilder(ARTFRIEND).withName(VALID_NAME_BURGER).build();
-        assertFalse(ARTFRIEND.isSameClient(editedAlice));
+        // different address, all other attributes same -> returns false
+        editedArtfriend = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).build();
+        assertFalse(ARTFRIEND.isSameClient(editedArtfriend));
 
-        // name differs in case, all other attributes same -> returns false
-        Client editedBurger = new ClientBuilder(BURGER).withName(VALID_NAME_BURGER.toLowerCase()).build();
-        assertFalse(BURGER.isSameClient(editedBurger));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BURGER + " ";
-        editedBurger = new ClientBuilder(BURGER).withName(nameWithTrailingSpaces).build();
+        // address has trailing spaces, all other attributes same -> returns false
+        String addressWithTrailingSpaces = VALID_ADDRESS_BURGER + " ";
+        Client editedBurger = new ClientBuilder(BURGER)
+                .withAddress(addressWithTrailingSpaces).build();
         assertFalse(BURGER.isSameClient(editedBurger));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Client aliceCopy = new ClientBuilder(ARTFRIEND).build();
-        assertTrue(ARTFRIEND.equals(aliceCopy));
+        Client artfriendCopy = new ClientBuilder(ARTFRIEND).build();
+        assertTrue(ARTFRIEND.equals(artfriendCopy));
 
         // same object -> returns true
         assertTrue(ARTFRIEND.equals(ARTFRIEND));
@@ -69,23 +69,23 @@ public class ClientTest {
         assertFalse(ARTFRIEND.equals(BURGER));
 
         // different name -> returns false
-        Client editedAlice = new ClientBuilder(ARTFRIEND).withName(VALID_NAME_BURGER).build();
-        assertFalse(ARTFRIEND.equals(editedAlice));
+        Client editedArtfriend = new ClientBuilder(ARTFRIEND).withName(VALID_NAME_BURGER).build();
+        assertFalse(ARTFRIEND.equals(editedArtfriend));
 
         // different phone -> returns false
-        editedAlice = new ClientBuilder(ARTFRIEND).withPhone(VALID_PHONE_BURGER).build();
-        assertFalse(ARTFRIEND.equals(editedAlice));
+        editedArtfriend = new ClientBuilder(ARTFRIEND).withPhone(VALID_PHONE_BURGER).build();
+        assertFalse(ARTFRIEND.equals(editedArtfriend));
 
         // different email -> returns false
-        editedAlice = new ClientBuilder(ARTFRIEND).withEmail(VALID_EMAIL_BURGER).build();
-        assertFalse(ARTFRIEND.equals(editedAlice));
+        editedArtfriend = new ClientBuilder(ARTFRIEND).withEmail(VALID_EMAIL_BURGER).build();
+        assertFalse(ARTFRIEND.equals(editedArtfriend));
 
         // different address -> returns false
-        editedAlice = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).build();
-        assertFalse(ARTFRIEND.equals(editedAlice));
+        editedArtfriend = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).build();
+        assertFalse(ARTFRIEND.equals(editedArtfriend));
 
         // different tags -> returns false
-        editedAlice = new ClientBuilder(ARTFRIEND).withTags(VALID_TAG_TECH).build();
-        assertFalse(ARTFRIEND.equals(editedAlice));
+        editedArtfriend = new ClientBuilder(ARTFRIEND).withTags(VALID_TAG_TECH).build();
+        assertFalse(ARTFRIEND.equals(editedArtfriend));
     }
 }

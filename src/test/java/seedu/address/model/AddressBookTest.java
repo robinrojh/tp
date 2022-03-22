@@ -1,12 +1,11 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BURGER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ARTFRIEND;
+import static seedu.address.testutil.TypicalClients.BURGER;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -20,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.exceptions.DuplicateClientException;
+import seedu.address.model.procedure.Procedure;
 import seedu.address.testutil.ClientBuilder;
 
 public class AddressBookTest {
@@ -45,10 +45,11 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicateClients_throwsDuplicateClientException() {
-        // Two clients with the same identity fields
-        Client editedArtfriend = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).withTags(VALID_TAG_TECH)
+        // Two clients with the same address fields
+        Client editedBurger = new ClientBuilder(ARTFRIEND)
+                .withAddress(VALID_ADDRESS_BURGER)
                 .build();
-        List<Client> newClients = Arrays.asList(ARTFRIEND, editedArtfriend);
+        List<Client> newClients = Arrays.asList(BURGER, editedBurger);
         AddressBookStub newData = new AddressBookStub(newClients);
 
         assertThrows(DuplicateClientException.class, () -> addressBook.resetData(newData));
@@ -60,22 +61,12 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasClient_clientNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasClient(ARTFRIEND));
-    }
-
-    @Test
-    public void hasClient_clientInAddressBook_returnsTrue() {
-        addressBook.addClient(ARTFRIEND);
-        assertTrue(addressBook.hasClient(ARTFRIEND));
-    }
-
-    @Test
     public void hasClient_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addClient(ARTFRIEND);
-        Client editedAlice = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER).withTags(VALID_TAG_TECH)
+        addressBook.addClient(BURGER);
+        // editedBurger only has the same address as burger
+        Client editedBurger = new ClientBuilder(ARTFRIEND).withAddress(VALID_ADDRESS_BURGER)
                 .build();
-        assertTrue(addressBook.hasClient(editedAlice));
+        assertTrue(addressBook.hasClient(editedBurger));
     }
 
     @Test
@@ -88,6 +79,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
+        private final ObservableList<Procedure> procedures = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Client> clients) {
             this.clients.setAll(clients);
@@ -96,6 +88,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Client> getClientList() {
             return clients;
+        }
+
+        @Override
+        public ObservableList<Procedure> getProcedureList() {
+            return procedures;
         }
     }
 

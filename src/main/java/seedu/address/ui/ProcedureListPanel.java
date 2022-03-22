@@ -34,7 +34,6 @@ public class ProcedureListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Procedure procedure, boolean empty) {
             super.updateItem(procedure, empty);
-
             if (empty || procedure == null) {
                 setGraphic(null);
                 setText(null);

@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -23,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
+    private FilteredList<Procedure> filteredProcedures;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        filteredProcedures = new FilteredList<>(this.addressBook.getProcedureList());
     }
 
     public ModelManager() {
@@ -120,6 +124,11 @@ public class ModelManager implements Model {
         addressBook.setClient(target, editedClient);
     }
 
+    @Override
+    public void setProcedures(List<Procedure> procedures) {
+        addressBook.setProcedures(procedures);
+    }
+
     //=========== Filtered Client List Accessors =============================================================
 
     /**
@@ -132,11 +141,11 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns a filtered list of {@code Procedure} of {@code Client}.
+     * Returns a observable list of {@code Procedure} of {@code Client}.
      */
     @Override
-    public ObservableList<Procedure> getFilteredProcedureList(Client client) {
-        return null;
+    public ObservableList<Procedure> getFilteredProcedureList() {
+        return filteredProcedures;
     }
 
     /**
@@ -152,7 +161,8 @@ public class ModelManager implements Model {
      */
     @Override
     public void updateFilteredProcedureList(Client client, Predicate<Procedure> predicate) {
-        return;
+        requireAllNonNull(client, predicate);
+        filteredProcedures = new FilteredList<>(FXCollections.observableArrayList(client.getProcedures()), predicate);
     }
 
     @Override
