@@ -98,8 +98,8 @@ public class Client {
 
     public List<Procedure> getProcsOnDate(DateWithoutTime date) {
         List<Procedure> procsOnDate = new ArrayList<Procedure> ();
-        Date startTime = new Date(date.toString() + " 00:00");
-        Date endTime = new Date(date.toString() + " 23:59");
+        Date startTime = new Date(date.toString() + Date.START_OF_DAY);
+        Date endTime = new Date(date.toString() + Date.END_OF_DAY);
         for (int i = 0; i < this.procedures.size(); i++) {
             Procedure currentProc = this.procedures.get(i);
             Date currentDate = currentProc.getDate();
