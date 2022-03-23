@@ -351,7 +351,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case 4: Add a Procedure to a Client**
+**Use case 4: Delete a Procedure from a Client**
+
+![UndoRedoState2](images/DeleteProcSequenceDiagram.png)
 
 **MSS**
 
