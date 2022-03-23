@@ -159,7 +159,7 @@ This section describes some noteworthy details on how certain features are imple
 
 Lists the Procedures for the given input index of a Client.
 
-If the Client doesn't have any procedures, it prints out a different message indicating that. Otherwise, it will simply 
+If the Client doesn't have any procedures, it prints out a different message indicating that. Otherwise, it will simply
 print out the success message on result window and update the right column of the UI.
 
 Below is the sequence diagram for executing ListProcCommand as a user.
@@ -177,10 +177,10 @@ Step 5: UI takes the return value from LogicManager and updates the UI
 
 **Why did I implement ListProcCommand this way?**
 
-In other functions like find, it doesn't seem that an explicit UI update was necessary. 
+In other functions like find, it doesn't seem that an explicit UI update was necessary.
 However, even when I update the procedure list correctly, the UI didn't get updated automatically.
 Therefore, after correctly updating the procedure list, I update the UI in MainWindow executeCommand method
-by creating a new ProcedureListPanel. 
+by creating a new ProcedureListPanel.
 
 ![ListProcCommand Example](images/ListProcCommandExample1.PNG)
 
