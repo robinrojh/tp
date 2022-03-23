@@ -12,7 +12,6 @@ box Model MODEL_COLOR_T1
 participant "p:Procedure" as Procedure MODEL_COLOR
 participant ":ModelManager" as ModelManager MODEL_COLOR
 participant ":Client" as Client MODEL_COLOR
-participant "AddressBook" as AddressBook MODEL_COLOR
 end box
 
 
@@ -28,17 +27,8 @@ end note
 activate AddressBookParser
 
 create AddProcCommandParser
-AddressBookParser -> AddProcCommandParser
+AddressBookParser -> AddProcCommandParser : parse(args)
 activate AddProcCommandParser
-
-AddProcCommandParser --> AddressBookParser
-deactivate AddProcCommandParser
-
-AddressBookParser -> AddProcCommandParser : parse("addProc")
-activate AddProcCommandParser
-
-create Procedure
-AddProcCommandParser -> Procedure : parse(args)
 note left
 (args) is defined as
  i/Install modem
@@ -47,17 +37,23 @@ note left
  11:30
 end note
 
+
+
+create Procedure
+AddProcCommandParser -> Procedure
 activate Procedure
-Procedure --> AddProcCommandParser
+Procedure --> AddProcCommandParser : p
 deactivate Procedure
 
-AddProcCommandParser --> AddressBookParser
+create AddProcCommand
+AddProcCommandParser -> AddProcCommand
+activate AddProcCommand
+AddProcCommand --> AddProcCommandParser : d
+deactivate AddProcCommand
+AddProcCommandParser --> AddressBookParser : d
 deactivate AddProcCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddProcCommandParser -[hidden]-> AddressBookParser
 
-
-AddressBookParser --> LogicManager : p
+AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
 
 LogicManager -> AddProcCommand : execute()
@@ -94,18 +90,10 @@ AddProcCommand -> ModelManager : setClient(clientToEdit, editedClient)
 
 
 activate ModelManager
-
-ModelManager -> AddressBook : setClient(target, editedClient)
-activate AddressBook
-deactivate AddressBook
-
 AddProcCommand -> ModelManager : updatedFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS)
 deactivate ModelManager
-AddProcCommand --> AddProcCommandParser
-AddProcCommandParser --> AddressBookParser
-AddressBookParser --> LogicManager
+AddProcCommand --> LogicManager
 deactivate AddProcCommand
-
 [<--LogicManager
 deactivate LogicManager
 @enduml
