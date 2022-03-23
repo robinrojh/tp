@@ -49,9 +49,11 @@ public class AddProcCommandTest {
         String expectedMessage = String.format(AddProcCommand.MESSAGE_SUCCESS, toBeAddedProcedure);
 
         Model expectedModel = new ModelManager(new AddressBook(newModel.getAddressBook()), new UserPrefs());
+
         Client clientToAddProc = newModel.getFilteredClientList().get(0);
         Client clientWithAddedProcedure = new ClientBuilder(clientToAddProc)
                 .withProcedures(addProcCommand.procListWithAddedProperProc(clientToAddProc.getProcedures())).build();
+
         expectedModel.setClient(clientToAddProc, clientWithAddedProcedure);
 
         assertCommandSuccess(addProcCommand, newModel, expectedMessage, expectedModel);
@@ -79,9 +81,12 @@ public class AddProcCommandTest {
     public void execute_properIndexWithDuplicateProcedure_failure() {
         Client newClient = new ClientBuilder().build();
         newModel.addClient(newClient);
+
         AddProcCommand addProcCommand = new AddProcCommand(INDEX_FIRST_CLIENT, toBeAddedProcedure);
+
         Client clientWithAddedProcedure = new ClientBuilder(newClient)
                 .withProcedures(addProcCommand.procListWithAddedProperProc(newClient.getProcedures())).build();
+
         newModel.setClient(newClient, clientWithAddedProcedure);
 
         // executing again, guaranteed to be a duplicate Procedure
