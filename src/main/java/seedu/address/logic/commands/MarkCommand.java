@@ -22,6 +22,9 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Procedure successfully marked as complete.";
 
+    public static final String MESSAGE_PROCEDURE_NOT_DISPLAYED = "No procedure list is retrieved yet! You can call " +
+            "listProc command to select the list.";
+
     private final Index targetClientIndex;
     private final Index targetProcedureIndex;
 
@@ -50,6 +53,9 @@ public class MarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROCEDURE_DISPLAYED_INDEX);
         }
 
+        if (model.getFilteredProcedureList().isEmpty()) {
+            throw new CommandException(MESSAGE_PROCEDURE_NOT_DISPLAYED);
+        }
         Procedure targetProcedure = procedureList.get(targetProcedureIndex.getZeroBased());
         targetProcedure.setHasCompleted(new Completion("true"));
 

@@ -42,7 +42,7 @@ public class ProcedureCard extends UiPart<Region> {
         information.setText(procedure.getInfo().toString());
         date.setText(procedure.getDate().toString());
         cost.setText(procedure.getCost().toString());
-        hasCompleted.setText(procedure.getHasCompleted().toString());
+        hasCompleted.setText("Completed: " + procedure.getHasCompleted().toString());
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -22,6 +23,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
+import seedu.address.model.procedure.Procedure;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -143,7 +145,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    void fillInnerParts() throws CommandException, ParseException {
         setUpColumnConstraints();
         ObservableList<Client> clients = logic.getFilteredClientList();
         clientListPanel = new ClientListPanel(clients);
@@ -152,6 +154,7 @@ public class MainWindow extends UiPart<Stage> {
         if (clients.size() > 0) {
             procedureListPanel = new ProcedureListPanel(
                     FXCollections.observableArrayList(clients.get(0).getProcedures()));
+            logic.execute("listProc 1");
         } else {
             procedureListPanel = new ProcedureListPanel(FXCollections.observableArrayList());
         }
@@ -223,7 +226,9 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            procedureListPanel = new ProcedureListPanel(logic.getFilteredProcedureList());
+
+            ObservableList<Procedure> filteredProcedures = logic.getFilteredProcedureList();
+            procedureListPanel = new ProcedureListPanel(filteredProcedures);
             procedureListPanelPlaceholder.getChildren().add(procedureListPanel.getRoot());
 
             if (commandResult.isShowHelp()) {
