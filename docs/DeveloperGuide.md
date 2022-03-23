@@ -237,7 +237,50 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+##deleteProc feature
+###Proposed Implementation
+The proposed deleteProc mechanism is facilitated by the `DeleteProcCommandParser`.
+The deleteProc mechanism allows deletion of a `Procedure` from an existing `Client` in the address book.
+The deleteProc is permanently erased and the remaining `Procedure` are stored locally after.
+It implements the following operations:
 
+* `DeleteProcCommand#editClientProcedure(Client clientToEdit)` &mdash; Edit an attribute of an existing `Client` and return a new `Client`.
+* `DeleteProcCommand#deleteProcedure(List<Procedure> procedureList)` &mdash; Remove a `Procedure` from the list of `Procedure`
+* `Model#setClient(clientToEdit, editedClient)` &mdash; Replace the existing `Client` with its editted variant.
+* `Model#updateFilteredClientList(Predicate<Client> predicate)` &mdash; Replace the existing `Client` with its editted variant in the `ObservableList`, that helps to update the UI.
+
+The `editClientProcedure(Client clientToEdit)` operation is exposed in the `Model` interface as `Model#setProcedure()`.
+
+Given below is an example usage scenario and how the deleteProc mechanism behaves at each step.
+
+Step 1. The user finds the `Procedure` that the client has using `findProc <Index>`
+The UI lists all the `Procedure` associated to the client and would like to delete one.
+
+![DeleteProcState0](images/DeleteProcState0.png)
+
+Step 2. The user executes `deleteProc 1 1` to delete the 1st `Procedure` associated with the 1st client in the address book.
+The `deleteProc 1 1` command calls `DeleteProcCommand#(Client clientToEdit)`, which calls the `deleteProcedure(List<Procedure procedureList)` method to remove the `Procedure` from the list.
+This newly-created `Client` is saved locally through the `Model#setClient`, and displayed by updating the `UpdateFilteredClientList`.
+With the `Client` saved, the address book is saved at a new state.
+
+![DeleteProcState1](images/DeleteProcState1.png)
+
+The following sequence diagram shows how this operation works.
+
+![DeleteProcSequenceDiagram](images/DeleteProcSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Will `deleteProc` permanently delete the `Procedure`**
+
+* **Alternative 1 (current choice):** Deletes the entire Procedure.
+    * Pros: Easy to implement and use less stoage.
+    * Cons: Users might find it hard to retrieve pre-existing data of the user.
+
+* **Alternative 2:** Create a deleted status for the `Procedure` and only allow vision of undeleted `Procedure`.
+  itself.
+    * Pros: User could easily retrieve previous deleted data.
+    * Cons: Can get storage-expensive, which makes future parsing slower. Might pose to be a security concern with undeleted `Procedure`.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -352,8 +395,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 **Use case 4: Delete a Procedure from a Client**
-
-![UndoRedoState2](images/DeleteProcSequenceDiagram.png)
 
 **MSS**
 
