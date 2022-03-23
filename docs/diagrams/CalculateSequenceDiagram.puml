@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":CalculateCommandParser" as CalculateCommandParser LOGIC_COLOR
-participant ":TotalCost" as TotalCost LOGIC_COLOR
+participant "TotalCost:BigDecimal" as TotalCost LOGIC_COLOR
 participant ":CalculateCommand" as CalculateCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -34,16 +34,16 @@ create CalculateCommand
 CalculateCommandParser -> CalculateCommand
 activate CalculateCommand
 
-CalculateCommand --> CalculateCommandParser : d
+CalculateCommand --> CalculateCommandParser :
 deactivate CalculateCommand
 
-CalculateCommandParser --> AddressBookParser : d
+CalculateCommandParser --> AddressBookParser :
 deactivate CalculateCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 CalculateCommandParser -[hidden]-> AddressBookParser
 destroy CalculateCommandParser
 
-AddressBookParser --> LogicManager : d
+AddressBookParser --> LogicManager :
 deactivate AddressBookParser
 
 LogicManager -> CalculateCommand : execute()
