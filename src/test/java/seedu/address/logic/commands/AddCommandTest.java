@@ -22,7 +22,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.client.Client;
-import seedu.address.model.procedure.Date;
 import seedu.address.model.procedure.Procedure;
 import seedu.address.testutil.ClientBuilder;
 
@@ -118,11 +117,6 @@ public class AddCommandTest {
 
         @Override
         public void addProcedure(Procedure procedure) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void calculateCost(Date date) {
             throw new AssertionError("This method should not be called.");
         }
 

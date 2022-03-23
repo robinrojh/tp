@@ -29,7 +29,7 @@ public class Date {
 
     public static final String START_OF_DAY = " 00:00";
 
-    public static final String END_OF_DAY = " 3:59";
+    public static final String END_OF_DAY = " 23:59";
 
     public final LocalDateTime validDate;
 

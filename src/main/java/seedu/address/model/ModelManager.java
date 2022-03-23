@@ -14,7 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
-import seedu.address.model.procedure.Date;
 import seedu.address.model.procedure.Procedure;
 
 
@@ -117,11 +116,6 @@ public class ModelManager implements Model {
 
     @Override
     public void addProcedure(Procedure procedure) {
-    }
-
-    @Override
-    public void calculateCost(Date date) {
-
     }
 
     @Override

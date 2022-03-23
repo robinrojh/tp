@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.dateWithoutTime.DateWithoutTime;
 import seedu.address.model.procedure.Date;
-import seedu.address.model.procedure.DateWithoutTime;
 import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
 

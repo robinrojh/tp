@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
+import seedu.address.commons.core.dateWithoutTime.DateWithoutTime;
 import seedu.address.model.procedure.Date;
-import seedu.address.model.procedure.DateWithoutTime;
 
 /**
  * A utility class containing a list of {@code Index} objects to be used in tests.

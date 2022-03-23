@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.dateWithoutTime.DateWithoutTime;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -18,7 +19,6 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.client.Plan;
 import seedu.address.model.procedure.Cost;
 import seedu.address.model.procedure.Date;
-import seedu.address.model.procedure.DateWithoutTime;
 import seedu.address.model.procedure.Information;
 import seedu.address.model.tag.Tag;
 

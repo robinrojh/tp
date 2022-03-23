@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
-import seedu.address.model.procedure.Date;
 import seedu.address.model.procedure.Procedure;
 
 /**
@@ -81,12 +80,6 @@ public interface Model {
      * Add the given Procedure.
      */
     void addProcedure(Procedure procedure);
-
-
-    /**
-     * Calculates cost on the given date.
-     */
-    void calculateCost(Date date);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
