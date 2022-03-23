@@ -1,4 +1,7 @@
 package seedu.address.logic.commands;
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -7,10 +10,6 @@ import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.procedure.Completion;
 import seedu.address.model.procedure.Procedure;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 public class MarkCommand extends Command {
 
@@ -22,8 +21,8 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Procedure successfully marked as complete.";
 
-    public static final String MESSAGE_PROCEDURE_NOT_DISPLAYED = "No procedure list is retrieved yet! You can call " +
-            "listProc command to select the list.";
+    public static final String MESSAGE_PROCEDURE_NOT_DISPLAYED = "No procedure list is retrieved yet! You can call "
+            + "listProc command to select the list.";
 
     private final Index targetClientIndex;
     private final Index targetProcedureIndex;

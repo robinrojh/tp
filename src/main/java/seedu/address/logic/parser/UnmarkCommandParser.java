@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.UnmarkCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.UnmarkCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class UnmarkCommandParser implements Parser<UnmarkCommand> {
     public static final int GET_CLIENT_INDEX = 0;
