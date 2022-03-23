@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.math.BigDecimal;
 
 
-public class Cost {
+public class Cost implements Comparable<Cost> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "1. Cost should be rounded to the nearest cent \n"
@@ -56,4 +56,8 @@ public class Cost {
         return this.cost.hashCode();
     }
 
+    @Override
+    public int compareTo(Cost otherCost) {
+        return cost.compareTo(otherCost.cost);
+    }
 }
