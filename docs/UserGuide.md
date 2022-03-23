@@ -129,4 +129,3 @@ GUI Format:
 | Add Procedure | `addProc <CLIENT INDEX> <Procedure>` | `addProc 1 Check router’s connection with the modem` |
 | Delete Procedure | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>` | `deleteProc 1 3` |
 | List All Clients | `list` | `list` |
-    
