@@ -40,7 +40,7 @@ public class AddProcCommandTest {
 
     @Test
     public void execute_properIndexWithProperProcedure_success() {
-        // guaranteed to add a non-duplicated Procedure since starting from a Client with no Procedures
+        // guaranteed to add a non-duplicated Procedure since starting from a new Client
         Client newClient = new ClientBuilder().build();
         newModel.addClient(newClient);
 
