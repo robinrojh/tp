@@ -28,6 +28,7 @@
       </HBox>
       <Label fx:id="date" styleClass="cell_small_label" text="\$date"/>
       <Label fx:id="cost" styleClass="cell_small_label" text="\$cost"/>
+      <Label fx:id="hasCompleted" styleClass="cell_small_label" text="\$hasCompleted"/>
     </VBox>
   </GridPane>
 </HBox>
