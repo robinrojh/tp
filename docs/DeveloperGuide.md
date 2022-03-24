@@ -1,12 +1,35 @@
 layout: page
 title: Developer Guide
----
+--------------------------------------------------------------------------------------------------------------------
 * Table of Contents
   {:toc}
+--------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+### **Purpose**
+
+This developer's guide clarifies the project architecture as well as  software design decisions for **Networkers**. 
+This guide will also look at how individual features are implemented in this project.
+
+
+*Networkers* is a **desktop app for managing contacts for network technicians,
+optimised for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+
+### **Intended Audience**
+
+The intended audience of this document would be
+1. Developers who are keen to contribute to Networkers
+2. Software testers who may need to understand the project
+   to carry out meaningful testing.
+3. Developers who are interested in learning more 
+   about the implementation of this project
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
+
+* [addressbook 3](https://se-education.org/addressbook-level3/)
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
@@ -247,7 +270,56 @@ A valid argument consists of 2 sections:
 
 A date is only valid if it follows the "dd/MM/uuuu" format and consists of a legitimate date,
 taking leap years into account
-#### Proposed Implementation
+
+
+
+##deleteProc feature
+###Proposed Implementation
+The proposed deleteProc mechanism is facilitated by the `DeleteProcCommandParser`.
+The deleteProc mechanism allows deletion of a `Procedure` from an existing `Client` in the address book.
+The deleteProc is permanently erased and the remaining `Procedure` are stored locally after.
+It implements the following operations:
+
+* `DeleteProcCommand#editClientProcedure(Client clientToEdit)` &mdash; Edit an attribute of an existing `Client` and return a new `Client`.
+* `DeleteProcCommand#deleteProcedure(List<Procedure> procedureList)` &mdash; Remove a `Procedure` from the list of `Procedure`
+* `Model#setClient(clientToEdit, editedClient)` &mdash; Replace the existing `Client` with its editted variant.
+* `Model#updateFilteredClientList(Predicate<Client> predicate)` &mdash; Replace the existing `Client` with its editted variant in the `ObservableList`, that helps to update the UI.
+
+The `editClientProcedure(Client clientToEdit)` operation is exposed in the `Model` interface as `Model#setProcedure()`.
+
+Given below is an example usage scenario and how the deleteProc mechanism behaves at each step.
+
+Step 1. The user finds the `Procedure` that the client has using `findProc <Index>`
+The UI lists all the `Procedure` associated to the client and would like to delete one.
+
+![DeleteProcState0](images/DeleteProcState0.png)
+
+Step 2. The user executes `deleteProc 1 1` to delete the 1st `Procedure` associated with the 1st client in the address book.
+The `deleteProc 1 1` command calls `DeleteProcCommand#(Client clientToEdit)`, which calls the `deleteProcedure(List<Procedure procedureList)` method to remove the `Procedure` from the list.
+This newly-created `Client` is saved locally through the `Model#setClient`, and displayed by updating the `UpdateFilteredClientList`.
+With the `Client` saved, the address book is saved at a new state.
+
+![DeleteProcState1](images/DeleteProcState1.png)
+
+The following sequence diagram shows how this operation works.
+
+![DeleteProcSequenceDiagram](images/DeleteProcSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Will `deleteProc` permanently delete the `Procedure`**
+
+* **Alternative 1 (current choice):** Deletes the entire Procedure.
+    * Pros: Easy to implement and use less stoage.
+    * Cons: Users might find it hard to retrieve pre-existing data of the user.
+
+* **Alternative 2:** Create a deleted status for the `Procedure` and only allow vision of undeleted `Procedure`.
+  itself.
+    * Pros: User could easily retrieve previous deleted data.
+    * Cons: Can get storage-expensive, which makes future parsing slower.
+
+
+## Proposed Implementation
 ### \[Proposed\] Undo/redo feature
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
@@ -326,59 +398,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-
-
-
-
-
-
-
-
-
-##deleteProc feature
-###Proposed Implementation
-The proposed deleteProc mechanism is facilitated by the `DeleteProcCommandParser`.
-The deleteProc mechanism allows deletion of a `Procedure` from an existing `Client` in the address book.
-The deleteProc is permanently erased and the remaining `Procedure` are stored locally after.
-It implements the following operations:
-
-* `DeleteProcCommand#editClientProcedure(Client clientToEdit)` &mdash; Edit an attribute of an existing `Client` and return a new `Client`.
-* `DeleteProcCommand#deleteProcedure(List<Procedure> procedureList)` &mdash; Remove a `Procedure` from the list of `Procedure`
-* `Model#setClient(clientToEdit, editedClient)` &mdash; Replace the existing `Client` with its editted variant.
-* `Model#updateFilteredClientList(Predicate<Client> predicate)` &mdash; Replace the existing `Client` with its editted variant in the `ObservableList`, that helps to update the UI.
-
-The `editClientProcedure(Client clientToEdit)` operation is exposed in the `Model` interface as `Model#setProcedure()`.
-
-Given below is an example usage scenario and how the deleteProc mechanism behaves at each step.
-
-Step 1. The user finds the `Procedure` that the client has using `findProc <Index>`
-The UI lists all the `Procedure` associated to the client and would like to delete one.
-
-![DeleteProcState0](images/DeleteProcState0.png)
-
-Step 2. The user executes `deleteProc 1 1` to delete the 1st `Procedure` associated with the 1st client in the address book.
-The `deleteProc 1 1` command calls `DeleteProcCommand#(Client clientToEdit)`, which calls the `deleteProcedure(List<Procedure procedureList)` method to remove the `Procedure` from the list.
-This newly-created `Client` is saved locally through the `Model#setClient`, and displayed by updating the `UpdateFilteredClientList`.
-With the `Client` saved, the address book is saved at a new state.
-
-![DeleteProcState1](images/DeleteProcState1.png)
-
-The following sequence diagram shows how this operation works.
-
-![DeleteProcSequenceDiagram](images/DeleteProcSequenceDiagram.png)
-
-#### Design considerations:
-
-**Aspect: Will `deleteProc` permanently delete the `Procedure`**
-
-* **Alternative 1 (current choice):** Deletes the entire Procedure.
-    * Pros: Easy to implement and use less stoage.
-    * Cons: Users might find it hard to retrieve pre-existing data of the user.
-
-* **Alternative 2:** Create a deleted status for the `Procedure` and only allow vision of undeleted `Procedure`.
-  itself.
-    * Pros: User could easily retrieve previous deleted data.
-    * Cons: Can get storage-expensive, which makes future parsing slower.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
