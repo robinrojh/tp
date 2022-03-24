@@ -1,9 +1,12 @@
+---
 layout: page
 title: Developer Guide
+---
 --------------------------------------------------------------------------------------------------------------------
 * Table of Contents
   {:toc}
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Introduction**
 
 ### **Purpose**
@@ -196,10 +199,9 @@ Step 5. Within `AddProcCommand`, it will retrieve the `Client` that needs to be 
 Step 6. Once the `Client` has been updated to include the new `Procedure`, it will update `ModelManager` with the updated `Client` to reflect this change.
 
 ![AddProcCommand](images/AddProcCommand.png)
-===
-### Roh Yong Gi (robinrojh)
 
-#### listProc Command
+
+### Listing Procedures
 
 Lists the Procedures for the given input index of a Client.
 
