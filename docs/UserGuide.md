@@ -3,10 +3,10 @@ layout: page
 title: User Guide
 ---
 
-*Networkers* is a **desktop app for managing contacts for networks, 
-optimised for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, Networkers can get your contact management tasks 
+*Networkers* is a **desktop app for managing contacts for networks,
+optimised for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, Networkers can get your contact management tasks
 done faster than traditional GUI apps.
 
 - **Features (v1.2)**
@@ -86,9 +86,9 @@ A new procedure will be deleted from the existing numbered list.
 * `deleteProc` refers to the command of deleting a procedure from the client at the specified Index.
 * `<Client Index>` refers to the index number shown in the displayed client list. 
 The index must be a positive integer 1, 2, 3, ...
-* `<Procedure>` refers to the tasks or problems that need to be addressed 
+* `<Procedure>` refers to the tasks or problems that need to be addressed
 in the future visits to the client’s business sight.
-Note that a client’s list of procedures is a numbered list. 
+Note that a client’s list of procedures is a numbered list.
 
 **Example:**
 Non-GUI format:
