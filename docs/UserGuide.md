@@ -29,17 +29,17 @@ done faster than traditional GUI apps.
 
 Adds a Client with an empty procedure list to the address book
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS l/PLAN [t/TAG]...`
  - `addClient` refers to the command of adding a client to the address book
- - Mandatory details include a name, phone_number and an address for the client
+ - Mandatory details include a name, phone_number, an address and a plan for the client
 
 Examples:
 
 Non GUI format:
-- User: `addClient n/Apple Inc p/9XXXXXXX a/apple road`
-  - Terminal returns: `Added client apple inc to the tasklist`
+- User: `addClient n/Apple p/91234561 e/apple@example.com a/311, Bedok Ave 3, #01-15 l/Plan 50GBps t/corporate `
+  - Terminal returns: `New client added: Apple; Phone: 91234561; Email: apple@example.com; Address: 311, Bedok Ave 3, #01-15; Plan: Plan 50GBps; Tags: [corporate]`
 
-GUI format: ![Ui](images/addClient.png)
+GUI: ![Ui](images/addClientGUI.png)
 
 ### Deleting a client: `deleteClient`
 
@@ -51,41 +51,41 @@ Format: `deleteClient <INDEX>`
 * The index refers to the index number shown in the displayed contact list.
 * The index must be a positive integer 1, 2, 3, …
 
-User must then type `confirm` in order to delete the client. Users may type cancel instead to return to the main command line.
-
 Examples:
 
 Non-GUI Format:
 * `deleteClient 1` will trigger an attempt to delete the 1st client in the contact list .
-* Users must type `confirm` to delete, or cancel to return to the main command line.
 
 GUI Format:
-![list](images/deleteClient.png)
+![list](images/deleteClientGUI.png)
 
 ### Add a Procedure to a Client: `addProc`
 
 Adds a specified procedure to a specified client list in the contact book.
 
-**Format:** `addProc <Client Index> <Procedure>`
+**Format:** `addProc <Client Index> i/INFORMATION c/COST d/DATE_TIME`
 * `addProc` refers to the command of adding a procedure to the client at the specified Index.
 * `<Client Index>` refers to the index number shown in the displayed client list. The index **must be** a positive integer 1, 2, 3, …​
-* `<Procedure>` refers to the tasks or problems that need to be addressed in the future visits to the client’s business sight.
+* `INFORMATION` refers to the tasks or problems that need to be addressed in the future visits to the client’s business sight.
   * Note that a client’s list of procedures is a numbered list. A new procedure will be added on to the existing numbered list (to the last index).
+* `COST` is the cost required for the procedure
+* `DATE_TIME` is the date and time that the procedure takes place.
+  * The `DATE_TIME` accepts inputs in the form of `dd_MM_YYYY HH:MM`.
 
 **Example:** <br/>
 Non-GUI Format:
-* `addProc 1 Check router’s connection with the modem`
-  * In the case that the 1st client already has existing procedures, `Check router’s connection with the modem` procedure will appear to be the last procedure in that client’s procedure list.
+* `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`
+  * In this case, if the 1st client already has existing procedure (written in the exact form as before), the application will inform the user that the Procedure has already been added.
 
 GUI Format:
-![addProc](images/addProc.png)
+![addProc](images/addProcGUI.png)
 
 ### Delete a Procedure from the client: `deleteProc`
 
 Deletes a procedure associated with the client. This is important as it allows the user to maintain and make changes to the database - creation and deletion.
 
 **Format:** `deleteProc <clientIndex> <Proc_Index>`
-A new procedure will be deleted from the existing numbered list.
+A procedure will be deleted from the existing numbered list.
 * `deleteProc` refers to the command of deleting a procedure from the client at the specified Index.
 * `<Client Index>` refers to the index number shown in the displayed client list. 
 The index must be a positive integer 1, 2, 3, ...
@@ -94,17 +94,25 @@ in the future visits to the client’s business sight.
 Note that a client’s list of procedures is a numbered list.
 
 **Example:**
+
 Non-GUI format:
+
 User: deleteProc 1 3
-Terminal returns: The procedure “Bring a new Singtel router to replace the old Apple one” has been successfully deleted! :)
+
+Terminal returns: `Current Procedure List: [Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.5; Completed: false]`
+
 User: deleteProc 3 500
-Terminal returns: The procedure you listed does not exist, add more procedures.
-User: deleteProc 3
-Terminal returns: Do add in the procedure you would like to delete and try again :).
+Terminal returns: `The procedure index provided is invalid`
 
 GUI Format:
-![deleteProc](images/deleteProc.png)
 
+Before Command:
+
+![deleteProc](images/deleteProcGUIbefore.png)
+
+After Command:
+
+![deleteProc](images/deleteProcGUIAfter.png)
 ### Calculate the cost of all procedures on a specified date: `calculate`
 
 Calculates the cost of all procedures that happen any time on a specified date 
@@ -147,7 +155,7 @@ Non-GUI Format
 
 
 GUI Format:
-![list](images/list.png)
+![list](images/listGUI.png)
 
 ### View All Procedures of a Client
 
@@ -167,11 +175,11 @@ GUI Format
 
 ## Command Summary
 
-| Command | Syntax | Example |
-| --- | --- | --- |
-| Add Client | `addClient n/<NAME> p/<PHONE_NUMBER> a/<ADDRESS>`| `addClient n/Apple Inc p/9XXXXXXX a/apple road` |
-| Delete Client | `deleteClient <INDEX>` | `deleteClient 1` |
-| Add Procedure | `addProc <CLIENT INDEX> <Procedure>` | `addProc 1 Check router’s connection with the modem` |
-| Delete Procedure | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>` | `deleteProc 1 3` |
-| List All Clients | `list` | `list` |
-| List All Procedures | `listProc <CLIENT INDEX>` | `listProc 1` | 
+| Command | Syntax                                                    | Example                                                  |
+| --- |-----------------------------------------------------------|----------------------------------------------------------|
+| Add Client | `addClient n/<NAME> p/<PHONE_NUMBER> a/<ADDRESS> l/<PLAN>` | `addClient n/Apple Inc p/9XXXXXXX a/apple road l/50MBps` |
+| Delete Client | `deleteClient <INDEX>`                                    | `deleteClient 1`                                         |
+| Add Procedure | `addProc <Client Index> i/INFORMATION c/COST d/DATE_TIME`                     | `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`     |
+| Delete Procedure | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`             | `deleteProc 1 3`                                         |
+| List All Clients | `list`                                                    | `list`                                                   |
+| List All Procedures | `listProc <CLIENT INDEX>`                                 | `listProc 1`                                             | 
