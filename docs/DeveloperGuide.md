@@ -11,7 +11,6 @@ title: Developer Guide
 This developer's guide clarifies the project architecture as well as  software design decisions for **Networkers**. 
 This guide will also look at how individual features are implemented in this project.
 
-
 *Networkers* is a **desktop app for managing contacts for network technicians,
 optimised for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
