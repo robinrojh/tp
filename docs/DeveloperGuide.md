@@ -307,7 +307,7 @@ The following sequence diagram shows how this operation works.
 *  Is reasonably comfortable using CLI apps
 
 
-**Value proposition**: 
+**Value proposition**:
 * Manage Clients and the respective Procedures faster than a typical mouse/GUI driven app
 * Keep important information regarding the user’s business in one platform to manage Clients and past, current, and future Procedures more easily
 
@@ -368,7 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. TThe User requests to delete a Client out of index.
   * 2a1. Networkers shows an error message.
-     
+
       Use case resumes at step 1.
 
 **Use case 3: Add a Procedure to a Client**
@@ -385,7 +385,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The given index is invalid.
   * 2a1. Networkers shows an error message.
-      
+
     Use case resumes at step 1.
 
 
@@ -401,13 +401,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list Client(s). (UC5)
 2. User sends in a command to delete the Procedure from a specific Client in the list.
 3. Networkers deletes the procedure from the Client(s).
-   
+
     Use case ends.
 
 **Extensions**
 
 * 2a. The procedure does not exist.
-      
+
     Use case ends.
 
 
@@ -418,7 +418,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2c.The User requests to delete a non-existing Procedure from an existing Client.
     * 2c1. Networkers shows an error message.
-      
+
       Use case ends.
 
 
@@ -445,7 +445,7 @@ Use case ends.
     Use case resumes at step 1.
 
 {More to be added}
-    
+
 
 ### Non-Functional Requirements
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
