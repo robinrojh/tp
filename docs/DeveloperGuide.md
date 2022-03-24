@@ -274,8 +274,7 @@ taking leap years into account
 
 
 
-##deleteProc feature
-###Proposed Implementation
+### Delete Procedures from a Client
 The proposed deleteProc mechanism is facilitated by the `DeleteProcCommandParser`.
 The deleteProc mechanism allows deletion of a `Procedure` from an existing `Client` in the address book.
 The deleteProc is permanently erased and the remaining `Procedure` are stored locally after.
