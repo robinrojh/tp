@@ -209,6 +209,44 @@ by creating a new ProcedureListPanel.
 An additional point: listProc method is called in the UI before the user can input anything to display
 the first Client's procedures. This allows the user to understand exactly what the right column is for.
 
+
+### Calculate Cost by date
+
+It gives functionality to the cost attribute within the procedure class by calculating total `Cost` from all procedures on a specified date.
+This provides an instance of total `Cost`, which is not stored locally.
+It implements the following operation:
+
+`Networkers#calculateCost(String date)` — returns total `Cost` from all procedures on a specified date.
+
+The operation is exposed in the `Model` interface as `Model#calculateCost()`.
+
+Given below is an example usage scenario and how the calculateCost feature behaves at each step.
+
+Step 1. The user would already have procedures attributed to different clients in `Networkers`
+and would want to calculate all the costs of procedures conducted today (22/03/2022)
+
+![CalculateCostObjectDiagram](images/CalculateCostState1.png)
+
+Step 2. The user executes `calculate 22/03/2022` to calculate cost of all procedures on `22/03/2022`.
+
+The following sequence diagram shows how this operation works
+
+![CalculateCostObjectDiagram](images/CalculateSequenceDiagram.png)
+
+:information_source: **Note:** The lifeline for `CalculateCommandParser` should end at the destroy marker (X)
+but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+1. The arguments passed to the logic manager will be parsed by the AddressBookParser class.
+2. If the given arguments are valid, further parsing will be carried out by the Calculate CommandParser.
+3. If further parsing is successful, a new CalculateCommand object will be returned
+#####In these parsers, invalid arguments will result in a ParseException.
+
+A valid argument consists of 2 sections:
+1. valid command `calculate`
+2. valid date, `22/03/2022`
+
+A date is only valid if it follows the "dd/MM/uuuu" format and consists of a legitimate date,
+taking leap years into account
 #### Proposed Implementation
 ### \[Proposed\] Undo/redo feature
 
@@ -288,44 +326,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Calculate Cost by date
 
-The proposed undo/redo mechanism is facilitated by `Networkers`. 
-It gives functionality to the cost attribute within the procedure class by calculating total `Cost` from all procedures on a specified date. 
-This provides an instance of total `Cost`, which is not stored locally.
-It implements the following operation:
-
-`Networkers#calculateCost(String date)` — returns total `Cost` from all procedures on a specified date.
-
-The operation is exposed in the `Model` interface as `Model#calculateCost()`.
-
-Given below is an example usage scenario and how the calculateCost feature behaves at each step.
-
-Step 1. The user would already have procedures attributed to different clients in `Networkers` 
-and would want to calculate all the costs of procedures conducted today (22/03/2022)
-
-![CalculateCostObjectDiagram](images/CalculateCostState1.png)
-
-Step 2. The user executes `calculate 22/03/2022` to calculate cost of all procedures on `22/03/2022`.
-
-The following sequence diagram shows how this operation works
-
-![CalculateCostObjectDiagram](images/CalculateSequenceDiagram.png)
-
-:information_source: **Note:** The lifeline for `CalculateCommandParser` should end at the destroy marker (X) 
-but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-1. The arguments passed to the logic manager will be parsed by the AddressBookParser class.
-2. If the given arguments are valid, further parsing will be carried out by the Calculate CommandParser.
-3. If further parsing is successful, a new CalculateCommand object will be returned
-#####In these parsers, invalid arguments will result in a ParseException.
-
-A valid argument consists of 2 sections:
-1. valid command `calculate`
-2. valid date, `22/03/2022`
-
-A date is only valid if it follows the "dd/MM/uuuu" format and consists of a legitimate date, 
-taking leap years into account
 
 
 
