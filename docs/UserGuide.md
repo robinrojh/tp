@@ -157,7 +157,7 @@ Non-GUI Format
 GUI Format:
 ![list](images/listGUI.png)
 
-### View All Procedures of a Client
+### View All Procedures of a Client: `listProc`
 
 Lists out all the procedures related to a Client.
 
