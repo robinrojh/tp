@@ -110,7 +110,7 @@ public class AddProcCommand extends Command {
                 tags, updatedProcedures);
     }
 
-    private List<Procedure> procListWithAddedProc(List<Procedure> procedureList)
+    public List<Procedure> procListWithAddedProc(List<Procedure> procedureList)
             throws CommandException {
 
         List<Procedure> updatedProcedureList = new ArrayList<>();
