@@ -153,9 +153,64 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+###Add Procedure Feature
+
+The proposed undo/redo mechanism is facilitated by `AddProcCommand`. It extends `Command` taking in a new `Procedure` and `Index` which points to the client that it wishes to edit. It will also interact with `Storage` in order to store the information about the new procedure added. This operation is exposed in the `Model` interface as `Model#setProcedures()`.
+
+In general, the `addProc` command is a command that takes in a string with specified prefixes and a client index. It will indicate new procedures that clients have added to their procedure list. If an invalid command (whether by index or prefix error), a respective exception will be thrown.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `addProc` API call.:
+
+Step 1. Once the user types in the command, the `LogicManager` will be called to execute it. It will use `AddressBookParser` to parse the user command.
+
+Step 2. This results in a new `Parser` (more precisely, an object of one of its subclasses e.g., `AddProcCommandParser`) object being constructed.
+
+Step 3. This will result in a new `Procedure` object (based on the user inputs) and a new `Command` object (specifically `AddProcCommand`) being constructed.
+
+Step 4. With this, `LogicManager` will call `AddProcCommand` to execute.
+
+Step 5. Within `AddProcCommand`, it will retrieve the `Client` that needs to be added a new `Procedure` and add the new `Procedure` into its procedure list.
+
+Step 6. Once the `Client` has been updated to include the new `Procedure`, it will update `ModelManager` with the updated `Client` to reflect this change.
+
+![AddProcCommand](images/AddProcCommand.png)
+===
+### Roh Yong Gi (robinrojh)
+
+#### listProc Command
+
+Lists the Procedures for the given input index of a Client.
+
+If the Client doesn't have any procedures, it prints out a different message indicating that. Otherwise, it will simply
+print out the success message on result window and update the right column of the UI.
+
+Below is the sequence diagram for executing ListProcCommand as a user.
+![ListProcCommand Sequence Diagram](images/ListProcCommandSequenceDiagram.png)
+
+Step 1: UI starts when the application starts.
+
+Step 2: User calls the "listProc 1" command
+
+Step 3: LogicManager handles the command from user
+
+Step 4: ModelManager updates the procedure list accordingly and returns to LogicManager
+
+Step 5: UI takes the return value from LogicManager and updates the UI
+
+**Why did I implement ListProcCommand this way?**
+
+In other functions like find, it doesn't seem that an explicit UI update was necessary.
+However, even when I update the procedure list correctly, the UI didn't get updated automatically.
+Therefore, after correctly updating the procedure list, I update the UI in MainWindow executeCommand method
+by creating a new ProcedureListPanel.
+
+![ListProcCommand Example](images/ListProcCommandExample1.PNG)
+
+An additional point: listProc method is called in the UI before the user can input anything to display
+the first Client's procedures. This allows the user to understand exactly what the right column is for.
 
 #### Proposed Implementation
+### \[Proposed\] Undo/redo feature
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -233,9 +288,51 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Calculate Cost by date
 
-_{Explain here how the data archiving feature will be implemented}_
+The proposed undo/redo mechanism is facilitated by `Networkers`. 
+It gives functionality to the cost attribute within the procedure class by calculating total `Cost` from all procedures on a specified date. 
+This provides an instance of total `Cost`, which is not stored locally.
+It implements the following operation:
+
+`Networkers#calculateCost(String date)` — returns total `Cost` from all procedures on a specified date.
+
+The operation is exposed in the `Model` interface as `Model#calculateCost()`.
+
+Given below is an example usage scenario and how the calculateCost feature behaves at each step.
+
+Step 1. The user would already have procedures attributed to different clients in `Networkers` 
+and would want to calculate all the costs of procedures conducted today (22/03/2022)
+
+![CalculateCostObjectDiagram](images/CalculateCostState1.png)
+
+Step 2. The user executes `calculate 22/03/2022` to calculate cost of all procedures on `22/03/2022`.
+
+The following sequence diagram shows how this operation works
+
+![CalculateCostObjectDiagram](images/CalculateSequenceDiagram.png)
+
+:information_source: **Note:** The lifeline for `CalculateCommandParser` should end at the destroy marker (X) 
+but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+1. The arguments passed to the logic manager will be parsed by the AddressBookParser class.
+2. If the given arguments are valid, further parsing will be carried out by the Calculate CommandParser.
+3. If further parsing is successful, a new CalculateCommand object will be returned
+#####In these parsers, invalid arguments will result in a ParseException.
+
+A valid argument consists of 2 sections:
+1. valid command `calculate`
+2. valid date, `22/03/2022`
+
+A date is only valid if it follows the "dd/MM/uuuu" format and consists of a legitimate date, 
+taking leap years into account
+
+
+
+
+
+
+
 
 
 --------------------------------------------------------------------------------------------------------------------
