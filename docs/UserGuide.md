@@ -3,10 +3,10 @@ layout: page
 title: User Guide
 ---
 
-*Networkers* is a **desktop app for managing contacts for networks, 
-optimised for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, Networkers can get your contact management tasks 
+*Networkers* is a **desktop app for managing contacts for networks,
+optimised for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, Networkers can get your contact management tasks
 done faster than traditional GUI apps.
 
 - **Features (v1.2)**
@@ -86,9 +86,9 @@ A new procedure will be deleted from the existing numbered list.
 * `deleteProc` refers to the command of deleting a procedure from the client at the specified Index.
 * `<Client Index>` refers to the index number shown in the displayed client list. 
 The index must be a positive integer 1, 2, 3, ...
-* `<Procedure>` refers to the tasks or problems that need to be addressed 
+* `<Procedure>` refers to the tasks or problems that need to be addressed
 in the future visits to the client’s business sight.
-Note that a client’s list of procedures is a numbered list. 
+Note that a client’s list of procedures is a numbered list.
 
 **Example:**
 Non-GUI format:
@@ -130,9 +130,9 @@ GUI Format:
 ![list](images/calculate.png)
 
 
-### View All Clients and Procedures: `list`
+### View All Clients: `list`
 
-Lists out all the clients and their respective procedures saved.
+Lists out all the clients saved.
 This feature will be used to show clients on GUI. No arguments required.
 Example:
 - User: `list`
@@ -140,14 +140,27 @@ Example:
 
 Non-GUI Format
 1. Apple, 9XXXXXXX, Apple Road
-    1. Fixed the intranet issue
-    2. Replace router in 3rd floor
 2. Singtel, 8XXXXXXX, Singtel Road
-    1. Cable split
-    2. Reconnected broadband services
+
 
 GUI Format:
 ![list](images/list.png)
+
+### View All Procedures of a Client
+
+Lists out all the procedures related to a Client.
+
+Example:
+- User: `listProc 1`
+- Terminal returns:
+
+Non-GUI Format
+1. Apple, 9XXXXXXX, Apple Road
+    1. Fixed the intranet issue
+    2. Replace router in 3rd floor
+
+GUI Format
+![listProc](images/ListProcCommandExample1.PNG)
 
 ## Command Summary
 
@@ -158,3 +171,4 @@ GUI Format:
 | Add Procedure | `addProc <CLIENT INDEX> <Procedure>` | `addProc 1 Check router’s connection with the modem` |
 | Delete Procedure | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>` | `deleteProc 1 3` |
 | List All Clients | `list` | `list` |
+| List All Procedures | `listProc <CLIENT INDEX>` | `listProc 1` | 

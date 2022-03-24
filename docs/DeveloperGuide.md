@@ -1,12 +1,37 @@
+---
 layout: page
 title: Developer Guide
 ---
+--------------------------------------------------------------------------------------------------------------------
 * Table of Contents
   {:toc}
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+
+### **Purpose**
+
+This developer's guide clarifies the project architecture as well as  software design decisions for **Networkers**. 
+This guide will also look at how individual features are implemented in this project.
+
+*Networkers* is a **desktop app for managing contacts for network technicians,
+optimised for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+
+### **Intended Audience**
+
+The intended audience of this document would be
+1. Developers who are keen to contribute to Networkers
+2. Software testers who may need to understand the project
+   to carry out meaningful testing.
+3. Developers who are interested in learning more 
+   about the implementation of this project
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
+
+* [addressbook 3](https://se-education.org/addressbook-level3/)
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
@@ -153,7 +178,106 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### ListProcOn feature
+### Add Procedure (AddProc)
+
+The proposed undo/redo mechanism is facilitated by `AddProcCommand`. It extends `Command` taking in a new `Procedure` and `Index` which points to the client that it wishes to edit. It will also interact with `Storage` in order to store the information about the new procedure added. This operation is exposed in the `Model` interface as `Model#setProcedures()`.
+
+In general, the `addProc` command is a command that takes in a string with specified prefixes and a client index. It will indicate new procedures that clients have added to their procedure list. If an invalid command (whether by index or prefix error), a respective exception will be thrown.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `addProc` API call.:
+
+![AddProcCommand](images/AddProcCommand.png)
+
+Step 1. Once the user types in the command, the `LogicManager` will be called to execute it. It will use `AddressBookParser` to parse the user command.
+
+Step 2. This results in a new `Parser` (more precisely, an object of one of its subclasses e.g., `AddProcCommandParser`) object being constructed.
+
+Step 3. This will result in a new `Procedure` object (based on the user inputs) and a new `Command` object (specifically `AddProcCommand`) being constructed.
+
+Step 4. With this, `LogicManager` will call `AddProcCommand` to execute.
+
+Step 5. Within `AddProcCommand`, it will retrieve the `Client` that needs to be added a new `Procedure` and add the new `Procedure` into its procedure list.
+
+Step 6. Once the `Client` has been updated to include the new `Procedure`, it will update `ModelManager` with the updated `Client` to reflect this change.
+
+## Delete Procedure (DeleteProc)
+### Implementation
+The proposed deleteProc mechanism is facilitated by the `DeleteProcCommandParser`.
+The deleteProc mechanism allows deletion of a `Procedure` from an existing `Client` in the address book.
+The deleteProc is permanently erased and the remaining `Procedure` are stored locally after.
+It implements the following operations:
+
+* `DeleteProcCommand#editClientProcedure(Client clientToEdit)` &mdash; Edit an attribute of an existing `Client` and return a new `Client`.
+* `DeleteProcCommand#deleteProcedure(List<Procedure> procedureList)` &mdash; Remove a `Procedure` from the list of `Procedure`
+* `Model#setClient(clientToEdit, editedClient)` &mdash; Replace the existing `Client` with its editted variant.
+* `Model#updateFilteredClientList(Predicate<Client> predicate)` &mdash; Replace the existing `Client` with its editted variant in the `ObservableList`, that helps to update the UI.
+
+The `editClientProcedure(Client clientToEdit)` operation is exposed in the `Model` interface as `Model#setProcedure()`.
+
+Given below is an example usage scenario and how the deleteProc mechanism behaves at each step.
+
+Step 1. The user finds the `Procedure` that the client has using `findProc <Index>`
+The UI lists all the `Procedure` associated to the client and would like to delete one.
+
+![DeleteProcState0](images/DeleteProcState0.png)
+
+Step 2. The user executes `deleteProc 1 1` to delete the 1st `Procedure` associated with the 1st client in the address book.
+The `deleteProc 1 1` command calls `DeleteProcCommand#(Client clientToEdit)`, which calls the `deleteProcedure(List<Procedure procedureList)` method to remove the `Procedure` from the list.
+This newly-created `Client` is saved locally through the `Model#setClient`, and displayed by updating the `UpdateFilteredClientList`.
+With the `Client` saved, the address book is saved at a new state.
+
+![DeleteProcState1](images/DeleteProcState1.png)
+
+The following sequence diagram shows how this operation works.
+
+![DeleteProcSequenceDiagram](images/DeleteProcSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Will `deleteProc` permanently delete the `Procedure`**
+
+* **Alternative 1 (current choice):** Deletes the entire Procedure.
+    * Pros: Easy to implement and use less stoage.
+    * Cons: Users might find it hard to retrieve pre-existing data of the user.
+
+* **Alternative 2:** Create a deleted status for the `Procedure` and only allow vision of undeleted `Procedure`.
+  itself.
+    * Pros: User could easily retrieve previous deleted data.
+    * Cons: Can get storage-expensive, which makes future parsing slower.
+
+### Listing Procedures By Client (ListProc)
+
+Lists the Procedures for the given input index of a Client.
+
+If the Client doesn't have any procedures, it prints out a different message indicating that. Otherwise, it will simply
+print out the success message on result window and update the right column of the UI.
+
+Below is the sequence diagram for executing ListProcCommand as a user.
+![ListProcCommand Sequence Diagram](images/ListProcCommandSequenceDiagram.png)
+
+Step 1: UI starts when the application starts.
+
+Step 2: User calls the "listProc 1" command
+
+Step 3: LogicManager handles the command from user
+
+Step 4: ModelManager updates the procedure list accordingly and returns to LogicManager
+
+Step 5: UI takes the return value from LogicManager and updates the UI
+
+**Why did I implement ListProcCommand this way?**
+
+In other functions like find, it doesn't seem that an explicit UI update was necessary.
+However, even when I update the procedure list correctly, the UI didn't get updated automatically.
+Therefore, after correctly updating the procedure list, I update the UI in MainWindow executeCommand method
+by creating a new ProcedureListPanel.
+
+![ListProcCommand Example](images/ListProcCommandExample1.PNG)
+
+An additional point: listProc method is called in the UI before the user can input anything to display
+the first Client's procedures. This allows the user to understand exactly what the right column is for.
+
+### List Procedures By Date (ListProcOn)
 
 #### Implementation
 
@@ -183,9 +307,46 @@ This aspect needs to be considered since it is not sufficient just to display al
     * Pros: Easy to implement. (Simply an additional line of code)
     * Cons: Cost-related issues (e.g. time consumed for additional integration tests between Procedure and Client, as well as changes to existing tests and sample data)
 
-### \[Proposed\] Undo/redo feature
+### Calculate Cost By Date (Calculate)
 
-#### Proposed Implementation
+It gives functionality to the cost attribute within the procedure class by calculating total `Cost` from all procedures on a specified date.
+This provides an instance of total `Cost`, which is not stored locally.
+It implements the following operation:
+
+`Networkers#calculateCost(String date)` — returns total `Cost` from all procedures on a specified date.
+
+The operation is exposed in the `Model` interface as `Model#calculateCost()`.
+
+Given below is an example usage scenario and how the calculateCost feature behaves at each step.
+
+Step 1. The user would already have procedures attributed to different clients in `Networkers`
+and would want to calculate all the costs of procedures conducted today (22/03/2022)
+
+![CalculateCostObjectDiagram](images/CalculateCostState1.png)
+
+Step 2. The user executes `calculate 22/03/2022` to calculate cost of all procedures on `22/03/2022`.
+
+The following sequence diagram shows how this operation works
+
+![CalculateCostObjectDiagram](images/CalculateSequenceDiagram.png)
+
+:information_source: **Note:** The lifeline for `CalculateCommandParser` should end at the destroy marker (X)
+but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+1. The arguments passed to the logic manager will be parsed by the AddressBookParser class.
+2. If the given arguments are valid, further parsing will be carried out by the Calculate CommandParser.
+3. If further parsing is successful, a new CalculateCommand object will be returned
+##### In these parsers, invalid arguments will result in a ParseException.
+
+A valid argument consists of 2 sections:
+1. valid command `calculate`
+2. valid date, `22/03/2022`
+
+A date is only valid if it follows the "dd/MM/uuuu" format and consists of a legitimate date,
+taking leap years into account
+    
+## Proposed Implementation
+### \[Proposed\] Undo/redo feature
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -263,11 +424,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -294,7 +450,7 @@ _{Explain here how the data archiving feature will be implemented}_
 *  Is reasonably comfortable using CLI apps
 
 
-**Value proposition**: 
+**Value proposition**:
 * Manage Clients and the respective Procedures faster than a typical mouse/GUI driven app
 * Keep important information regarding the user’s business in one platform to manage Clients and past, current, and future Procedures more easily
 
@@ -355,7 +511,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. TThe User requests to delete a Client out of index.
   * 2a1. Networkers shows an error message.
-     
+
       Use case resumes at step 1.
 
 **Use case 3: Add a Procedure to a Client**
@@ -372,7 +528,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The given index is invalid.
   * 2a1. Networkers shows an error message.
-      
+
     Use case resumes at step 1.
 
 
@@ -381,20 +537,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case 4: Add a Procedure to a Client**
+**Use case 4: Delete a Procedure from a Client**
 
 **MSS**
 
 1. User requests to list Client(s). (UC5)
 2. User sends in a command to delete the Procedure from a specific Client in the list.
 3. Networkers deletes the procedure from the Client(s).
-   
+
     Use case ends.
 
 **Extensions**
 
 * 2a. The procedure does not exist.
-      
+
     Use case ends.
 
 
@@ -405,7 +561,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2c.The User requests to delete a non-existing Procedure from an existing Client.
     * 2c1. Networkers shows an error message.
-      
+
       Use case ends.
 
 
@@ -432,7 +588,7 @@ Use case ends.
     Use case resumes at step 1.
 
 {More to be added}
-    
+
 
 ### Non-Functional Requirements
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
