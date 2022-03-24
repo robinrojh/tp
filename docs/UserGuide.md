@@ -2,6 +2,9 @@
 layout: page
 title: User Guide
 ---
+* Table of Contents
+{:toc}
+--------------------------------------------------------------------------------------------------------------------
 
 *Networkers* is a **desktop app for managing contacts for networks,
 optimised for use via a Command Line Interface** (CLI)
