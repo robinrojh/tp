@@ -108,7 +108,7 @@ GUI Format:
 
 Before Command:
 
-![deleteProc](images/deleteProcGUIbefore.png)
+![deleteProc](images/deleteProcGUIBefore.png)
 
 After Command:
 
