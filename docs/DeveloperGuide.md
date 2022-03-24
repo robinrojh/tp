@@ -2,9 +2,8 @@
 layout: page
 title: Developer Guide
 ---
---------------------------------------------------------------------------------------------------------------------
 * Table of Contents
-  {:toc}
+{:toc}
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Introduction**
@@ -200,8 +199,10 @@ Step 5. Within `AddProcCommand`, it will retrieve the `Client` that needs to be 
 
 Step 6. Once the `Client` has been updated to include the new `Procedure`, it will update `ModelManager` with the updated `Client` to reflect this change.
 
-## Delete Procedure (DeleteProc)
-### Implementation
+![AddProcCommand](images/AddProcCommand.png)
+
+### Delete Procedures from a Client (DeleteProc)
+
 The proposed deleteProc mechanism is facilitated by the `DeleteProcCommandParser`.
 The deleteProc mechanism allows deletion of a `Procedure` from an existing `Client` in the address book.
 The deleteProc is permanently erased and the remaining `Procedure` are stored locally after.
@@ -244,7 +245,7 @@ The following sequence diagram shows how this operation works.
   itself.
     * Pros: User could easily retrieve previous deleted data.
     * Cons: Can get storage-expensive, which makes future parsing slower.
-
+    
 ### Listing Procedures By Client (ListProc)
 
 Lists the Procedures for the given input index of a Client.
