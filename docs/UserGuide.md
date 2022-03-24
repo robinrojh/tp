@@ -130,9 +130,9 @@ GUI Format:
 ![list](images/calculate.png)
 
 
-### View All Clients and Procedures: `list`
+### View All Clients: `list`
 
-Lists out all the clients and their respective procedures saved.
+Lists out all the clients saved.
 This feature will be used to show clients on GUI. No arguments required.
 Example:
 - User: `list`
@@ -140,14 +140,27 @@ Example:
 
 Non-GUI Format
 1. Apple, 9XXXXXXX, Apple Road
-    1. Fixed the intranet issue
-    2. Replace router in 3rd floor
 2. Singtel, 8XXXXXXX, Singtel Road
-    1. Cable split
-    2. Reconnected broadband services
+
 
 GUI Format:
 ![list](images/list.png)
+
+### View All Procedures of a Client
+
+Lists out all the procedures related to a Client.
+
+Example:
+- User: `listProc 1`
+- Terminal returns:
+
+Non-GUI Format
+1. Apple, 9XXXXXXX, Apple Road
+    1. Fixed the intranet issue
+    2. Replace router in 3rd floor
+
+GUI Format
+![listProc](images/ListProcCommandExample1.PNG)
 
 ## Command Summary
 
@@ -158,3 +171,4 @@ GUI Format:
 | Add Procedure | `addProc <CLIENT INDEX> <Procedure>` | `addProc 1 Check router’s connection with the modem` |
 | Delete Procedure | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>` | `deleteProc 1 3` |
 | List All Clients | `list` | `list` |
+| List All Procedures | `listProc <CLIENT INDEX>` | `listProc 1` | 
