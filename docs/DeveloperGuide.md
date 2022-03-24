@@ -11,7 +11,7 @@ title: Developer Guide
 
 ### **Purpose**
 
-This developer's guide clarifies the project architecture as well as  software design decisions for **Networkers**. 
+This developer's guide clarifies the project architecture as well as  software design decisions for **Networkers**.
 This guide will also look at how individual features are implemented in this project.
 
 *Networkers* is a **desktop app for managing contacts for network technicians,
@@ -24,7 +24,7 @@ The intended audience of this document would be
 1. Developers who are keen to contribute to Networkers
 2. Software testers who may need to understand the project
    to carry out meaningful testing.
-3. Developers who are interested in learning more 
+3. Developers who are interested in learning more
    about the implementation of this project
 
 --------------------------------------------------------------------------------------------------------------------
@@ -344,7 +344,7 @@ A valid argument consists of 2 sections:
 
 A date is only valid if it follows the "dd/MM/uuuu" format and consists of a legitimate date,
 taking leap years into account
-    
+
 ## Proposed Implementation
 ### \[Proposed\] Undo/redo feature
 
