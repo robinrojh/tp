@@ -66,10 +66,6 @@ public class Date {
         return validDate.compareTo(otherDate.validDate);
     }
 
-    public int compareTo(Date otherDate) {
-        return validDate.compareTo(otherDate.validDate);
-    }
-
 
     @Override
     public String toString() {
