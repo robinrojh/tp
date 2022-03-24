@@ -153,6 +153,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### ListProcOn feature
+
+#### Implementation
+
+`ListProcOn` command takes in a date (in the form of dd/mm/yyyy) and returns the Procedures and the Clients' information attached to each of the Procedure that a technician should carry out on that requested date. <br/><br/>
+Like other Commands, user input is first parsed by `AddressBookParser`, which is then directed to `ListProcOnCommandParser`, parsing the date into `DateWithoutTime` class, and finally passing down to `ListProcOnCommand` for execution.
+Description of `DateWithoutTime` shall be omitted here since the class name is self-explanatory. The below class diagram illustrates such dependencies. <br/>
+
+<img src="images/ListProcOnCommandClassDiagram.png" width="200" />
+
+`ListProcOnCommand` will then be executed, returning `CommandResult` that can be displayed to the users. The following sequence diagram illustrates the execution of `ListProcOnCommand`.
+
+<img src="images/ListProcOnCommandSequenceDiagram.png" width="500" />
+
+In short, the command will ask for all the Clients list from the `Model`, and each Client is responsible for returning Procedures that is scheduled on `targetDate`.
+`ListProcOnCommand` aggregates them altogether and returns `CommandResult` for subsequent UI operations.
+
+#### Design considerations:
+
+**Aspect: How to connect each Procedure to its associated Client:** <br/>
+This aspect needs to be considered since it is not sufficient just to display all the Procedures for a given date; the user must know about the Procedure's associated Client as well for the feature to be useful.
+
+* **Alternative 1 (current choice):** Uses a `Pair` container to contain both Procedure and its associated Client when aggregating.
+    * Pros: No need to create an additional attribute for Procedure connecting to its associated Client.
+    * Cons: May have performance issues in terms of memory usage, as `ListProcOnCommand` needs to save both the Procedure and its associated Client.
+
+* **Alternative 2:** Attach an attribute to a Procedure that points to its associated Client class.
+    * Pros: Easy to implement. (Simply an additional line of code)
+    * Cons: Cost-related issues (e.g. time consumed for additional integration tests between Procedure and Client, as well as changes to existing tests and sample data)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
