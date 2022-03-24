@@ -280,7 +280,7 @@ The following sequence diagram shows how this operation works.
 * **Alternative 2:** Create a deleted status for the `Procedure` and only allow vision of undeleted `Procedure`.
   itself.
     * Pros: User could easily retrieve previous deleted data.
-    * Cons: Can get storage-expensive, which makes future parsing slower. 
+    * Cons: Can get storage-expensive, which makes future parsing slower.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
