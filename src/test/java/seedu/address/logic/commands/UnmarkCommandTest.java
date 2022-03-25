@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
@@ -64,7 +65,7 @@ public class UnmarkCommandTest {
     }
 
     @Test
-    public void execute_unmark_invalid_procedure_index() {
+    public void execute_invalidProcedureIndex() {
         // Testing a client with no procedures
         assertCommandFailure(new UnmarkCommand(Index.fromZeroBased(0), Index.fromZeroBased(0)),
                 model,
@@ -73,7 +74,7 @@ public class UnmarkCommandTest {
     }
 
     @Test
-    public void execute_unmark_invalid_client_index() {
+    public void execute_invalidClientIndex() {
         // Checking boundaries
         assertCommandFailure(new UnmarkCommand(Index.fromZeroBased(model.getFilteredClientList().size()),
                         Index.fromZeroBased(0)),
