@@ -7,7 +7,7 @@ import seedu.address.model.procedure.Information;
 import seedu.address.model.procedure.Procedure;
 
 /**
- * A utility class to help with building random Procedure objects.
+ * Builds random Procedure objects.
  */
 public class RandomProcedureBuilder {
 
@@ -23,10 +23,8 @@ public class RandomProcedureBuilder {
     }
 
     /**
-     * This will build a new random Procedure out of the details selected from TypicalRandomProcedureDetails.
-     * However, since the autosort test needs the dates to be sorted, the function will trigger dataCheck. Without this,
-     * should buildRandomProcedure be called again, a new set of random dates may be generated. buildRandomProcedures
-     * takes in an integer i to allow it to iterate through the stored dateList in order to return the generated date.
+     * Returns a new random Procedure out of the details selected from TypicalRandomProcedureDetails. Guarantees that
+     * when called during the test, it will return three procedures that are sorted by date.
      *
      * @param i Integer to assist in selecting dates from dateList
      * @return A new random Procedure

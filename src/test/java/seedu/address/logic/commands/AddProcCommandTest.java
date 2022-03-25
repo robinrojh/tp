@@ -46,6 +46,7 @@ public class AddProcCommandTest {
     // new Model without any Clients
     private Model newModel = new ModelManager();
     private Procedure toBeAddedProcedure = new ProcedureBuilder().build();
+    private static final int EXPECTED_LENGTH_OF_LIST = 3;
 
     @Test
     public void execute_properIndexWithProperProcedure_success() {
@@ -78,7 +79,7 @@ public class AddProcCommandTest {
 
         // Adding in a sorted manner
         expectedProcList.add(toBeAddedProcedure);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < EXPECTED_LENGTH_OF_LIST; i++) {
             Procedure randomProcedure = randomProcedureBuilder.buildRandomProcedure(i);
             currentProcList.add(randomProcedure);
             expectedProcList.add(randomProcedure);

@@ -110,6 +110,9 @@ public class AddProcCommand extends Command {
                 tags, updatedProcedures);
     }
 
+    /**
+     * Returns a list of Procedures that have been sorted according to their dates.
+     */
     public List<Procedure> procListWithAddedProc(List<Procedure> procedureList)
             throws CommandException {
 
