@@ -20,7 +20,7 @@ public class Cost {
     /**
      * Constructs a {@code Cost}.
      *
-     * @param cost A valid phone number.
+     * @param cost A valid cost.
      */
     public Cost(String cost) {
         requireNonNull(cost);
@@ -35,7 +35,7 @@ public class Cost {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public BigDecimal getCost() {
+    public BigDecimal value() {
         return this.cost;
     }
 
