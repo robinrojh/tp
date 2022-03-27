@@ -83,7 +83,8 @@ public class EditProcCommand extends Command {
 
 		Procedure procedureToEdit = clientToEdit.getProcedures().get(procedureIndex.getZeroBased());
 		Procedure updatedProcedure = createEditedProcedure(procedureToEdit, editProcedureDescriptor);
-		List<Procedure> updatedProcedureList = updateProcedureList(clientToEdit.getProcedures(), updatedProcedure, procedureIndex);
+		List<Procedure> updatedProcedureList = updateProcedureList(clientToEdit.getProcedures(),
+				updatedProcedure, procedureIndex);
 		Client editedClient = editClientProcedures(clientToEdit, updatedProcedureList);
 
 		model.setClient(clientToEdit, editedClient);
