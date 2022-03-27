@@ -36,7 +36,7 @@ import static seedu.address.testutil.TypicalClients.BURGER;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddClientCommand;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
@@ -46,8 +46,8 @@ import seedu.address.model.client.Plan;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ClientBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddClientCommandParserTest {
+    private AddClientCommandParser parser = new AddClientCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -55,33 +55,34 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BURGER + PHONE_DESC_BURGER + EMAIL_DESC_BURGER
-                + ADDRESS_DESC_BURGER + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddCommand(expectedClient));
+                + ADDRESS_DESC_BURGER + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddClientCommand(expectedClient));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_APPLE + NAME_DESC_BURGER + PHONE_DESC_BURGER + EMAIL_DESC_BURGER
-                + ADDRESS_DESC_BURGER + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddCommand(expectedClient));
+                + ADDRESS_DESC_BURGER + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddClientCommand(expectedClient));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BURGER + PHONE_DESC_APPLE + PHONE_DESC_BURGER + EMAIL_DESC_BURGER
-                + ADDRESS_DESC_BURGER + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddCommand(expectedClient));
+                + ADDRESS_DESC_BURGER + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddClientCommand(expectedClient));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BURGER + PHONE_DESC_BURGER + EMAIL_DESC_APPLE + EMAIL_DESC_BURGER
-                + ADDRESS_DESC_BURGER + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddCommand(expectedClient));
+                + ADDRESS_DESC_BURGER + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddClientCommand(expectedClient));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BURGER + PHONE_DESC_BURGER + EMAIL_DESC_BURGER + ADDRESS_DESC_APPLE
-                + ADDRESS_DESC_BURGER + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddCommand(expectedClient));
+                + ADDRESS_DESC_BURGER + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddClientCommand(expectedClient));
 
         // multiple plans - last plan accepted
         assertParseSuccess(parser, NAME_DESC_BURGER + PHONE_DESC_BURGER + EMAIL_DESC_BURGER + ADDRESS_DESC_BURGER
-                + PLAN_DESC_APPLE + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddCommand(expectedClient));
+                + PLAN_DESC_APPLE + PLAN_DESC_BURGER + TAG_DESC_FASTFOOD, new AddClientCommand(expectedClient));
 
         // multiple tags - all accepted
         Client expectedClientMultipleTags = new ClientBuilder(BURGER).withTags(VALID_TAG_FASTFOOD, VALID_TAG_TECH)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BURGER + PHONE_DESC_BURGER + EMAIL_DESC_BURGER + ADDRESS_DESC_BURGER
-                + PLAN_DESC_BURGER + TAG_DESC_TECH + TAG_DESC_FASTFOOD, new AddCommand(expectedClientMultipleTags));
+                + PLAN_DESC_BURGER + TAG_DESC_TECH + TAG_DESC_FASTFOOD,
+                new AddClientCommand(expectedClientMultipleTags));
     }
 
     @Test
@@ -89,12 +90,12 @@ public class AddCommandParserTest {
         // zero tags
         Client expectedClient = new ClientBuilder(APPLE).withTags().build();
         assertParseSuccess(parser, NAME_DESC_APPLE + PHONE_DESC_APPLE + EMAIL_DESC_APPLE + ADDRESS_DESC_APPLE
-                + PLAN_DESC_APPLE, new AddCommand(expectedClient));
+                + PLAN_DESC_APPLE, new AddClientCommand(expectedClient));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BURGER + PHONE_DESC_BURGER + EMAIL_DESC_BURGER + ADDRESS_DESC_BURGER,
@@ -150,6 +151,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BURGER + PHONE_DESC_BURGER + EMAIL_DESC_BURGER
                 + ADDRESS_DESC_BURGER + PLAN_DESC_BURGER + TAG_DESC_TECH + TAG_DESC_FASTFOOD,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE));
     }
 }
