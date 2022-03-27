@@ -38,9 +38,9 @@ public class EditProcCommand extends Command {
 		+ "Existing values will be overwritten by the input values.\n"
 		+ "Parameters: CLIENT_INDEX (must be a positive integer) "
 		+ "PROCEDURE_INDEX (must be a positive integer) "
-		+ "[" + PREFIX_INFORMATION + "NAME] "
-		+ "[" + PREFIX_DATE + "PHONE] "
-		+ "[" + PREFIX_COST + "EMAIL] ";
+		+ "[" + PREFIX_INFORMATION + "INFORMATION] "
+		+ "[" + PREFIX_DATE + "DATE] "
+		+ "[" + PREFIX_COST + "COST] ";
 
 	public static final String MESSAGE_EDIT_PROCEDURE_SUCCESS = "Edited Procedure: %1$s, from Client %2$s";
 	public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -192,7 +192,7 @@ public class EditProcCommand extends Command {
 		/**
 		 * Returns true if at least one field is edited.
 		 */
-		public boolean isFieldEdited() {
+		public boolean isAnyFieldsEdited() {
 			return CollectionUtil.isAnyNonNull(info, cost, date);
 		}
 
