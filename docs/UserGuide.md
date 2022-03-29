@@ -135,7 +135,8 @@ Lists out all the Procedures related to a Client.
 
 **Example:**
 - `listProc 1`
-  - Result shows: <br/>
+  - Result shows:
+
   ```
   1. Apple, 9XXXXXXX, Apple Road
       1. Fixed the intranet issue
