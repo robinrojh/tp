@@ -10,10 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -129,7 +126,12 @@ public class MainWindow extends UiPart<Stage> {
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setPercentWidth(50);
         column2.setHgrow(Priority.ALWAYS);
+
+        RowConstraints row = new RowConstraints();
+        row.setMaxHeight(Double.MAX_VALUE);
+        row.setVgrow(Priority.ALWAYS);
         clientListGridPane.getColumnConstraints().addAll(column1, column2); // each get 50% of width
+        clientListGridPane.getRowConstraints().addAll(row);
     }
 
     /**
@@ -147,6 +149,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setUpColumnConstraints();
         ObservableList<Client> clients = logic.getFilteredClientList();
+
         clientListPanel = new ClientListPanel(clients);
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
@@ -227,6 +230,7 @@ public class MainWindow extends UiPart<Stage> {
             procedureListPanel = new ProcedureListPanel(logic.getFilteredProcedureList());
             procedureListPanelPlaceholder.getChildren().add(procedureListPanel.getRoot());
 
+            System.out.println(clientListGridPane.getHeight());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
