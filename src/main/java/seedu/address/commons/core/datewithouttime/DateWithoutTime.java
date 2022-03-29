@@ -1,4 +1,4 @@
-package seedu.address.commons.core.dateWithoutTime;
+package seedu.address.commons.core.datewithouttime;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -26,8 +26,7 @@ public class DateWithoutTime {
      */
     public static final String VALIDATION_REGEX = "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$";
 
-    public static final DateTimeFormatter FORMAT_WITH_DATE = DateTimeFormatter
-            .ofPattern("dd/MM/uuuu");
+    public static final DateTimeFormatter FORMAT_WITH_DATE = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 
     public final LocalDate validDate;
 
