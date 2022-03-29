@@ -123,8 +123,11 @@ In Command Line Interface (CLI):
 - `list`
   - Result shows: <br/>
   ```
-  1. Apple, 9XXXXXXX, Apple Road` <br/>
-  2. Singtel, 8XXXXXXX, Singtel Road`
+  1. MINISO; Phone: 65705231; Email: miniso@example.com; Address: 3155 Commonwealth Ave W, #03-56-58; 
+  Plan: EXPRESS 200Mbps; Tags: friends;
+  2. Master Fix Services; Phone: 96724552; Email: masterfix@example.com; Address: 3155 Commonwealth Ave W, #B1-10; 
+  Plan: NORMAL 100Mbps; Tags: colleagues, friends;
+  ...
   ```
 
 In Application: ![list](images/listGUI.png)
@@ -138,8 +141,8 @@ Lists out all the Procedures related to a Client.
   - Result shows:
 
   ```
-  1. John, VALUE 50Mbps, 91028936, Singtel Road, singtel@singtel.com
-      1. set up router system in office, 04/04/2022 12:12, 900
+  1. John; Phone: 91028936; Email: singtel@singtel.com; Address: Singtel Road; Plan: VALUE 50Mbps;
+      Procedures: set up router system in office, 04/04/2022 12:12, 900
   ```
 
 In Application: ![listProc](images/ListProcCommandExample1.PNG)
