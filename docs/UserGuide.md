@@ -114,6 +114,12 @@ In Command Line Interface (CLI):
 
 In Application: ![list](images/calculate.png)
 
+### Access Help in User Guide: `help`
+
+Shows a pop up that has a link to the user guide.
+
+In Application: ![help](images/helpMessage.png)
+
 ### View All Clients: `list`
 
 Lists out all the Clients saved. This feature will be used to show Clients on the application. No arguments required.
@@ -146,6 +152,10 @@ Lists out all the Procedures related to a Client.
   ```
 
 In Application: ![listProc](images/ListProcCommandExample1.PNG)
+
+### Exit Application: `exit`
+
+Exits the application.
 
 ## Command Summary
 
