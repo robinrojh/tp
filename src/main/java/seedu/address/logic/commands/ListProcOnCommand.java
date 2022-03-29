@@ -41,7 +41,6 @@ public class ListProcOnCommand extends Command {
 
         List<Client> lastShownList = model.getFilteredClientList();
         List<Pair<Procedure, Client>> procedureClientPairList = new ArrayList<>();
-        StringBuilder proceduresToStringBuilder = new StringBuilder();
 
         for (int i = 0; i < lastShownList.size(); i++) {
             Client currentClient = lastShownList.get(i);
@@ -57,17 +56,23 @@ public class ListProcOnCommand extends Command {
             }
         });
 
+        String resultString = composeResultString(procedureClientPairList);
+
+        if (procedureClientPairList.isEmpty()) {
+            return new CommandResult(MESSAGE_NO_PROCEDURES);
+        } else {
+            return new CommandResult(String.format(MESSAGE_LIST_PROC_SUCCESS, resultString));
+        }
+    }
+
+    private String composeResultString(List<Pair<Procedure, Client>> procedureClientPairList) {
+        StringBuilder proceduresToStringBuilder = new StringBuilder();
         for (int i = 0; i < procedureClientPairList.size(); i++) {
             int index = i + 1;
             proceduresToStringBuilder.append(index + ". " + procedureClientPairList.get(i).getKey().toString() + "\n");
             proceduresToStringBuilder.append(procedureClientPairList.get(i).getValue().getName().toString()
                     + ", located at " + procedureClientPairList.get(i).getValue().getAddress().toString() + "\n");
         }
-
-        if (procedureClientPairList.isEmpty()) {
-            return new CommandResult(MESSAGE_NO_PROCEDURES);
-        } else {
-            return new CommandResult(String.format(MESSAGE_LIST_PROC_SUCCESS, proceduresToStringBuilder.toString()));
-        }
+        return proceduresToStringBuilder.toString();
     }
 }

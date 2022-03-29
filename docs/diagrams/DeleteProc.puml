@@ -1,0 +1,113 @@
+-> ":UiManager" : start()
+activate ":UiManager"
+":UiManager" -> ":MainWindow" : fillInnerParts()
+activate ":MainWindow"
+":MainWindow" -> ":MainWindow" : executeCommand("deleteProc 1 1")
+activate ":MainWindow"
+":MainWindow"
+@startuml
+
+box "Logic" #LightBlue
+-> ":LogicManager" : execute("deleteProc 1 1")
+activate ":LogicManager"
+
+":LogicManager" -> ":AddressBookParser" : parseCommand("deleteProc 1 1 ")
+activate ":AddressBookParser"
+
+create ":DeleteProcCommandParser"
+":AddressBookParser" -> ":DeleteProcCommandParser" : new()
+activate ":DeleteProcCommandParser"
+note left
+    new() denotes new DeleteProcCommandParser()
+end note
+create ":DeleteProcCommand"
+":DeleteProcCommandParser" -> ":DeleteProcCommand" : parse("1 1")
+activate ":DeleteProcCommand"
+
+":DeleteProcCommand" --> ":DeleteProcCommandParser"
+deactivate ":DeleteProcCommand"
+":DeleteProcCommandParser" --> ":AddressBookParser"
+deactivate ":DeleteProcCommandParser"
+":AddressBookParser" --> ":LogicManager"
+deactivate ":AddressBookParser"
+endbox
+
+box "Model" #LightPink
+":LogicManager" -> ":DeleteProcCommand" : execute(command)
+activate ":DeleteProcCommand"
+":DeleteProcCommand" -> ":ModelManager" : gFCL()
+activate ":ModelManager"
+note left
+    gFCL() denotes the method getFilteredClientList()
+end note
+":ModelManager" --> ":DeleteProcCommand"
+deactivate ":ModelManager"
+":DeleteProcCommand" -> ":DeleteProcCommand" : editClientProcedure(client)
+activate ":DeleteProcCommand"
+create ":Client"
+":DeleteProcCommand" -> ":Client" : new Client(clientInfo)
+activate ":Client"
+note left
+    clientInfo denotes the updatedName, updatedPhone,
+    updatedEmail, updatedAddress, updatedPlan, updatedTags,
+    updatedProcedures of the client.
+end note
+":Client" --> ":DeleteProcCommand"
+deactivate ":Client"
+":DeleteProcCommand" --> ":DeleteProcCommand"
+deactivate ":DeleteProcCommand"
+
+":DeleteProcCommand" -> ":ModelManager" : setClient(info)
+note left
+    the info denotes the target, and the editedClient info.
+end note
+activate ":ModelManager"
+":ModelManager" -> ":AddressBook" : setClient(info)
+note left
+    the info denotes the target, and the editedClient info.
+end note
+activate ":AddressBook"
+":AddressBook" --> ":ModelManager"
+deactivate ":AddressBook"
+":ModelManager" --> ":DeleteProcCommand"
+deactivate ":ModelManager"
+endbox
+
+box "Storage" #LightGreen
+":DeleteProcCommand" -> ":ModelManager" : uFCL()
+activate ":ModelManager"
+note left
+    uFCL() denotes updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS)
+end note
+":ModelManager" --> ":DeleteProcCommand"
+deactivate ":ModelManager"
+":DeleteProcCommand" --> ":LogicManager"
+deactivate ":DeleteProcCommand"
+
+":LogicManager" -> ":ModelManager" : getAddressBook()
+activate ":ModelManager"
+":ModelManager" --> ":LogicManager"
+deactivate ":ModelManager"
+
+":LogicManager" -> ":Storage" : saveAddressBook(addressBook)
+activate ":Storage"
+":Storage" --> ":LogicManager"
+deactivate ":Storage"
+
+<-- ":LogicManager"
+deactivate ":LogicManager"
+endbox
+@enduml
+":MainWindow"
+deactivate ":LogicManager"
+":MainWindow" --> ":MainWindow"
+deactivate ":MainWindow"
+":MainWindow" --> ":UiManager"
+deactivate ":MainWindow"
+<-- ":UiManager"
+deactivate ":UiManager"
+
+@startuml
+object firstObject
+object "My Second Object" as o2
+@enduml

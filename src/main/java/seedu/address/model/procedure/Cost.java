@@ -20,7 +20,7 @@ public class Cost implements Comparable<Cost> {
     /**
      * Constructs a {@code Cost}.
      *
-     * @param cost A valid phone number.
+     * @param cost A valid cost.
      */
     public Cost(String cost) {
         requireNonNull(cost);
