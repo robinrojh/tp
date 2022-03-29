@@ -138,9 +138,8 @@ Lists out all the Procedures related to a Client.
   - Result shows:
 
   ```
-  1. Apple, 9XXXXXXX, Apple Road
-      1. Fixed the intranet issue
-      2. Replace router in 3rd floor
+  1. John, VALUE 50Mbps, 91028936, Singtel Road, singtel@singtel.com
+      1. set up router system in office, 04/04/2022 12:12, 900
   ```
 
 In Application: ![listProc](images/ListProcCommandExample1.PNG)
