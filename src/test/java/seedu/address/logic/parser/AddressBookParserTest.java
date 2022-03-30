@@ -45,7 +45,7 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertThrows(ParseException.class,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE), ()
-                        -> parser.parseCommand(ClearCommand.COMMAND_WORD + " 3")
+                -> parser.parseCommand(ClearCommand.COMMAND_WORD + " 3")
         );
     }
 
@@ -70,7 +70,7 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertThrows(ParseException.class,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExitCommand.MESSAGE_USAGE), ()
-                        -> parser.parseCommand(ExitCommand.COMMAND_WORD + " 3"));
+                -> parser.parseCommand(ExitCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
@@ -86,7 +86,7 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertThrows(ParseException.class,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                        -> parser.parseCommand(HelpCommand.COMMAND_WORD + " 3"));
+                -> parser.parseCommand(HelpCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
@@ -94,13 +94,13 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertThrows(ParseException.class,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE), ()
-                        -> parser.parseCommand(ListCommand.COMMAND_WORD + " 3"));
+                -> parser.parseCommand(ListCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+            -> parser.parseCommand(""));
     }
 
     @Test
