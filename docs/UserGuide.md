@@ -90,13 +90,16 @@ Deletes a Procedure associated with the Client. This is important as it allows y
 In Command Line Interface (CLI):
 - `deleteProc 1 3`
   - Result shows: `Current Procedure List: [Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.5; Completed: false]`
-
 - `deleteProc 3 500`
   - Result shows: `The procedure index provided is invalid`
 
-In Application: <br/>
-Before Command ![deleteProc](images/deleteProcGUIbefore.png)
-After Command ![deleteProc](images/deleteProcGUIAfter.png)
+Before Command:
+
+![deleteProc](images/deleteProcGUIBefore.png)
+
+After Command:
+
+![deleteProc](images/deleteProcGUIAfter.png)
 
 ### Calculate the cost of all Procedures on a specified date: `calculate`
 
