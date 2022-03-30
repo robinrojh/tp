@@ -24,4 +24,9 @@ public class ListCommand extends Command {
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ListCommand;
+    }
 }
