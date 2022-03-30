@@ -47,6 +47,7 @@ class ProcedureTest {
         // different hasCompleted -> returns false
         editedRepair = new ProcedureBuilder(REPAIR_ROUTER_PROC).withCompletion(VALID_HASCOMPLETED_FALSE)
                 .build();
+        System.out.println(REPAIR_ROUTER_PROC.equals(editedRepair));
         assertFalse(REPAIR_ROUTER_PROC.equals(editedRepair));
     }
 
