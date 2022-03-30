@@ -19,6 +19,9 @@ done faster than traditional GUI apps.
   4. Delete a Procedure from the Client
   5. View all Clients and associated Procedures in the Client
   6. Calculate the cost of all Procedures on a specified date
+  7. List all Procedures of a Client
+  8. Clear all Clients from Networkers
+  9. Find all Clients by keyword
 - **Command Summary**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -63,7 +66,7 @@ Adds a specified Procedure to a specified Client.
 **Format:** `addProc <CLIENT INDEX> i/INFORMATION c/COST d/DATE_TIME`
 - `addProc` refers to the command of adding a Procedure to the Client at the specified index.
 - `<CLIENT INDEX>` refers to the index number shown in the displayed Client list. The index **must be** a positive integer 1, 2, 3, …​
-- `INFORMATION` refers to the tasks or problems that need to be addressed in the future visits to the Client’s business sight.
+- `INFORMATION` refers to the tasks or problems that need to be addressed in the future visits to the Client’s business site.
 - `COST` is the cost required for the Procedure.
 - `DATE_TIME` is the date and time that the Procedure takes place. 
   - `DATE_TIME` accepts inputs in the form of `dd_MM_YYYY HH:MM`.
@@ -101,25 +104,9 @@ After Command:
 
 ![deleteProc](images/deleteProcGUIAfter.png)
 
-### Calculate the cost of all Procedures on a specified date: `calculate`
-
-Calculates the cost of all Procedures that happen any time on a specified date.
-
-**Format:** `calculate <DATE>`
-- `calculate` refers to the command of calculating cost of all Procedures on a specified date.
-- `DATE` is in the format of dd/MM/uuuu, eg. 23/03/2022. 
-  - Error will be thrown if the date is invalid.
-
-**Example:** <br/>
-In Command Line Interface (CLI):
-- `calculate 23/03/2022`
-  - Result shows: `Total Cost: 31.5`
-
-In Application: ![list](images/calculate.png)
-
 ### View All Clients: `list`
 
-Lists out all the Clients saved. This feature will be used to show Clients on the application. No arguments required.
+Lists out all the Clients saved. This feature will be used to show Clients on the application. No secondary information is required.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
@@ -147,13 +134,55 @@ Lists out all the Procedures related to a Client.
 
 In Application: ![listProc](images/ListProcCommandExample1.PNG)
 
+### Calculate the cost of all Procedures on a specified date: `calculate`
+
+Calculates the cost of all Procedures that happen any time on a specified date.
+
+**Format:** `calculate <DATE>`
+- `calculate` refers to the command of calculating cost of all Procedures on a specified date.
+- `DATE` is in the format of dd/MM/YYYY, eg. 23/03/2022. 
+  - Error will be thrown if the date is invalid.
+
+**Example:** <br/>
+In Command Line Interface (CLI):
+- `calculate 23/03/2022`
+  - Result shows: `Total Cost: 31.5`
+
+In Application: ![list](images/calculate.png)
+
+### Clear All Clients: `clear`
+
+Clears all Clients and their respective Procedures currently recorded in Networkers. New Clients can be added normally via all stated commands.
+
+**Note: If all Clients have been deleted and Networkers is closed, Networkers will start up with a new template list of Clients. This is a feature intended to introduce new users to Networker's interface.**
+
+### Locating Clients by Name: `find`
+
+Finds Clients whose names contain any of the given keywords.
+
+**Format:** `find KEYWORD [MORE_KEYWORDS]`
+- The search is case-insensitive. e.g `apple inc` will match `Apple Inc`
+- The order of the keywords does not matter. e.g. `Inc Apple` will match `Apple Inc`
+- Only the name is searched.
+- Only full words will be matched e.g. `App` will not match `Apple Inc`
+- Persons matching at least one keyword will be returned. e.g. `Inc` will return `Apple Inc`, `Google Inc`
+
+Example:
+- `find Fix` returns `Master Fix Services`
+
+In Application: ![list](images/findCommandExample.png)
+
 ## Command Summary
 
-| Command | Syntax                                                    | Example                                                  |
-| --- |-----------------------------------------------------------|----------------------------------------------------------|
+| Command | Syntax                                                     | Example                                                 |
+| --- |------------------------------------------------------------|---------------------------------------------------------|
 | Add Client | `addClient n/<NAME> p/<PHONE_NUMBER> a/<ADDRESS> l/<PLAN>` | `addClient n/Apple Inc p/9XXXXXXX a/apple road l/50MBps` |
-| Delete Client | `deleteClient <INDEX>`                                    | `deleteClient 1`                                         |
-| Add Procedure | `addProc <Client Index> i/INFORMATION c/COST d/DATE_TIME`                     | `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`     |
-| Delete Procedure | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`             | `deleteProc 1 3`                                         |
-| List All Clients | `list`                                                    | `list`                                                   |
-| List All Procedures | `listProc <CLIENT INDEX>`                                 | `listProc 1`                                             | 
+| Delete Client | `deleteClient <INDEX>`                                     | `deleteClient 1`                                        |
+| Add Procedure | `addProc <Client INDEX> i/INFORMATION c/COST d/DATE_TIME`  | `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`    |
+| Delete Procedure | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`              | `deleteProc 1 3`                                        |
+| List All Clients | `list`                                                     | `list`                                                  |
+| List All Procedures | `listProc <CLIENT INDEX>`                                  | `listProc 1`                                            | 
+| Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                         |`calculate 23/02/2022` |
+| Clear All Clients | `clear`                                                    | `clear` |
+ | Find Clients by Keyword | `find KEYWORD [MORE_KEYWORDS]`                             | `find Apple Inc` |
+
