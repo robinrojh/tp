@@ -67,8 +67,8 @@ public class DateWithoutTime {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                && validDate.equals(((Date) other).validDate)); // state check
+                || (other instanceof DateWithoutTime // instanceof handles nulls
+                && validDate.equals(((DateWithoutTime) other).validDate)); // state check
     }
 }
 

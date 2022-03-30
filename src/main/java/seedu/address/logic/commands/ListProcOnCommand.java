@@ -75,4 +75,21 @@ public class ListProcOnCommand extends Command {
         }
         return proceduresToStringBuilder.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListProcOnCommand)) {
+            return false;
+        }
+
+        // state check
+        ListProcOnCommand otherCommand = (ListProcOnCommand) other;
+        return targetDate.equals(otherCommand.targetDate);
+    }
 }
