@@ -8,8 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
-import seedu.address.model.procedure.Date;
-
 /**
  * Represents a Procedure's date in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}

@@ -32,8 +32,8 @@ import seedu.address.model.procedure.Procedure;
 import seedu.address.testutil.ClientBuilder;
 
 public class ListProcOnCommandTest {
-        private Model newModel;
-        private Model expectedModel;
+    private Model newModel;
+    private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
@@ -61,11 +61,11 @@ public class ListProcOnCommandTest {
     @Test
     public void execute_dateWithProcedures_success() {
         ListProcOnCommand listProcOnCommand = new ListProcOnCommand(new DateWithoutTime("21/04/2022"));
-        String expectedMessage = "Listing Procedures on requested date:\n" +
-                "1. Information: Repair Router; Date: 21/04/2022 11:50; Cost: 13.50; Completed: true\n" +
-                "Apple, located at Block 312, Apple Street 1\n" +
-                "2. Information: Repair Router; Date: 21/04/2022 11:50; Cost: 13.50; Completed: true\n" +
-                "Burger King, located at Block 123, Burger Street 3\n";
+        String expectedMessage = "Listing Procedures on requested date:\n"
+                + "1. Information: Repair Router; Date: 21/04/2022 11:50; Cost: 13.50; Completed: true\n"
+                + "Apple, located at Block 312, Apple Street 1\n"
+                + "2. Information: Repair Router; Date: 21/04/2022 11:50; Cost: 13.50; Completed: true\n"
+                + "Burger King, located at Block 123, Burger Street 3\n";
         assertCommandSuccess(listProcOnCommand, newModel, expectedMessage, expectedModel);
     }
 
