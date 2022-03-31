@@ -19,6 +19,10 @@ done faster than traditional GUI apps.
 - **Command Summary**
 
 --------------------------------------------------------------------------------------------------------------------
+## UI Guide
+
+![UI Guide](images/UIGuide.png)
+
 
 ## Features
 
