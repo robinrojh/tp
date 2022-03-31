@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -22,6 +23,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
+import seedu.address.model.procedure.Procedure;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -129,7 +131,12 @@ public class MainWindow extends UiPart<Stage> {
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setPercentWidth(50);
         column2.setHgrow(Priority.ALWAYS);
+
+        RowConstraints row = new RowConstraints();
+        row.setMaxHeight(Double.MAX_VALUE);
+        row.setVgrow(Priority.ALWAYS);
         clientListGridPane.getColumnConstraints().addAll(column1, column2); // each get 50% of width
+        clientListGridPane.getRowConstraints().addAll(row);
     }
 
     /**
@@ -143,16 +150,17 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-
+    void fillInnerParts() throws CommandException, ParseException {
         setUpColumnConstraints();
         ObservableList<Client> clients = logic.getFilteredClientList();
+
         clientListPanel = new ClientListPanel(clients);
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         if (clients.size() > 0) {
             procedureListPanel = new ProcedureListPanel(
                     FXCollections.observableArrayList(clients.get(0).getProcedures()));
+            logic.execute("listProc 1");
         } else {
             procedureListPanel = new ProcedureListPanel(FXCollections.observableArrayList());
         }
@@ -224,9 +232,12 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            procedureListPanel = new ProcedureListPanel(logic.getFilteredProcedureList());
+
+            ObservableList<Procedure> filteredProcedures = logic.getFilteredProcedureList();
+            procedureListPanel = new ProcedureListPanel(filteredProcedures);
             procedureListPanelPlaceholder.getChildren().add(procedureListPanel.getRoot());
 
+            System.out.println(clientListGridPane.getHeight());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

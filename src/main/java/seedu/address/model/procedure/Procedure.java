@@ -8,11 +8,11 @@ import java.util.Objects;
  * Represents a specific procedure in a clients
  * Guarantees: immutable; is valid as declared in {@link #isValidProcedure(String)}
  */
-public class Procedure {
+public class Procedure implements Comparable<Procedure> {
     private final Information information;
     private final Date date;
     private final Cost cost;
-    private final Completion hasCompleted;
+    private Completion hasCompleted;
 
     /**
      * Every field must be present and not null.
@@ -39,6 +39,10 @@ public class Procedure {
 
     public Completion getHasCompleted() {
         return this.hasCompleted;
+    }
+
+    public void setHasCompleted(Completion hasCompleted) {
+        this.hasCompleted = hasCompleted;
     }
 
     /**
@@ -73,11 +77,11 @@ public class Procedure {
             return false;
         }
 
-        Procedure otherPerson = (Procedure) other;
-        return otherPerson.getInfo().equals(getInfo())
-                && otherPerson.getDate().equals(getDate())
-                && otherPerson.getCost().equals(getCost())
-                && otherPerson.getHasCompleted().equals(getHasCompleted());
+        Procedure otherProc = (Procedure) other;
+        return otherProc.getInfo().equals(getInfo())
+                && otherProc.getDate().equals(getDate())
+                && otherProc.getCost().equals(getCost())
+                && otherProc.getHasCompleted().equals(getHasCompleted());
     }
 
     @Override
@@ -101,5 +105,15 @@ public class Procedure {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Procedure otherProcedure) {
+        if (this.getDate().compareTo(otherProcedure.getDate()) != 0) {
+            return this.getDate().compareTo(otherProcedure.getDate());
+        } else if (this.getCost().compareTo(otherProcedure.getCost()) != 0) {
+            return this.getCost().compareTo(otherProcedure.getCost());
+        } else {
+            return this.getInfo().compareTo(otherProcedure.getInfo());
+        }
+    }
 }
 

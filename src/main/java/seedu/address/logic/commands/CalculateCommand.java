@@ -41,12 +41,11 @@ public class CalculateCommand extends Command {
 
         for (int i = 0; i < lastShownList.size(); i++) {
             Client currentClient = lastShownList.get(i);
-            BigDecimal currentCost = new BigDecimal(currentClient.getCostOnDate(targetDate));
+            BigDecimal currentCost = currentClient.getCostOnDate(targetDate);
             totalCost = totalCost.add(currentCost);
         }
         String totalCostString = totalCost.toPlainString();
 
-        System.out.println(totalCostString);
         return new CommandResult(String.format(MESSAGE_CALCULATE_COST_SUCCESS, totalCostString));
     }
 }
