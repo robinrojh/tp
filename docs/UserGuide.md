@@ -174,15 +174,15 @@ In Application: ![list](images/findCommandExample.png)
 
 ## Command Summary
 
-| Command | Syntax                                                     | Example                                                 |
-| --- |------------------------------------------------------------|---------------------------------------------------------|
+| Command | Syntax                                                    | Example                                                 |
+| --- |-----------------------------------------------------------|---------------------------------------------------------|
 | Add Client | `addClient n/<NAME> p/<PHONE_NUMBER> a/<ADDRESS> l/<PLAN>` | `addClient n/Apple Inc p/9XXXXXXX a/apple road l/50MBps` |
-| Delete Client | `deleteClient <INDEX>`                                     | `deleteClient 1`                                        |
-| Add Procedure | `addProc <Client INDEX> i/INFORMATION c/COST d/DATE_TIME`  | `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`    |
-| Delete Procedure | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`              | `deleteProc 1 3`                                        |
-| List All Clients | `list`                                                     | `list`                                                  |
-| List All Procedures | `listProc <CLIENT INDEX>`                                  | `listProc 1`                                            | 
-| Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                         |`calculate 23/02/2022` |
-| Clear All Clients | `clear`                                                    | `clear` |
- | Find Clients by Keyword | `find KEYWORD [MORE_KEYWORDS]`                             | `find Apple Inc` |
+| Delete Client | `deleteClient <INDEX>`                                    | `deleteClient 1`                                        |
+| Add Procedure | `addProc <CLIENT INDEX> i/INFORMATION c/COST d/DATE_TIME` | `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`    |
+| Delete Procedure | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`             | `deleteProc 1 3`                                        |
+| List All Clients | `list`                                                    | `list`                                                  |
+| List All Procedures | `listProc <CLIENT INDEX>`                                 | `listProc 1`                                            | 
+| Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                        |`calculate 23/02/2022` |
+| Clear All Clients | `clear`                                                   | `clear` |
+ | Find Clients by Keyword | `find KEYWORD [MORE_KEYWORDS]`                            | `find Apple Inc` |
 
