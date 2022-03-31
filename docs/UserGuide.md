@@ -22,11 +22,27 @@ done faster than traditional GUI apps.
   7. List all Procedures of a Client
   8. Clear all Clients from Networkers
   9. Find all Clients by keyword
+  10. Exit the program
 - **Command Summary**
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+### Notes about command formats:
+
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.
+
+  For example, in `addClient n/NAME`, `NAME` is a parameter which can be used as `addClient n/John Doe`.
+- Items in square brackets are optional.
+
+  For example, `find KEYWORD [MORE_KEYWORDS]` can be used as `find Apple Inc`.
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.
+
+  For example, if the command specifies `help 123`, it will be interpreted as `help`.
+- All inputs must be in sequence as shown in the instruction.
+- All indexes are int based, as such the maximum value is 2147483647 (2<sup>31</sup> - 1).
+
 
 ### Add a Client: `addClient`
 
@@ -171,6 +187,12 @@ Example:
 - `find Fix` returns `Master Fix Services`
 
 In Application: ![list](images/findCommandExample.png)
+
+### Exiting the program: `exit`
+
+Exits the program.
+
+**Format**: `exit`
 
 ## Command Summary
 
