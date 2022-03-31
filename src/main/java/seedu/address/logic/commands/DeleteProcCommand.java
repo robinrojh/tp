@@ -34,6 +34,8 @@ public class DeleteProcCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_DELETE_PROCEDURE_SUCCESS = "Deleted Procedure: %1$s";
+    public static final String MESSAGE_DELETE_PROCEDURE_FAILURE = "Deleted Procedure unsuccessful."
+            + "\nTry again in a while!";
 
     private final Index clientIndex;
     private final Index procedureIndex;
@@ -53,6 +55,9 @@ public class DeleteProcCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (clientIndex.getZeroBased() < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_NON_POSITIVE_INDEX);
+        }
         List<Client> lastShownList = model.getFilteredClientList();
 
         if (clientIndex.getZeroBased() >= lastShownList.size()) {
@@ -60,28 +65,30 @@ public class DeleteProcCommand extends Command {
         }
 
         Client clientToEdit = lastShownList.get(clientIndex.getZeroBased());
-        Procedure procedureToDelete = null;
         Client editedClient = null;
+        List<Procedure> clientProcedureList = clientToEdit.getProcedures();
+        List<Procedure> procedureDeletedList = new ArrayList<>();
 
         try {
-            procedureToDelete = clientToEdit.getProcedures().get(procedureIndex.getZeroBased());
-            editedClient = editClientProcedure(clientToEdit);
-        } catch (CommandException err) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROCEDURE_DISPLAYED_INDEX);
+            procedureDeletedList = deleteProcedureFromList(clientProcedureList, procedureIndex);
+        } catch (UnsupportedOperationException err) {
+            throw new CommandException(DeleteProcCommand.MESSAGE_DELETE_PROCEDURE_FAILURE);
         }
 
+        Procedure procedureDeleted = clientProcedureList.get(procedureIndex.getZeroBased());
+        editedClient = updateClientProcedures(clientToEdit, procedureDeletedList);
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        //Might want to consider making it nicer by creating an editedClient.displayPrdeleteocedures().
-        return new CommandResult(String.format(MESSAGE_DELETE_PROCEDURE_SUCCESS, procedureToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PROCEDURE_SUCCESS, procedureDeleted));
     }
 
     /**
-     * Creates and returns a {@code Client} with the updated Procedure editted after
-     * deletion with the {@code deleteProcedure} method.
+     * Creates and returns a {@code Client} with their {@code Procedures} updated by
+     * {@code updatedProcedureList}.
      */
-    private Client editClientProcedure(Client clientToEdit) throws CommandException {
-        assert clientToEdit != null;
+    private Client updateClientProcedures(Client clientToEdit,
+            List<Procedure> updatedProcedureList) {
+        assert clientToEdit != null && updatedProcedureList != null;
 
         Name updatedName = clientToEdit.getName();
         Phone updatedPhone = clientToEdit.getPhone();
@@ -89,29 +96,26 @@ public class DeleteProcCommand extends Command {
         Plan updatedPlan = clientToEdit.getPlan();
         Address updatedAddress = clientToEdit.getAddress();
         Set<Tag> updatedTags = clientToEdit.getTags();
-        List<Procedure> updatedProcedures = new ArrayList<>();
-        try {
-            updatedProcedures.addAll(deleteProcedure(clientToEdit.getProcedures()));
-        } catch (CommandException err) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROCEDURE_DISPLAYED_INDEX);
-        }
-
+        List<Procedure> updatedProcedures = new ArrayList<>(updatedProcedureList);
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedPlan,
                 updatedTags, updatedProcedures);
     }
 
-    private List<Procedure> deleteProcedure(List<Procedure> procedureList) throws CommandException {
+    /**
+     * Creates and returns a list of {@code Procedures} with the intended {@code Procedure} at
+     * {@code procedureIndex} deleted.
+     */
+    private List<Procedure> deleteProcedureFromList(List<Procedure> procedureList, Index procedureIndex)
+            throws CommandException {
         if (procedureIndex.getOneBased() > procedureList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROCEDURE_DISPLAYED_INDEX);
         }
-
-        List<Procedure> updatedProcedureList = new ArrayList<>();
-        for (int i = 0; i < procedureList.size(); i++) {
-            if (i == procedureIndex.getZeroBased()) {
-                continue;
-            }
-            updatedProcedureList.add(procedureList.get(i));
+        if (procedureIndex.getOneBased() <= 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROCEDURE_NON_POSITIVE_INDEX);
         }
+
+        List<Procedure> updatedProcedureList = new ArrayList<>(procedureList);
+        updatedProcedureList.remove(procedureIndex.getZeroBased());
         return updatedProcedureList;
     }
 
