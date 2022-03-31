@@ -11,7 +11,7 @@ import seedu.address.logic.commands.ListProcCommand;
 
 
 public class ListProcCommandParserTest {
-    private ListProcCommandParser parser = new ListProcCommandParser();
+    private final ListProcCommandParser parser = new ListProcCommandParser();
 
     @Test
     public void parse_validArgs_returnsListProcCommand() {
