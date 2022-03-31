@@ -46,10 +46,27 @@ public class Procedure implements Comparable<Procedure> {
     }
 
     /**
+     * Returns true if both Procedures have the same fields, less the completion field.
+     */
+    public boolean isProcedureDuplicate(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Procedure)) {
+            return false;
+        }
+
+        Procedure otherPerson = (Procedure) other;
+        return otherPerson.getInfo().equals(getInfo())
+            && otherPerson.getDate().equals(getDate())
+            && otherPerson.getCost().equals(getCost());
+    }
+
+    /**
      * Returns true if both Procedures have the same fields.
      * This defines a stronger notion of equality between two Procedures.
      */
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

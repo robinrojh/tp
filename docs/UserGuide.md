@@ -58,6 +58,14 @@ done faster than traditional GUI apps.
 - **Command Summary**
 
 --------------------------------------------------------------------------------------------------------------------
+## UI Guide
+
+![UI Guide](images/UIGuide.png)
+
+### Using the UI
+
+In order to use our program, you need to type your commands into the command box as shown in the above image.
+After typing, press enter: either it will show an error in the result box or execute the command correctly.
 
 ## Features
 
@@ -179,7 +187,8 @@ After Command:
 
 ### View All Clients: `list`
 
-Lists out all the Clients saved. This feature will be used to show Clients on the application. No secondary information is required.
+Lists out all the Clients saved. This feature will be used to show Clients on the application. 
+No secondary information is required. You can use this feature after using `find` command to see all clients.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
@@ -265,3 +274,15 @@ Exits the program.
 | Clear All Clients | `clear`                                                   | `clear` |
  | Find Clients by Keyword | `find KEYWORD [MORE_KEYWORDS]`                            | `find Apple Inc` |
 
+## FAQ
+
+### Why is The Command Not Working?
+
+There are several cases in which you might face errors when entering a command:
+
+- Typing in the command word wrongly (e.g. typing `lisst` instead of `list`)
+- Typing in wrong number of inputs (e.g. typing `deleteClient` or `deleteClient 5 2` instead of `deleteClient 2`)
+- Typing in letters for numbers or vice verse (e.g. typing `listProc hello` instead of `listProc 1`)
+- You entered the correct command but wrong inputs (e.g. typing `deleteProc 1 10` when there is no 10th client)
+
+The corresponding error messages will be displayed in the result box, so do take a look at them.

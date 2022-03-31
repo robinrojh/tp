@@ -237,7 +237,6 @@ public class MainWindow extends UiPart<Stage> {
             procedureListPanel = new ProcedureListPanel(filteredProcedures);
             procedureListPanelPlaceholder.getChildren().add(procedureListPanel.getRoot());
 
-            System.out.println(clientListGridPane.getHeight());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

@@ -118,7 +118,7 @@ public class AddProcCommand extends Command {
 
         List<Procedure> updatedProcedureList = new ArrayList<>();
         for (int i = 0; i < procedureList.size(); i++) {
-            if (procedureList.get(i).equals(procedure)) {
+            if (procedureList.get(i).isProcedureDuplicate(procedure)) {
                 throw new CommandException(MESSAGE_DUPLICATE_PROCEDURE);
             }
             updatedProcedureList.add(procedureList.get(i));

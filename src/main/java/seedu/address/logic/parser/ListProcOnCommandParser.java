@@ -6,7 +6,7 @@ import seedu.address.commons.core.datewithouttime.DateWithoutTime;
 import seedu.address.logic.commands.ListProcOnCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class ListProcOnCommandParser {
+public class ListProcOnCommandParser implements Parser<ListProcOnCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ListProcOnCommand
      * and returns a ListProcOnCommand object for execution.
