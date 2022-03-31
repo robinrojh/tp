@@ -49,7 +49,6 @@ public class AddProcCommandTest {
     private Model newModel = new ModelManager();
     private Procedure toBeAddedProcedure = new ProcedureBuilder().build();
 
-
     @Test
     public void execute_properIndexWithProperProcedure_success() {
         // guaranteed to add a non-duplicated Procedure since starting from a new Client
@@ -153,4 +152,5 @@ public class AddProcCommandTest {
         // different Procedure -> returns false
         assertFalse(standardCommand.equals(new AddProcCommand(INDEX_FIRST_CLIENT, DESC_REPLACE)));
     }
+
 }
