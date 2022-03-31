@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COST_REPLACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_REPAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HASCOMPLETED_FALSE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HASCOMPLETED_TRUE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INFO_REPLACE;
 import static seedu.address.testutil.TypicalProcedures.REPAIR_ROUTER_PROC;
 import static seedu.address.testutil.TypicalProcedures.REPLACE_WIRES_PROC;
@@ -47,6 +48,7 @@ class ProcedureTest {
         // different hasCompleted -> returns false
         editedRepair = new ProcedureBuilder(REPAIR_ROUTER_PROC).withCompletion(VALID_HASCOMPLETED_FALSE)
                 .build();
+        REPAIR_ROUTER_PROC.setHasCompleted(new Completion(VALID_HASCOMPLETED_TRUE));
         assertFalse(REPAIR_ROUTER_PROC.equals(editedRepair));
     }
 

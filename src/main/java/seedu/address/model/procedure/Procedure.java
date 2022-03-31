@@ -12,7 +12,7 @@ public class Procedure implements Comparable<Procedure> {
     private final Information information;
     private final Date date;
     private final Cost cost;
-    private final Completion hasCompleted;
+    private Completion hasCompleted;
 
     /**
      * Every field must be present and not null.
@@ -39,6 +39,10 @@ public class Procedure implements Comparable<Procedure> {
 
     public Completion getHasCompleted() {
         return this.hasCompleted;
+    }
+
+    public void setHasCompleted(Completion hasCompleted) {
+        this.hasCompleted = hasCompleted;
     }
 
     /**
