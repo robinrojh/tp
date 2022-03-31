@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.procedure.Procedure;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Finds and lists all clients in address book whose name contains any of the argument keywords.
