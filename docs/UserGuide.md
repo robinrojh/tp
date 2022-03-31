@@ -48,12 +48,13 @@ done faster than traditional GUI apps.
   2. Delete a Client
   3. Add a Procedure to the Client
   4. Delete a Procedure from the Client
-  5. View all Clients and associated Procedures in the Client
-  6. Calculate the cost of all Procedures on a specified date
-  7. List all Procedures of a Client
-  8. Clear all Clients from Networkers
-  9. Find all Clients by keyword
-  10. Exit the program
+  5. Edit a Procedure of a Client
+  6. View all Clients and associated Procedures in the Client
+  7. Calculate the cost of all Procedures on a specified date
+  8. List all Procedures of a Client
+  9. Clear all Clients from Networkers
+  10. Find all Clients by keyword
+  11. Exit the program
 - **Command Summary**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -150,6 +151,31 @@ Before Command:
 After Command:
 
 ![deleteProc](images/deleteProcGUIAfter.png)
+
+### Edit a Procedure of a Client: `editProc`
+
+Edits an existing Procedure that belongs an existing Client. This feature allows you to edit the main details related to the Procedure.
+The main details include the information, the cost, and the date of the Procedure.
+
+**Format:** `editProc <CLIENT INDEX> <PROCEDURE INDEX>`
+- `editProc` refers to the command to edit a Procedure belonging to a Client.
+- `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. The index **must be** a positive integer 1, 2, 3, ...
+- `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen (that is associated with a Client). The index **must be** a positive integer 1, 2, 3, ...
+
+**Example:** <br/>
+In Command Line Interface (CLI):
+- `editProc 1 1 i/Fix Router d/30/03/2022 23:55 c/50`
+  - Result shows: `Current Procedure List: [Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.5; Completed: false]`
+- `deleteProc 3 500`
+  - Result shows: `The procedure index provided is invalid`
+
+Before Command:
+
+![editProc](images/deleteProcGUIBefore.png)
+
+After Command:
+
+![editProc](images/deleteProcGUIAfter.png)
 
 ### View All Clients: `list`
 
