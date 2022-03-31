@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.core.dateWithoutTime.DateWithoutTime;
+import seedu.address.commons.core.datewithouttime.DateWithoutTime;
 import seedu.address.model.procedure.Date;
 import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
@@ -111,15 +111,15 @@ public class Client {
         return procsOnDate;
     }
 
-    public float getCostOnDate(DateWithoutTime date) {
+    public BigDecimal getCostOnDate(DateWithoutTime date) {
         List<Procedure> procsOnDate = getProcsOnDate(date);
         BigDecimal totalCost = new BigDecimal(0);
         for (int i = 0; i < procsOnDate.size(); i++) {
-            Procedure currentProc = this.procedures.get(i);
+            Procedure currentProc = procsOnDate.get(i);
             BigDecimal currentCost = currentProc.getCost().value();
             totalCost = totalCost.add(currentCost);;
         }
-        return totalCost.floatValue();
+        return totalCost;
     }
 
     /**
