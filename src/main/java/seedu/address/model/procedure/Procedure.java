@@ -8,11 +8,11 @@ import java.util.Objects;
  * Represents a specific procedure in a clients
  * Guarantees: immutable; is valid as declared in {@link #isValidProcedure(String)}
  */
-public class Procedure {
+public class Procedure implements Comparable<Procedure> {
     private final Information information;
     private final Date date;
     private final Cost cost;
-    private final Completion hasCompleted;
+    private Completion hasCompleted;
 
     /**
      * Every field must be present and not null.
@@ -41,13 +41,14 @@ public class Procedure {
         return this.hasCompleted;
     }
 
-    /**
-     * Returns true if both Procedures have the same fields.
-     * This defines a stronger notion of equality between two Procedures.
-     */
+    public void setHasCompleted(Completion hasCompleted) {
+        this.hasCompleted = hasCompleted;
+    }
 
-    @Override
-    public boolean equals(Object other) {
+    /**
+     * Returns true if both Procedures have the same fields, less the completion field.
+     */
+    public boolean isProcedureDuplicate(Object other) {
         if (other == this) {
             return true;
         }
@@ -58,9 +59,29 @@ public class Procedure {
 
         Procedure otherPerson = (Procedure) other;
         return otherPerson.getInfo().equals(getInfo())
-                && otherPerson.getDate().equals(getDate())
-                && otherPerson.getCost().equals(getCost())
-                && otherPerson.getHasCompleted().equals(getHasCompleted());
+            && otherPerson.getDate().equals(getDate())
+            && otherPerson.getCost().equals(getCost());
+    }
+
+    /**
+     * Returns true if both Procedures have the same fields.
+     * This defines a stronger notion of equality between two Procedures.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Procedure)) {
+            return false;
+        }
+
+        Procedure otherProc = (Procedure) other;
+        return otherProc.getInfo().equals(getInfo())
+                && otherProc.getDate().equals(getDate())
+                && otherProc.getCost().equals(getCost())
+                && otherProc.getHasCompleted().equals(getHasCompleted());
     }
 
     @Override
@@ -84,5 +105,15 @@ public class Procedure {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Procedure otherProcedure) {
+        if (this.getDate().compareTo(otherProcedure.getDate()) != 0) {
+            return this.getDate().compareTo(otherProcedure.getDate());
+        } else if (this.getCost().compareTo(otherProcedure.getCost()) != 0) {
+            return this.getCost().compareTo(otherProcedure.getCost());
+        } else {
+            return this.getInfo().compareTo(otherProcedure.getInfo());
+        }
+    }
 }
 

@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.commons.core.dateWithoutTime.DateWithoutTime;
+import seedu.address.commons.core.datewithouttime.DateWithoutTime;
 import seedu.address.model.procedure.Date;
 
 /**

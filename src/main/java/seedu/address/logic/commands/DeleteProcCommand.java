@@ -33,7 +33,7 @@ public class DeleteProcCommand extends Command {
             + "INDEX (must be a positive integer and an existing Procedure)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Current Procedure List: %1$s";
+    public static final String MESSAGE_DELETE_PROCEDURE_SUCCESS = "Deleted Procedure: %1$s";
 
     private final Index clientIndex;
     private final Index procedureIndex;
@@ -60,9 +60,11 @@ public class DeleteProcCommand extends Command {
         }
 
         Client clientToEdit = lastShownList.get(clientIndex.getZeroBased());
+        Procedure procedureToDelete = null;
         Client editedClient = null;
 
         try {
+            procedureToDelete = clientToEdit.getProcedures().get(procedureIndex.getZeroBased());
             editedClient = editClientProcedure(clientToEdit);
         } catch (CommandException err) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROCEDURE_DISPLAYED_INDEX);
@@ -71,7 +73,7 @@ public class DeleteProcCommand extends Command {
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
         //Might want to consider making it nicer by creating an editedClient.displayPrdeleteocedures().
-        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient.getProcedures()));
+        return new CommandResult(String.format(MESSAGE_DELETE_PROCEDURE_SUCCESS, procedureToDelete));
     }
 
     /**

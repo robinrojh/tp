@@ -28,6 +28,7 @@ public class DeleteProcCommandParser implements Parser<DeleteProcCommand> {
         List<Index> indexes = new ArrayList<>();
         try {
             indexes.addAll(ParserUtil.parseIndexes(argMultimap.getPreamble()));
+            System.out.println(indexes.get(1).getOneBased());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteProcCommand.MESSAGE_USAGE), pe);
