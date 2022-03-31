@@ -41,7 +41,7 @@ done faster than traditional GUI apps.
 
   For example, if the command specifies `help 123`, it will be interpreted as `help`.
 - All inputs must be in sequence as shown in the instruction.
-- All indexes are int based, as such the maximum value is 2147483647 (2<sup>31</sup> - 1).
+- All indexes are integer based, as such the maximum value is 2147483647 (2<sup>31</sup> - 1).
 
 
 ### Add a Client: `addClient`
