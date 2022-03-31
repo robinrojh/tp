@@ -154,15 +154,15 @@ In Command Line Interface (CLI):
 
 Before Command:
 
-![deleteProc](images/deleteProcGUIBefore.png)
+![deleteProc](images/deleteProcCommand_Before.png)
 
 After Command:
 
-![deleteProc](images/deleteProcGUIAfter.png)
+![deleteProc](images/deleteProcCommand_After.png)
 
 ### Edit a Procedure of a Client: `editProc`
 
-Edits an existing Procedure that belongs an existing Client. This feature allows you to edit the main details related to the Procedure.
+Edits an existing Procedure that belongs to an existing Client. This feature allows you to edit the main details related to the Procedure.
 The main details include the information, the cost, and the date of the Procedure.
 
 **Format:** `editProc <CLIENT INDEX> <PROCEDURE INDEX>`
@@ -172,18 +172,16 @@ The main details include the information, the cost, and the date of the Procedur
 
 **Example:** <br/>
 In Command Line Interface (CLI):
-- `editProc 1 1 i/Fix Router d/30/03/2022 23:55 c/50`
-  - Result shows: `Current Procedure List: [Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.5; Completed: false]`
-- `deleteProc 3 500`
-  - Result shows: `The procedure index provided is invalid`
+- `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`
+  - Result shows: `Edited Procedure: Information: Fix Router; Date: 31/03/2022 09:50; Cost: 67.25; Completed: false, from Client MINISO; Email: miniso@example.com`
 
 Before Command:
 
-![editProc](images/deleteProcGUIBefore.png)
+![editProc](images/editProcCommand_Before.png)
 
 After Command:
 
-![editProc](images/deleteProcGUIAfter.png)
+![editProc](images/editProcCommand_After.png)
 
 ### View All Clients: `list`
 
