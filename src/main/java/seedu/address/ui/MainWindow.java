@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -130,7 +131,12 @@ public class MainWindow extends UiPart<Stage> {
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setPercentWidth(50);
         column2.setHgrow(Priority.ALWAYS);
+
+        RowConstraints row = new RowConstraints();
+        row.setMaxHeight(Double.MAX_VALUE);
+        row.setVgrow(Priority.ALWAYS);
         clientListGridPane.getColumnConstraints().addAll(column1, column2); // each get 50% of width
+        clientListGridPane.getRowConstraints().addAll(row);
     }
 
     /**
@@ -147,6 +153,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() throws CommandException, ParseException {
         setUpColumnConstraints();
         ObservableList<Client> clients = logic.getFilteredClientList();
+
         clientListPanel = new ClientListPanel(clients);
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
@@ -230,6 +237,7 @@ public class MainWindow extends UiPart<Stage> {
             procedureListPanel = new ProcedureListPanel(filteredProcedures);
             procedureListPanelPlaceholder.getChildren().add(procedureListPanel.getRoot());
 
+            System.out.println(clientListGridPane.getHeight());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
