@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INFORMATION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +24,7 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.client.Plan;
 import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Add a procedure of an existing client in the address book.
@@ -107,7 +110,10 @@ public class AddProcCommand extends Command {
                 tags, updatedProcedures);
     }
 
-    private List<Procedure> procListWithAddedProc(List<Procedure> procedureList)
+    /**
+     * Returns a list of Procedures that have been sorted according to their dates.
+     */
+    public List<Procedure> procListWithAddedProc(List<Procedure> procedureList)
             throws CommandException {
 
         List<Procedure> updatedProcedureList = new ArrayList<>();
@@ -118,6 +124,9 @@ public class AddProcCommand extends Command {
             updatedProcedureList.add(procedureList.get(i));
         }
         updatedProcedureList.add(procedure);
+        Comparator<Procedure> mapComparator = (Procedure m1, Procedure m2) -> m1.getDate()
+                .compareTo(m2.getDate());
+        Collections.sort(updatedProcedureList, mapComparator);
         return updatedProcedureList;
     }
 

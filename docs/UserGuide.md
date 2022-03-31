@@ -90,13 +90,16 @@ Deletes a Procedure associated with the Client. This is important as it allows y
 In Command Line Interface (CLI):
 - `deleteProc 1 3`
   - Result shows: `Current Procedure List: [Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.5; Completed: false]`
-
 - `deleteProc 3 500`
   - Result shows: `The procedure index provided is invalid`
 
-In Application: <br/>
-Before Command ![deleteProc](images/deleteProcGUIbefore.png)
-After Command ![deleteProc](images/deleteProcGUIAfter.png)
+Before Command:
+
+![deleteProc](images/deleteProcGUIBefore.png)
+
+After Command:
+
+![deleteProc](images/deleteProcGUIAfter.png)
 
 ### Calculate the cost of all Procedures on a specified date: `calculate`
 
@@ -135,11 +138,11 @@ Lists out all the Procedures related to a Client.
 
 **Example:**
 - `listProc 1`
-  - Result shows: <br/>
+  - Result shows:
+
   ```
-  1. Apple, 9XXXXXXX, Apple Road
-      1. Fixed the intranet issue
-      2. Replace router in 3rd floor
+  1. John, VALUE 50Mbps, 91028936, Singtel Road, singtel@singtel.com
+      1. set up router system in office, 04/04/2022 12:12, 900
   ```
 
 In Application: ![listProc](images/ListProcCommandExample1.PNG)

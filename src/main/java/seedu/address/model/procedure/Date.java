@@ -12,7 +12,7 @@ import java.time.format.ResolverStyle;
  * Represents a Procedure's date in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date {
+public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Please ensure that you have typed an existing date in the correct format. \n"
@@ -62,10 +62,6 @@ public class Date {
         return false;
     }
 
-    public int compareTo(Date otherDate) {
-        return validDate.compareTo(otherDate.validDate);
-    }
-
     @Override
     public String toString() {
         return validDate.format(FORMAT_WITH_DATE);
@@ -83,5 +79,8 @@ public class Date {
         return validDate.hashCode();
     }
 
-
+    @Override
+    public int compareTo(Date otherDate) {
+        return validDate.compareTo(otherDate.validDate);
+    }
 }
