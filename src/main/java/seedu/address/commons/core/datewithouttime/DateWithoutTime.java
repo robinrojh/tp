@@ -1,4 +1,4 @@
-package seedu.address.commons.core.dateWithoutTime;
+package seedu.address.commons.core.datewithouttime;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;

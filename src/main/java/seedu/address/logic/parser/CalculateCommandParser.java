@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.core.dateWithoutTime.DateWithoutTime;
+import seedu.address.commons.core.datewithouttime.DateWithoutTime;
 import seedu.address.logic.commands.CalculateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
