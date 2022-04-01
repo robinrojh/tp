@@ -45,8 +45,8 @@ public class AddProcCommand extends Command {
             + PREFIX_DATE + "20/03/2022 11:30 ";
 
     public static final String MESSAGE_SUCCESS = "New Procedure added: %1$s"; // Test needed
-    public static final String MESSAGE_DUPLICATE_PROCEDURE = "This Procedure is already listed to the Client";
-
+    public static final String MESSAGE_DUPLICATE_PROCEDURE = "The Client already has this Procedure."
+            + "\nTry creating a Procedure of different information, date, time, cost, or client.";
     private final Index index;
     private final Procedure procedure;
 
