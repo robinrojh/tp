@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INFORMATION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -45,7 +47,8 @@ public class EditProcCommand extends Command {
         + "[" + PREFIX_DATE + "DATE] "
         + "[" + PREFIX_COST + "COST] ";
 
-    public static final String MESSAGE_EDIT_PROCEDURE_SUCCESS = "Edited Procedure: %1$s, from Client %2$s";
+    public static final String MESSAGE_EDIT_PROCEDURE_SUCCESS = "Edited Procedure: %1$s, "
+        + "\n From client: %2$s, at $3$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index clientIndex;
@@ -93,7 +96,7 @@ public class EditProcCommand extends Command {
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PROCEDURE_SUCCESS,
-            updatedProcedure, editedClient));
+            updatedProcedure, editedClient.getName(), editedClient.getAddress()));
     }
 
     /**
@@ -147,6 +150,9 @@ public class EditProcCommand extends Command {
 
         List<Procedure> newProcedureList = new ArrayList<>(procedureList);
         newProcedureList.set(procedureIndex.getZeroBased(), edittedProcedure);
+        Comparator<Procedure> mapComparator = (Procedure m1, Procedure m2) -> m1.getDate()
+            .compareTo(m2.getDate());
+        Collections.sort(newProcedureList, mapComparator);
 
         return newProcedureList;
     }
