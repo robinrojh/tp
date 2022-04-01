@@ -144,7 +144,7 @@ In Command Line Interface (CLI):
   - This triggers the editing of the indicated client.
   - Result shows: `Edited Client: Apple; Phone: 66595327; Email: optical88@example.com; Address: 3155 Commonwealth Ave W, #05-27; Plan: EXPRESS 200MBps; Tags: [family]`
 
-In Application: ![Ui](images/addClientGUI.png)
+In Application: ![Ui](images/editClient_After.png)
 
 ### Add a Procedure to a Client: `addProc`
 
@@ -276,7 +276,7 @@ In Command Line Interface (CLI):
    Master Fix Services, located at 3155 Commonwealth Ave W, #B1-10
 ```
 
-In Application: ![list](images/listProcOn.png)
+In Application: ![listProcOn](images/listProcOn.png)
 
 ### Calculate the cost of all Procedures on a specified date: `calculate`
 
@@ -304,7 +304,7 @@ Clears all Clients and their respective Procedures currently recorded in Network
 - `clear` refers to the command of clearing all Clients and their respective Procedures in the application.
   - Result shows: `Address book has been cleared!`
 
-In Application: ![clear](images/clear.png)
+In Application: ![clear](images/clearCommand_After.png)
 
 ### Locating Clients by Name: `find`
 
@@ -330,19 +330,20 @@ Exits the program.
 
 ## Command Summary
 
-| Command                                         | Syntax                                                    | Example                                                  |
-|-------------------------------------------------|-----------------------------------------------------------|----------------------------------------------------------|
-| Add Client                                      | `addClient n/<NAME> p/<PHONE_NUMBER> a/<ADDRESS> l/<PLAN>` | `addClient n/Apple Inc p/9XXXXXXX a/apple road l/50MBps` |
-| Delete Client                                   | `deleteClient <INDEX>`                                    | `deleteClient 1`                                         |
-| Edit Client                                     | `edit <CLIENT INDEX> (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/PLAN] [t/TAG]...`      | `edit 1 n/Apple`                                         |
-| Add Procedure                                   | `addProc <CLIENT INDEX> i/INFORMATION c/COST d/DATE_TIME` | `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`    |
-| Delete Procedure                                | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`             | `deleteProc 1 3`                                         |
-| Edit Procedure                                  | `editProc <CLIENT INDEX> <PROCEDURE INDEX> [i/INFORMATION] [d/DATE] [c/COST]`    | `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`   |
-| List All Clients                                | `list`                                                    | `list`                                                   |
-| List All Procedures                             | `listProc <CLIENT INDEX>`                                 | `listProc 1`                                             | 
-| Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                        | `calculate 23/02/2022`                                   |
-| Clear All Clients                               | `clear`                                                   | `clear`                                                  |
- | Find Clients by Keyword                         | `find KEYWORD [MORE_KEYWORDS]`                            | `find Apple Inc`                                         |
+| Command                                         | Syntax                                                                                                          | Example                                                  |
+|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
+| Add Client                                      | `addClient n/<NAME> p/<PHONE_NUMBER> a/<ADDRESS> l/<PLAN>`                                                      | `addClient n/Apple Inc p/9XXXXXXX a/apple road l/50MBps` |
+| Delete Client                                   | `deleteClient <INDEX>`                                                                                          | `deleteClient 1`                                         |
+| Edit Client                                     | `edit <CLIENT INDEX> (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/PLAN] [t/TAG]...` | `edit 1 n/Apple`                                         |
+| Add Procedure                                   | `addProc <CLIENT INDEX> i/INFORMATION c/COST d/DATE_TIME`                                                       | `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`    |
+| Delete Procedure                                | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`                                                                   | `deleteProc 1 3`                                         |
+| Edit Procedure                                  | `editProc <CLIENT INDEX> <PROCEDURE INDEX> [i/INFORMATION] [d/DATE] [c/COST]`                                   | `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`   |
+| List All Clients                                | `list`                                                                                                          | `list`                                                   |
+| List All Procedures                             | `listProc <CLIENT INDEX>`                                                                                       | `listProc 1`                                             |
+| List All Procedures on Specified Date           | `listProcOn <DATE>`                                                                                             | `listProcOn 23/05/2022`                                  | 
+| Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                                                                              | `calculate 23/02/2022`                                   |
+| Clear All Clients                               | `clear`                                                                                                         | `clear`                                                  |
+ | Find Clients by Keyword                         | `find KEYWORD [MORE_KEYWORDS]`                                                                                  | `find Apple Inc`                                         |
 
 ## FAQ
 
