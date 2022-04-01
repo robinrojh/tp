@@ -48,13 +48,14 @@ done faster than traditional GUI apps.
   2. Delete a Client
   3. Add a Procedure to the Client
   4. Delete a Procedure from the Client
-  5. View all Clients and associated Procedures in the Client
+  5. Edit a Procedure of a Client
   6. View all Procedures scheduled on a specified date
-  7. Calculate the cost of all Procedures on a specified date
-  8. List all Procedures of a Client
-  9. Clear all Clients from Networkers
-  10. Find all Clients by keyword
-  11. Exit the program
+  7. View all Clients and associated Procedures in the Client
+  8. Calculate the cost of all Procedures on a specified date
+  9. List all Procedures of a Client
+  10. Clear all Clients from Networkers
+  11. Find all Clients by keyword
+  12. Exit the program
 - **Command Summary**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -156,11 +157,34 @@ In Command Line Interface (CLI):
 
 Before Command:
 
-![deleteProc](images/deleteProcGUIBefore.png)
+![deleteProc](images/deleteProcCommand_Before.png)
 
 After Command:
 
-![deleteProc](images/deleteProcGUIAfter.png)
+![deleteProc](images/deleteProcCommand_After.png)
+
+### Edit a Procedure of a Client: `editProc`
+
+Edits an existing Procedure that belongs to an existing Client. This feature allows you to edit the main details related to the Procedure.
+The main details include the information, the cost, and the date of the Procedure.
+
+**Format:** `editProc <CLIENT INDEX> <PROCEDURE INDEX>`
+- `editProc` refers to the command to edit a Procedure belonging to a Client.
+- `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. The index **must be** a positive integer 1, 2, 3, ...
+- `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen (that is associated with a Client). The index **must be** a positive integer 1, 2, 3, ...
+
+**Example:** <br/>
+In Command Line Interface (CLI):
+- `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`
+  - Result shows: `Edited Procedure: Information: Fix Router; Date: 31/03/2022 09:50; Cost: 67.25; Completed: false, from Client MINISO; Email: miniso@example.com`
+
+Before Command:
+
+![editProc](images/editProcCommand_Before.png)
+
+After Command:
+
+![editProc](images/editProcCommand_After.png)
 
 ### View All Clients: `list`
 
