@@ -2,9 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.model.procedure.Procedure;
+
 
 /**
  * Finds and lists all clients in address book whose name contains any of the argument keywords.
@@ -29,6 +33,12 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredClientList(predicate);
+        if (model.getFilteredClientList().size() > 0) {
+            model.updateFilteredProcedureList(model.getFilteredClientList().get(0),
+                    Model.PREDICATE_SHOW_CLIENT_PROCEDURES);
+        } else {
+            model.setProcedures(new ArrayList<Procedure>());
+        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size()));
     }
