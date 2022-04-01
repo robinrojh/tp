@@ -49,12 +49,13 @@ done faster than traditional GUI apps.
   3. Add a Procedure to the Client
   4. Delete a Procedure from the Client
   5. Edit a Procedure of a Client
-  6. View all Clients and associated Procedures in the Client
-  7. Calculate the cost of all Procedures on a specified date
-  8. List all Procedures of a Client
-  9. Clear all Clients from Networkers
-  10. Find all Clients by keyword
-  11. Exit the program
+  6. View all Procedures scheduled on a specified date
+  7. View all Clients and associated Procedures in the Client
+  8. Calculate the cost of all Procedures on a specified date
+  9. List all Procedures of a Client
+  10. Clear all Clients from Networkers
+  11. Find all Clients by keyword
+  12. Exit the program
 - **Command Summary**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -121,17 +122,19 @@ Adds a specified Procedure to a specified Client.
 
 **Format:** `addProc <CLIENT INDEX> i/INFORMATION c/COST d/DATE_TIME`
 - `addProc` refers to the command of adding a Procedure to the Client at the specified index.
-- `<CLIENT INDEX>` refers to the index number shown in the displayed Client list. The index **must be** a positive integer 1, 2, 3, …​
-- `INFORMATION` refers to the tasks or problems that need to be addressed in the future visits to the Client’s business site.
+- `<CLIENT INDEX>` refers to the index number shown in the displayed Client list. The index **must be** a positive integer 1, 2, 3, …
+- `INFORMATION` refers to the tasks or problems that need to be addressed to the Client’s business site.
 - `COST` is the cost required for the Procedure.
 - `DATE_TIME` is the date and time that the Procedure takes place. 
-  - `DATE_TIME` accepts inputs in the form of `dd_MM_YYYY HH:MM`.
-- Note that a Client’s list of Procedures is a numbered list. A new Procedure will be auto-sorted based on the date of operation.
+  - `DATE_TIME` accepts inputs in the form of `dd/MM/YYYY HH:MM`, e.g. 20/03/2022 11:30.
+- A new Procedure will be auto-sorted based on the date when the Procedure takes place, in ascending order.
+- If the specified Client already has an identical Procedure, the application will inform you that the Procedure has already been added.
+- Note that it is perfectly valid to add Procedures that fall on the exact date and time.
+  - This is because some Procedures can be done concurrently through remote control.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`
-  - If the first Client already has an identical Procedure, the application will inform you that the Procedure has already been added.
 
 In Application: ![addProc](images/addProcGUI.png)
 
@@ -214,13 +217,36 @@ Lists out all the Procedures related to a Client.
 
 In Application: ![listProc](images/ListProcCommandExample1.PNG)
 
+### View all Procedures scheduled on a specified date: `listProcOn`
+
+Lists out all Procedures, including the associated Client as per Procedure, that are scheduled on a specified date.
+
+**Format:** `listProcOn <DATE>`
+- `listProcOn` refers to the command of listing out all Procedures on a specified date.
+- `DATE` is in the format of dd/MM/YYYY, e.g. 26/03/2022.
+  - Error will be thrown if the date is invalid.
+
+**Example:** <br/>
+In Command Line Interface (CLI):
+- `listProcOn 26/03/2022`
+  - Result shows: 
+```
+  Listing Procedures on requested date:
+  1. Information: configure internet settings; Date: 26/03/2022 11:30; Cost: 10.50; Completed: false
+   MINISO, located at 3155 Commonwealth Ave W, #03-56-58
+  2. Information: configure POS connections; Date: 26/03/2022 12:00; Cost: 23.50; Completed: false
+   Master Fix Services, located at 3155 Commonwealth Ave W, #B1-10
+```
+
+In Application: ![list](images/listProcOn.png)
+
 ### Calculate the cost of all Procedures on a specified date: `calculate`
 
 Calculates the cost of all Procedures that happen any time on a specified date.
 
 **Format:** `calculate <DATE>`
 - `calculate` refers to the command of calculating cost of all Procedures on a specified date.
-- `DATE` is in the format of dd/MM/YYYY, eg. 23/03/2022. 
+- `DATE` is in the format of dd/MM/YYYY, e.g. 23/03/2022. 
   - Error will be thrown if the date is invalid.
 
 **Example:** <br/>
