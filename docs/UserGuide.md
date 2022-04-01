@@ -32,7 +32,7 @@ done faster than traditional GUI apps.
   * **`addClient`**`n/Apple p/91234561 e/apple@example.com a/311, Bedok Ave 3, #01-15 l/Plan 50GBps t/corporate` :
     Adds a client named `Apple` to the Networkers.
     
-  * **`delete`**`3` : Deletes the 3rd client shown in the current list.
+  * **`deleteClient`**`3` : Deletes the 3rd client shown in the current list.
 
   * **`listProc`**`1` : 
     Lists the procedures associated with the 1st client shown in the current list
@@ -183,7 +183,7 @@ Note: After editting the Procedure, you have to type `listProc <CLIENT_INDEX>` f
 
 **Example:** <br/>
 In Command Line Interface (CLI):
-- `deleteProc 1 3`
+- `deleteProc 1 1`
   - Result shows: `Current Procedure List: [Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.5; Completed: false]`
 
 Before Command:
@@ -194,7 +194,7 @@ After Command:
 
 ![deleteProc](images/deleteProcCommand_After.png)
 
-### Edit a Procedure of a Client: `editProc`
+### Edit a Procedure of your Client: `editProc`
 
 Edits an existing Procedure that belongs to an existing Client. This feature allows you to edit the main details related to the Procedure.
 The main details include the information, the date, and the cost of the Procedure.
@@ -344,7 +344,7 @@ Exits the program.
 | Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                                                                              | `calculate 23/02/2022`                                   |
 | Clear All Clients                               | `clear`                                                                                                         | `clear`                                                  |
  | Find Clients by Keyword                         | `find KEYWORD [MORE_KEYWORDS]`                                                                                  | `find Apple Inc`                                         |
-
+| Exit program                                    | `exit`                                                                                                          | `exit`                                                   |
 ## FAQ
 
 ### Why is The Command Not Working?
