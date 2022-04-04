@@ -40,25 +40,7 @@ done faster than traditional GUI apps.
   * **`clear`** : Deletes all client.
 
   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
-- **Features**
-  1. Add a Client
-  2. Delete a Client
-  3. Edit a Client
-  4. Add a Procedure to the Client
-  5. Delete a Procedure from the Client
-  6. Edit a Procedure of a Client
-  7. View all Procedures scheduled on a specified datee
-  8. View all Clients and associated Procedures in the Client
-  9. Calculate the cost of all Procedures on a specified date
-  10. List all Procedures of a Client
-  11. Clear all Clients from Networkers
-  12. Find all Clients by keyword
-  13. Exit the program
-- **Command Summary**
-
+  
 --------------------------------------------------------------------------------------------------------------------
 ## UI Guide
 
@@ -80,11 +62,6 @@ in rectifying the error.
 - Items in square brackets are optional.
 
   For example, `find KEYWORD [MORE_KEYWORDS]` can be used as `find Apple Inc`.
-- Any additional parameters for specific commands that do not take in parameters (such as `help`, `exit` and `clear`) 
-will be ignored.
-
-  For example, if the command specifies `help 123`, it will be interpreted as `help`.
-- All inputs must be in sequence as shown in the instruction.
 - All indexes are integer based, as such the maximum value is 2147483647 (2<sup>31</sup> - 1).
 
 
@@ -124,7 +101,7 @@ In Application: ![list](images/deleteClientGUI.png)
 
 ### Edit a Client: `edit`
 
-Add your Client to Networkers. The client will initially start off with an empty Procedure list.
+Edit a Client in Networkers. The client will initially start off with an empty Procedure list.
 
 **Format:** `edit <CLIENT INDEX> (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/PLAN] [t/TAG]...`
 - `edit` refers to the command to edit a Client in Networker.
@@ -199,15 +176,15 @@ After Command:
 Edits an existing Procedure that belongs to an existing Client. This feature allows you to edit the main details related to the Procedure.
 The main details include the information, the date, and the cost of the Procedure.
 
-Note: After editting the Procedure, you have to type `listProc <CLIENT_INDEX>` for the change to be reflected on the GUI. This will be resolved in v1.4.
+Note: After editing the Procedure, you have to type `listProc <CLIENT_INDEX>` for the change to be reflected on the GUI. This will be resolved in v1.4.
 
 **Format:** `editProc <CLIENT INDEX> <PROCEDURE INDEX> [i/INFORMATION] [d/DATE] [c/COST]`
 - `editProc` refers to the command to edit a Procedure belonging to your Client.
 - `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. The index **must be** a positive integer 1, 2, 3, ...
 - `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen (that is associated with a Client). The index **must be** a positive integer 1, 2, 3, ...
 - `[i/INFORMATION]` refers to the informational detail of the Procedures in subsequent servicing trips. 
-- `[i/DATE]` refers to the date of the subsequent servicing trip of your client.
-- `[i/COST]` refers to the cost incurred from executing the Procedure that will be charged to your client.
+- `[d/DATE]` refers to the date of the subsequent servicing trip of your client.
+- `[c/COST]` refers to the cost incurred from executing the Procedure that will be charged to your client.
 - The information field, the date field, or the cost field **must be** filled up for this feature to run.
 
 **Example:** <br/>
@@ -234,11 +211,7 @@ No secondary information is required. You can use this feature after using `find
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `list`
-  - Result shows: <br/>
-  ```
-  1. Apple, 9XXXXXXX, Apple Road` <br/>
-  2. Singtel, 8XXXXXXX, Singtel Road`
-  ```
+  - Result shows: `Listed all clients.`
 
 In Application: ![list](images/listGUI.png)
 
@@ -249,6 +222,7 @@ Lists out all the Procedures related to a Client.
 **Format:** `listProc <CLIENT INDEX>`
 - `listProc` refers to the command to list all the Procedures related to an existing client. 
 - `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. The index **must be** a positive integer 1, 2, 3, ...
+
 **Example:**
 - `listProc 1`
   - Result shows: `Procedures successfully loaded.`
@@ -298,13 +272,11 @@ In Application: ![list](images/calculate.png)
 
 Clears all Clients and their respective Procedures currently recorded in Networkers. New Clients can be added normally via all stated commands.
 
-**Note: If all Clients have been deleted and Networkers is closed, Networkers will start up with a new template list of Clients. This is a feature intended to introduce new users to Networker's interface.**
-
 **Format:** `clear`
 - `clear` refers to the command of clearing all Clients and their respective Procedures in the application.
   - Result shows: `Address book has been cleared!`
 
-In Application: ![clear](images/clearCommand_After.png)
+In Application: ![clear](images/ClearCommand_After.png)
 
 ### Locating Clients by Name: `find`
 
