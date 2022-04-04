@@ -41,7 +41,7 @@ public class Cost implements Comparable<Cost> {
 
     @Override
     public String toString() {
-        return this.cost.toString();
+        return '$' + this.cost.toString();
     }
 
     @Override
