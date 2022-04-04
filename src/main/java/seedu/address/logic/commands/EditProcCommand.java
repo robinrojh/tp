@@ -48,7 +48,7 @@ public class EditProcCommand extends Command {
         + "[" + PREFIX_COST + "COST] ";
 
     public static final String MESSAGE_EDIT_PROCEDURE_SUCCESS = "Edited Procedure: %1$s, "
-        + "\n From client: %2$s, at $3$s";
+        + "\n From client: %2$s, at %3$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index clientIndex;
