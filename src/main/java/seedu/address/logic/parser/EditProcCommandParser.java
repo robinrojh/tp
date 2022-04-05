@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteProcCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditProcCommand;
 import seedu.address.logic.commands.EditProcCommand.EditProcedureDescriptor;
