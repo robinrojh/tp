@@ -9,9 +9,9 @@ import java.math.BigDecimal;
 public class Cost implements Comparable<Cost> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "1. Cost should be rounded to the nearest cent \n"
-                    + "2. Cost should be a positive value \n"
-                    + "3. Cost should follow the format 'dollars.cents'\n"
+            "1. Cost should be rounded to the nearest cent. \n"
+                    + "2. Cost should be more than 0. \n"
+                    + "3. Cost should follow the format 'dollars.cents'.\n"
                     + "Example: 31.10";
 
     public static final String VALIDATION_REGEX = "^(?!(?:0|0\\.0|0\\.00)$)[+]?\\d+(\\.\\d|\\.\\d[0-9])?$";
