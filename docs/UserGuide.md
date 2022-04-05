@@ -70,6 +70,8 @@ In order to use our program, you need to type your commands into the command box
 After typing, press enter: if the correct format is entered, it will execute the command, or else it will guide you 
 in rectifying the error.
 
+> :white_check_mark: **Tip:** Procedures of the first client in the list will be displayed on the procedure panel!
+
 ## Features
 
 ### Notes about command formats:
@@ -81,9 +83,9 @@ in rectifying the error.
 
   For example, `find KEYWORD [MORE_KEYWORDS]` can be used as `find Apple Inc`.
 - Any additional parameters for specific commands that do not take in parameters (such as `help`, `exit` and `clear`) 
-will be ignored.
+are not allowed.
 
-  For example, if the command specifies `help 123`, it will be interpreted as `help`.
+  For example, if the command specifies `help 123`, it will not be interpreted as `help`, so you must type `help`.
 - All inputs must be in sequence as shown in the instruction.
 - All indexes are integer based, as such the maximum value is 2147483647 (2<sup>31</sup> - 1).
 
@@ -343,8 +345,9 @@ Exits the program.
 | List All Procedures on Specified Date           | `listProcOn <DATE>`                                                                                             | `listProcOn 23/05/2022`                                  | 
 | Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                                                                              | `calculate 23/02/2022`                                   |
 | Clear All Clients                               | `clear`                                                                                                         | `clear`                                                  |
- | Find Clients by Keyword                         | `find KEYWORD [MORE_KEYWORDS]`                                                                                  | `find Apple Inc`                                         |
+| Find Clients by Keyword                         | `find KEYWORD [MORE_KEYWORDS]`                                                                                  | `find Apple Inc`                                         |
 | Exit program                                    | `exit`                                                                                                          | `exit`                                                   |
+
 ## FAQ
 
 ### Why is The Command Not Working?
