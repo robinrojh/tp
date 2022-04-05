@@ -35,7 +35,9 @@ done faster than traditional GUI apps.
   * **`deleteClient`**`3` : Deletes the 3rd client shown in the current list.
 
   * **`listProc`**`1` : 
-    Lists the procedures associated with the 1st client shown in the current list
+    Lists the procedures associated with the 1st client shown in the current list.
+
+  * **`mark`**`1 1` : Marks the first procedure in the first client as complete.
 
   * **`clear`** : Deletes all client.
 
@@ -322,6 +324,25 @@ Example:
 
 In Application: ![list](images/findCommandExample.png)
 
+### Marking a Procedure of a Client as Completed: `mark`
+
+Marks the target client's target procedure as completed.
+
+**Format:** `mark <CLIENT INDEX> <PROCEDURE INDEX>`
+- `mark` is the command word for this command.
+- `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. The index **must be** a positive integer 1, 2, 3, ...
+- `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen. The index **must be** a positive integer 1, 2, 3, ...
+
+### Unmarking a Procedure of a Client: `unmark`
+
+Marks the target client's target procedure as not complete.
+
+**Format:** `unmark <CLIENT INDEX> <PROCEDURE INDEX>`
+- `unmark` is the command word for this command.
+- `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. The index **must be** a positive integer 1, 2, 3, ...
+- `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen. The index **must be** a positive integer 1, 2, 3, ...
+
+
 ### Exiting the program: `exit`
 
 Exits the program.
@@ -343,8 +364,11 @@ Exits the program.
 | List All Procedures on Specified Date           | `listProcOn <DATE>`                                                                                             | `listProcOn 23/05/2022`                                  | 
 | Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                                                                              | `calculate 23/02/2022`                                   |
 | Clear All Clients                               | `clear`                                                                                                         | `clear`                                                  |
- | Find Clients by Keyword                         | `find KEYWORD [MORE_KEYWORDS]`                                                                                  | `find Apple Inc`                                         |
+| Find Clients by Keyword                         | `find KEYWORD [MORE_KEYWORDS]`                                                                                  | `find Apple Inc`                                         |
+| Mark Procedure as complete                      | `mark <CLIENT INDEX> <PROCEDURE INDEX>`                                                                         | `mark 1 1`                                               |
+| Unmark completed Procedure                      | `unmark <CLIENT INDEX> <PROCEDURE INDEX>`                                                                       | `unmark 1 1`                                             |
 | Exit program                                    | `exit`                                                                                                          | `exit`                                                   |
+
 ## FAQ
 
 ### Why is The Command Not Working?
