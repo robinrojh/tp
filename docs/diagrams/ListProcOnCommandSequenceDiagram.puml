@@ -21,10 +21,8 @@ deactivate Model
         activate Client
         ListProcOnCommand <-- Client : clientProceduresOnDate
         deactivate Client
+        ListProcOnCommand -> ListProcOnCommand : aggregate(clientProceduresOnDate)
     end
-ListProcOnCommand -> ListProcOnCommand : aggregate(clientProceduresOnDate)
-activate ListProcOnCommand
-return
 <-- ListProcOnCommand : CommandResult
-
+deactivate ListProcOnCommand
 @enduml
