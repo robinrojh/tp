@@ -10,11 +10,11 @@ title: Developer Guide
 
 ### **Purpose**
 
-This developer's guide clarifies the project architecture as well as  software design decisions for **Networkers**.
+This developer's guide clarifies the project architecture as well as software design decisions for **Networkers**.
 This guide will also look at how individual features are implemented in this project.
 
 *Networkers* is a **desktop app for managing contacts for network technicians,
-optimised for use via a Command Line Interface** (CLI)
+optimised for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI).
 
 ### **Intended Audience**
@@ -96,7 +96,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `ProcedureListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -118,7 +118,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a client).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a Client).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -179,9 +179,9 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Procedure (AddProc)
 
-The proposed undo/redo mechanism is facilitated by `AddProcCommand`. It extends `Command` taking in a new `Procedure` and `Index` which points to the client that it wishes to edit. It will also interact with `Storage` in order to store the information about the new procedure added. This operation is exposed in the `Model` interface as `Model#setProcedures()`.
+This mechanism is facilitated by `AddProcCommand`. It extends `Command` taking in a new `Procedure` and `Index` which points to the Client that it wishes to edit. It will also interact with `Storage` in order to store the information about the new Procedure added. This operation is exposed in the `Model` interface as `Model#setProcedures()`.
 
-In general, the `addProc` command is a command that takes in a string with specified prefixes and a client index. It will indicate new procedures that clients have added to their procedure list. If an invalid command (whether by index or prefix error), a respective exception will be thrown.
+In general, the `addProc` command is a command that takes in a string with specified prefixes and a Client index. It will indicate new Procedures that Clients have added to their Procedure list. If an invalid command (whether by index or prefix error), a respective exception will be thrown.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `addProc` API call.:
 
@@ -195,14 +195,13 @@ Step 3. This will result in a new `Procedure` object (based on the user inputs) 
 
 Step 4. With this, `LogicManager` will call `AddProcCommand` to execute.
 
-Step 5. Within `AddProcCommand`, it will retrieve the `Client` that needs to be added a new `Procedure` and add the new `Procedure` into its procedure list.
+Step 5. Within `AddProcCommand`, it will retrieve the `Client` that needs to be added a new `Procedure` and add the new `Procedure` into its Procedure list.
 
 Step 6. Once the `Client` has been updated to include the new `Procedure`, it will update `ModelManager` with the updated `Client` to reflect this change.
 
-
 ### Delete Procedures from a Client (DeleteProc)
 
-The proposed deleteProc mechanism is facilitated by the `DeleteProcCommandParser`.
+The deleteProc mechanism is facilitated by the `DeleteProcCommandParser`.
 The deleteProc mechanism allows deletion of a `Procedure` from an existing `Client` in the address book.
 The deleteProc is permanently erased and the remaining `Procedure` are stored locally after.
 It implements the following operations:
@@ -216,12 +215,12 @@ The `editClientProcedure(Client clientToEdit)` operation is exposed in the `Mode
 
 Given below is an example usage scenario and how the deleteProc mechanism behaves at each step.
 
-Step 1. The user finds the `Procedure` that the client has using `findProc <Index>`
-The UI lists all the `Procedure` associated to the client and would like to delete one.
+Step 1. The user finds the `Procedure` that the Client has using `findProc <Index>`
+The UI lists all the `Procedure` associated to the Client and would like to delete one.
 
 ![DeleteProcState0](images/DeleteProcState0.png)
 
-Step 2. The user executes `deleteProc 1 1` to delete the 1st `Procedure` associated with the 1st client in the address book.
+Step 2. The user executes `deleteProc 1 1` to delete the 1st `Procedure` associated with the 1st Client in the address book.
 The `deleteProc 1 1` command calls `DeleteProcCommand#(Client clientToEdit)`, which calls the `deleteProcedure(List<Procedure procedureList)` method to remove the `Procedure` from the list.
 This newly-created `Client` is saved locally through the `Model#setClient`, and displayed by updating the `UpdateFilteredClientList`.
 With the `Client` saved, the address book is saved at a new state.
@@ -237,11 +236,10 @@ The following sequence diagram shows how this operation works.
 **Aspect: Will `deleteProc` permanently delete the `Procedure`**
 
 * **Alternative 1 (current choice):** Deletes the entire Procedure.
-    * Pros: Easy to implement and use less stoage.
+    * Pros: Easy to implement and uses less storage.
     * Cons: Users might find it hard to retrieve pre-existing data of the user.
 
-* **Alternative 2:** Create a deleted status for the `Procedure` and only allow vision of undeleted `Procedure`.
-  itself.
+* **Alternative 2:** Create a deleted status for the `Procedure` and only allow vision of undeleted `Procedure` itself.
     * Pros: User could easily retrieve previous deleted data.
     * Cons: Can get storage-expensive, which makes future parsing slower.
     
@@ -249,7 +247,7 @@ The following sequence diagram shows how this operation works.
 
 Lists the Procedures for the given input index of a Client.
 
-If the Client doesn't have any procedures, it prints out a different message indicating that. Otherwise, it will simply
+If the Client doesn't have any Procedures, it prints out a different message indicating that. Otherwise, it will simply
 print out the success message on result window and update the right column of the UI.
 
 Below is the sequence diagram for executing ListProcCommand as a user.
@@ -261,21 +259,21 @@ Step 2: User calls the "listProc 1" command
 
 Step 3: LogicManager handles the command from user
 
-Step 4: ModelManager updates the procedure list accordingly and returns to LogicManager
+Step 4: ModelManager updates the Procedure list accordingly and returns to LogicManager
 
 Step 5: UI takes the return value from LogicManager and updates the UI
 
 **Why did I implement ListProcCommand this way?**
 
 In other functions like find, it doesn't seem that an explicit UI update was necessary.
-However, even when I update the procedure list correctly, the UI didn't get updated automatically.
-Therefore, after correctly updating the procedure list, I update the UI in MainWindow executeCommand method
+However, even when I update the Procedure list correctly, the UI didn't get updated automatically.
+Therefore, after correctly updating the Procedure list, I update the UI in MainWindow executeCommand method
 by creating a new ProcedureListPanel.
 
 ![ListProcCommand Example](images/ListProcCommandExample1.PNG)
 
 An additional point: listProc method is called in the UI before the user can input anything to display
-the first Client's procedures. This allows the user to understand exactly what the right column is for.
+the first Client's Procedures. This allows the user to understand exactly what the right column is for.
 
 ### List Procedures By Date (ListProcOn)
 
@@ -283,7 +281,7 @@ the first Client's procedures. This allows the user to understand exactly what t
 
 `ListProcOn` command takes in a date (in the form of dd/mm/yyyy) and returns the Procedures and the Clients' information attached to each of the Procedure that a technician should carry out on that requested date. <br/><br/>
 Like other Commands, user input is first parsed by `AddressBookParser`, which is then directed to `ListProcOnCommandParser`, parsing the date into `DateWithoutTime` class, and finally passing down to `ListProcOnCommand` for execution.
-Description of `DateWithoutTime` shall be omitted here since the class name is self-explanatory. The below class diagram illustrates such dependencies. <br/>
+Description of `DateWithoutTime` shall be omitted here since the class name is self-explanatory. The below simplified class diagram illustrates such dependencies. <br/>
 
 <img src="images/ListProcOnCommandClassDiagram.png" width="200" />
 
@@ -309,24 +307,24 @@ This aspect needs to be considered since it is not sufficient just to display al
 
 ### Calculate Cost By Date (Calculate)
 
-It gives functionality to the cost attribute within the procedure class by calculating total `Cost` from all procedures on a specified date.
+It gives functionality to the cost attribute within the Procedure class by calculating total `Cost` from all Procedures on a specified date.
 This provides an instance of total `Cost`, which is not stored locally.
 It implements the following operation:
 
-`Networkers#calculateCost(String date)` — returns total `Cost` from all procedures on a specified date.
+`Networkers#calculateCost(String date)` — returns total `Cost` from all Procedures on a specified date.
 
 The operation is exposed in the `Model` interface as `Model#calculateCost()`.
 
 Given below is an example usage scenario and how the calculateCost feature behaves at each step.
 
-Step 1. The user would already have procedures attributed to different clients in `Networkers`
-and would want to calculate all the costs of procedures conducted today (22/03/2022)
+Step 1. The user would already have Procedures attributed to different Clients in `Networkers`
+and would want to calculate all the costs of Procedures conducted today (22/03/2022)
 
 ![CalculateCostObjectDiagram](images/CalculateCostState1.png)
 
-Step 2. The user executes `calculate 22/03/2022` to calculate cost of all procedures on `22/03/2022`.
+Step 2. The user executes `calculate 22/03/2022` to calculate cost of all Procedures on `22/03/2022`.
 
-The following sequence diagram shows how this operation works
+The following sequence diagram shows how this operation works:
 
 ![CalculateCostObjectDiagram](images/CalculateSequenceDiagram.png)
 
@@ -334,7 +332,7 @@ The following sequence diagram shows how this operation works
 but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 1. The arguments passed to the logic manager will be parsed by the AddressBookParser class.
-2. If the given arguments are valid, further parsing will be carried out by the Calculate CommandParser.
+2. If the given arguments are valid, further parsing will be carried out by the CalculateCommandParser.
 3. If further parsing is successful, a new CalculateCommand object will be returned
 ##### In these parsers, invalid arguments will result in a ParseException.
 
@@ -342,11 +340,8 @@ A valid argument consists of 2 sections:
 1. valid command `calculate`
 2. valid date, `22/03/2022`
 
-A date is only valid if it follows the "dd/MM/uuuu" format and consists of a legitimate date,
+A date is only valid if it follows the "dd/MM/yyyy" format and consists of a legitimate date,
 taking leap years into account
-
-
-_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -367,7 +362,7 @@ _{more aspects and alternatives to be added}_
 **Target user profile**:
 
 * Has a need to manage a significant number of businesses (Client(s))
-* Has a need to manage different network-related procedures for his/her Client(s), such as maintaining and repairing network components like routers and modems
+* Has a need to manage different network-related Procedures for his/her Client(s), such as maintaining and repairing network components like routers and modems
 *  Prefers desktop apps over other types
 *  Can type fast
 *  Prefers typing to mouse interactions
@@ -383,13 +378,13 @@ _{more aspects and alternatives to be added}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       | Add a Procedure to a Client               | Add a Procedure associated with the Client.                 |
-| `* * *`  | user                                       | delete a Procedure from an existing Client| Delete a Procedure from the existing Client.                |
-| `* * *`  | user                                       | Add a Client                              | Add a Client to my contacts                                 |
-| `* * *`  | user                                       | delete a Client                           | Delete an existing Client when the client no longer engages with the networker company.|
-| `* * *`  | user with many clients in the address book | View all of my Client(s’) contacts (number, phone number, address) and procedures| Have a brief idea about how many Client(s) and associated Procedures I have at the moment.|
+| Priority | As a …​                                    | I want to …​                                                                      | So that I can…​                                                                            |
+| -------- |--------------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `* * *`  | user                                       | Add a Procedure to a Client                                                       | Add a Procedure associated with the Client.                                                |
+| `* * *`  | user                                       | delete a Procedure from an existing Client                                        | Delete a Procedure from the existing Client.                                               |
+| `* * *`  | user                                       | Add a Client                                                                      | Add a Client to my contacts                                                                |
+| `* * *`  | user                                       | delete a Client                                                                   | Delete an existing Client when the Client no longer engages with the networker company.    |
+| `* * *`  | user with many Clients in the address book | View all of my Client(s’) contacts (number, phone number, address) and Procedures | Have a brief idea about how many Client(s) and associated Procedures I have at the moment. |
 
 *{More to be added}*
 
@@ -467,13 +462,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list Client(s). (UC5)
 2. User sends in a command to delete the Procedure from a specific Client in the list.
-3. Networkers deletes the procedure from the Client(s).
+3. Networkers deletes the Procedure from the Client(s).
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The procedure does not exist.
+* 2a. The Procedure does not exist.
 
     Use case ends.
 
@@ -525,7 +520,7 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Client**: Refers to a business entity that the User is responsible for network-related procedures
+* **Client**: Refers to a business entity that the User is responsible for network-related Procedures
 * **Contact**: Refers to information for a Client, including its business name, phone number, and address.
 * **Procedure**: Refers to a network-related task that a User performs for a Client, such as fixing a router and setting up intranet.
 
@@ -557,17 +552,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases … }_
 
-### Deleting a client
+### Deleting a Client
 
-1. Deleting a client while all clients are being shown
+1. Deleting a Client while all Clients are being shown
 
-    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+    1. Prerequisites: List all Clients using the `list` command. Multiple Clients in the list.
 
     1. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No Client is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
