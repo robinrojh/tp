@@ -368,6 +368,7 @@ Exits the program.
 | Mark Procedure as complete                      | `mark <CLIENT INDEX> <PROCEDURE INDEX>`                                                                         | `mark 1 1`                                               |
 | Unmark completed Procedure                      | `unmark <CLIENT INDEX> <PROCEDURE INDEX>`                                                                       | `unmark 1 1`                                             |
 | Exit program                                    | `exit`                                                                                                          | `exit`                                                   |
+
 ## FAQ
 
 ### Why is The Command Not Working?
