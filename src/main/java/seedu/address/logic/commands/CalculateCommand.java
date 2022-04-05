@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.math.BigDecimal;
 import java.util.List;
 
-import seedu.address.commons.core.dateWithoutTime.DateWithoutTime;
+import seedu.address.commons.core.datewithouttime.DateWithoutTime;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
@@ -41,12 +41,11 @@ public class CalculateCommand extends Command {
 
         for (int i = 0; i < lastShownList.size(); i++) {
             Client currentClient = lastShownList.get(i);
-            BigDecimal currentCost = new BigDecimal(currentClient.getCostOnDate(targetDate));
+            BigDecimal currentCost = currentClient.getCostOnDate(targetDate);
             totalCost = totalCost.add(currentCost);
         }
         String totalCostString = totalCost.toPlainString();
 
-        System.out.println(totalCostString);
         return new CommandResult(String.format(MESSAGE_CALCULATE_COST_SUCCESS, totalCostString));
     }
 }

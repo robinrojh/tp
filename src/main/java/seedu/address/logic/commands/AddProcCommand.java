@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INFORMATION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +24,7 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.client.Plan;
 import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Add a procedure of an existing client in the address book.
@@ -42,8 +45,8 @@ public class AddProcCommand extends Command {
             + PREFIX_DATE + "20/03/2022 11:30 ";
 
     public static final String MESSAGE_SUCCESS = "New Procedure added: %1$s"; // Test needed
-    public static final String MESSAGE_DUPLICATE_PROCEDURE = "This Procedure is already listed to the Client";
-
+    public static final String MESSAGE_DUPLICATE_PROCEDURE = "The Client already has this Procedure."
+            + "\nTry creating a Procedure of different information, date, time, cost, or client.";
     private final Index index;
     private final Procedure procedure;
 
@@ -107,17 +110,23 @@ public class AddProcCommand extends Command {
                 tags, updatedProcedures);
     }
 
-    private List<Procedure> procListWithAddedProc(List<Procedure> procedureList)
+    /**
+     * Returns a list of Procedures that have been sorted according to their dates.
+     */
+    public List<Procedure> procListWithAddedProc(List<Procedure> procedureList)
             throws CommandException {
 
         List<Procedure> updatedProcedureList = new ArrayList<>();
         for (int i = 0; i < procedureList.size(); i++) {
-            if (procedureList.get(i).equals(procedure)) {
+            if (procedureList.get(i).isProcedureDuplicate(procedure)) {
                 throw new CommandException(MESSAGE_DUPLICATE_PROCEDURE);
             }
             updatedProcedureList.add(procedureList.get(i));
         }
         updatedProcedureList.add(procedure);
+        Comparator<Procedure> mapComparator = (Procedure m1, Procedure m2) -> m1.getDate()
+                .compareTo(m2.getDate());
+        Collections.sort(updatedProcedureList, mapComparator);
         return updatedProcedureList;
     }
 

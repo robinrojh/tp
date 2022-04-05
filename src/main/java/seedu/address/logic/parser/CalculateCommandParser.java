@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.core.dateWithoutTime.DateWithoutTime;
+import seedu.address.commons.core.datewithouttime.DateWithoutTime;
 import seedu.address.logic.commands.CalculateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -16,7 +16,6 @@ public class CalculateCommandParser {
     public CalculateCommand parse(String args) throws ParseException {
         try {
             DateWithoutTime date = ParserUtil.parseDateWithoutTime(args);
-            System.out.println(date);
             return new CalculateCommand(date);
         } catch (ParseException pe) {
             throw new ParseException(

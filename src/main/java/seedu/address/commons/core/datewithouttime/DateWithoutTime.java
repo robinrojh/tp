@@ -1,4 +1,4 @@
-package seedu.address.commons.core.dateWithoutTime;
+package seedu.address.commons.core.datewithouttime;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -7,8 +7,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
-
-import seedu.address.model.procedure.Date;
 
 /**
  * Represents a Procedure's date in the address book.
@@ -26,8 +24,7 @@ public class DateWithoutTime {
      */
     public static final String VALIDATION_REGEX = "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$";
 
-    public static final DateTimeFormatter FORMAT_WITH_DATE = DateTimeFormatter
-            .ofPattern("dd/MM/uuuu");
+    public static final DateTimeFormatter FORMAT_WITH_DATE = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 
     public final LocalDate validDate;
 
@@ -68,8 +65,8 @@ public class DateWithoutTime {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                && validDate.equals(((Date) other).validDate)); // state check
+                || (other instanceof DateWithoutTime // instanceof handles nulls
+                && validDate.equals(((DateWithoutTime) other).validDate)); // state check
     }
 }
 

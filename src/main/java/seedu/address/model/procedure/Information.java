@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Procedure's information in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidInformation(String)}
  */
-public class Information {
+public class Information implements Comparable<Information> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Information can take any values but it should not be blank";
@@ -55,4 +55,8 @@ public class Information {
         return info.hashCode();
     }
 
+    @Override
+    public int compareTo(Information otherInfo) {
+        return info.compareTo(otherInfo.info);
+    }
 }

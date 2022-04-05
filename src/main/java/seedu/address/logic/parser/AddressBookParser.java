@@ -14,11 +14,15 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteClientCommand;
 import seedu.address.logic.commands.DeleteProcCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditProcCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListProcCommand;
+import seedu.address.logic.commands.ListProcOnCommand;
+import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -57,29 +61,46 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+<<<<<<< HEAD
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);
+=======
+        case EditProcCommand.COMMAND_WORD:
+            return new EditProcCommandParser().parse(arguments);
+
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
+>>>>>>> master
 
         case DeleteProcCommand.COMMAND_WORD:
             return new DeleteProcCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            return new ExitCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
 
         case ListProcCommand.COMMAND_WORD:
             return new ListProcCommandParser().parse(arguments);
+
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
+
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommandParser().parse(arguments);
+
+        case ListProcOnCommand.COMMAND_WORD:
+            return new ListProcOnCommandParser().parse(arguments);
 
         case CalculateCommand.COMMAND_WORD:
             return new CalculateCommandParser().parse(arguments);
