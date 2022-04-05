@@ -72,7 +72,7 @@ In order to use our program, you need to type your commands into the command box
 After typing, press enter: if the correct format is entered, it will execute the command, or else it will guide you 
 in rectifying the error.
 
-> :white_check_mark: **Tip:** Procedures of the first client in the list will be displayed on the procedure panel!
+> :bulb: **Tip:** Procedures of the first client in the list will be displayed on the procedure panel!
 
 ## Features
 
