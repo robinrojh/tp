@@ -36,6 +36,7 @@ public class DeleteProcCommandParser implements Parser<DeleteProcCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteProcCommand.MESSAGE_USAGE));
         }
+
         return new DeleteProcCommand(indexes.get(GET_CLIENT_INDEX), indexes.get(GET_PROCEDURE_INDEX));
     }
 }

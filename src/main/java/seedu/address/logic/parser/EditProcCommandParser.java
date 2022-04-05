@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteProcCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditProcCommand;
 import seedu.address.logic.commands.EditProcCommand.EditProcedureDescriptor;
@@ -55,6 +56,11 @@ public class EditProcCommandParser implements Parser<EditProcCommand> {
 
         if (!editProcDescriptor.isAnyFieldsEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        if (indexes.size() != 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditProcCommand.MESSAGE_USAGE));
         }
 
         return new EditProcCommand(indexes.get(GET_CLIENT_INDEX),
