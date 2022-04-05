@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_CLIENT_PROCEDURES;
-import static seedu.address.testutil.Assert.assertThrows;W
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ARTFRIEND;
 import static seedu.address.testutil.TypicalClients.BOSS;
 
