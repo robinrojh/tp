@@ -11,9 +11,9 @@ import seedu.address.logic.commands.CalculateCommand;
 
 public class CalculateCommandParserTest {
 
-    private CalculateCommandParser parser = new CalculateCommandParser();
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, DateWithoutTime.MESSAGE_CONSTRAINTS);
+    private CalculateCommandParser parser = new CalculateCommandParser();
 
     @Test
     public void parse_validArgs_success() {

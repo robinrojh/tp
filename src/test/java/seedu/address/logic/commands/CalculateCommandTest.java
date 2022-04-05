@@ -19,10 +19,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PLAN_BURGER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FASTFOOD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TECH;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.datewithouttime.DateWithoutTime;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -33,16 +37,13 @@ import seedu.address.model.procedure.Procedure;
 import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.ProcedureBuilder;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class CalculateCommandTest {
+
+    private String noCost = "0";
     private Model newModel;
     private Model expectedModel;
-
-    private static String NO_COST = "0";
 
     @BeforeEach
     public void setUp() {
@@ -57,9 +58,9 @@ public class CalculateCommandTest {
         // client 1 has 2 procedures that are on same day -- 18/03/2022
         List<Procedure> client2Proc = new ArrayList<>();
         client2Proc.add(DESC_REPLACE);
-        Procedure desc_repair_with_replace_date = new ProcedureBuilder(DESC_REPAIR)
+        Procedure repairWithReplaceDate = new ProcedureBuilder(DESC_REPAIR)
                 .withDate(VALID_DATE_REPLACE).build();
-        client2Proc.add(desc_repair_with_replace_date);
+        client2Proc.add(repairWithReplaceDate);
 
         Client firstSampleClient = new ClientBuilder().withName(VALID_NAME_APPLE).withPhone(VALID_PHONE_APPLE)
                 .withEmail(VALID_EMAIL_APPLE).withAddress(VALID_ADDRESS_APPLE).withPlan(VALID_PLAN_APPLE)
@@ -89,7 +90,7 @@ public class CalculateCommandTest {
     @Test
     public void execute_dateWith0Procedures_success() {
         CalculateCommand calculateCommand = new CalculateCommand(new DateWithoutTime("30/04/2022"));
-        String totalCostString = '$' + NO_COST;
+        String totalCostString = '$' + noCost;
         String expectedMessage = String.format(MESSAGE_CALCULATE_COST_SUCCESS, totalCostString);
         assertCommandSuccess(calculateCommand, newModel, expectedMessage, expectedModel);
     }
