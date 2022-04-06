@@ -129,7 +129,8 @@ Deletes a specified Client in Networkers.
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `deleteClient 1` 
-  - This triggers the deletion of the first Client in your Client list.
+  - This triggers the deletion of the first Client in your Client list. 
+  - When you delete a Client, you will delete the Procedures that are tagged to them as well.
   - Result shows: `Deleted Client: Apple; Phone: 91234561; Email: apple@example.com; Address: 311, Bedok Ave 3, #01-15; Plan: Plan 50GBps; Tags: [corporate]`
 
 In Application: ![list](images/deleteClientGUI.png)
