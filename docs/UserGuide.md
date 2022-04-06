@@ -157,7 +157,7 @@ In Command Line Interface (CLI):
   - This triggers the editing of the indicated client.
   - Result shows: `Edited Client: Apple; Phone: 66595327; Email: optical88@example.com; Address: 3155 Commonwealth Ave W, #05-27; Plan: EXPRESS 200MBps; Tags: [family]`
 
-In Application: ![Ui](images/editClient_After.png)
+In Application: ![Ui](images/EditClient_After.png)
 
 ### Add a Procedure to a Client: `addProc`
 
@@ -201,11 +201,11 @@ In Command Line Interface (CLI):
 
 Before Command:
 
-![deleteProc](images/deleteProcCommand_Before.png)
+![deleteProc](images/DeleteProcCommand_Before.png)
 
 After Command:
 
-![deleteProc](images/deleteProcCommand_After.png)
+![deleteProc](images/DeleteProcCommand_After.png)
 
 ### Edit a Procedure of your Client: `editProc`
 
@@ -230,11 +230,11 @@ In Command Line Interface (CLI):
 
 Before Command: 
 
-![editProc](images/editProcCommand_Before.png)
+![editProc](images/EditProcCommand_Before.png)
 
 After Command: After editting the Procedure, you have to type listProc for the change to be reflected. This will be resolved in v1.4.
 
-![editProc](images/editProcCommand_After.png)
+![editProc](images/EditProcCommand_After.png)
 
 ### View All Clients: `list`
 
@@ -317,7 +317,7 @@ Clears all Clients and their respective Procedures currently recorded in Network
 - `clear` refers to the command of clearing all Clients and their respective Procedures in the application.
   - Result shows: `Address book has been cleared!`
 
-In Application: ![clear](images/clearCommand_After.png)
+In Application: ![clear](images/ClearCommand_After.png)
 
 ### Locating Clients by Name: `find`
 
