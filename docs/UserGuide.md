@@ -150,6 +150,7 @@ Add your Client to Networkers. The client will initially start off with an empty
 - `[t/TAG]` refers to an optional field of editing your client's tag.
 - In order to trigger this command, at least one of the following fields must be edited: `name`, `phone`, `email`, 
 `address`, `plan`, `tag`.
+- Note that by editing your client's details, you will be overwriting their existing data.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
