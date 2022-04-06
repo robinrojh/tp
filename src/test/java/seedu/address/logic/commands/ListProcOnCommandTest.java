@@ -62,9 +62,9 @@ public class ListProcOnCommandTest {
     public void execute_dateWithProcedures_success() {
         ListProcOnCommand listProcOnCommand = new ListProcOnCommand(new DateWithoutTime("21/04/2022"));
         String expectedMessage = "Listing Procedures on requested date:\n"
-                + "1. Information: Repair Router; Date: 21/04/2022 11:50; Cost: $13.50; Completed: true\n"
+                + "1. Information: Repair Router; Date: 21/04/2022 11:50; Cost: 13.50; Completed: true\n"
                 + "Apple, located at Block 312, Apple Street 1\n"
-                + "2. Information: Repair Router; Date: 21/04/2022 11:50; Cost: $13.50; Completed: true\n"
+                + "2. Information: Repair Router; Date: 21/04/2022 11:50; Cost: q13.50; Completed: true\n"
                 + "Burger King, located at Block 123, Burger Street 3\n";
         assertCommandSuccess(listProcOnCommand, newModel, expectedMessage, expectedModel);
     }

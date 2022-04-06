@@ -38,7 +38,7 @@ public class JsonAdaptedProcedure {
     public JsonAdaptedProcedure(Procedure source) {
         information = source.getInfo().info;
         date = source.getDate().toString();
-        cost = source.getCost().value().toString();
+        cost = source.getCost().toString();
         hasCompleted = source.getHasCompleted().toString();
     }
 
