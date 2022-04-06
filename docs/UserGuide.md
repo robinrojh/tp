@@ -50,7 +50,7 @@ done faster than traditional GUI apps.
 
 ### Using the UI
 
-In order to use our program, you need to type your commands into the command box as shown in the above image.
+To use our program, you need to type your commands into the command box as shown in the above image.
 After typing, press enter: if the correct format is entered, it will execute the command, or else it will guide you 
 in rectifying the error.
 
@@ -61,9 +61,9 @@ in rectifying the error.
 ### Notes about command formats:
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
 
-  For example, in `addClient n/NAME`, `NAME` is a parameter which can be used as `addClient n/John Doe`.
+  For example, in `addClient n/NAME`, `NAME` is a parameter that can be used as `addClient n/John Doe`.
 
-- When more than 1 parameter from the user is required, parameters will be seperated with the use  of 
+- When more than 1 parameter from the user is required, parameters will be separated with the use  of 
   indicators, in the form of `x/xxxxx`
   
   For example, in the add command, since more than one parameter needs to be specified, the command takes
@@ -84,7 +84,7 @@ Add your Client to Networkers. The client will initially start off with an empty
 - `addClient` refers to the command of adding a Client.
 - Equality checks for this command only come into effect if all attributes are identical,
   including the presence of whitespaces.
-- There exists some fields that are mandatory for this function. These fields include their name, phone_number, address 
+- There exist some fields that are mandatory for this function. These fields include their name, phone_number, address 
 and a (subscription) plan.
 
 **Example:** <br/>
@@ -145,7 +145,7 @@ Note: After editing the Procedure, you have to type `listProc <CLIENT_INDEX>` fo
 **Format:** `addProc <CLIENT INDEX> i/INFORMATION c/COST d/DATE_TIME`
 - `addProc` refers to the command of adding a Procedure to the Client at the specified index.
 - `<CLIENT INDEX>` refers to the index number shown in the displayed Client list. The index **must be** a positive integer 1, 2, 3, …
-- `INFORMATION` refers to the tasks or problems that need to be addressed to the Client’s business site.
+- `INFORMATION` refers to the tasks or problems that need to be addressed on the Client’s business site.
 - `COST` is the cost required for the Procedure.
 - `DATE_TIME` is the date and time that the Procedure takes place. It accepts inputs in the form of `dd/MM/YYYY HH:MM`, e.g. 20/03/2022 11:30.
 - A new Procedure will be auto-sorted based on the date when the Procedure takes place, in ascending order.
@@ -162,8 +162,6 @@ In Application: ![addProc](images/addProcGUI.png)
 ### Delete a Procedure from the Client: `deleteProc`
 
 Deletes a Procedure associated with your Client. This is important as it allows you to maintain and make changes to the database.
-
-Note: After editting the Procedure, you have to type `listProc <CLIENT_INDEX>` for the change to be reflected on the GUI. This will be resolved in v1.4.
 
 **Format:** `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`
 - `deleteProc` refers to the command of deleting a Procedure from the Client at the specified index.
@@ -209,14 +207,14 @@ Before Command:
 
 ![editProc](images/editProcCommand_Before.png)
 
-After Command: After editting the Procedure, you have to type listProc for the change to be reflected. This will be resolved in v1.4.
+After Command: After editing the Procedure, you have to type listProc for the change to be reflected. This will be resolved in v1.4.
 
 ![editProc](images/editProcCommand_After.png)
 
 ### View All Clients: `list`
 
-Lists out all the Clients saved in your database. This feature will be used to display all the Clients added onto the application. 
-No secondary information is required. You can use this feature after using `find` command to see all clients.
+Lists out all the Clients saved in your database. This feature will be used to display all the Clients added to the application. 
+No secondary information is required. After using the `find` command, you can use this feature to see all clients.
 
 **Format:** `list`
 - `list` refers to the command to list all clients saved in your database.
@@ -267,7 +265,7 @@ In Application: ![listProcOn](images/listProcOn.png)
 
 ### Calculate the cost of all Procedures on a specified date: `calculate`
 
-Calculates the cost of all Procedures that happen any time on a specified date.
+Calculates the cost of all Procedures that happen at any time on a specified date.
 
 **Format:** `calculate <DATE>`
 - `calculate` refers to the command of calculating cost of all Procedures on a specified date.
@@ -360,7 +358,7 @@ There are several cases in which you might face errors when entering a command:
 
 - Typing in the command word wrongly (e.g. typing `lisst` instead of `list`)
 - Typing in wrong number of inputs (e.g. typing `deleteClient` or `deleteClient 5 2` instead of `deleteClient 2`)
-- Typing in letters for numbers or vice verse (e.g. typing `listProc hello` instead of `listProc 1`)
+- Typing in letters for numbers or vice versa (e.g. typing `listProc hello` instead of `listProc 1`)
 - You entered the correct command but wrong inputs (e.g. typing `deleteProc 1 10` when there is no 10th client)
 
 The corresponding error messages will be displayed in the result box, so do take a look at them.
