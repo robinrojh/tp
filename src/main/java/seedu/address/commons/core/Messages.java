@@ -14,7 +14,5 @@ public class Messages {
         "Please provide a Procedure index that belongs to an existing Procedure.";
     public static final String MESSAGE_INVALID_PROCEDURE_NON_POSITIVE_INDEX = "Please provide a positive "
             + "procedure index";
-    public static final String MESSAGE_INVALID_PROCEDURE_DUPLICATED = "The Client already has this Procedure."
-            + "\nTry creating a Procedure of different information, date, time, cost, or client.";
     public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW = "%1$d clients listed!";
 }
