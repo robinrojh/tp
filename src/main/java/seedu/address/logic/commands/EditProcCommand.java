@@ -49,9 +49,9 @@ public class EditProcCommand extends Command {
 
     public static final String MESSAGE_EDIT_PROCEDURE_SUCCESS = "Edited Procedure: %1$s, "
         + "\n From client: %2$s, at %3$s";
-    public static final String MESSAGE_INVALID_EDIT_PROCEDURE_DUPLICATED = "This Client already has this " +
-        "Procedure.\nEnsure that the edited field of the Procedure do not share the same information," +
-        "date, time, and cost with another Procedure that belongs to this Client.";
+    public static final String MESSAGE_INVALID_EDIT_PROCEDURE_DUPLICATED = "This Client already has this "
+        + "Procedure.\nEnsure that the edited field of the Procedure do not share the same information,"
+        + "date, time, and cost with another Procedure that belongs to this Client.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index clientIndex;
