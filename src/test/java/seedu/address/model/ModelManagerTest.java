@@ -2,21 +2,29 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_CLIENT_PROCEDURES;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ARTFRIEND;
 import static seedu.address.testutil.TypicalClients.BOSS;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.model.procedure.Procedure;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.ProcedureBuilder;
 
 public class ModelManagerTest {
 
@@ -70,6 +78,22 @@ public class ModelManagerTest {
         Path path = Paths.get("address/book/file/path");
         modelManager.setAddressBookFilePath(path);
         assertEquals(path, modelManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void hasClient_hasProcedure_updatesFilteredProcedureList() {
+        List<Procedure> procedureList = new ArrayList<Procedure>();
+        procedureList.add(new ProcedureBuilder().build());
+        Client client = new ClientBuilder().withProcedures(procedureList).build();
+        modelManager.addClient(client);
+        assertNotNull(modelManager.getFilteredClientList());
+
+        // Procedure list should be empty before update
+        assertEquals(modelManager.getFilteredProcedureList().size(), 0);
+
+        // Updates procedure list correctly
+        modelManager.updateFilteredProcedureList(client, PREDICATE_SHOW_CLIENT_PROCEDURES);
+        assertEquals(modelManager.getFilteredProcedureList().size(), 1);
     }
 
     @Test
