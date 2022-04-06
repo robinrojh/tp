@@ -35,7 +35,9 @@ done faster than traditional GUI apps.
   * **`deleteClient`**`3` : Deletes the 3rd client shown in the current list.
 
   * **`listProc`**`1` : 
-    Lists the procedures associated with the 1st client shown in the current list
+    Lists the procedures associated with the 1st client shown in the current list.
+
+  * **`mark`**`1 1` : Marks the first procedure in the first client as complete.
 
   * **`clear`** : Deletes all client.
 
@@ -52,16 +54,25 @@ In order to use our program, you need to type your commands into the command box
 After typing, press enter: if the correct format is entered, it will execute the command, or else it will guide you 
 in rectifying the error.
 
+> :bulb: **Tip:** Procedures of the first client in the list will be displayed on the procedure panel!
+
 ## Features
 
 ### Notes about command formats:
-
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
 
   For example, in `addClient n/NAME`, `NAME` is a parameter which can be used as `addClient n/John Doe`.
+
+- When more than 1 parameter from the user is required, parameters will be seperated with the use  of 
+  indicators, in the form of `x/xxxxx`
+  
+  For example, in the add command, since more than one parameter needs to be specified, the command takes
+  the form of `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS l/PLAN t/[TAG]`. 
+
 - Items in square brackets are optional.
 
   For example, `find KEYWORD [MORE_KEYWORDS]` can be used as `find Apple Inc`.
+
 - All indexes are integer based, as such the maximum value is 2147483647 (2<sup>31</sup> - 1).
 
 
@@ -71,6 +82,8 @@ Add your Client to Networkers. The client will initially start off with an empty
 
 **Format:** `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS l/PLAN t/[TAG]...`
 - `addClient` refers to the command of adding a Client.
+- Equality checks for this command only come into effect if all attributes are identical,
+  including the presence of whitespaces.
 - There exists some fields that are mandatory for this function. These fields include their name, phone_number, address 
 and a (subscription) plan.
 
@@ -294,6 +307,25 @@ Example:
 
 In Application: ![list](images/findCommandExample.png)
 
+### Marking a Procedure of a Client as Completed: `mark`
+
+Marks the target client's target procedure as completed.
+
+**Format:** `mark <CLIENT INDEX> <PROCEDURE INDEX>`
+- `mark` is the command word for this command.
+- `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. The index **must be** a positive integer 1, 2, 3, ...
+- `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen. The index **must be** a positive integer 1, 2, 3, ...
+
+### Unmarking a Procedure of a Client: `unmark`
+
+Marks the target client's target procedure as not complete.
+
+**Format:** `unmark <CLIENT INDEX> <PROCEDURE INDEX>`
+- `unmark` is the command word for this command.
+- `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. The index **must be** a positive integer 1, 2, 3, ...
+- `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen. The index **must be** a positive integer 1, 2, 3, ...
+
+
 ### Exiting the program: `exit`
 
 Exits the program.
@@ -315,8 +347,11 @@ Exits the program.
 | List All Procedures on Specified Date           | `listProcOn <DATE>`                                                                                             | `listProcOn 23/05/2022`                                  | 
 | Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                                                                              | `calculate 23/02/2022`                                   |
 | Clear All Clients                               | `clear`                                                                                                         | `clear`                                                  |
- | Find Clients by Keyword                         | `find KEYWORD [MORE_KEYWORDS]`                                                                                  | `find Apple Inc`                                         |
+| Find Clients by Keyword                         | `find KEYWORD [MORE_KEYWORDS]`                                                                                  | `find Apple Inc`                                         |
+| Mark Procedure as complete                      | `mark <CLIENT INDEX> <PROCEDURE INDEX>`                                                                         | `mark 1 1`                                               |
+| Unmark completed Procedure                      | `unmark <CLIENT INDEX> <PROCEDURE INDEX>`                                                                       | `unmark 1 1`                                             |
 | Exit program                                    | `exit`                                                                                                          | `exit`                                                   |
+
 ## FAQ
 
 ### Why is The Command Not Working?
