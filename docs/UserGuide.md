@@ -125,6 +125,7 @@ Deletes a specified Client in Networkers.
 - Deletes an existing Client at the specified index in your Client list.
 - `<CLIENT INDEX>` refers to the ordering number shown in your displayed Client list.
 - The index **must be** a positive integer 1, 2, 3, …
+- The greatest Client index that you can assess is 2147483647.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
