@@ -16,5 +16,7 @@ public class Messages {
             + "procedure index";
     public static final String MESSAGE_INVALID_PROCEDURE_DUPLICATED = "The Client already has this Procedure."
             + "\nTry creating a Procedure of different information, date, time, cost, or client.";
+    public static final String MESSAGE_CALCULATE_COST_SUCCESS = "Total Cost: %1$s";
     public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW = "%1$d clients listed!";
+
 }
