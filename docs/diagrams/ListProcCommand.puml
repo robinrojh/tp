@@ -9,25 +9,33 @@ end box
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":ListProcCommand" as ListProcCommand LOGIC_COLOR
+participant "lpc:ListProcCommand" as ListProcCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
 
-create MainWindow
+-> MainWindow : show()
+
 activate MainWindow
-[-> MainWindow
 MainWindow -> MainWindow : executeCommand("listProc 1")
 
 'LogicManager column'
 activate LogicManager
 MainWindow -> LogicManager : execute("listProc 1")
 LogicManager -> AddressBookParser : parseCommand("listProc 1")
+activate AddressBookParser
 
+create ListProcCommand
+AddressBookParser -> ListProcCommand : new
+
+activate ListProcCommand
+AddressBookParser <-- ListProcCommand : lpc
+deactivate ListProcCommand
 'ListProcCommand column'
-LogicManager <-- AddressBookParser : listProcCommand
+
+LogicManager <-- AddressBookParser : lpc
 deactivate AddressBookParser
 
 LogicManager -> ListProcCommand : execute()

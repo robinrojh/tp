@@ -270,10 +270,13 @@ However, even when I update the Procedure list correctly, the UI didn't get upda
 Therefore, after correctly updating the Procedure list, I update the UI in MainWindow executeCommand method
 by creating a new ProcedureListPanel.
 
-![ListProcCommand Example](images/ListProcCommandExample1.PNG)
+> :question: Why is listProc command is called in the UI before any user input?
+> 
+> :bulb: This displays the first Client's Procedures so that the user can understand
+> what the right column is for.
 
-An additional point: listProc method is called in the UI before the user can input anything to display
-the first Client's Procedures. This allows the user to understand exactly what the right column is for.
+
+![ListProcCommand Example](images/ListProcCommandExample1.PNG)
 
 ### List Procedures By Date (ListProcOn)
 
@@ -379,12 +382,13 @@ taking leap years into account
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                                                      | So that I can…​                                                                            |
-| -------- |--------------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | user                                       | Add a Procedure to a Client                                                       | Add a Procedure associated with the Client.                                                |
-| `* * *`  | user                                       | delete a Procedure from an existing Client                                        | Delete a Procedure from the existing Client.                                               |
-| `* * *`  | user                                       | Add a Client                                                                      | Add a Client to my contacts                                                                |
-| `* * *`  | user                                       | delete a Client                                                                   | Delete an existing Client when the Client no longer engages with the networker company.    |
-| `* * *`  | user with many Clients in the address book | View all of my Client(s’) contacts (number, phone number, address) and Procedures | Have a brief idea about how many Client(s) and associated Procedures I have at the moment. |
+| -------- |--------------------------------------------|-----------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `* * *`  | user                                       | Add a Procedure to a Client                                           | Add a Procedure associated with the Client.                                                |
+| `* * *`  | user                                       | delete a Procedure from an existing Client                            | Delete a Procedure from the existing Client.                                               |
+| `* * *`  | user                                       | Add a Client                                                          | Add a Client to my contacts                                                                |
+| `* * *`  | user                                       | delete a Client                                                       | Delete an existing Client when the Client no longer engages with the me.                   |
+| `* * *`  | user with many Clients in the address book | View all of my Client(s’) contacts (number, phone number, address)    | Have a brief idea about how many Client(s) I have at the moment.                                          |
+| `* * *`  | user with many Clients and tasks to remember | View all of procedures related to each Client(s'), Client by Client | View all the work that I have done related to this Client and potentially use it for events like audit |
 
 *{More to be added}*
 
