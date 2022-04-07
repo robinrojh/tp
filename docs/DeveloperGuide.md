@@ -484,8 +484,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2c.The User requests to delete a non-existing Procedure from an existing Client.
     * 2c1. Networkers shows an error message.
-
-      Use case ends.
+    * 2c2. User enters new input
+      Steps 2c1-2c2 are repeated until the data entered is correct
+      Use case resumes at step 3.
 
 
 * 2d.The User requests to delete an existing Procedure from a non-existing Client.
@@ -498,18 +499,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list Client(s).
-2. Networkers displays the list of Client(s) with associated Procedures.
+2. Networkers displays the list of Client(s).
 
    Use case ends.
 
 **Extensions**
 
 * 2a.  The list is empty.
-  * 2a1. Networkers shows an error message.
+  * 2a1. Networkers shows a message to indicate empty Client list.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-**Use case 5: Calculating cost of procedures on a specified day**
+**Use case 6: Listing Procedure(s) of a Specified Client**
+
+**MSS**
+
+1. User requests to list all Client(s). (UC 5)
+2. User requests to list Procedure(s) of a specified Client.
+3. Networkers displays the list of Procedures in the Client(s).
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of Procedures is empty
+    * 2a1. Networkers shows a message to indicate empty Procedure list.
+
+    Use case ends.
+
+**Use case 7: Calculating The Cost of Procedures on a Specified Day**
 
 **MSS**
 1. User sends in a command to sum the cost of all procedures on that date (UC5)
@@ -528,9 +546,7 @@ Use case ends.
     * 1b1. Networkers returns a cost of $0
 
       Use case resumes at step 1.
-
-{More to be added}
-
+    
 
 ### Non-Functional Requirements
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
