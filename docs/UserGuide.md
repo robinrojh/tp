@@ -112,7 +112,7 @@ Deletes a specified Client in Networkers.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
-- `deleteClient 1` 
+- `deleteClient 5` 
   - This triggers the deletion of the first Client in your Client list.
   - Result shows: `Deleted Client: Apple; Phone: 91234561; Email: apple@example.com; Address: 311, Bedok Ave 3, #01-15; Plan: Plan 50GBps; Tags: [corporate]`
 
