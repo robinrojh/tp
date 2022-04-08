@@ -549,13 +549,20 @@ Use case ends.
     
 
 ### Non-Functional Requirements
-1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+#### Technical Requirements
+1. Networkers should work on any mainstream OS as long as it has Java 11 or above installed.
+2. Networkers should be able to work on both 32-bit and 64-bit environments.
+3. Networkers should be backwards compatible.
+
+#### Performance Requirements
+1. Networkers should respond within two seconds.
 2. Should be able to hold up to 1000 Client(s) without a noticeable sluggishness in performance for typical usage.
 3. Should be able to hold up to 10 Procedure in each Client without a noticeable sluggishness in performance for typical usage.
-4. A User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5. The system should respond within two seconds.
 
-*{More to be added}*
+#### Quality Requirements
+1. A User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Networkers should be in English.
+3. Networkers should be able to be used by colour-blind users.
 
 ### Glossary
 
