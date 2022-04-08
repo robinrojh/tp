@@ -45,12 +45,10 @@ public class DateWithoutTime {
     public static boolean isValidDate(String test) {
         if (test.matches(VALIDATION_REGEX)) {
             try {
-                System.out.println("correct format");
                 LocalDate.parse(test, FORMAT_WITH_DATE
                         .withResolverStyle(ResolverStyle.STRICT));
                 return true;
             } catch (DateTimeParseException err) {
-                System.out.println("invalid date");
                 return false;
             }
         }

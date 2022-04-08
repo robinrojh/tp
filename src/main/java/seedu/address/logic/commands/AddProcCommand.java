@@ -47,7 +47,7 @@ public class AddProcCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Procedure added: %1$s"; // Test needed
     public static final String MESSAGE_DUPLICATE_PROCEDURE = "The Client already has this Procedure."
-            + "\nTry creating a Procedure of different information, date, time, cost, or client.";
+            + "\nTry adding a Procedure of different information, date, time, cost, or to a different Client.";
     private final Index index;
     private final Procedure procedure;
 
