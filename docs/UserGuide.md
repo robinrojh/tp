@@ -125,13 +125,13 @@ Deletes a specified Client in Networkers.
 - Deletes an existing Client at the specified index in your Client list.
 - `<CLIENT INDEX>` refers to the ordering number shown in your displayed Client list.
 - The index **must be** a positive integer 1, 2, 3, …
-- The greatest Client index that you can assess is 2147483647.
+- The largest Client index that you can assess is 2147483647.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `deleteClient 1` 
   - This triggers the deletion of the first Client in your Client list. 
-  - When you delete a Client, you will delete the Procedures that are tagged to them as well.
+  - ❗ When you delete a Client, you will delete the Procedures that are tagged to them as well.
   - Result shows: `Deleted Client: Apple; Phone: 91234561; Email: apple@example.com; Address: 311, Bedok Ave 3, #01-15; Plan: Plan 50GBps; Tags: [corporate]`
 
 In Application: ![list](images/deleteClientGUI.png)
@@ -151,7 +151,7 @@ Add your Client to Networkers. The client will initially start off with an empty
 - `[t/TAG]` refers to an optional field of editing your client's tag.
 - In order to trigger this command, at least one of the following fields must be edited: `name`, `phone`, `email`, 
 `address`, `plan`, `tag`.
-- Note that by editing your client's details, you will be overwriting their existing data.
+- ❗ Note that by editing your client's details, you will be overwriting their existing data.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
