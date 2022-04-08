@@ -9,16 +9,17 @@
 #### Enhancements implemented:
 
 - `listProc` Command
-
 - Handle UI-related problems and enhancements
-
 - Mark and Unmark Command
-
 - JsonAdaptedProcedure
-
 - Single-worded Command Parsing and Validation
 
 #### Contributions to the UG
+
+- Section: **View All Clients: `list`**
+- Section: **View All Procedures of a Client: `listProc`**
+- Small Sections: **Clear, Exit**
+- Command Summary Table Maintenance
 
 #### Contributions to the DG
 
@@ -30,5 +31,10 @@
 
 - [Pull Requests Reviewed by me](https://github.com/AY2122S2-CS2103T-W13-1/tp/pulls?q=is%3Apr+reviewed-by%3Arobinrojh+)
 
-#### Contributions beyond the project team
+### UG Excerpts
+
+
+
+### DG Excerpts
+
 
