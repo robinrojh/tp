@@ -1,13 +1,8 @@
--> ":UiManager" : start()
-activate ":UiManager"
-":UiManager" -> ":MainWindow" : fillInnerParts()
-activate ":MainWindow"
-":MainWindow" -> ":MainWindow" : executeCommand("deleteProc 1 1")
-activate ":MainWindow"
-":MainWindow"
 @startuml
+!include style.puml
+!define LOGIC_COLOR_T1 #7777DB
 
-box "Logic" #LightBlue
+box "Logic" LOGIC_COLOR_T1
 -> ":LogicManager" : execute("editProc 1 1 c/25")
 activate ":LogicManager"
 ":LogicManager" -> ":AddressBookParser" : parseCommand("editProc 1 1 ")
@@ -93,11 +88,6 @@ deactivate ":EditProcCommand"
 activate ":ModelManager"
 ":ModelManager" --> ":LogicManager"
 deactivate ":ModelManager"
-
-":LogicManager" -> ":Storage" : saveAddressBook(addressBook)
-activate ":Storage"
-":Storage" --> ":LogicManager"
-deactivate ":Storage"
 
 <-- ":LogicManager"
 deactivate ":LogicManager"
