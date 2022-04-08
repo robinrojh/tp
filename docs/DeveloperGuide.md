@@ -495,7 +495,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list Client(s).
 2. Networkers displays the list of Client(s) with associated Procedures.
-Use case ends.
 
    Use case ends.
 
@@ -505,6 +504,26 @@ Use case ends.
   * 2a1. Networkers shows an error message.
 
     Use case resumes at step 1.
+
+**Use case 5: Calculating cost of procedures on a specified day**
+
+**MSS**
+1. User sends in a command to sum the cost of all procedures on that date (UC5)
+2. Networkers returns the total cost of all associated procedures.
+   
+Use case ends.
+
+**Extensions**
+
+* 1a.  The date is invalid
+    * 1a1. Networkers shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b.  There are no procedures on the specified date
+    * 1b1. Networkers returns a cost of $0
+
+      Use case resumes at step 1.
 
 {More to be added}
 

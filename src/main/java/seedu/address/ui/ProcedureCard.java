@@ -40,8 +40,8 @@ public class ProcedureCard extends UiPart<Region> {
         this.procedure = procedure;
         id.setText(displayedIndex + ". ");
         information.setText(procedure.getInfo().toString());
-        date.setText(procedure.getDate().toString());
-        cost.setText(procedure.getCost().toString());
+        date.setText("Date: " + procedure.getDate().toString());
+        cost.setText("Cost: $" + procedure.getCost().toString());
         hasCompleted.setText("Completed: " + procedure.getHasCompleted().toString());
     }
 

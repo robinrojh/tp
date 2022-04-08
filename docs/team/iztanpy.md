@@ -12,19 +12,32 @@ Networkers is a desktop address book application used for teaching Software Engi
   )
 
 - **Enhancements implemented:**
-    * to be added soon
-
+  
+  * Created `Procedure` Class as well as related attribute classes. This included
+    * `Date` Class
+    * `Cost` Class
+    * `Information` Class
+  * Created the `Calculate` command and parser, which calculates the cost of all procedures
+  on a specified date.
+  * Created the relevant tests for procedure along with its accompanying classes
+  * Created tests for `Calculate` as well as its parser.
+  *  Generally cleaned up the code within the application to better fit our theme
+  
 - **Contributions to the UG:**
-    * to be added soon
+  * Introduction
+  * Quick Start
+  * `AddClient` Command
+  * `Calculate` Command
+  * Use cases
 
 - **Contributions to the DG:**
-    * to be added soon
+    * Calculate Command
 
 - **Contributions to team-based tasks**
-    * to be added soon
+    * creaated jar file for first 2 iterations
   
 - **Review/mentoring contributions:**
-    * to be added soon
+    * well involved in the reviewing of team members code
 
 - **Contributions beyond the project team:**
     * to be added soon
