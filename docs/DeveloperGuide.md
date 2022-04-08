@@ -72,7 +72,6 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -141,7 +140,6 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
 * stores the address book data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
@@ -154,7 +152,6 @@ The `Model` component,
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
 
 ### Storage component
 
@@ -368,165 +365,151 @@ taking leap years into account
 *  Prefers typing to mouse interactions
 *  Is reasonably comfortable using CLI apps
 
-
 **Value proposition**:
 * Manage Clients and the respective Procedures faster than a typical mouse/GUI driven app
 * Keep important information regarding the user’s business in one platform to manage Clients and past, current, and future Procedures more easily
 
-
-### User stories
+### Noteworthy user stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                                      | So that I can…​                                                                            |
-| -------- |--------------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | user                                       | Add a Procedure to a Client                                                       | Add a Procedure associated with the Client.                                                |
-| `* * *`  | user                                       | delete a Procedure from an existing Client                                        | Delete a Procedure from the existing Client.                                               |
-| `* * *`  | user                                       | Add a Client                                                                      | Add a Client to my contacts                                                                |
-| `* * *`  | user                                       | delete a Client                                                                   | Delete an existing Client when the Client no longer engages with the networker company.    |
-| `* * *`  | user with many Clients in the address book | View all of my Client(s’) contacts (number, phone number, address) and Procedures | Have a brief idea about how many Client(s) and associated Procedures I have at the moment. |
-
-*{More to be added}*
+| Priority | As a ...                                   | I want to ...                                                           | So that I can ...                                                             |
+|----------|--------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| `* * *`  | user                                       | add a Client                                                            | add a Client to my contacts.                                                  |
+| `* * *`  | user                                       | delete a Client                                                         | delete an existing Client when the Client no longer engages with the company. |
+| `* * *`  | user                                       | add a Procedure to a Client                                             | add a Procedure associated with the Client.                                   |
+| `* * *`  | user                                       | delete a Procedure from an existing Client                              | delete a Procedure from the existing Client.                                  |
+| `* * *`  | user with many Clients in the address book | view all of my Client(s’) contact information                           | have a brief idea about how many Client(s) I have at the moment.              |
+| `* * `   | user with many Procedures to perform       | view all of my Procedures scheduled on a specified day                  | have a brief idea of which Procedures to perform at a given day.              |
+| `* * `   | user making expense reports                | calculate the total cost of all Procedures performed on a specified day | make an expense report to the company.                                        |
 
 ### Use cases
 
 (For all use cases below, the System is the Networkers and the Actor is the User, unless specified otherwise)
 
-**Use case 1:  Add a Client**
+**Use case 1: Add a Client**
 
 **MSS**
 
 1. User requests to list Client(s). (UC5)
-2. User requests to add a specific Client to the list, and specifies its name, number, address and tag.
-3. Networkers adds the Client.
-
-    Use case ends.
+2. User requests to add a Client to the list by specifying its name, number, address, subscription plan, and tag.
+3. Networkers adds the Client. </br>
+Use case ends.
 
 **Extensions**
 
-* 2a. The name, number or address is empty.
-  * 2a1. Networkers shows an error message.
+* 2a. The name, number, address, or plan is empty.
+  * 2a1. Networkers shows an error message. </br>
+  Use case resumes at step 1.
 
-    Use case resumes at step 1.
+* 2b. There is an identical Client already existing in the list.
+  * 2b1. Networkers shows an error message. </br>
+  Use case resumes at step 1.
 
-
-* 3a. The name, number and address all match with an existing Client in the list.
-
-    * 3a1. Networkers shows an error message.
-
-      Use case resumes at step 1.
-
-
-**Use case 2:  Delete a Client**
+**Use case 2: Delete a Client**
 
 **MSS**
 
 1. User requests to list Client(s). (UC5)
 2. User sends in a command to delete the Client from the list.
-3. Networkers deletes existing Client.
-   Use case ends.
+3. Networkers deletes existing Client. </br>
+Use case ends.
 
 **Extensions**
 
-* 2a. TThe User requests to delete a Client out of index.
-  * 2a1. Networkers shows an error message.
-
-      Use case resumes at step 1.
+* 2a. The user requests to delete a Client out of index.
+  * 2a1. Networkers shows an error message. </br>
+  Use case resumes at step 1.
 
 **Use case 3: Add a Procedure to a Client**
 
 **MSS**
 
 1. User requests to list Client(s). (UC5)
-2. User requests to add its own Procedure to a specific Client in the list.
-3. Networkers adds the Procedure associated with the Client.
-
-   Use case ends.
+2. User requests to add a Procedure by specifying its related information, cost, and date and time, to a specified Client in the list.
+3. Networkers adds the Procedure associated with the Client. </br>
+Use case ends.
 
 **Extensions**
 
-* 2a. The given index is invalid.
-  * 2a1. Networkers shows an error message.
+* 2a. The User requests to add a Procedure to a Client out of index.
+  * 2a1. Networkers shows an error message. </br>
+  Use case resumes at step 1.
 
-    Use case resumes at step 1.
+* 2b. The related information, cost, or date and time is empty.
+  * 2b1. Networkers shows an error message. </br>
+  Use case resumes at step 1.
 
-
-* 3a. The Procedure description is empty.
-    * 3a1. Networkers shows an error message.
-
-      Use case resumes at step 1.
+* 2c. The specified Client already has an identical Procedure in its Procedure list.
+  * 2c1. Networkers shows an error message. </br>
+  Use case resumes at step 1.
 
 **Use case 4: Delete a Procedure from a Client**
 
 **MSS**
 
 1. User requests to list Client(s). (UC5)
-2. User sends in a command to delete the Procedure from a specific Client in the list.
-3. Networkers deletes the Procedure from the Client(s).
-
-    Use case ends.
+2. User sends in a command to delete a specified Procedure from a specified Client in the list.
+3. Networkers deletes the Procedure from the Client. </br>
+Use case ends.
 
 **Extensions**
 
-* 2a. The Procedure does not exist.
+* 2a. The specified Procedure is out of index.
+  * 2a1. Networkers shows an error message. </br>
+  Use case resumes at step 1.
 
-    Use case ends.
+* 2b. The specified Client is out of index.
+  * 2b1. Networkers shows an error message. </br>
+  Use case resumes at step 1.
 
+* 2c. The User requests to delete a non-existing Procedure from an existing Client.
+  * 2c1. Networkers shows an error message. </br>
+  Use case resumes at step 1.
 
-* 2b. The Client does not exist.
-
-  Use case ends.
-
-
-* 2c.The User requests to delete a non-existing Procedure from an existing Client.
-    * 2c1. Networkers shows an error message.
-
-      Use case ends.
-
-
-* 2d.The User requests to delete an existing Procedure from a non-existing Client.
-  * 2d1. Networkers shows an error message.
-
-    Use case resumes at step 1.
+* 2d. The User requests to delete an existing Procedure from a non-existing Client.
+  * 2d1. Networkers shows an error message. </br>
+  Use case resumes at step 1.
 
 **Use case 5: List Client(s) in Networkers**
 
 **MSS**
 
 1. User requests to list Client(s).
-2. Networkers displays the list of Client(s) with associated Procedures.
+2. Networkers displays the list of Client(s). </br>
+Use case ends.
 
-   Use case ends.
-
-**Extensions**
-
-* 2a.  The list is empty.
-  * 2a1. Networkers shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case 5: Calculating cost of procedures on a specified day**
+**Use case 6: Listing all the Procedures that are on a specified day.**
 
 **MSS**
-1. User sends in a command to sum the cost of all procedures on that date (UC5)
-2. Networkers returns the total cost of all associated procedures.
-   
+
+1. User sends in a command to list all the Procedures with a specified date.
+2. Networkers displays the Procedures along with the location of the Client site. </br>
 Use case ends.
 
 **Extensions**
 
-* 1a.  The date is invalid
-    * 1a1. Networkers shows an error message.
+* 1a. The date is invalid.
+  * 1a1. Networkers shows an error message. </br>
+  Use case ends.
 
-      Use case resumes at step 1.
+**Use case 7: Calculating the cost of all procedures on a specified day**
 
-* 1b.  There are no procedures on the specified date
-    * 1b1. Networkers returns a cost of $0
+**MSS**
 
-      Use case resumes at step 1.
+1. User sends in a command to sum the cost of all Procedures on a specified date.
+2. Networkers returns the total cost of all associated Procedures. </br>
+Use case ends.
 
-{More to be added}
+**Extensions**
 
+* 1a. The date is invalid
+  * 1a1. Networkers shows an error message. </br>
+  Use case ends.
+
+* 1b. There are no Procedures on the specified date.
+  * 1b1. Networkers returns a cost of $0. </br>
+  Use case ends.
 
 ### Non-Functional Requirements
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
