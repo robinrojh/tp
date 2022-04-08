@@ -334,14 +334,15 @@ but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 1. The arguments passed to the logic manager will be parsed by the AddressBookParser class.
 2. If the given arguments are valid, further parsing will be carried out by the CalculateCommandParser.
 3. If further parsing is successful, a new CalculateCommand object will be returned
-##### In these parsers, invalid arguments will result in a ParseException.
 
 A valid argument consists of 2 sections:
 1. valid command `calculate`
 2. valid date, `22/03/2022`
 
 A date is only valid if it follows the "dd/MM/yyyy" format and consists of a legitimate date,
-taking leap years into account
+taking leap years into account, with years ranging from 0000 to 9999.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
