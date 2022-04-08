@@ -7,26 +7,34 @@ Networkers is a desktop app for managing contacts for networks, optimised for us
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be added soon
+###Summary of my contributions
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=aceszhenwei&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&tabAuthor=aceszhenwei&tabRepo=AY2122S2-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=&authorshipIsBinaryFileTypeChecked=false)
+#### Code contributed:
+[RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=aceszhenwei&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&tabAuthor=aceszhenwei&tabRepo=AY2122S2-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=&authorshipIsBinaryFileTypeChecked=false)
 
-* **Project management**:
-  * to be added soon
+#### Enhancements implemented:
+  * Refactored the project to take in Clients instead of Persons, as well as the Clients' specific attributes.
+  * Implemented an autosort feature when Procedures are added.
+    * When new procedures are added, they will now be auto-sorted according to their dates.
+    * Created relevant tests that are randomly generated for the auto-sort function.
 
-* **Enhancements to existing features**:
-  * to be added soon
-
-* **Documentation**:
+#### Documentation:
   * User Guide:
-    * Added documentation for the features `deleteClient`
+    * Added documentation for the following features in v1.3:
+      * `find`
+      * `clear`
+      * `exit`
+    * Updated documentation for other features as well.
+    * Added new UI images for each command to better represent Networkers.
+    * Cleaned up most of the user guide bugs reported after Practical Exam Dry Run.
+  
   * Developer Guide:
-    * to be added soon
+    * Added Non-Functional Requirements (NFRs).
+    * Wrote AddProc Command and its respective sequence diagram.
+    * Wrote EditProc Command's Use Case
 
-* **Community**:
-  * to be added soon
+#### Review/mentoring contributions
+[Pull Requests Reviewed by me](https://github.com/AY2122S2-CS2103T-W13-1/tp/pulls?q=is%3Apr+reviewed-by%3Aaceszhenwei)
 
-* **Tools**:
-  * to be added soon
-
-* _{you can add/remove categories in the list above}_
+#### Contributions to team-based tasks:
+  * Sorted and tagged all issues that were raised after Practical Exam Dry Run.
