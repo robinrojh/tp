@@ -82,7 +82,10 @@ Add your Client to Networkers. The Client will initially start off with an empty
 
 **Format:** `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS l/PLAN [t/TAG]...`
 - `addClient` refers to the command of adding a Client.
-- There exist some fields that are mandatory for this function. These fields include their name, phone_number, address 
+
+- Equality checks for this command only come into effect if `ADDRESS` attribute is  is identical,
+  including the presence of whitespaces.
+- There exists some fields that are mandatory for this function. These fields include their name, phone_number, address 
 and a (subscription) plan.
 
 **Note:** <br/>
@@ -109,11 +112,13 @@ Deletes a specified Client in Networkers.
 - Deletes an existing Client at the specified index in your Client list.
 - `<CLIENT INDEX>` refers to the ordering number shown in your displayed Client list.
   - The index **must be** a positive integer 1, 2, 3, …
+- The largest Client index that you can assess is 2147483647.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `deleteClient 5` 
-  - This triggers the deletion of the first Client in your Client list.
+  - This triggers the deletion of the first Client in your Client list. 
+  - ❗ When you delete a Client, you will delete the Procedures that are tagged to them as well.
   - Result shows: `Deleted Client: Apple; Phone: 91234561; Email: apple@example.com; Address: 311, Bedok Ave 3, #01-15; Plan: Plan 50GBps; Tags: [corporate]`
 
 In Application: ![list](images/deleteClientGUI.png)
@@ -134,6 +139,7 @@ Edits a Client in Networkers.
 - `[t/TAG]` refers to an optional field of editing your Client's tag.
 - In order to trigger this command, at least one of the following fields must be edited: `name`, `phone`, `email`, 
 `address`, `plan`, `tag`.
+- ❗ Note that by editing your client's details, you will be overwriting their existing data.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
@@ -141,7 +147,7 @@ In Command Line Interface (CLI):
   - This triggers the editing of the indicated Client.
   - Result shows: `Edited Client: Apple; Phone: 66595327; Email: optical88@example.com; Address: 3155 Commonwealth Ave W, #05-27; Plan: EXPRESS 200MBps; Tags: [family]`
 
-In Application: ![Ui](images/editClient_After.png)
+In Application: ![Ui](images/EditClient_After.png)
 
 ### Add a Procedure to a Client: `addProc`
 
@@ -192,9 +198,13 @@ In Command Line Interface (CLI):
 - `deleteProc 1 1`
   - Result shows: `Current Procedure List: [Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.5; Completed: false]`
 
-Before Command: ![deleteProc](images/deleteProcCommand_Before.png)
+Before Command:
 
-After Command: ![deleteProc](images/deleteProcCommand_After.png)
+![deleteProc](images/DeleteProcCommand_Before.png)
+
+After Command:
+
+![deleteProc](images/DeleteProcCommand_After.png)
 
 ### Edit a Procedure of your Client: `editProc`
 
@@ -220,9 +230,13 @@ In Command Line Interface (CLI):
 - `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`
   - Result shows: `Edited Procedure: Information: Fix Router; Date: 31/03/2022 09:50; Cost: 67.25; Completed: false, from Client MINISO; Email: miniso@example.com`
 
-Before Command: ![editProc](images/editProcCommand_Before.png)
+Before Command: 
 
-After Command: ![editProc](images/editProcCommand_After.png)
+![editProc](images/EditProcCommand_Before.png)
+
+After Command: After editting the Procedure, you have to type listProc for the change to be reflected. This will be resolved in v1.4.
+
+![editProc](images/EditProcCommand_After.png)
 
 ### View All Clients: `list`
 

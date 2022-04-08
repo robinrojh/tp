@@ -19,7 +19,11 @@ Class Email
 Class Name
 Class Phone
 Class Tag
-
+Class Procedure
+class Information
+class Cost
+class Completion
+class Date
 }
 
 Class HiddenOutside #FFFFFF
@@ -41,6 +45,12 @@ Client *--> Phone
 Client *--> Email
 Client *--> Address
 Client *--> "*" Tag
+Client *--> "*" Procedure
+
+Procedure *--> Information
+Procedure *--> Cost
+Procedure *--> Date
+Procedure *--> Completion
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
