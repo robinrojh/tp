@@ -287,7 +287,7 @@ Description of `DateWithoutTime` shall be omitted here since the class name is s
 
 `ListProcOnCommand` will then be executed, returning `CommandResult` that can be displayed to the users. The following sequence diagram illustrates the execution of `ListProcOnCommand`.
 
-<img src="images/ListProcOnCommandSequenceDiagram.png" width="500" />
+<img src="images/ListProcOnCommandSequenceDiagram.png" width="650" />
 
 In short, the command will ask for all the Clients list from the `Model`, and each Client is responsible for returning Procedures that is scheduled on `targetDate`.
 `ListProcOnCommand` adds them up together and returns `CommandResult` for subsequent UI operations.
