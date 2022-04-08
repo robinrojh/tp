@@ -7,7 +7,7 @@ Networkers is a desktop app for managing contacts for networks, optimised for us
 
 Given below are my contributions to the project.
 
-###Summary of my contributions
+### Summary of my contributions
 
 #### Code contributed:
 [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=aceszhenwei&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&tabAuthor=aceszhenwei&tabRepo=AY2122S2-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=&authorshipIsBinaryFileTypeChecked=false)
