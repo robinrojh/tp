@@ -270,10 +270,13 @@ However, even when I update the Procedure list correctly, the UI didn't get upda
 Therefore, after correctly updating the Procedure list, I update the UI in MainWindow executeCommand method
 by creating a new ProcedureListPanel.
 
-![ListProcCommand Example](images/ListProcCommandExample1.PNG)
+> :question: Why is listProc command is called in the UI before any user input?
+> 
+> :bulb: This displays the first Client's Procedures so that the user can understand
+> what the right column is for.
 
-An additional point: listProc method is called in the UI before the user can input anything to display
-the first Client's Procedures. This allows the user to understand exactly what the right column is for.
+
+![ListProcCommand Example](images/ListProcCommandExample1.PNG)
 
 ### List Procedures By Date (ListProcOn)
 
@@ -379,12 +382,13 @@ taking leap years into account
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                                                      | So that I can…​                                                                            |
-| -------- |--------------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | user                                       | Add a Procedure to a Client                                                       | Add a Procedure associated with the Client.                                                |
-| `* * *`  | user                                       | delete a Procedure from an existing Client                                        | Delete a Procedure from the existing Client.                                               |
-| `* * *`  | user                                       | Add a Client                                                                      | Add a Client to my contacts                                                                |
-| `* * *`  | user                                       | delete a Client                                                                   | Delete an existing Client when the Client no longer engages with the networker company.    |
-| `* * *`  | user with many Clients in the address book | View all of my Client(s’) contacts (number, phone number, address) and Procedures | Have a brief idea about how many Client(s) and associated Procedures I have at the moment. |
+| -------- |--------------------------------------------|-----------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `* * *`  | user                                       | Add a Procedure to a Client                                           | Add a Procedure associated with the Client.                                                |
+| `* * *`  | user                                       | delete a Procedure from an existing Client                            | Delete a Procedure from the existing Client.                                               |
+| `* * *`  | user                                       | Add a Client                                                          | Add a Client to my contacts.                                                               |
+| `* * *`  | user                                       | delete a Client                                                       | Delete an existing Client when the Client no longer engages with the me.                   |
+| `* * *`  | user with many Clients in the address book | View all of my Client(s’) contacts (number, phone number, address)    | Have a brief idea about how many Client(s) I have at the moment.                                          |
+| `* * *`  | user with many Clients and tasks to remember | View all of procedures related to each Client(s'), Client by Client | View all the Procedures that I have done conducted for this Client and potentially use it for events like audit. |
 
 *{More to be added}*
 
@@ -480,8 +484,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2c.The User requests to delete a non-existing Procedure from an existing Client.
     * 2c1. Networkers shows an error message.
-
-      Use case ends.
+    * 2c2. User enters new input
+      Steps 2c1-2c2 are repeated until the data entered is correct
+      Use case resumes at step 3.
 
 
 * 2d.The User requests to delete an existing Procedure from a non-existing Client.
@@ -494,18 +499,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list Client(s).
-2. Networkers displays the list of Client(s) with associated Procedures.
+2. Networkers displays the list of Client(s).
 
    Use case ends.
 
 **Extensions**
 
 * 2a.  The list is empty.
-  * 2a1. Networkers shows an error message.
+  * 2a1. Networkers shows a message to indicate empty Client list.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-**Use case 5: Calculating cost of procedures on a specified day**
+**Use case 6: Listing Procedure(s) of a Specified Client**
+
+**MSS**
+
+1. User requests to list all Client(s). (UC 5)
+2. User requests to list Procedure(s) of a specified Client.
+3. Networkers displays the list of Procedures in the Client(s).
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of Procedures is empty
+    * 2a1. Networkers shows a message to indicate empty Procedure list.
+
+    Use case ends.
+
+**Use case 7: Calculating The Cost of Procedures on a Specified Day**
 
 **MSS**
 1. User sends in a command to sum the cost of all procedures on that date (UC5)
@@ -524,15 +546,14 @@ Use case ends.
     * 1b1. Networkers returns a cost of $0
 
       Use case resumes at step 1.
-
-{More to be added}
-
+    
 
 ### Non-Functional Requirements
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should be able to hold up to 1000 Client(s) without a noticeable sluggishness in performance for typical usage.
-3. A User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The system should respond within two seconds.
+3. Should be able to hold up to 10 Procedure in each Client without a noticeable sluggishness in performance for typical usage.
+4. A User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. The system should respond within two seconds.
 
 *{More to be added}*
 
@@ -569,7 +590,10 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases … }_
+1. Checking initially displayed procedures
+   
+    1. Check if the procedures are from the first client.<br>
+       Expected: The displayed procedures should all be from client at index 1.
 
 ### Deleting a Client
 
@@ -577,21 +601,27 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all Clients using the `list` command. Multiple Clients in the list.
 
-    1. Test case: `delete 1`<br>
+    1. Test case: `deleteClient 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    1. Test case: `deleteClient 0`<br>
        Expected: No Client is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `deleteClient`, `deleteClient x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
-1. _{ more test cases … }_
-
+       
 ### Saving data
 
+1. Checking if data saves and loads correctly
+
+    1. Launch application.
+    2. Delete a Client and close the window.
+    3. Launch application again and check if the Client is deleted <br>
+        Expected: the deleted Client is not in the list anymore 
+       
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases … }_
+    1. Delete the networkers.json in data folder and launch the application <br>
+    Expected: the networkers.json should be created on launch
+    2. To simulate a corrupted data file, change the value of a field of a Client or a Procedure to a non-String value. Then, launch the application. <br>
+    Expected: The AddressBook opens but does not load any Clients and Procedures with an error message in the log.
