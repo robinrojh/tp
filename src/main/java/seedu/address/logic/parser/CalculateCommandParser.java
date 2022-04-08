@@ -7,7 +7,7 @@ import seedu.address.logic.commands.CalculateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
-public class CalculateCommandParser {
+public class CalculateCommandParser implements Parser<CalculateCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the CalculateCommand
      * and returns a CalculateCommand object for execution.

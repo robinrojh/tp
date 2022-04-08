@@ -57,6 +57,11 @@ public class EditProcCommandParser implements Parser<EditProcCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
+        if (indexes.size() != 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditProcCommand.MESSAGE_USAGE));
+        }
+
         return new EditProcCommand(indexes.get(GET_CLIENT_INDEX),
                 indexes.get(GET_PROCEDURE_INDEX), editProcDescriptor);
     }

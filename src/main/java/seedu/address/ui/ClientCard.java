@@ -57,7 +57,12 @@ public class ClientCard extends UiPart<Region> {
         email.setText(client.getEmail().value);
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.setWrapText(true);
+                    tagLabel.setMaxWidth(400);
+                    tags.getChildren().add(tagLabel);
+                });
     }
 
     @Override

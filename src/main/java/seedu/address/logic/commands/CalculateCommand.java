@@ -44,8 +44,25 @@ public class CalculateCommand extends Command {
             BigDecimal currentCost = currentClient.getCostOnDate(targetDate);
             totalCost = totalCost.add(currentCost);
         }
-        String totalCostString = totalCost.toPlainString();
+        String totalCostString = '$' + totalCost.toPlainString();
 
         return new CommandResult(String.format(MESSAGE_CALCULATE_COST_SUCCESS, totalCostString));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof CalculateCommand)) {
+            return false;
+        }
+
+        // state check
+        CalculateCommand otherCommand = (CalculateCommand) other;
+        return targetDate.equals(otherCommand.targetDate);
     }
 }

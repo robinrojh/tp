@@ -53,8 +53,9 @@ public class MarkCommandTest {
 
     @Test
     public void execute_mark() {
+        MarkCommand markCommand = new MarkCommand(Index.fromZeroBased(1), Index.fromZeroBased(0));
         assertCommandSuccess(
-                new MarkCommand(Index.fromZeroBased(1), Index.fromZeroBased(0)),
+                markCommand,
                 model,
                 MarkCommand.MESSAGE_SUCCESS,
                 expectedModel

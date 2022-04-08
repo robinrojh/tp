@@ -11,7 +11,7 @@ class ListProcOnCommand {
 }
 show ListProcOnCommand attribute
 
-AddressBookParser .down.|> ListProcOnCommandParser
-ListProcOnCommandParser .down.|> ListProcOnCommand
+AddressBookParser ..> ListProcOnCommandParser
+ListProcOnCommandParser ..> ListProcOnCommand
 
 @enduml

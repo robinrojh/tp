@@ -86,6 +86,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        this.filteredProcedures = new FilteredList<>(addressBook.getProcedureList());
     }
 
     @Override
@@ -142,7 +143,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns a observable list of {@code Procedure} of {@code Client}.
+     * Returns an observable list of {@code Procedure} of {@code Client}.
      */
     @Override
     public ObservableList<Procedure> getFilteredProcedureList() {
