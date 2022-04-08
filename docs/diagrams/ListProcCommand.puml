@@ -56,7 +56,6 @@ deactivate ModelManager
 
 LogicManager <-- ListProcCommand
 deactivate ListProcCommand
-
 MainWindow <-- LogicManager
 deactivate LogicManager
 
