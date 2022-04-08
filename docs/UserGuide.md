@@ -82,7 +82,10 @@ Add your Client to Networkers. The Client will initially start off with an empty
 
 **Format:** `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS l/PLAN [t/TAG]...`
 - `addClient` refers to the command of adding a Client.
-- There exist some fields that are mandatory for this function. These fields include their name, phone_number, address 
+
+- Equality checks for this command only come into effect if `ADDRESS` attribute is  is identical,
+  including the presence of whitespaces.
+- There exists some fields that are mandatory for this function. These fields include their name, phone_number, address 
 and a (subscription) plan.
 
 **Note:** <br/>
