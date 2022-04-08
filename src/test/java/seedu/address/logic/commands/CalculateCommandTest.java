@@ -55,7 +55,7 @@ public class CalculateCommandTest {
         client1Proc.add(DESC_REPLACE);
         client1Proc.add(DESC_REPAIR);
 
-        // client 1 has 2 procedures that are on same day -- 18/03/2022
+        // client 2 has 2 procedures that are on same day -- 18/03/2022
         List<Procedure> client2Proc = new ArrayList<>();
         client2Proc.add(DESC_REPLACE);
         Procedure repairWithReplaceDate = new ProcedureBuilder(DESC_REPAIR)
