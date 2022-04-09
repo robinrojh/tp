@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INFORMATION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_CLIENT_PROCEDURES;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -98,6 +99,7 @@ public class EditProcCommand extends Command {
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        model.updateFilteredProcedureList(editedClient, PREDICATE_SHOW_CLIENT_PROCEDURES);
         return new CommandResult(String.format(MESSAGE_EDIT_PROCEDURE_SUCCESS,
             updatedProcedure, editedClient.getName(), editedClient.getAddress()));
     }

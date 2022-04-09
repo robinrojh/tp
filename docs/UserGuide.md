@@ -234,8 +234,6 @@ Before Command:
 
 ![editProc](images/EditProcCommand_Before.png)
 
-After Command: After editting the Procedure, you have to type listProc for the change to be reflected. This will be resolved in v1.4.
-
 ![editProc](images/EditProcCommand_After.png)
 
 ### View All Clients: `list`
