@@ -44,8 +44,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/robinrojh)]
 [[portfolio](team/robinrojh.md)]
 
-* Role: To be added
-* Responsibilities: To be added
+* Role: Developer
+* Responsibilities: Update new features and documentations, and manage UI-related issues
 
 ### JB Jungbae Kim
 
