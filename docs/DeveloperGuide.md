@@ -72,7 +72,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-<<<<<<< HEAD
+
 Within the DG, when used, these components will be color coded as such:
 
 `UI`: Green
@@ -83,8 +83,6 @@ Within the DG, when used, these components will be color coded as such:
 
 `Storage` : Yellow
 
-=======
->>>>>>> master
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -394,14 +392,9 @@ A valid argument consists of 2 sections:
 1. valid command `calculate`
 2. valid date, `22/03/2022`
 
-<<<<<<< HEAD
+
 A date is only valid if it satisfies the isValidDate() method defined in the date Class
-=======
-A date is only valid if it follows the "dd/MM/yyyy" format and consists of a legitimate date,
-taking leap years into account, with years ranging from 0000 to 9999.
 
-
->>>>>>> master
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -485,11 +478,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-<<<<<<< HEAD
-* 2a.   The User requests to delete a Client out of index.
-=======
 * 2a. The user requests to delete a Client out of index.
->>>>>>> master
+
   * 2a1. Networkers shows an error message.
 
     Use case resumes at step 1.
