@@ -260,12 +260,14 @@ Step 4: ModelManager updates the Procedure list accordingly and returns to Logic
 
 Step 5: UI takes the return value from LogicManager and updates the UI
 
-**Why did I implement ListProcCommand this way?**
+**Design Considerations**
 
-In other functions like find, it doesn't seem that an explicit UI update was necessary.
-However, even when I update the Procedure list correctly, the UI didn't get updated automatically.
-Therefore, after correctly updating the Procedure list, I update the UI in MainWindow executeCommand method
-by creating a new ProcedureListPanel.
+With other commands like find, an explicit UI update was not necessary based on the AB-3 codebase.
+However, even when updating the Procedure list correctly didn't trigger the UI update, which was a serious problem. 
+The updateFilteredClients method only applies filters to an already existing set of Clients, but
+Unlike the list of Clients, Procedures will change drastically from Client to Client. Therefore,
+the solution that was to update the actual Procedure list first and then call updateFilteredProcedures to
+update the Procedure list; this successfully solved the problem.
 
 > :question: Why is listProc command is called in the UI before any user input?
 > 
