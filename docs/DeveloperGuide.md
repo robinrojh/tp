@@ -397,18 +397,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list Client(s). (UC5)
 2. User requests to add a Client to the list by specifying its name, number, address, subscription plan, and tag.
-3. Networkers adds the Client. </br>
-Use case ends.
+3. Networkers adds the Client. 
+   
+   Use case ends.
 
 **Extensions**
 
 * 2a. The name, number, address, or plan is empty.
-  * 2a1. Networkers shows an error message. </br>
-  Use case resumes at step 1.
+  * 2a1. Networkers shows an error message.
+  
+    Use case resumes at step 1.
 
 * 2b. There is an identical Client already existing in the list.
-  * 2b1. Networkers shows an error message. </br>
-  Use case resumes at step 1.
+  * 2b1. Networkers shows an error message.
+  
+    Use case resumes at step 1.
 
 **Use case 2: Delete a Client**
 
@@ -416,14 +419,16 @@ Use case ends.
 
 1. User requests to list Client(s). (UC5)
 2. User sends in a command to delete the Client from the list.
-3. Networkers deletes existing Client. </br>
-Use case ends.
+3. Networkers deletes existing Client.
+
+   Use case ends.
 
 **Extensions**
 
 * 2a. The user requests to delete a Client out of index.
-  * 2a1. Networkers shows an error message. </br>
-  Use case resumes at step 1.
+  * 2a1. Networkers shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case 3: Add a Procedure to a Client**
 
@@ -431,22 +436,26 @@ Use case ends.
 
 1. User requests to list Client(s). (UC5)
 2. User requests to add a Procedure by specifying its related information, cost, and date and time, to a specified Client in the list.
-3. Networkers adds the Procedure associated with the Client. </br>
-Use case ends.
+3. Networkers adds the Procedure associated with the Client.
+
+   Use case ends.
 
 **Extensions**
 
 * 2a. The User requests to add a Procedure to a Client out of index.
-  * 2a1. Networkers shows an error message. </br>
-  Use case resumes at step 1.
+  * 2a1. Networkers shows an error message.
+
+    Use case resumes at step 1.
 
 * 2b. The related information, cost, or date and time is empty.
-  * 2b1. Networkers shows an error message. </br>
-  Use case resumes at step 1.
+  * 2b1. Networkers shows an error message.
+
+    Use case resumes at step 1.
 
 * 2c. The specified Client already has an identical Procedure in its Procedure list.
-  * 2c1. Networkers shows an error message. </br>
-  Use case resumes at step 1.
+  * 2c1. Networkers shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case 4: Delete a Procedure from a Client**
 
@@ -454,39 +463,46 @@ Use case ends.
 
 1. User requests to list Client(s). (UC5)
 2. User sends in a command to delete a specified Procedure from a specified Client in the list.
-3. Networkers deletes the Procedure from the Client. </br>
-Use case ends.
+3. Networkers deletes the Procedure from the Client.
+
+   Use case ends.
 
 **Extensions**
 
 * 2a. The specified Procedure is out of index.
-  * 2a1. Networkers shows an error message. </br>
-  Use case resumes at step 1.
+  * 2a1. Networkers shows an error message.
+
+    Use case resumes at step 1.
 
 * 2b. The specified Client is out of index.
-  * 2b1. Networkers shows an error message. </br>
-  Use case resumes at step 1.
+  * 2b1. Networkers shows an error message.
+
+    Use case resumes at step 1.
 
 * 2c. The User requests to delete a non-existing Procedure from an existing Client.
-  * 2c1. Networkers shows an error message. </br>
-  Use case resumes at step 1.
+  * 2c1. Networkers shows an error message.
+
+    Use case resumes at step 1.
 
 * 2d. The User requests to delete an existing Procedure from a non-existing Client.
-  * 2d1. Networkers shows an error message. </br>
-  Use case resumes at step 1.
+  * 2d1. Networkers shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case 5: List Client(s) in Networkers**
 
 **MSS**
 
 1. User requests to list Client(s).
-2. Networkers displays the list of Client(s). </br>
-Use case ends.
+2. Networkers displays the list of Client(s).
+
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-    * 2a1. Networkers shows a message to indicate empty Client list. </br>
+    * 2a1. Networkers shows a message to indicate empty Client list.
+
       Use case ends.
 
 **Use case 6: Listing Procedure(s) of a specified Client**
@@ -495,46 +511,81 @@ Use case ends.
 
 1. User requests to list all Client(s). (UC5)
 2. User requests to list Procedure(s) of a specified Client.
-3. Networkers displays the list of Procedures in the Client(s). </br>
-Use case ends.
+3. Networkers displays the list of Procedures in the Client(s).
+
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list of Procedures is empty
-    * 2a1. Networkers shows a message to indicate empty Procedure list. </br>
-    Use case ends.
+    * 2a1. Networkers shows a message to indicate empty Procedure list.
+
+      Use case ends.
 
 **Use case 7: Listing all the Procedures that are on a specified day.**
 
 **MSS**
 
 1. User sends in a command to list all the Procedures with a specified date.
-2. Networkers displays the Procedures along with the location of the Client site. </br>
-Use case ends.
+2. Networkers displays the Procedures along with the location of the Client site.
+
+   Use case ends.
 
 **Extensions**
 
 * 1a. The date is invalid.
-  * 1a1. Networkers shows an error message. </br>
-  Use case ends.
+  * 1a1. Networkers shows an error message.
+
+    Use case ends.
 
 **Use case 8: Calculating the cost of all procedures on a specified day**
 
 **MSS**
 
 1. User sends in a command to sum the cost of all Procedures on a specified date.
-2. Networkers returns the total cost of all associated Procedures. </br>
-Use case ends.
+2. Networkers returns the total cost of all associated Procedures.
+
+   Use case ends.
 
 **Extensions**
 
 * 1a. The date is invalid
-  * 1a1. Networkers shows an error message. </br>
-  Use case ends.
+  * 1a1. Networkers shows an error message.
+
+    Use case ends.
 
 * 1b. There are no Procedures on the specified date.
-  * 1b1. Networkers returns a cost of $0. </br>
-  Use case ends.
+  * 1b1. Networkers returns a cost of $0.
+
+    Use case ends.
+
+**Use case 9: Editing the details of a client**
+
+**MSS**
+
+1. User requests to list all Client(s). (UC5)
+2. User sends in a command that requests to edit the details of a client at a specified index.
+3. Networkers returns a success message as well as an updated client within the Client list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The specified Client is out of index.
+    * 2a1. Networkers shows an error message.
+
+      Use case ends.
+
+* 2b. The tags within the command are invalid (or no tags are given).
+    * 2b1. Networkers shows an error message.
+
+      Use case ends.
+
+* 2c. The edited address tag is a duplicate of another Client's address.
+    * 2c1. Networkers shows an error message.
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 #### Technical Requirements
