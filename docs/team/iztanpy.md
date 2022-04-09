@@ -1,4 +1,7 @@
-
+---
+layout: page
+title: Isaac Tan's Project Portfolio Page
+---
 ## Project: Networkers
 
 ###Overview
