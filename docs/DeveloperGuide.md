@@ -317,9 +317,6 @@ update the Procedure list; this successfully solved the problem.
 > :bulb: This displays the first Client's Procedures so that the user can understand
 > what the right column is for.
 
-
-![ListProcCommand Example](images/ListProcCommandExample1.PNG)
-
 ### List Procedures By Date (ListProcOn)
 
 #### Implementation
