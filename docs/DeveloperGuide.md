@@ -459,12 +459,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The name, number, address, or plan is empty.
   * 2a1. Networkers shows an error message.
   
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
-* 2b. There is an identical Client already existing in the list.
+* 2b. There is a Client that already has the same address as the one user is trying to add.
   * 2b1. Networkers shows an error message.
   
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 **Use case 2: Delete a Client**
 
@@ -482,7 +482,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 2a1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 **Use case 3: Add a Procedure to a Client**
 
@@ -499,17 +499,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The User requests to add a Procedure to a Client out of index.
   * 2a1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 * 2b. The related information, cost, or date and time is empty.
   * 2b1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 * 2c. The specified Client already has an identical Procedure in its Procedure list.
   * 2c1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 **Use case 4: Delete a Procedure from a Client**
 
@@ -526,22 +526,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The specified Procedure is out of index.
   * 2a1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 * 2b. The specified Client is out of index.
   * 2b1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 * 2c. The User requests to delete a non-existing Procedure from an existing Client.
   * 2c1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 * 2d. The User requests to delete an existing Procedure from a non-existing Client.
   * 2d1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 **Use case 5: List Client(s) in Networkers**
 
@@ -613,13 +613,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case 9: Editing the details of a client**
+**Use case 9: Editing the details of a Client**
 
 **MSS**
 
 1. User requests to list all Client(s). (UC5)
-2. User sends in a command that requests to edit the details of a client at a specified index.
-3. Networkers returns a success message as well as an updated client within the Client list.
+2. User sends in a command that requests to edit the details of a Client at a specified index.
+3. Networkers returns a success message as well as an updated Client within the Client list.
 
    Use case ends.
 
@@ -628,18 +628,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The specified Client is out of index.
     * 2a1. Networkers shows an error message.
 
-      Use case ends.
+      Use case resumes at step 2.
 
 * 2b. The tags within the command are invalid (or no tags are given).
     * 2b1. Networkers shows an error message.
 
-      Use case ends.
+      Use case resumes at step 2.
 
 * 2c. The edited address tag is a duplicate of another Client's address.
     * 2c1. Networkers shows an error message.
 
-      Use case ends.
-
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 #### Technical Requirements
