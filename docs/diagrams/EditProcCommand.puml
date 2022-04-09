@@ -2,94 +2,115 @@
 !include style.puml
 !define LOGIC_COLOR_T1 #7777DB
 
-box "Logic" LOGIC_COLOR_T1
--> ":LogicManager" : execute("editProc 1 1 c/25")
-activate ":LogicManager"
-":LogicManager" -> ":AddressBookParser" : parseCommand("editProc 1 1 ")
-activate ":AddressBookParser"
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditProcCommandParser" as EditProcCommandParser LOGIC_COLOR
+participant "EPC:EditProcCommand" as EditProcCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
 
-create ":EditProcCommandParser"
-":AddressBookParser" -> ":EditProcCommandParser" : new Parser()
-activate ":EditProcCommandParser"
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+create LogicManager
+-> LogicManager : execute(userInput)
 note left
-    new Parser() denotes new EditProcCommandParser()
+    userInput denotes
+    "editProc 1 1 c/25"
 end note
-deactivate ":EditProcCommandParser"
 
-create ":EditProcCommand"
-":EditProcCommandParser" -> ":EditProcCommand" : parse("1 1")
-activate ":EditProcCommand"
+activate LogicManager
+LogicManager -> AddressBookParser : parseCommand("editProc 1 1 ")
+activate AddressBookParser
 
-":EditProcCommand" --> ":EditProcCommandParser"
-deactivate ":EditProcCommand"
-":EditProcCommandParser" --> ":AddressBookParser"
-deactivate ":EditProcCommandParser"
-":AddressBookParser" --> ":LogicManager"
-destroy ":EditProcCommandParser"
-deactivate ":AddressBookParser"
-endbox
+create EditProcCommandParser
+AddressBookParser -> EditProcCommandParser
+activate EditProcCommandParser
+EditProcCommandParser --> AddressBookParser
+deactivate EditProcCommandParser
 
-box "Model" #LightPink
-":LogicManager" -> ":EditProcCommand" : execute(command)
-activate ":EditProcCommand"
-":EditProcCommand" -> ":ModelManager" : gFCL()
-activate ":ModelManager"
+AddressBookParser -> EditProcCommandParser : parse("1 1")
+activate EditProcCommandParser
+
+
 note left
-    gFCL() denotes the method getFilteredClientList()
+    new Parser()
+    denotes new
+    EditProcCommandParser()
 end note
-":ModelManager" --> ":EditProcCommand"
-deactivate ":ModelManager"
-":EditProcCommand" -> ":EditProcCommand" : editClientProcedures(client)
 
-activate ":EditProcCommand"
-create ":Client"
-":EditProcCommand" -> ":Client" : new Client(clientInfo)
-activate ":Client"
+
+create EditProcCommand
+EditProcCommandParser -> EditProcCommand
+
+activate EditProcCommand
+EditProcCommand --> EditProcCommandParser : epc
+deactivate EditProcCommand
+
+EditProcCommandParser --> AddressBookParser: epc
+deactivate EditProcCommandParser
+
+AddressBookParser --> LogicManager : epc
+deactivate AddressBookParser
+
+AddressBookParser -[hidden]-> LogicManager
+destroy EditProcCommandParser
+
+LogicManager -> EditProcCommand : execute(command)
+activate EditProcCommand
+
+EditProcCommand -> ModelManager : gFCL()
+activate ModelManager
+
 note left
-    clientInfo denotes the Name, Phone,
-    Email, Address, Plan, Tags, and
-    updatedProcedures of the client.
+    gFCL() denotes the method:
+    getFilteredClientList()
 end note
-":Client" --> ":EditProcCommand"
-deactivate ":Client"
-":EditProcCommand" --> ":EditProcCommand"
-deactivate ":EditProcCommand"
 
-":EditProcCommand" -> ":ModelManager" : setClient(info)
+ModelManager --> EditProcCommand
+deactivate ModelManager
+
+EditProcCommand -> EditProcCommand : editClientProcedures(info)
+note left
+    info denotes the target Client,
+        and the updated Procedures.
+end note
+activate EditProcCommand
+
+EditProcCommand --> EditProcCommand
+deactivate EditProcCommand
+
+EditProcCommand -> ModelManager : setClient(targetClient, editedClient)
 note left
     the info denotes the target,
     and the editedClient info.
 end note
-activate ":ModelManager"
-":ModelManager" -> ":AddressBook" : setClient(info)
-note left
-    the info denotes the target,
-    and the editedClient info.
-end note
-activate ":AddressBook"
-":AddressBook" --> ":ModelManager"
-deactivate ":AddressBook"
-":ModelManager" --> ":EditProcCommand"
-deactivate ":ModelManager"
-endbox
 
-box "Storage" #LightGreen
-":EditProcCommand" -> ":ModelManager" : uFCL()
-activate ":ModelManager"
-note left
-    uFCL() denotes updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS)
-end note
-":ModelManager" --> ":EditProcCommand"
-deactivate ":ModelManager"
-":EditProcCommand" --> ":LogicManager"
-deactivate ":EditProcCommand"
+activate ModelManager
+ModelManager --> EditProcCommand
+deactivate ModelManager
 
-":LogicManager" -> ":ModelManager" : getAddressBook()
-activate ":ModelManager"
-":ModelManager" --> ":LogicManager"
-deactivate ":ModelManager"
+create CommandResult
+EditProcCommand -> CommandResult
+activate CommandResult
 
-<-- ":LogicManager"
-deactivate ":LogicManager"
-endbox
+CommandResult --> EditProcCommand : cr
+deactivate CommandResult
+
+EditProcCommand --> LogicManager: cr
+deactivate EditProcCommand
+
+EditProcCommand -[hidden]-> LogicManager
+destroy EditProcCommand
+
+LogicManager -> ModelManager : getAddressBook()
+activate ModelManager
+
+ModelManager --> LogicManager
+deactivate ModelManager
+
+<-- LogicManager
+deactivate LogicManager
 @enduml
