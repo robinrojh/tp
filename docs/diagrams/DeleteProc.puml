@@ -1,113 +1,89 @@
--> ":UiManager" : start()
-activate ":UiManager"
-":UiManager" -> ":MainWindow" : fillInnerParts()
-activate ":MainWindow"
-":MainWindow" -> ":MainWindow" : executeCommand("deleteProc 1 1")
-activate ":MainWindow"
-":MainWindow"
 @startuml
+!include style.puml
+!define LOGIC_COLOR_T1 #7777DB
 
-box "Logic" #LightBlue
--> ":LogicManager" : execute("deleteProc 1 1")
-activate ":LogicManager"
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteProcCommandParser" as DeleteProcCommandParser LOGIC_COLOR
+participant "dpc:DeleteProcCommand" as DeleteProcCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
 
-":LogicManager" -> ":AddressBookParser" : parseCommand("deleteProc 1 1 ")
-activate ":AddressBookParser"
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
 
-create ":DeleteProcCommandParser"
-":AddressBookParser" -> ":DeleteProcCommandParser" : new()
-activate ":DeleteProcCommandParser"
-note left
-    new() denotes new DeleteProcCommandParser()
-end note
-create ":DeleteProcCommand"
-":DeleteProcCommandParser" -> ":DeleteProcCommand" : parse("1 1")
-activate ":DeleteProcCommand"
+create LogicManager
+-> LogicManager : execute("deleteProc 1 1")
+activate LogicManager
 
-":DeleteProcCommand" --> ":DeleteProcCommandParser"
-deactivate ":DeleteProcCommand"
-":DeleteProcCommandParser" --> ":AddressBookParser"
-deactivate ":DeleteProcCommandParser"
-":AddressBookParser" --> ":LogicManager"
-deactivate ":AddressBookParser"
-endbox
+LogicManager -> AddressBookParser : parseCommand("deleteProc 1 1")
+activate AddressBookParser
 
-box "Model" #LightPink
-":LogicManager" -> ":DeleteProcCommand" : execute(command)
-activate ":DeleteProcCommand"
-":DeleteProcCommand" -> ":ModelManager" : gFCL()
-activate ":ModelManager"
+create DeleteProcCommandParser
+AddressBookParser -> DeleteProcCommandParser
+activate DeleteProcCommandParser
+DeleteProcCommandParser --> AddressBookParser
+deactivate DeleteProcCommandParser
+
+AddressBookParser -> DeleteProcCommandParser : parse("1 1")
+activate DeleteProcCommandParser
+create DeleteProcCommand
+DeleteProcCommandParser -> DeleteProcCommand
+activate DeleteProcCommand
+
+DeleteProcCommand --> DeleteProcCommandParser : dpc
+deactivate DeleteProcCommand
+
+DeleteProcCommandParser --> AddressBookParser : dpc
+deactivate DeleteProcCommandParser
+
+AddressBookParser --> LogicManager : dpc
+deactivate AddressBookParser
+
+LogicManager -> DeleteProcCommand : execute(command)
+activate DeleteProcCommand
+
+DeleteProcCommand -> ModelManager : gFCL()
+activate ModelManager
+
 note left
     gFCL() denotes the method getFilteredClientList()
 end note
-":ModelManager" --> ":DeleteProcCommand"
-deactivate ":ModelManager"
-":DeleteProcCommand" -> ":DeleteProcCommand" : editClientProcedure(client)
-activate ":DeleteProcCommand"
-create ":Client"
-":DeleteProcCommand" -> ":Client" : new Client(clientInfo)
-activate ":Client"
+
+ModelManager --> DeleteProcCommand
+deactivate ModelManager
+
+DeleteProcCommand -> DeleteProcCommand : deleteProcedureFromList()
+activate DeleteProcCommand
+
+DeleteProcCommand --> DeleteProcCommand
+deactivate DeleteProcCommand
+
+
+DeleteProcCommand -> ModelManager : setClient(info)
+activate ModelManager
+
 note left
-    clientInfo denotes the updatedName, updatedPhone,
-    updatedEmail, updatedAddress, updatedPlan, updatedTags,
-    updatedProcedures of the client.
+    the info denotes the target,
+    and the editedClient info.
 end note
-":Client" --> ":DeleteProcCommand"
-deactivate ":Client"
-":DeleteProcCommand" --> ":DeleteProcCommand"
-deactivate ":DeleteProcCommand"
 
-":DeleteProcCommand" -> ":ModelManager" : setClient(info)
-note left
-    the info denotes the target, and the editedClient info.
-end note
-activate ":ModelManager"
-":ModelManager" -> ":AddressBook" : setClient(info)
-note left
-    the info denotes the target, and the editedClient info.
-end note
-activate ":AddressBook"
-":AddressBook" --> ":ModelManager"
-deactivate ":AddressBook"
-":ModelManager" --> ":DeleteProcCommand"
-deactivate ":ModelManager"
-endbox
+ModelManager --> DeleteProcCommand
+deactivate ModelManager
 
-box "Storage" #LightGreen
-":DeleteProcCommand" -> ":ModelManager" : uFCL()
-activate ":ModelManager"
-note left
-    uFCL() denotes updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS)
-end note
-":ModelManager" --> ":DeleteProcCommand"
-deactivate ":ModelManager"
-":DeleteProcCommand" --> ":LogicManager"
-deactivate ":DeleteProcCommand"
+create CommandResult
+DeleteProcCommand -> CommandResult
+activate CommandResult
 
-":LogicManager" -> ":ModelManager" : getAddressBook()
-activate ":ModelManager"
-":ModelManager" --> ":LogicManager"
-deactivate ":ModelManager"
+CommandResult --> DeleteProcCommand : cr
+deactivate CommandResult
 
-":LogicManager" -> ":Storage" : saveAddressBook(addressBook)
-activate ":Storage"
-":Storage" --> ":LogicManager"
-deactivate ":Storage"
+DeleteProcCommand --> LogicManager : cr
+deactivate DeleteProcCommand
 
-<-- ":LogicManager"
-deactivate ":LogicManager"
-endbox
-@enduml
-":MainWindow"
-deactivate ":LogicManager"
-":MainWindow" --> ":MainWindow"
-deactivate ":MainWindow"
-":MainWindow" --> ":UiManager"
-deactivate ":MainWindow"
-<-- ":UiManager"
-deactivate ":UiManager"
+<-- LogicManager
+deactivate LogicManager
 
-@startuml
-object firstObject
-object "My Second Object" as o2
 @enduml

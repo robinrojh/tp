@@ -6,7 +6,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":EditProcCommandParser" as EditProcCommandParser LOGIC_COLOR
-participant "EPC:EditProcCommand" as EditProcCommand LOGIC_COLOR
+participant "epc:EditProcCommand" as EditProcCommand LOGIC_COLOR
 participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -31,7 +31,7 @@ activate EditProcCommandParser
 EditProcCommandParser --> AddressBookParser
 deactivate EditProcCommandParser
 
-AddressBookParser -> EditProcCommandParser : parse("1 1")
+AddressBookParser -> EditProcCommandParser : parse("1 1 c/25")
 activate EditProcCommandParser
 
 
@@ -104,12 +104,6 @@ deactivate EditProcCommand
 
 EditProcCommand -[hidden]-> LogicManager
 destroy EditProcCommand
-
-LogicManager -> ModelManager : getAddressBook()
-activate ModelManager
-
-ModelManager --> LogicManager
-deactivate ModelManager
 
 <-- LogicManager
 deactivate LogicManager
