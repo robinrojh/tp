@@ -1,4 +1,7 @@
-# Yong Gi Roh's Project Portfolio Page
+---
+layout: page
+title: Yong Gi Roh's Project Portfolio Page
+---
 
 ## Project Overview: Networkers
 
