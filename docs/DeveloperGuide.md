@@ -393,7 +393,7 @@ A valid argument consists of 2 sections:
 2. valid date, `22/03/2022`
 
 
-A date is only valid if it satisfies the isValidDate() method defined in the date Class
+A date is only valid if it satisfies the isValidDate() method defined in the DateWithoutTime Class
 
 
 --------------------------------------------------------------------------------------------------------------------
