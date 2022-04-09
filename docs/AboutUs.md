@@ -17,6 +17,10 @@ You can reach us at the email `networkers@comp.nus.edu.sg`
 [[github](https://github.com/iztanpy)]
 [[portfolio](team/iztanpy.md)]
 
+* Role: Developer
+* Responsibilities: Added Procedure class 
+  as well as updated and added new features
+
 ### Teo Ming Huang
 
 <img src="images/teominghuang.png" width="200px">
