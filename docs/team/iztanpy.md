@@ -37,8 +37,6 @@ Networkers is a desktop address book application used for teaching Software Engi
     * creaated jar file for first 2 iterations
   
 - **Review/mentoring contributions:**
-    * well involved in the reviewing of team members code
-
-- **Contributions beyond the project team:**
-    * to be added soon
+    * well involved in the reviewing of team members code, which can be accesed [here](https://github.com/AY2122S2-CS2103T-W13-1/tp/pulls?q=is%3Apr+reviewed-by%3A%40me+is%3Aclosed)
+  
 
