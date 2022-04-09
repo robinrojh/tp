@@ -54,7 +54,5 @@ You can reach us at the email `networkers@comp.nus.edu.sg`
 [[github](https://github.com/jbkim1999)]
 [[portfolio](team/jbkim1999.md)]
 
-* Role: To be added soon
-* Responsibilities: To be added soon
-
-
+* Role: Developer
+* Responsibilities: Code Quality, Manage PRs
