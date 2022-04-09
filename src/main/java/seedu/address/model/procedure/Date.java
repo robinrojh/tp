@@ -16,7 +16,8 @@ public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Please ensure that you have typed an existing date in the correct format. \n"
-        + "Dates should be in the format DD/MM/YYYY hh:mm, and it should not be blank \n";
+        + "Dates should be in the format DD/MM/YYYY hh:mm, and it should not be blank \n"
+            + "Years can take any value in the range 0000 to 9999";
 
     /*
      * The first character of the address must not be a whitespace,
