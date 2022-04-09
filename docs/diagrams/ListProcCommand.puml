@@ -59,6 +59,7 @@ deactivate ListProcCommand
 MainWindow <-- LogicManager
 deactivate LogicManager
 
+destroy ListProcCommand
 'updateUi self invocation from MainWindow'
 MainWindow -> MainWindow : updateUi()
 activate MainWindow

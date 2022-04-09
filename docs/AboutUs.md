@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `networkers@comp.nus.edu.sg`
 
 ## Project team
 
@@ -16,6 +16,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/iztanpy)]
 [[portfolio](team/iztanpy.md)]
+
+* Role: Developer
+* Responsibilities: Added Procedure class 
+  as well as updated and added new features
 
 ### Teo Ming Huang
 
@@ -34,8 +38,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/aceszhenwei)]
 [[portfolio](team/aceszhenwei.md)]
 
-* Role: To be added
-* Responsibilities: To be added
+* Role: Developer
+* Responsibilities: Update existing AB3 commands to Networkers as well as documentation
 
 ### Yong Gi Roh
 
@@ -44,8 +48,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/robinrojh)]
 [[portfolio](team/robinrojh.md)]
 
-* Role: To be added
-* Responsibilities: To be added
+* Role: Developer
+* Responsibilities: Update new features and documentations, and manage UI-related issues
 
 ### JB Jungbae Kim
 
@@ -54,7 +58,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/jbkim1999)]
 [[portfolio](team/jbkim1999.md)]
 
-* Role: To be added soon
-* Responsibilities: To be added soon
-
-
+* Role: Developer
+* Responsibilities: Code Quality, Manage PRs

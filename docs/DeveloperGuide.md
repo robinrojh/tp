@@ -72,7 +72,6 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 Within the DG, when used, these components will be color coded as such:
 
 `UI`: Green
@@ -85,7 +84,7 @@ Within the DG, when used, these components will be color coded as such:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deleteClient 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -131,11 +130,11 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a Client).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deleteClient 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deleteClient 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -459,12 +458,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The name, number, address, or plan is empty.
   * 2a1. Networkers shows an error message.
   
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
-* 2b. There is an identical Client already existing in the list.
+* 2b. There is a Client that already has the same address as the one user is trying to add.
   * 2b1. Networkers shows an error message.
   
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 **Use case 2: Delete a Client**
 
@@ -482,7 +481,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 2a1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 **Use case 3: Add a Procedure to a Client**
 
@@ -499,17 +498,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The User requests to add a Procedure to a Client out of index.
   * 2a1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 * 2b. The related information, cost, or date and time is empty.
   * 2b1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 * 2c. The specified Client already has an identical Procedure in its Procedure list.
   * 2c1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 **Use case 4: Delete a Procedure from a Client**
 
@@ -526,22 +525,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The specified Procedure is out of index.
   * 2a1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 * 2b. The specified Client is out of index.
   * 2b1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 * 2c. The User requests to delete a non-existing Procedure from an existing Client.
   * 2c1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 * 2d. The User requests to delete an existing Procedure from a non-existing Client.
   * 2d1. Networkers shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 **Use case 5: List Client(s) in Networkers**
 
@@ -613,13 +612,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case 9: Editing the details of a client**
+**Use case 9: Editing the details of a Client**
 
 **MSS**
 
 1. User requests to list all Client(s). (UC5)
-2. User sends in a command that requests to edit the details of a client at a specified index.
-3. Networkers returns a success message as well as an updated client within the Client list.
+2. User sends in a command that requests to edit the details of a Client at a specified index.
+3. Networkers returns a success message as well as an updated Client within the Client list.
 
    Use case ends.
 
@@ -628,18 +627,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The specified Client is out of index.
     * 2a1. Networkers shows an error message.
 
-      Use case ends.
+      Use case resumes at step 2.
 
 * 2b. The tags within the command are invalid (or no tags are given).
     * 2b1. Networkers shows an error message.
 
-      Use case ends.
+      Use case resumes at step 2.
 
 * 2c. The edited address tag is a duplicate of another Client's address.
     * 2c1. Networkers shows an error message.
 
-      Use case ends.
-
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 #### Technical Requirements

@@ -21,6 +21,9 @@ deactivate Model
         activate Client
         ListProcOnCommand <-- Client : clientProceduresOnDate
         deactivate Client
+        'Hidden arrow to position the destroy marker below the end of the activation bar.
+        Client -[hidden]-> Model
+        destroy Client
         ListProcOnCommand -> ListProcOnCommand : add(clientProceduresOnDate)
         note right
           The lower-level details of adding up
@@ -30,4 +33,11 @@ deactivate Model
     end
 <-- ListProcOnCommand : CommandResult
 deactivate ListProcOnCommand
+note right
+    The interaction with CommandResult class
+    has been omitted to make the diagram clearer
+end note
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListProcOnCommand -[hidden]-> Model
+destroy ListProcOnCommand
 @enduml

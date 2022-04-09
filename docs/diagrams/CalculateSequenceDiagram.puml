@@ -62,6 +62,7 @@ activate totalCost
 
 loop number of clients
 CalculateCommand -> totalCost : add cost of procedures on \nspecified date for each client
+
 end
 totalCost --> CalculateCommand : totalCost
 deactivate totalCost
