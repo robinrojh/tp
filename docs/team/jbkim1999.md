@@ -1,4 +1,7 @@
-# JB Kim's Project Portfolio Page
+---
+layout: page
+title: JB Kim's Project Portfolio Page
+---
 
 ## Project: Networkers
 
