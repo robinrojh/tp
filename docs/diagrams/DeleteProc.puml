@@ -39,6 +39,9 @@ deactivate DeleteProcCommand
 DeleteProcCommandParser --> AddressBookParser : dpc
 deactivate DeleteProcCommandParser
 
+DeleteProcCommandParser -[hidden]-> AddressBookParser : dpc
+destroy DeleteProcCommandParser
+
 AddressBookParser --> LogicManager : dpc
 deactivate AddressBookParser
 
@@ -55,7 +58,12 @@ end note
 ModelManager --> DeleteProcCommand
 deactivate ModelManager
 
-DeleteProcCommand -> DeleteProcCommand : deleteProcedureFromList()
+DeleteProcCommand -> DeleteProcCommand : deleteProcedureFromList(procInfo)
+note left
+    the procInfo denotes the
+    Client's Procedures and the
+    target Procedure index.
+end note
 activate DeleteProcCommand
 
 DeleteProcCommand --> DeleteProcCommand
@@ -82,6 +90,9 @@ deactivate CommandResult
 
 DeleteProcCommand --> LogicManager : cr
 deactivate DeleteProcCommand
+
+DeleteProcCommand -[hidden]-> LogicManager
+destroy DeleteProcCommand
 
 <-- LogicManager
 deactivate LogicManager
