@@ -25,7 +25,7 @@ public class Cost implements Comparable<Cost> {
     public Cost(String cost) {
         requireNonNull(cost);
         checkArgument(isValidCost(cost), MESSAGE_CONSTRAINTS);
-        this.cost = new BigDecimal(cost);
+        this.cost = new BigDecimal(cost).setScale(2, BigDecimal.ROUND_UP);
     }
 
     /**
