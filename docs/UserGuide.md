@@ -112,11 +112,13 @@ Deletes a specified Client in Networkers.
 - Deletes an existing Client at the specified index in your Client list.
 - `<CLIENT INDEX>` refers to the ordering number shown in your displayed Client list.
   - The index **must be** a positive integer 1, 2, 3, …
+- The largest Client index that you can assess is 2147483647.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `deleteClient 5` 
-  - This triggers the deletion of the first Client in your Client list.
+  - This triggers the deletion of the first Client in your Client list. 
+  - ❗ When you delete a Client, you will delete the Procedures that are tagged to them as well.
   - Result shows: `Deleted Client: Apple; Phone: 91234561; Email: apple@example.com; Address: 311, Bedok Ave 3, #01-15; Plan: Plan 50GBps; Tags: [corporate]`
 
 In Application: ![list](images/deleteClientGUI.png)
@@ -137,6 +139,7 @@ Edits a Client in Networkers.
 - `[t/TAG]` refers to an optional field of editing your Client's tag.
 - In order to trigger this command, at least one of the following fields must be edited: `name`, `phone`, `email`, 
 `address`, `plan`, `tag`.
+- ❗ Note that by editing your client's details, you will be overwriting their existing data.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
@@ -144,7 +147,7 @@ In Command Line Interface (CLI):
   - This triggers the editing of the indicated Client.
   - Result shows: `Edited Client: Apple; Phone: 66595327; Email: optical88@example.com; Address: 3155 Commonwealth Ave W, #05-27; Plan: EXPRESS 200MBps; Tags: [family]`
 
-In Application: ![Ui](images/editClient_After.png)
+In Application: ![Ui](images/EditClient_After.png)
 
 ### Add a Procedure to a Client: `addProc`
 
@@ -192,12 +195,16 @@ Deletes a Procedure associated with your Client. This is important as it allows 
 
 **Example:** <br/>
 In Command Line Interface (CLI):
-- `deleteProc 1 1`
+- `deleteProc 1 3`
   - Result shows: `Current Procedure List: [Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.5; Completed: false]`
 
-Before Command: ![deleteProc](images/deleteProcCommand_Before.png)
+Before Command:
 
-After Command: ![deleteProc](images/deleteProcCommand_After.png)
+![deleteProc](images/DeleteProcCommand_Before.png)
+
+After Command:
+
+![deleteProc](images/DeleteProcCommand_After.png)
 
 ### Edit a Procedure of your Client: `editProc`
 
@@ -223,9 +230,11 @@ In Command Line Interface (CLI):
 - `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`
   - Result shows: `Edited Procedure: Information: Fix Router; Date: 31/03/2022 09:50; Cost: 67.25; Completed: false, from Client MINISO; Email: miniso@example.com`
 
-Before Command: ![editProc](images/editProcCommand_Before.png)
+Before Command: 
 
-After Command: ![editProc](images/editProcCommand_After.png)
+![editProc](images/EditProcCommand_Before.png)
+
+![editProc](images/EditProcCommand_After.png)
 
 ### View All Clients: `list`
 
@@ -255,7 +264,7 @@ Lists out all the Procedures related to a Client.
   - The index **must be** a positive integer 1, 2, 3, ...
 
 **Example:** <br/>
-- `listProc 1`
+- `listProc 3`
   - Result shows: `Procedures successfully loaded.`
 
 In Application: ![listProc](images/ListProcCommandExample1.PNG)
@@ -271,7 +280,7 @@ Lists out all Procedures, including the associated Client as per Procedure, that
 
 **Example:** <br/>
 In Command Line Interface (CLI):
-- `listProcOn 26/03/2022`
+- `listProcOn 06/06/2022`
   - Result shows: 
 ```
   Listing Procedures on requested date:
@@ -280,8 +289,10 @@ In Command Line Interface (CLI):
   2. Information: configure POS connections; Date: 26/03/2022 12:00; Cost: 23.50; Completed: false
    Master Fix Services, located at 3155 Commonwealth Ave W, #B1-10
 ```
+> :bulb: **Tip:** You can enlarge the result box by enlarging the window vertically!
 
 In Application: ![listProcOn](images/listProcOn.png)
+
 
 ### Calculate the cost of all Procedures on a specified date: `calculate`
 
@@ -299,19 +310,43 @@ In Command Line Interface (CLI):
 
 In Application: ![list](images/calculate.png)
 
-### Clear All Clients: `clear`
+### Marking a Procedure of a Client as Completed: `mark`
 
-Clears all Clients and their respective Procedures currently recorded in Networkers.
+Marks the target Client's target Procedure as completed.
 
-**Format:** `clear`
-- `clear` refers to the command of clearing all Clients and their respective Procedures in the application.
+**Format:** `mark <CLIENT INDEX> <PROCEDURE INDEX>`
+- `mark` is the command word for this command.
+- `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. 
+  - The index **must be** a positive integer 1, 2, 3, ...
+- `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen. 
+  - The index **must be** a positive integer 1, 2, 3, ...
 
-**Example:** <br/>
+**Example:**
+
 In Command Line Interface (CLI):
-- `clear`
-  - Result shows: `Address book has been cleared!`
+- `mark 1 5`
+    - Result shows: `Procedure successfully marked as complete.`
 
-In Application: ![clear](images/ClearCommand_After.png)
+In Application: ![mark](images/mark.PNG)
+
+### Unmarking a Procedure of a Client: `unmark`
+
+Marks the target Client's target Procedure as not complete.
+
+**Format:** `unmark <CLIENT INDEX> <PROCEDURE INDEX>`
+- `unmark` is the command word for this command.
+- `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. 
+  - The index **must be** a positive integer 1, 2, 3, ...
+- `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen. 
+  - The index **must be** a positive integer 1, 2, 3, ...
+
+**Example:**
+
+In Command Line Interface (CLI):
+- `mark 1 5`
+    - Result shows: `Procedure successfully unmarked.`
+
+In Application: ![mark](images/unmark.png)
 
 ### Locating Clients by Name: `find`
 
@@ -331,27 +366,19 @@ In Command Line Interface (CLI):
 
 In Application: ![list](images/findCommandExample.png)
 
-### Marking a Procedure of a Client as Completed: `mark`
+### Clear All Clients: `clear`
 
-Marks the target Client's target Procedure as completed.
+Clears all Clients and their respective Procedures currently recorded in Networkers.
 
-**Format:** `mark <CLIENT INDEX> <PROCEDURE INDEX>`
-- `mark` is the command word for this command.
-- `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. 
-  - The index **must be** a positive integer 1, 2, 3, ...
-- `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen. 
-  - The index **must be** a positive integer 1, 2, 3, ...
+**Format:** `clear`
+- `clear` refers to the command of clearing all Clients and their respective Procedures in the application.
 
-### Unmarking a Procedure of a Client: `unmark`
+**Example:** <br/>
+In Command Line Interface (CLI):
+- `clear`
+  - Result shows: `Address book has been cleared!`
 
-Marks the target Client's target Procedure as not complete.
-
-**Format:** `unmark <CLIENT INDEX> <PROCEDURE INDEX>`
-- `unmark` is the command word for this command.
-- `<CLIENT INDEX>` refers to the ordering number of the Client displayed on the Client screen. 
-  - The index **must be** a positive integer 1, 2, 3, ...
-- `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen. 
-  - The index **must be** a positive integer 1, 2, 3, ...
+In Application: ![clear](images/ClearCommand_After.png)
 
 ### Exiting the program: `exit`
 

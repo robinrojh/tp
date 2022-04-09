@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INFORMATION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_CLIENT_PROCEDURES;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,6 +50,9 @@ public class EditProcCommand extends Command {
 
     public static final String MESSAGE_EDIT_PROCEDURE_SUCCESS = "Edited Procedure: %1$s, "
         + "\n From client: %2$s, at %3$s";
+    public static final String MESSAGE_INVALID_EDIT_PROCEDURE_DUPLICATED = "This Client already has this "
+        + "Procedure.\nEnsure that the edited field of the Procedure do not share the same information,"
+        + "date, time, and cost with another Procedure that belongs to this Client.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index clientIndex;
@@ -95,6 +99,7 @@ public class EditProcCommand extends Command {
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        model.updateFilteredProcedureList(editedClient, PREDICATE_SHOW_CLIENT_PROCEDURES);
         return new CommandResult(String.format(MESSAGE_EDIT_PROCEDURE_SUCCESS,
             updatedProcedure, editedClient.getName(), editedClient.getAddress()));
     }
@@ -145,7 +150,7 @@ public class EditProcCommand extends Command {
         } // do for negative
 
         if (hasDuplicateProcInList(procedureList, edittedProcedure)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROCEDURE_DUPLICATED);
+            throw new CommandException(MESSAGE_INVALID_EDIT_PROCEDURE_DUPLICATED);
         }
 
         List<Procedure> newProcedureList = new ArrayList<>(procedureList);

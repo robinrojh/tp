@@ -72,6 +72,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+<<<<<<< HEAD
 Within the DG, when used, these components will be color coded as such:
 
 `UI`: Green
@@ -82,6 +83,8 @@ Within the DG, when used, these components will be color coded as such:
 
 `Storage` : Yellow
 
+=======
+>>>>>>> master
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -150,7 +153,6 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
 * stores the address book data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
@@ -163,7 +165,6 @@ The `Model` component,
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
 
 ### Storage component
 
@@ -251,7 +252,50 @@ The following sequence diagram shows how this operation works.
 * **Alternative 2:** Create a deleted status for the `Procedure` and only allow vision of undeleted `Procedure` itself.
     * Pros: User could easily retrieve previous deleted data.
     * Cons: Can get storage-expensive, which makes future parsing slower.
-    
+
+### Edit a Procedure from a Client (editProc)
+
+The editProc mechanism is facilitated by the `EditProcCommandParser`.
+The editProc mechanism allows editing of a `Procedure` from an existing `Client` in the address book.
+The existing data of the Procedure is permanently overwritten and the remaining `Procedure` are stored locally after.
+It implements the following operations:
+
+* `EditProcCommand#createEditedProcedure(Procedure procedureToEdit, EditProcedureDescriptor editProcedureDescriptor)` &mdash; Edit an attribute of an existing `Procedure` and return a new `Procedure`.
+* `EditProcCommand#updateProcedureList(List<Procedure> procedureList, Procedure edittedProcedure, Index procedureIndex)` &mdash; Create a cloned `procedureList` of an existing `Client`, edits the list with the new `Procedure`, and return it.
+* `EditProcCommand#editClientProcedures(Client clientToEdit)` &mdash; Edits the `Procedures` of an existing `Client` and return a new `Client`.
+* `Model#setClient(clientToEdit, editedClient)` &mdash; Replace the existing `Client` with its editted variant.
+* `Model#updateFilteredClientList(Predicate<Client> predicate)` &mdash; Replace the existing `Client` with its edited variant in the `ObservableList`, that helps to update the UI.
+
+* The `editClientProcedure(Client clientToEdit)` operation is exposed in the `Model` interface as `Model#setClient()`.
+
+Given below is an example usage scenario and how the editProc mechanism behaves at each step.
+
+Step 1. The user finds the `Procedure` that the Client has using `findProc <Index>`
+The UI lists all the `Procedure` associated to the Client.
+
+Step 2. The user executes `editProc 1 1 c/25` to edit the `Cost` of the 1st `Procedure` associated with the 1st Client in the address book.
+The `editProc 1 1 c/25` command calls `EditProcCommand#createEditedProcedure(Procedure procedureToEdit, EditProcedureDescriptor editProcedureDescriptor)` to get a cloned and edited `Procedure` at the client and procedure indice.
+Following, the command calls `EditProcCommand#updateProcedureList(List<Procedure> procedureList, Procedure edittedProcedure, Index procedureIndex)` to get a cloned and edited list of `Procedure`  at the client and procedure indice.
+Lastly, the command calls the `EditProcCommand#editClientProcedures(Client clientToEdit) to get a cloned and edited `Client` at the client index.
+This newly-created `Client` is saved locally through the `Model#setClient`, and displayed by updating the `UpdateFilteredClientList`.
+With the `Client` saved, the address book is saved at a new state.
+
+The following sequence diagram shows how this operation works.
+
+![DeleteProcSequenceDiagram](images/EditProcSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Will `editProc` permanently overwrite pre-existing data**
+
+* **Alternative 1 (current choice):** Complete overwrite the pre-existing data.
+    * Pros: Easy to implement and uses less storage.
+    * Cons: Users might find it hard to retrieve pre-existing data of the user.
+
+* **Alternative 2:** Create a new model that saves important information of the pre-existing data.
+    * Pros: User could easily retrieve previous overwritten data.
+    * Cons: Can get storage-expensive, which makes future parsing slower.
+
 ### List Procedures By Client (ListProc)
 
 Lists the Procedures for the given input index of a Client.
@@ -272,17 +316,19 @@ Step 4: ModelManager updates the Procedure list accordingly and returns to Logic
 
 Step 5: UI takes the return value from LogicManager and updates the UI
 
-**Why did I implement ListProcCommand this way?**
+**Design Considerations**
 
-In other functions like find, it doesn't seem that an explicit UI update was necessary.
-However, even when I update the Procedure list correctly, the UI didn't get updated automatically.
-Therefore, after correctly updating the Procedure list, I update the UI in MainWindow executeCommand method
-by creating a new ProcedureListPanel.
+With other commands like find, an explicit UI update was not necessary based on the AB-3 codebase.
+However, even when updating the Procedure list correctly didn't trigger the UI update, which was a serious problem. 
+The updateFilteredClients method only applies filters to an already existing set of Clients, but
+Unlike the list of Clients, Procedures will change drastically from Client to Client. Therefore,
+the solution that was to update the actual Procedure list first and then call updateFilteredProcedures to
+update the Procedure list; this successfully solved the problem.
 
-![ListProcCommand Example](images/ListProcCommandExample1.PNG)
-
-An additional point: listProc method is called in the UI before the user can input anything to display
-the first Client's Procedures. This allows the user to understand exactly what the right column is for.
+> :question: Why is listProc command is called in the UI before any user input?
+> 
+> :bulb: This displays the first Client's Procedures so that the user can understand
+> what the right column is for.
 
 ### List Procedures By Date (ListProcOn)
 
@@ -296,10 +342,10 @@ Description of `DateWithoutTime` shall be omitted here since the class name is s
 
 `ListProcOnCommand` will then be executed, returning `CommandResult` that can be displayed to the users. The following sequence diagram illustrates the execution of `ListProcOnCommand`.
 
-<img src="images/ListProcOnCommandSequenceDiagram.png" width="500" />
+<img src="images/ListProcOnCommandSequenceDiagram.png" width="650" />
 
 In short, the command will ask for all the Clients list from the `Model`, and each Client is responsible for returning Procedures that is scheduled on `targetDate`.
-`ListProcOnCommand` aggregates them altogether and returns `CommandResult` for subsequent UI operations.
+`ListProcOnCommand` adds them up together and returns `CommandResult` for subsequent UI operations.
 
 #### Design considerations:
 
@@ -348,7 +394,14 @@ A valid argument consists of 2 sections:
 1. valid command `calculate`
 2. valid date, `22/03/2022`
 
+<<<<<<< HEAD
 A date is only valid if it satisfies the isValidDate() method defined in the date Class
+=======
+A date is only valid if it follows the "dd/MM/yyyy" format and consists of a legitimate date,
+taking leap years into account, with years ranging from 0000 to 9999.
+
+
+>>>>>>> master
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -375,123 +428,127 @@ A date is only valid if it satisfies the isValidDate() method defined in the dat
 *  Prefers typing to mouse interactions
 *  Is reasonably comfortable using CLI apps
 
-
 **Value proposition**:
 * Manage Clients and the respective Procedures faster than a typical mouse/GUI driven app
 * Keep important information regarding the user’s business in one platform to manage Clients and past, current, and future Procedures more easily
 
-
-### User stories
+### Noteworthy user stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                                      | So that I can…​                                                                            |
-| -------- |--------------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | user                                       | Add a Procedure to a Client                                                       | Add a Procedure associated with the Client.                                                |
-| `* * *`  | user                                       | delete a Procedure from an existing Client                                        | Delete a Procedure from the existing Client.                                               |
-| `* * *`  | user                                       | Add a Client                                                                      | Add a Client to my contacts                                                                |
-| `* * *`  | user                                       | delete a Client                                                                   | Delete an existing Client when the Client no longer engages with the networker company.    |
-| `* * *`  | user with many Clients in the address book | View all of my Client(s’) contacts (number, phone number, address) and Procedures | Have a brief idea about how many Client(s) and associated Procedures I have at the moment. |
-
-*{More to be added}*
+| Priority | As a ...                                          | I want to ...                                                           | So that I can ...                                                                                                |
+|----------|---------------------------------------------------|-------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | user                                              | add a Client                                                            | add a Client to my contacts.                                                                                     |
+| `* * *`  | user                                              | delete a Client                                                         | delete an existing Client when the Client no longer engages with the company.                                    |
+| `* * *`  | user                                              | add a Procedure to a Client                                             | add a Procedure associated with the Client.                                                                      |
+| `* * *`  | user                                              | delete a Procedure from an existing Client                              | delete a Procedure from the existing Client.                                                                     |
+| `* * *`  | user with many Clients in the address book        | view all of my Client(s’) contact information                           | have a brief idea about how many Client(s) I have at the moment.                                                 |
+| `* * *`  | user with many Clients and Procedures to remember | view all of Procedures related to a specified Client                    | view all the Procedures that I have done conducted for this Client and potentially use it for events like audit. |
+| `* * `   | user with many Procedures to perform              | view all of my Procedures scheduled on a specified day                  | have a brief idea of which Procedures to perform at a given day.                                                 |
+| `* * `   | user making expense reports                       | calculate the total cost of all Procedures performed on a specified day | make an expense report to the company.                                                                           |
 
 ### Use cases
 
 (For all use cases below, the System is the Networkers and the Actor is the User, unless specified otherwise)
 
-**Use case 1:  Add a Client**
+**Use case 1: Add a Client**
 
 **MSS**
 
 1. User requests to list Client(s). (UC5)
-2. User requests to add a specific Client to the list, and specifies its name, number, address and tag.
-3. Networkers adds the Client.
-
-    Use case ends.
+2. User requests to add a Client to the list by specifying its name, number, address, subscription plan, and tag.
+3. Networkers adds the Client. 
+   
+   Use case ends.
 
 **Extensions**
 
-* 2a. The name, number or address is empty.
+* 2a. The name, number, address, or plan is empty.
   * 2a1. Networkers shows an error message.
-
+  
     Use case resumes at step 1.
 
+* 2b. There is an identical Client already existing in the list.
+  * 2b1. Networkers shows an error message.
+  
+    Use case resumes at step 1.
 
-* 3a. The name, number and address all match with an existing Client in the list.
-
-    * 3a1. Networkers shows an error message.
-
-      Use case resumes at step 1.
-
-
-**Use case 2:  Delete a Client**
+**Use case 2: Delete a Client**
 
 **MSS**
 
 1. User requests to list Client(s). (UC5)
 2. User sends in a command to delete the Client from the list.
 3. Networkers deletes existing Client.
+
    Use case ends.
 
 **Extensions**
 
+<<<<<<< HEAD
 * 2a.   The User requests to delete a Client out of index.
+=======
+* 2a. The user requests to delete a Client out of index.
+>>>>>>> master
   * 2a1. Networkers shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case 3: Add a Procedure to a Client**
 
 **MSS**
 
 1. User requests to list Client(s). (UC5)
-2. User requests to add its own Procedure to a specific Client in the list.
+2. User requests to add a Procedure by specifying its related information, cost, and date and time, to a specified Client in the list.
 3. Networkers adds the Procedure associated with the Client.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The given index is invalid.
+* 2a. The User requests to add a Procedure to a Client out of index.
   * 2a1. Networkers shows an error message.
 
     Use case resumes at step 1.
 
+* 2b. The related information, cost, or date and time is empty.
+  * 2b1. Networkers shows an error message.
 
-* 3a. The Procedure description is empty.
-    * 3a1. Networkers shows an error message.
+    Use case resumes at step 1.
 
-      Use case resumes at step 1.
+* 2c. The specified Client already has an identical Procedure in its Procedure list.
+  * 2c1. Networkers shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case 4: Delete a Procedure from a Client**
 
 **MSS**
 
 1. User requests to list Client(s). (UC5)
-2. User sends in a command to delete the Procedure from a specific Client in the list.
-3. Networkers deletes the Procedure from the Client(s).
+2. User sends in a command to delete a specified Procedure from a specified Client in the list.
+3. Networkers deletes the Procedure from the Client.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The Procedure does not exist.
+* 2a. The specified Procedure is out of index.
+  * 2a1. Networkers shows an error message.
 
-    Use case ends.
+    Use case resumes at step 1.
 
+* 2b. The specified Client is out of index.
+  * 2b1. Networkers shows an error message.
 
-* 2b. The Client does not exist.
+    Use case resumes at step 1.
 
-  Use case ends.
+* 2c. The User requests to delete a non-existing Procedure from an existing Client.
+  * 2c1. Networkers shows an error message.
 
+    Use case resumes at step 1.
 
-* 2c.The User requests to delete a non-existing Procedure from an existing Client.
-    * 2c1. Networkers shows an error message.
-
-      Use case ends.
-
-
-* 2d.The User requests to delete an existing Procedure from a non-existing Client.
+* 2d. The User requests to delete an existing Procedure from a non-existing Client.
   * 2d1. Networkers shows an error message.
 
     Use case resumes at step 1.
@@ -501,47 +558,114 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list Client(s).
-2. Networkers displays the list of Client(s) with associated Procedures.
+2. Networkers displays the list of Client(s).
 
    Use case ends.
 
 **Extensions**
 
-* 2a.  The list is empty.
-  * 2a1. Networkers shows an error message.
+* 2a. The list is empty.
+    * 2a1. Networkers shows a message to indicate empty Client list.
 
-    Use case resumes at step 1.
+      Use case ends.
 
-**Use case 5: Calculating cost of procedures on a specified day**
+**Use case 6: Listing Procedure(s) of a specified Client**
 
 **MSS**
-1. User sends in a command to sum the cost of all procedures on that date (UC5)
-2. Networkers returns the total cost of all associated procedures.
-   
-Use case ends.
+
+1. User requests to list all Client(s). (UC5)
+2. User requests to list Procedure(s) of a specified Client.
+3. Networkers displays the list of Procedures in the Client(s).
+
+   Use case ends.
 
 **Extensions**
 
-* 1a.  The date is invalid
-    * 1a1. Networkers shows an error message.
+* 2a. The list of Procedures is empty
+    * 2a1. Networkers shows a message to indicate empty Procedure list.
 
-      Use case resumes at step 1.
+      Use case ends.
 
-* 1b.  There are no procedures on the specified date
-    * 1b1. Networkers returns a cost of $0
+**Use case 7: Listing all the Procedures that are on a specified day.**
 
-      Use case resumes at step 1.
+**MSS**
 
-{More to be added}
+1. User sends in a command to list all the Procedures with a specified date.
+2. Networkers displays the Procedures along with the location of the Client site.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The date is invalid.
+  * 1a1. Networkers shows an error message.
+
+    Use case ends.
+
+**Use case 8: Calculating the cost of all procedures on a specified day**
+
+**MSS**
+
+1. User sends in a command to sum the cost of all Procedures on a specified date.
+2. Networkers returns the total cost of all associated Procedures.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The date is invalid
+  * 1a1. Networkers shows an error message.
+
+    Use case ends.
+
+* 1b. There are no Procedures on the specified date.
+  * 1b1. Networkers returns a cost of $0.
+
+    Use case ends.
+
+**Use case 9: Editing the details of a client**
+
+**MSS**
+
+1. User requests to list all Client(s). (UC5)
+2. User sends in a command that requests to edit the details of a client at a specified index.
+3. Networkers returns a success message as well as an updated client within the Client list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The specified Client is out of index.
+    * 2a1. Networkers shows an error message.
+
+      Use case ends.
+
+* 2b. The tags within the command are invalid (or no tags are given).
+    * 2b1. Networkers shows an error message.
+
+      Use case ends.
+
+* 2c. The edited address tag is a duplicate of another Client's address.
+    * 2c1. Networkers shows an error message.
+
+      Use case ends.
 
 
 ### Non-Functional Requirements
-1. Should work on any mainstream OS as long as it has Java 11 or above installed.
-2. Should be able to hold up to 1000 Client(s) without a noticeable sluggishness in performance for typical usage.
-3. A User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The system should respond within two seconds.
+#### Technical Requirements
+1. Networkers should work on any mainstream OS as long as it has Java 11 or above installed.
+2. Networkers should be able to work on both 32-bit and 64-bit environments.
+3. Networkers should be backwards compatible.
 
-*{More to be added}*
+#### Performance Requirements
+1. Networkers should respond within two seconds.
+2. Should be able to hold up to 1000 Client(s) without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 10 Procedure in each Client without a noticeable sluggishness in performance for typical usage.
+
+#### Quality Requirements
+1. A User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Networkers is only available in English.
+3. Networkers is colour-blind friendly.
 
 ### Glossary
 
@@ -576,7 +700,10 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases … }_
+1. Checking initially displayed procedures
+   
+    1. Check if the procedures are from the first client.<br>
+       Expected: The displayed procedures should all be from client at index 1.
 
 ### Deleting a Client
 
@@ -584,21 +711,27 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all Clients using the `list` command. Multiple Clients in the list.
 
-    1. Test case: `delete 1`<br>
+    1. Test case: `deleteClient 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    1. Test case: `deleteClient 0`<br>
        Expected: No Client is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `deleteClient`, `deleteClient x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
-1. _{ more test cases … }_
-
+       
 ### Saving data
 
+1. Checking if data saves and loads correctly
+
+    1. Launch application.
+    2. Delete a Client and close the window.
+    3. Launch application again and check if the Client is deleted <br>
+        Expected: the deleted Client is not in the list anymore 
+       
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases … }_
+    1. Delete the networkers.json in data folder and launch the application <br>
+    Expected: the networkers.json should be created on launch
+    2. To simulate a corrupted data file, change the value of a field of a Client or a Procedure to a non-String value. Then, launch the application. <br>
+    Expected: The AddressBook opens but does not load any Clients and Procedures with an error message in the log.
