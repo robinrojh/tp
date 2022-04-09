@@ -66,6 +66,10 @@ end
 totalCost --> CalculateCommand : totalCost
 deactivate totalCost
 
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+totalCost -[hidden]-> CalculateCommand
+destroy totalCost
+
 
 
 create CommandResult
@@ -77,6 +81,9 @@ deactivate CommandResult
 
 CalculateCommand --> LogicManager : cr
 deactivate CalculateCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CalculateCommand -[hidden]-> LogicManager
+destroy CalculateCommand
 
 [<--LogicManager
 deactivate LogicManager
