@@ -23,6 +23,10 @@
 
 #### Contributions to the DG
 
+- Section: **List Procedures By Client (ListProc)**
+- User stories for listProc Command
+- Section: Appendix updated to match current version
+
 #### Contributions to team-based tasks
 
 - Created team repository and setup GitHub pages with Jekyll
