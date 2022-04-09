@@ -1,4 +1,7 @@
-# Yong Gi Roh's Project Portfolio Page
+---
+layout: page
+title: Yong Gi Roh's Project Portfolio Page
+---
 
 ## Project Overview: Networkers
 
@@ -22,6 +25,10 @@
 - Command Summary Table Maintenance
 
 #### Contributions to the DG
+
+- Section: **List Procedures By Client (ListProc)**
+- User stories for listProc Command
+- Section: Appendix updated to match current version
 
 #### Contributions to team-based tasks
 
