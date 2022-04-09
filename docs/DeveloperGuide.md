@@ -239,7 +239,50 @@ The following sequence diagram shows how this operation works.
 * **Alternative 2:** Create a deleted status for the `Procedure` and only allow vision of undeleted `Procedure` itself.
     * Pros: User could easily retrieve previous deleted data.
     * Cons: Can get storage-expensive, which makes future parsing slower.
-    
+
+### Edit a Procedure from a Client (editProc)
+
+The editProc mechanism is facilitated by the `EditProcCommandParser`.
+The editProc mechanism allows editing of a `Procedure` from an existing `Client` in the address book.
+The existing data of the Procedure is permanently overwritten and the remaining `Procedure` are stored locally after.
+It implements the following operations:
+
+* `EditProcCommand#createEditedProcedure(Procedure procedureToEdit, EditProcedureDescriptor editProcedureDescriptor)` &mdash; Edit an attribute of an existing `Procedure` and return a new `Procedure`.
+* `EditProcCommand#updateProcedureList(List<Procedure> procedureList, Procedure edittedProcedure, Index procedureIndex)` &mdash; Create a cloned `procedureList` of an existing `Client`, edits the list with the new `Procedure`, and return it.
+* `EditProcCommand#editClientProcedures(Client clientToEdit)` &mdash; Edits the `Procedures` of an existing `Client` and return a new `Client`.
+* `Model#setClient(clientToEdit, editedClient)` &mdash; Replace the existing `Client` with its editted variant.
+* `Model#updateFilteredClientList(Predicate<Client> predicate)` &mdash; Replace the existing `Client` with its edited variant in the `ObservableList`, that helps to update the UI.
+
+* The `editClientProcedure(Client clientToEdit)` operation is exposed in the `Model` interface as `Model#setClient()`.
+
+Given below is an example usage scenario and how the editProc mechanism behaves at each step.
+
+Step 1. The user finds the `Procedure` that the Client has using `findProc <Index>`
+The UI lists all the `Procedure` associated to the Client.
+
+Step 2. The user executes `editProc 1 1 c/25` to edit the `Cost` of the 1st `Procedure` associated with the 1st Client in the address book.
+The `editProc 1 1 c/25` command calls `EditProcCommand#createEditedProcedure(Procedure procedureToEdit, EditProcedureDescriptor editProcedureDescriptor)` to get a cloned and edited `Procedure` at the client and procedure indice.
+Following, the command calls `EditProcCommand#updateProcedureList(List<Procedure> procedureList, Procedure edittedProcedure, Index procedureIndex)` to get a cloned and edited list of `Procedure`  at the client and procedure indice.
+Lastly, the command calls the `EditProcCommand#editClientProcedures(Client clientToEdit) to get a cloned and edited `Client` at the client index.
+This newly-created `Client` is saved locally through the `Model#setClient`, and displayed by updating the `UpdateFilteredClientList`.
+With the `Client` saved, the address book is saved at a new state.
+
+The following sequence diagram shows how this operation works.
+
+![DeleteProcSequenceDiagram](images/EditProcSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Will `editProc` permanently overwrite pre-existing data**
+
+* **Alternative 1 (current choice):** Complete overwrite the pre-existing data.
+    * Pros: Easy to implement and uses less storage.
+    * Cons: Users might find it hard to retrieve pre-existing data of the user.
+
+* **Alternative 2:** Create a new model that saves important information of the pre-existing data.
+    * Pros: User could easily retrieve previous overwritten data.
+    * Cons: Can get storage-expensive, which makes future parsing slower.
+
 ### List Procedures By Client (ListProc)
 
 Lists the Procedures for the given input index of a Client.
