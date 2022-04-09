@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `networkers@comp.nus.edu.sg`
 
 ## Project team
 
@@ -34,8 +34,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/aceszhenwei)]
 [[portfolio](team/aceszhenwei.md)]
 
-* Role: To be added
-* Responsibilities: To be added
+* Role: Developer
+* Responsibilities: Update existing AB3 commands to Networkers as well as documentation
 
 ### Yong Gi Roh
 
