@@ -83,15 +83,11 @@ Add your Client to Networkers. The Client will initially start off with an empty
 **Format:** `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS l/PLAN [t/TAG]...`
 - `addClient` refers to the command of adding a Client.
 
-- Equality checks for this command only come into effect if `ADDRESS` attribute is  is identical,
-  including the presence of whitespaces.
-- There exists some fields that are mandatory for this function. These fields include their name, phone_number, address 
-and a (subscription) plan.
+- Equality checks for this command only come into effect if `ADDRESS` attribute is identical, including the presence of whitespaces.
+  - Having two whitespaces will be treated differently from having one whitespace.
+- There exists some fields that are mandatory for this function. These fields include their name, phone_number, address and a (subscription) plan.
 
 **Note:** <br/>
-- Equality check to filter out duplicate Client only comes into effect if all attributes are identical,
-    including the presence of whitespaces. 
-  - Having two whitespaces will be treated differently from having one whitespace.
 - You can insert any information for the plan attribute. This behavior is intended because there are varying formats specified by the different telecommunications company.
 
 > :bulb: **Tip:** Our User Guide uses PLAN NAME + BANDWIDTH for inserting plan attribute, such as PLAN 50GBPs. But feel free to customize!
