@@ -483,7 +483,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. Networkers shows an error message.
 
     Use case resumes at step 1.
-
+``
 **Use case 3: Add a Procedure to a Client**
 
 **MSS**

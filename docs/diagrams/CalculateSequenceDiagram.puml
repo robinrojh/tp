@@ -6,8 +6,8 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":CalculateCommandParser" as CalculateCommandParser LOGIC_COLOR
 participant "totalCost:BigDecimal" as totalCost LOGIC_COLOR
-participant ":CalculateCommand" as CalculateCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "cc:CalculateCommand" as CalculateCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -34,16 +34,16 @@ create CalculateCommand
 CalculateCommandParser -> CalculateCommand
 activate CalculateCommand
 
-CalculateCommand --> CalculateCommandParser :
+CalculateCommand --> CalculateCommandParser : cc
 deactivate CalculateCommand
 
-CalculateCommandParser --> AddressBookParser :
+CalculateCommandParser --> AddressBookParser : cc
 deactivate CalculateCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 CalculateCommandParser -[hidden]-> AddressBookParser
 destroy CalculateCommandParser
 
-AddressBookParser --> LogicManager :
+AddressBookParser --> LogicManager : cc
 deactivate AddressBookParser
 
 LogicManager -> CalculateCommand : execute()
@@ -63,7 +63,7 @@ activate totalCost
 loop number of clients
 CalculateCommand -> totalCost : add cost of procedures on specified date for each client
 end
-totalCost --> CalculateCommand : return totalCost
+totalCost --> CalculateCommand : totalCost
 deactivate totalCost
 
 
@@ -72,13 +72,10 @@ create CommandResult
 CalculateCommand -> CommandResult
 activate CommandResult
 
-
-
-
-CommandResult --> CalculateCommand
+CommandResult --> CalculateCommand :cr
 deactivate CommandResult
 
-CalculateCommand --> LogicManager : result
+CalculateCommand --> LogicManager : cr
 deactivate CalculateCommand
 
 [<--LogicManager
