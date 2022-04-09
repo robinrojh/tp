@@ -561,8 +561,8 @@ Use case ends.
 
 #### Quality Requirements
 1. A User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-2. Networkers should be in English.
-3. Networkers should be able to be used by colour-blind users.
+2. Networkers is only available in English.
+3. Networkers is colour-blind friendly.
 
 ### Glossary
 
