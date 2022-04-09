@@ -29,19 +29,19 @@ public class SampleDataUtil {
         return new Client[] {
             new Client(new Name("MINISO"), new Phone("65705231"), new Email("miniso@example.com"),
                 new Address("3155 Commonwealth Ave W, #03-56-58"), new Plan("EXPRESS 200MBps"),
-                getTagSet("friends"), getSampleProceduresList1()),
+                getTagSet("maintenance", "periodic"), getSampleProceduresList1()),
 
             new Client(new Name("Master Fix Services"), new Phone("96724552"), new Email("masterfix@example.com"),
                 new Address("3155 Commonwealth Ave W, #B1-10"), new Plan("NORMAL 100MBps"),
-                getTagSet("colleagues", "friends"), getSampleProceduresList2()),
+                getTagSet("maintenance", "SME"), getSampleProceduresList2()),
 
             new Client(new Name("Mr Bean"), new Phone("66594724"), new Email("mrbean@example.com"),
                 new Address("3155 Commonwealth Ave W, #B1-K13"), new Plan("VALUE 50MBps"),
-                getTagSet("neighbours"), getSampleProceduresList3()),
+                getTagSet("household"), getSampleProceduresList3()),
 
             new Client(new Name("Optical 88"), new Phone("66595327"), new Email("optical88@example.com"),
                 new Address("3155 Commonwealth Ave W, #05-27"), new Plan("EXPRESS 200MBps"),
-                getTagSet("family"), getSampleProceduresList4()),
+                getTagSet("new"), getSampleProceduresList4()),
         };
     }
 

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_CLIENT_PROCEDURES;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +80,7 @@ public class DeleteProcCommand extends Command {
         editedClient = updateClientProcedures(clientToEdit, procedureDeletedList);
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        model.updateFilteredProcedureList(editedClient, PREDICATE_SHOW_CLIENT_PROCEDURES);
         return new CommandResult(String.format(MESSAGE_DELETE_PROCEDURE_SUCCESS, procedureDeleted));
     }
 
