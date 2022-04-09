@@ -18,7 +18,7 @@ create LogicManager
 -> LogicManager : execute(userInput)
 note left
     userInput denotes
-    "editProc 1 1 c/25"
+    "editProc 1 1 c/30"
 end note
 
 activate LogicManager
@@ -31,7 +31,7 @@ activate EditProcCommandParser
 EditProcCommandParser --> AddressBookParser
 deactivate EditProcCommandParser
 
-AddressBookParser -> EditProcCommandParser : parse("1 1 c/25")
+AddressBookParser -> EditProcCommandParser : parse("1 1 c/30")
 activate EditProcCommandParser
 
 
