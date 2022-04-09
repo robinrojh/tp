@@ -6,17 +6,47 @@ Networkers is a desktop address book application used for teaching Software Engi
 
 ###Summary of my contributions
 
-- **Code contributed:** To be added soon
+- **Code contributed:** 
+  - **Code contributed:** [My Contribution](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=teominghuang&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+  - **Pull Requests created by me:** [PR](https://github.com/AY2122S2-CS2103T-W13-1/tp/pulls?q=is%3Apr+assignee%3Ateominghuang)
+- **Enhancements implemented:**
 
-- **Enhancements implemented:** To be added soon
+    * Created the following attribute class that belongs to `Procedure`, and its following testcases:
+        * `Completion` Class
+    * Connected `Procedure` to the different dependencies. This includes:
+        * Change testcases and toModelType methods to include Procedure
+        * Edit `JsonAdaptedClient` to ensure that it includes `JsonAdaptedProcedure`
+    * Created `DeleteProcCommand` and the following accompanying features:
+        * Create `DeleteProcCommandParser`
+        * Create Sequence diagram for `EditProcCommand`.
+        * Create test cases for both `DeleteProcCommand` and `DeleteProcCommandParser` 
+        * Maintain coherence of feature in the User Guide and the Developer Guide.
+    * Created `EditProcCommand` and the following accompanying features:
+        * Create `EditProcCommandParser`
+        * Create Sequence diagram for `EditProcCommand`.
+        * Create test cases for both `EditProcCommand` and `EditProcCommandParser`
+        * Maintain coherence of feature in the User Guide and the Developer Guide.
+    * Create Default values for `Procedure`.
+    * Maintenance of User Guide and Developer Guide.
 
-- **Contributions to the UG:** To be added soon
+- **Contributions to the UG:**
+    * General standardisation of format and language
+    * Heavily involved in the editing of the User Guide before Feature Freeze.
+    * Worked with Isaac to edit the Model architecture in the User Guide (Procedure-specific).
+    * Maintained `EditClient` Command
+    * Maintained `DeleteProcCommand` Command
+    * Maintained `EditProcCommand` Command
 
-- **Contributions to the DG:** To be added soon
+- **Contributions to the DG:**
+    * Maintained `DeleteProcCommand` Command
+    * Maintained `EditProcCommand` Command
 
-- **Contributions to team-based tasks** To be added soon
+- **Contributions to team-based tasks**
+    * Created jar file for end of v1.3
+    * Helped to wrap up and closed two milestones.
+    * Consistently drafted agendas for meetings.
+    * Collated, pinned, and maintained important links in the telegram group check.
 
-- **Review/mentoring contributions:** To be added soon
-
-- **Contributions beyond the project team:** To be added soon
+- **Review/mentoring contributions:**
+  - [Pull Requests Reviewed by me](https://github.com/AY2122S2-CS2103T-W13-1/tp/pulls?q=is%3Apr+reviewed-by%3Ateominghuang)
 
