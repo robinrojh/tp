@@ -44,6 +44,8 @@ AddProcCommandParser -> Procedure
 activate Procedure
 Procedure --> AddProcCommandParser : p
 deactivate Procedure
+Procedure -[hidden]-> AddProcCommandParser
+destroy Procedure
 
 create AddProcCommand
 AddProcCommandParser -> AddProcCommand
@@ -79,6 +81,8 @@ and Procedures
 end note
 Client --> AddProcCommand : info
 deactivate Client
+Client -[hidden]--> AddProcCommand : info
+destroy Client
 
 AddProcCommand -> AddProcCommand : addProcedure(procedureList)
 activate AddProcCommand
