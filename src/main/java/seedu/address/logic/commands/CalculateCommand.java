@@ -44,6 +44,7 @@ public class CalculateCommand extends Command {
             BigDecimal currentCost = currentClient.getCostOnDate(targetDate);
             totalCost = totalCost.add(currentCost);
         }
+        totalCost.setScale(2, BigDecimal.ROUND_UP);
         String totalCostString = '$' + totalCost.toPlainString();
 
         return new CommandResult(String.format(MESSAGE_CALCULATE_COST_SUCCESS, totalCostString));
