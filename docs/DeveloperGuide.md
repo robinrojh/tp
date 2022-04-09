@@ -72,6 +72,15 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+Within the DG, when used, these components will be color coded as such:
+
+`UI`: Green
+
+`Logic` : Blue
+
+`Model` : Red
+
+`Storage` : Yellow
 
 **How the architecture components interact with each other**
 
@@ -334,14 +343,12 @@ but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 1. The arguments passed to the logic manager will be parsed by the AddressBookParser class.
 2. If the given arguments are valid, further parsing will be carried out by the CalculateCommandParser.
 3. If further parsing is successful, a new CalculateCommand object will be returned
-##### In these parsers, invalid arguments will result in a ParseException.
 
 A valid argument consists of 2 sections:
 1. valid command `calculate`
 2. valid date, `22/03/2022`
 
-A date is only valid if it follows the "dd/MM/yyyy" format and consists of a legitimate date,
-taking leap years into account
+A date is only valid if it satisfies the isValidDate() method defined in the date Class
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -428,7 +435,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. TThe User requests to delete a Client out of index.
+* 2a.   The User requests to delete a Client out of index.
   * 2a1. Networkers shows an error message.
 
       Use case resumes at step 1.
