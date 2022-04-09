@@ -42,7 +42,6 @@ import seedu.address.testutil.RandomProcedureBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for AddProcCommand.
  */
 public class AddProcCommandTest {
-
     private static final int EXPECTED_LENGTH_OF_LIST = 3;
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     // new Model without any Clients

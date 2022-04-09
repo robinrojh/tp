@@ -21,7 +21,12 @@ deactivate Model
         activate Client
         ListProcOnCommand <-- Client : clientProceduresOnDate
         deactivate Client
-        ListProcOnCommand -> ListProcOnCommand : aggregate(clientProceduresOnDate)
+        ListProcOnCommand -> ListProcOnCommand : add(clientProceduresOnDate)
+        note right
+          The lower-level details of adding up
+          clientProceduresOnDate for each Client
+          has been abstracted to make the diagram clearer
+        end note
     end
 <-- ListProcOnCommand : CommandResult
 deactivate ListProcOnCommand
