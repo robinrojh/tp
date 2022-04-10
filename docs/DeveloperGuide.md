@@ -577,23 +577,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 2c. The User requests to edit a non-existing Procedure from an existing Client.
+* 2c. The Client's edit information, cost, and date and time are empty.
     * 2c1. Networkers shows an error message.
 
       Use case resumes at step 2.
 
-* 2d. The User requests to edit an existing Procedure from a non-existing Client.
+* 2d. The specified Client already has an identical Procedure in its Procedure list.
     * 2d1. Networkers shows an error message.
-
-      Use case resumes at step 2.
-
-* 2e. The related information, cost, or date and time is empty.
-    * 2e1. Networkers shows an error message.
-
-      Use case resumes at step 2.
-
-* 2f. The specified Client already has an identical Procedure in its Procedure list.
-    * 2f1. Networkers shows an error message.
 
       Use case resumes at step 2.
 
