@@ -1,3 +1,8 @@
+---
+layout: page
+title: Teo Ming Huang's Project Portfolio Page
+---
+
 ## Project: Networkers
 
 ###Overview
