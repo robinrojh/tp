@@ -287,11 +287,14 @@ In Command Line Interface (CLI):
 - `listProcOn 06/06/2022`
   - Result shows: 
 ```
-  Listing Procedures on requested date:
-  1. Information: configure internet settings; Date: 26/03/2022 11:30; Cost: 10.50; Completed: false
-   MINISO, located at 3155 Commonwealth Ave W, #03-56-58
-  2. Information: configure POS connections; Date: 26/03/2022 12:00; Cost: 23.50; Completed: false
-   Master Fix Services, located at 3155 Commonwealth Ave W, #B1-10
+Listing Procedures on requested date:
+1. Information: Back up their employee data to the cloud database; Date: 06/06/2022 09:55; Cost: $230.00; Completed: false
+Master Fix Services, located at 3155 Commonwealth Ave W, #B1-10
+2. Information: Back up their employee data to the cloud database; Date: 06/06/2022 09:55; Cost: $230.00; Completed: false
+Mr Bean, located at 3155 Commonwealth Ave W, #B1-K13
+3. Information: Extend international warranty of modem; Date: 06/06/2022 12:25; Cost: $195.00; Completed: false
+Optical 88, located at 3155 Commonwealth Ave W, #05-27
+
 ```
 > :bulb: **Tip:** You can enlarge the result box by enlarging the window vertically!
 
