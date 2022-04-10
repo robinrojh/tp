@@ -15,11 +15,11 @@ done faster than traditional GUI apps.
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 2. Download the latest `networkers.jar` from [here](https://github.com/AY2122S2-CS2103T-W13-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your networkers.
+1. Copy the file to the folder you want to use as the _home folder_ for your Networkers.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br/>
    ![Ui](images/Ui.png)
@@ -27,24 +27,24 @@ done faster than traditional GUI apps.
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br/>
    Some example commands you can try:
 
-  * **`list`** : Lists all contacts.
+  * **`list`** : Lists all clients.
 
   * **`addClient`**`n/Apple p/91234561 e/apple@example.com a/311, Bedok Ave 3, #01-15 l/Plan 50GBps t/corporate` :
     Adds a Client named `Apple` to the Networkers.
     
   * **`deleteClient`**`3` : Deletes the 3rd Client shown in the current list.
 
-  * **`deleteProc`** `1 3` : Deletes the 3rd Procedure that belongs to the first Client in the current list.
+  * **`deleteProc`** `1 3` : Deletes the 3rd Procedure that belongs to the 1st Client in the current list.
 
   * **`editProc`** `1 2 c/67.25` : 
-    Edits the Cost of the 2nd Procedure that belongs to the first Client to $67.25. 
+    Edits the Cost of the 2nd Procedure that belongs to the 1st Client to $67.25. 
 
   * **`listProc`**`1` : 
-    Lists the Procedures associated with the 1st Client shown in the current list.
+    Lists the Procedures associated with the 1st Client shown in the client list.
 
   * **`mark`**`1 1` : Marks the first Procedure in the first Client as complete.
 
-  * **`clear`** : Deletes all Client.
+  * **`clear`** : Deletes all Clients.
 
   * **`exit`** : Exits the app.
   
@@ -56,30 +56,30 @@ done faster than traditional GUI apps.
 ### Using the UI
 
 To use our program, you need to type your commands into the command box as shown in the above image.
-After typing, press enter: if the correct format is entered, it will execute the command, or else it will guide you 
+After typing, press Enter: if the correct format is entered, it will execute the command, or else it will guide you 
 in rectifying the error.
 
-> :bulb: **Tip:** Procedures of the first Client in the list will be displayed on the Procedure panel!
+> :bulb: **Tip:** Procedures of the first Client in the list will be displayed on the Procedure panel when it is first loaded!
 
 ## Features
 For each of the features section, we have divided it into Format, Note, and Example subsections.
 Format subsection mainly discusses how the command should be structured when typing it to the Command Line Interface.
-Note is also an optional subsection that contains more information about the command, but may not be directly connected to the format of the command.
-Example is an optional subsection illustrate how our application responds after typing in and executing the example commands.
+Note is an optional subsection that contains more information about the command, but may not be directly connected to the format of the command.
+Example is an optional subsection that illustrates how our application responds after typing in and executing the example commands.
 
 ### Notes about command formats:
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
   For example, in `addClient n/NAME`, `NAME` is a parameter that can be used as `addClient n/John Doe`.
 
-- When more than 1 parameter from the user is required, parameters will be separated with the use  of 
-  indicators, in the form of `x/xxxxx`
+- When more than 1 parameter from the user is required, parameters will be separated with the use of 
+  flags, in the form of `x/xxxxx`
   For example, in the add command, since more than one parameter needs to be specified, the command takes
   the form of `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS l/PLAN [t/TAG]`. 
 
 - Items in square brackets are optional.
   For example, `find KEYWORD [MORE_KEYWORDS]` can be used as `find Apple Inc`.
 
-- All indexes are integer based, in which the maximum value is 2147483647 (2<sup>31</sup> - 1), as specified by the Java language.
+- All indexes are integer-based, in which the maximum value is 2147483647 (2<sup>31</sup> - 1), as specified by the Java language.
 
 ### Add a Client: `addClient`
 
@@ -90,17 +90,17 @@ Add your Client to Networkers. The Client will initially start off with an empty
 
 - Equality checks for this command only come into effect if `ADDRESS` attribute is identical, including the presence of whitespaces.
   - Having two whitespaces will be treated differently from having one whitespace.
-- There exists some fields that are mandatory for this function. These fields include their name, phone_number, address and a (subscription) plan.
+- There exist some fields that are mandatory for this function. These fields include their name, phone number, address and a (subscription) plan.
 
 **Note:** <br/>
-- You can insert any information for the plan attribute. This behavior is intended because there are varying formats specified by the different telecommunications company.
+- You can insert any information for the plan attribute. This behaviour is intended because there are varying formats specified by the different telecommunication companies.
 
-> :bulb: **Tip:** Our User Guide uses PLAN NAME + BANDWIDTH for inserting plan attribute, such as PLAN 50GBPs. But feel free to customize!
+> :bulb: **Tip:** Our User Guide uses PLAN NAME + BANDWIDTH for inserting plan attributes, such as PLAN 50GBPs. Feel free to customise to your own needs!
 
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `addClient n/Apple p/91234561 e/apple@example.com a/311, Bedok Ave 3, #01-15 l/Plan 50GBps t/corporate`
-  - This triggers the addition of a Client into your Client list.
+  - This triggers the addition of the Client to your Client Panel.
   - Result shows: `New client added: Apple; Phone: 91234561; Email: apple@example.com; Address: 311, Bedok Ave 3, #01-15; Plan: Plan 50GBps; Tags: [corporate]`
 
 In Application: ![Ui](images/addClientGUI.png)
@@ -110,15 +110,14 @@ In Application: ![Ui](images/addClientGUI.png)
 Deletes a specified Client in Networkers.
 
 **Format:** `deleteClient <CLIENT INDEX>`
-- Deletes an existing Client at the specified index in your Client list.
-- `<CLIENT INDEX>` refers to the ordering number shown in your displayed Client list.
+- Deletes an existing Client at the specified index in your Client Panel.
+- `<CLIENT INDEX>` refers to the ordering number shown in your displayed Client Panel.
   - The index **must be** a positive integer 1, 2, 3, …
-- The largest Client index that you can assess is 2147483647.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `deleteClient 5` 
-  - This triggers the deletion of the first Client in your Client list. 
+  - This triggers the deletion of the first Client in your Client Panel. 
   - ❗ When you delete a Client, you will delete the Procedures that are tagged to them as well.
   - Result shows: `Deleted Client: Apple; Phone: 91234561; Email: apple@example.com; Address: 311, Bedok Ave 3, #01-15; Plan: Plan 50GBps; Tags: [corporate]`
 
@@ -130,7 +129,7 @@ Edits a Client in Networkers.
 
 **Format:** `edit <CLIENT INDEX> [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/PLAN] [t/TAG]...`
 - `edit` refers to the command to edit a Client in Networkers.
-- `<CLIENT INDEX>` refers to the index number shown in the displayed Client list. 
+- `<CLIENT INDEX>` refers to the index number shown in the displayed Client Panel. 
   - The index **must be** a positive integer 1, 2, 3, …
 - `[n/NAME]` refers to an optional field of editing your Client's name.
 - `[p/PHONE]` refers to an optional field of editing your Client's contact number.
@@ -140,34 +139,34 @@ Edits a Client in Networkers.
 - `[t/TAG]` refers to an optional field of editing your Client's tag.
 - In order to trigger this command, at least one of the following fields must be edited: `name`, `phone`, `email`, 
 `address`, `plan`, `tag`.
-- ❗ Note that by editing your client's details, you will be overwriting their existing data.
+- ❗ Note that by editing your Client's details, you will be overwriting their existing data.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `edit 4 n/Apple`
   - This triggers the editing of the indicated Client.
-  - Result shows: `Edited Client: Apple; Phone: 66595327; Email: optical88@example.com; Address: 3155 Commonwealth Ave W, #05-27; Plan: EXPRESS 200MBps; Tags: [family]`
+  - Result shows: `Edited Client: Apple; Phone: 66595327; Email: optical88@example.com; Address: 3155 Commonwealth Ave W, #05-27; Plan: EXPRESS 200MBps; Tags: [new]`
 
 In Application: ![Ui](images/EditClient_After.png)
 
 ### Add a Procedure to a Client: `addProc`
 
-Adds a specified Procedure to a specified Client in your display Client list.
+Adds a specified Procedure to a specified Client in your displayed Client Panel.
 
 **Format:** `addProc <CLIENT INDEX> i/INFORMATION c/COST d/DATE_TIME`
 - `addProc` refers to the command of adding a Procedure to the Client at the specified index.
-- `<CLIENT INDEX>` refers to the index number shown in the displayed Client list. 
+- `<CLIENT INDEX>` refers to the index number shown in the displayed Client Panel. 
   - The index **must be** a positive integer 1, 2, 3, …
 - `INFORMATION` refers to the tasks or problems that need to be addressed on the Client’s business site.
 - `COST` is the cost required for the Procedure.
 - `DATE_TIME` is the date and time that the Procedure takes place. It accepts inputs in the form of `dd/MM/YYYY HH:MM`, e.g. 20/03/2022 11:30.
 - If the specified Client already has an identical Procedure, the application will inform you that the Procedure has already been added.
-  - An identical Procedure refers a Procedure that contains the exact information, date and time, and cost.
+  - An identical Procedure refers to another Procedure that contains the exact same information, date and time, and cost.
 
 **Note:** <br/>
 - If you were viewing the Procedures of another Client when adding a Procedure, after execution of the command, it will show the list of Procedures for the Client that now has this newly added Procedure.
 - A new Procedure will be auto-sorted based on the date when the Procedure takes place, in ascending order.
-- It is perfectly valid to add Procedures that fall on the exact date and time.
+- It is perfectly valid to add Procedures that fall on the exact same date and time.
   - This is because some Procedures can be done concurrently through remote control.
 - It is perfectly valid to add in Procedures that had occurred in the past.
   - This is because we have learned some technicians wish to add in past Procedures just for their own record.
@@ -175,7 +174,7 @@ Adds a specified Procedure to a specified Client in your display Client list.
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`
-  - This triggers the adding of the Procedure to the first Client.
+  - This triggers the addition of the Procedure to the first Client.
 
 In Application: ![addProc](images/addProcGUI.png)
 
@@ -185,7 +184,7 @@ Deletes a Procedure associated with your Client. This is important as it allows 
 
 **Format:** `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`
 - `deleteProc` refers to the command of deleting a Procedure from the Client at the specified index.
-- `<CLIENT INDEX>` refers to the index number shown in the displayed Client list. 
+- `<CLIENT INDEX>` refers to the index number shown in the displayed Client Panel. 
   - The index **must be** a positive integer 1, 2, 3, ...
 - `<PROCEDURE INDEX>` refers to the index number of a Procedure from a specified Client's list of Procedures. 
   - The index **must be** a positive integer 1, 2, 3, ...
@@ -211,7 +210,7 @@ After Command:
 ### Edit a Procedure of your Client: `editProc`
 
 Edits an existing Procedure that belongs to an existing Client. This feature allows you to edit the main details related to the Procedure.
-The main details include the information, the date, and the cost of the Procedure.
+The main details include the information, the date and time, and the cost of the Procedure.
 
 **Format:** `editProc <CLIENT INDEX> <PROCEDURE INDEX> [i/INFORMATION] [d/DATE] [c/COST]`
 - `editProc` refers to the command to edit a Procedure belonging to your Client.
@@ -220,7 +219,7 @@ The main details include the information, the date, and the cost of the Procedur
 - `<PROCEDURE INDEX>` refers to the ordering number of the Procedure displayed on the Procedure screen (that is associated with a Client). 
   - The index **must be** a positive integer 1, 2, 3, ...
 - `[i/INFORMATION]` refers to the informational detail of the Procedures in subsequent servicing trips. 
-- `[d/DATE]` refers to the date of the subsequent servicing trip of your Client.
+- `DATE_TIME` is the date and time that the Procedure takes place. It accepts inputs in the form of `dd/MM/YYYY HH:MM`, e.g. 20/03/2022 11:30.
 - `[c/COST]` refers to the cost incurred from executing the Procedure that will be charged to your Client.
 - Either the information field, the date field, or the cost field **must be** filled up for this feature to run.
 
@@ -238,11 +237,13 @@ Before Command:
 
 ![editProc](images/EditProcCommand_Before.png)
 
+After Command:
+
 ![editProc](images/EditProcCommand_After.png)
 
 ### View All Clients: `list`
 
-Lists out all the Clients saved in your database. This feature will be used to display all the Clients added to the application. 
+Lists out all the Clients saved in your database. This feature will be used to displayed all the Clients added to the application. 
 No secondary information is required.
 
 **Format:** `list`
@@ -280,7 +281,7 @@ Lists out all Procedures, including the associated Client as per Procedure, that
 **Format:** `listProcOn <DATE>`
 - `listProcOn` refers to the command of listing out all Procedures on a specified date.
 - `DATE` is in the format of dd/MM/YYYY, e.g. 26/03/2022.
-  - Error will be thrown if the date is invalid.
+  - An error will be thrown if the date is invalid.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
@@ -288,12 +289,11 @@ In Command Line Interface (CLI):
   - Result shows: 
 ```
   Listing Procedures on requested date:
-  1. Information: configure internet settings; Date: 26/03/2022 11:30; Cost: 10.50; Completed: false
+  1. Information: configure internet settings; Date: 26/03/2022 11:30; Cost: $10.50; Completed: false
    MINISO, located at 3155 Commonwealth Ave W, #03-56-58
-  2. Information: configure POS connections; Date: 26/03/2022 12:00; Cost: 23.50; Completed: false
+  2. Information: configure POS connections; Date: 26/03/2022 12:00; Cost: $23.50; Completed: false
    Master Fix Services, located at 3155 Commonwealth Ave W, #B1-10
 ```
-> :bulb: **Tip:** You can enlarge the result box by enlarging the window vertically!
 
 In Application: ![listProcOn](images/listProcOn.png)
 
@@ -305,12 +305,12 @@ Calculates the cost of all Procedures that happen at any time on a specified dat
 **Format:** `calculate <DATE>`
 - `calculate` refers to the command of calculating cost of all Procedures on a specified date.
 - `DATE` is in the format of dd/MM/YYYY, e.g. 23/03/2022. 
-  - Error will be thrown if the date is invalid.
+  - An error will be thrown if the date is invalid.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `calculate 06/06/2022`
-  - Result shows: `Total Cost:$655.00`
+  - Result shows: `Total Cost: $655.00`
 
 In Application: ![list](images/calculate.png)
 
@@ -367,7 +367,7 @@ Finds Clients whose names contain any of the given keywords.
 In Command Line Interface (CLI):
 - `find Fix`
   - Result shows: `1 client(s) listed!`
-
+  - ❗ If no Clients were found, then the Procedure panel will contain the previously listed Procedures
 In Application: ![list](images/findCommandExample.png)
 
 ### Clear All Clients: `clear`
@@ -401,7 +401,7 @@ Exits the program.
 | Delete Procedure                                | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`                                                                   | `deleteProc 1 3`                                         |
 | Edit Procedure                                  | `editProc <CLIENT INDEX> <PROCEDURE INDEX> [i/INFORMATION] [d/DATE] [c/COST]`                                   | `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`   |
 | List All Clients                                | `list`                                                                                                          | `list`                                                   |
-| List All Procedures                             | `listProc <CLIENT INDEX>`                                                                                       | `listProc 1`                                             |
+| List All Procedures of a Client                 | `listProc <CLIENT INDEX>`                                                                                       | `listProc 1`                                             |
 | List All Procedures on Specified Date           | `listProcOn <DATE>`                                                                                             | `listProcOn 23/05/2022`                                  | 
 | Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                                                                              | `calculate 23/02/2022`                                   |
 | Clear All Clients                               | `clear`                                                                                                         | `clear`                                                  |
