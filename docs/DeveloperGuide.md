@@ -596,13 +596,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
-
-* 2a. The list is empty.
-    * 2a1. Networkers shows a message to indicate empty Client list.
-
-      Use case ends.
-
 **Use case 7: Listing Procedure(s) of a specified Client**
 
 **MSS**
@@ -674,7 +667,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 2b. The tags within the command are invalid (or no tags are given).
+* 2b. The field(s) specified for edit is invalid.
     * 2b1. Networkers shows an error message.
 
       Use case resumes at step 2.
@@ -693,7 +686,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### Performance Requirements
 1. Networkers should respond within two seconds.
 2. Should be able to hold up to 1000 Client(s) without a noticeable sluggishness in performance for typical usage.
-3. Should be able to hold up to 10 Procedure in each Client without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 50 Procedure in each Client without a noticeable sluggishness in performance for typical usage.
 
 #### Quality Requirements
 1. A User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -704,7 +697,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Client**: Refers to a business entity that the User is responsible for network-related Procedures
-* **Contact**: Refers to information for a Client, including its business name, phone number, and address.
 * **Procedure**: Refers to a network-related task that a User performs for a Client, such as fixing a router and setting up intranet.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -733,10 +725,10 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. Checking initially displayed procedures
+1. Checking initially displayed Procedures
    
-    1. Check if the procedures are from the first client.<br>
-       Expected: The displayed procedures should all be from client at index 1.
+    1. Check if the procedures are from the first Client.<br>
+       Expected: The displayed Procedures should all be from client at index 1.
 
 ### Deleting a Client
 
@@ -767,4 +759,4 @@ testers are expected to do more *exploratory* testing.
     1. Delete the networkers.json in data folder and launch the application <br>
     Expected: the networkers.json should be created on launch
     2. To simulate a corrupted data file, change the value of a field of a Client or a Procedure to a non-String value. Then, launch the application. <br>
-    Expected: The AddressBook opens but does not load any Clients and Procedures with an error message in the log.
+    Expected: The networkers.json opens but does not load any Clients and Procedures with an error message in the log.
