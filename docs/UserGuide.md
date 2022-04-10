@@ -367,7 +367,6 @@ Finds Clients whose names contain any of the given keywords.
 In Command Line Interface (CLI):
 - `find Fix`
   - Result shows: `1 client(s) listed!`
-  - ❗ If no Clients were found, then the Procedure panel will contain the previously listed Procedures
 In Application: ![list](images/findCommandExample.png)
 
 ### Clear All Clients: `clear`
