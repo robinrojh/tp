@@ -83,15 +83,11 @@ Add your Client to Networkers. The Client will initially start off with an empty
 **Format:** `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS l/PLAN [t/TAG]...`
 - `addClient` refers to the command of adding a Client.
 
-- Equality checks for this command only come into effect if `ADDRESS` attribute is  is identical,
-  including the presence of whitespaces.
-- There exists some fields that are mandatory for this function. These fields include their name, phone_number, address 
-and a (subscription) plan.
+- Equality checks for this command only come into effect if `ADDRESS` attribute is identical, including the presence of whitespaces.
+  - Having two whitespaces will be treated differently from having one whitespace.
+- There exists some fields that are mandatory for this function. These fields include their name, phone_number, address and a (subscription) plan.
 
 **Note:** <br/>
-- Equality check to filter out duplicate Client only comes into effect if all attributes are identical,
-    including the presence of whitespaces. 
-  - Having two whitespaces will be treated differently from having one whitespace.
 - You can insert any information for the plan attribute. This behavior is intended because there are varying formats specified by the different telecommunications company.
 
 > :bulb: **Tip:** Our User Guide uses PLAN NAME + BANDWIDTH for inserting plan attribute, such as PLAN 50GBPs. But feel free to customize!
@@ -228,7 +224,7 @@ The main details include the information, the date, and the cost of the Procedur
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`
-  - Result shows: `Edited Procedure: Information: Fix Router; Date: 31/03/2022 09:50; Cost: 67.25; Completed: false, from Client MINISO; Email: miniso@example.com`
+  - Result shows: `Edited Procedure: Information: Fix Router; Date: 31/03/2022 09:50; Cost: 67.25; Completed: true, from Client MINISO; Email: miniso@example.com`
 
 Before Command: 
 
@@ -267,7 +263,7 @@ Lists out all the Procedures related to a Client.
 - `listProc 3`
   - Result shows: `Procedures successfully loaded.`
 
-In Application: ![listProc](images/ListProcCommandExample1.PNG)
+In Application: ![listProc](images/ListProcCommandExample1.png)
 
 ### View all Procedures scheduled on a specified date: `listProcOn`
 
@@ -305,8 +301,8 @@ Calculates the cost of all Procedures that happen at any time on a specified dat
 
 **Example:** <br/>
 In Command Line Interface (CLI):
-- `calculate 23/03/2022`
-  - Result shows: `Total Cost: 31.5`
+- `calculate 06/06/2022`
+  - Result shows: `Total Cost:$655.00`
 
 In Application: ![list](images/calculate.png)
 
@@ -327,7 +323,7 @@ In Command Line Interface (CLI):
 - `mark 1 5`
     - Result shows: `Procedure successfully marked as complete.`
 
-In Application: ![mark](images/mark.PNG)
+In Application: ![mark](images/mark.png)
 
 ### Unmarking a Procedure of a Client: `unmark`
 
@@ -343,7 +339,7 @@ Marks the target Client's target Procedure as not complete.
 **Example:**
 
 In Command Line Interface (CLI):
-- `mark 1 5`
+- `unmark 1 5`
     - Result shows: `Procedure successfully unmarked.`
 
 In Application: ![mark](images/unmark.png)

@@ -1,0 +1,11 @@
+{
+  "guiSettings" : {
+    "windowWidth" : 906.0,
+    "windowHeight" : 765.0,
+    "windowCoordinates" : {
+      "x" : 429,
+      "y" : 25
+    }
+  },
+  "addressBookFilePath" : "data/networkers.json"
+}

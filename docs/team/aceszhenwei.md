@@ -1,5 +1,7 @@
-# Alexander's Project Portfolio Page
-
+---
+layout: page
+title: Alexander's Project Portfolio Page
+---
 
 ### Project: Networkers
 
