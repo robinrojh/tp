@@ -378,9 +378,9 @@ Step 2. The user executes `calculate 22/03/2022` to calculate cost of all Proced
 
 The following sequence diagram shows how this operation works:
 
-![CalculateCostObjectDiagram](images/CalculateSequenceDiagram.png)
+<img src="images/CalculateSequenceDiagram.png" width="1000" />
 
-:information_source: **Note:** The lifeline for `CalculateCommandParser` should end at the destroy marker (X)
+:information_source: **Note:** The lifeline for `CalculateCommandParser` and `CalculateCommand` should end at the destroy marker (X)
 but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 1. The arguments passed to the logic manager will be parsed by the AddressBookParser class.
