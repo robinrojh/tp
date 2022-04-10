@@ -22,11 +22,11 @@ Given below are my contributions to the project.
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=jbkim1999&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=jbkim1999&zR=AY2122S2-CS2103T-W13-1%2Ftp%5Bmaster%5D&zACS=237.07692307692307&zS=2022-02-18&zFS=jbkim1999&zU=2022-04-07&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false&zFT=docs~functional-code~test-code&since=2022-02-18)
 
 - **Enhancements implemented:**
-  - Added a `plan` attribute to the Client (e.g. the name of the plan and bandwidth that a Client has subscribed for).
+  - Added a `Plan` attribute to the Client (e.g. the name of the plan and bandwidth that a Client has subscribed for).
     - Modifications were made, especially on the test cases, to handle the regressions caused.
 
 - **Contributions to the UG:**
-  - Added documentations for `AddProc`, `listProcOn` commands
+  - Added documentations for `AddProc`, `ListProcOn` commands
   - Revised general formats of the UG
     - Divided the feature section into Format, Note, and Example subsections for enhanced readability.
 
@@ -34,6 +34,8 @@ Given below are my contributions to the project.
   - Reflected the architectural design (such as diagrams) changes
     - Renamed some classes involving `Person` to `Client`.
     - Added in classes as a result of having additional `Procedure` class.
+  - Described the implementation of `ListProcOnCommand`
+    - Made use of class and sequence diagram to illustrate the enhancement.
 
 - **Contributions to team-based tasks**
   - Conducted product demo for iteration v1.2 and v1.3

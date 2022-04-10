@@ -24,9 +24,9 @@ Given below are my contributions to the project.
     * `Information` Class
   * Created the `Calculate` command and parser, which calculates the cost of all procedures
   on a specified date.
-  * Created the relevant tests for procedure along with its accompanying classes
+  * Created the relevant tests for `Procedure` along with its accompanying classes
   * Created tests for `Calculate` as well as its parser.
-  *  Generally cleaned up the code within the application to better fit our theme
+  * Generally cleaned up the code within the application to better fit our theme
   
 - **Contributions to the UG:**
   * Introduction
@@ -36,7 +36,11 @@ Given below are my contributions to the project.
   * Use cases
 
 - **Contributions to the DG:**
-    * Calculate Command
+  * General standardisation of format and language
+  * Heavily involved in the editing of the User Guide before Feature Freeze.
+  * Wrote the introduction and quick start for the DG
+  * Maintained and created `Calculate` Command
+  * Worked with Ben to edit the Model architecture in the User Guide (Procedure-specific).
 
 - **Contributions to team-based tasks**
     * creaated jar file for first 2 iterations

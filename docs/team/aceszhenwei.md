@@ -40,3 +40,4 @@ Given below are my contributions to the project.
 
 #### Contributions to team-based tasks:
   * Sorted and tagged all issues that were raised after Practical Exam Dry Run.
+  * Hosted the weekly team meetings on Zoom
