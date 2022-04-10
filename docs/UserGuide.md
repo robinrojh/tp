@@ -197,7 +197,8 @@ Deletes a Procedure associated with your Client. This is important as it allows 
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `deleteProc 1 3`
-  - Result shows: `Deleted Procedure: Information: Run a network diagnostic test; Date: 05/04/2022 11:55; Cost: 10.00; Completed: true`
+  - Result shows: 
+  `Deleted Procedure: Information: Fix Router; Date: 31/03/2022 09:50; Cost: $67.25; Completed: true`
 
 Before Command:
 
@@ -229,7 +230,9 @@ The main details include the information, the date, and the cost of the Procedur
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`
-  - Result shows: `Edited Procedure: Information: Fix Router; Date: 31/03/2022 09:50; Cost: 67.25; Completed: true, \nFrom client MINISO; Email: miniso@example.com`
+  - Result shows: 
+  `Edited Procedure: Information: Fix Router; Date: 31/03/2022 09:50; Cost: $67.25; Completed: true,
+    From client: MINISO, at 3155 Commonwealth Ave W, #03-56-58`
 
 Before Command: 
 

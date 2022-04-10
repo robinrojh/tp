@@ -48,8 +48,8 @@ public class EditProcCommand extends Command {
         + "[" + PREFIX_DATE + "DATE] "
         + "[" + PREFIX_COST + "COST] ";
 
-    public static final String MESSAGE_EDIT_PROCEDURE_SUCCESS = "Edited Procedure: %1$s, "
-        + "\n From client: %2$s, at %3$s";
+    public static final String MESSAGE_EDIT_PROCEDURE_SUCCESS = "Edited Procedure: %1$s. "
+        + "\n From client: %2$s, at %3$s.";
     public static final String MESSAGE_INVALID_EDIT_PROCEDURE_DUPLICATED = "This Client already has this "
         + "Procedure.\nEnsure that the edited field of the Procedure do not share the same information,"
         + "date, time, and cost with another Procedure that belongs to this Client.";
@@ -124,7 +124,7 @@ public class EditProcCommand extends Command {
     }
 
     /**
-     * Checks if new {@code Procedure} already has duplicate in the {@code procedureList}
+     * Checks if new {@code Procedure} already has a duplicate in the {@code procedureList}.
      */
     private static boolean hasDuplicateProcInList(List<Procedure> procedureList, Procedure newProcedure) {
         for (Procedure procedure : procedureList) {

@@ -22,7 +22,7 @@ import seedu.address.model.procedure.Procedure;
 import seedu.address.model.tag.Tag;
 
 /**
- * Delete a procedure of an existing client in the address book.
+ * Deletes an existing procedure that belongs to an existing client in the address book.
  */
 public class DeleteProcCommand extends Command {
 
@@ -42,7 +42,7 @@ public class DeleteProcCommand extends Command {
     private final Index procedureIndex;
 
     /**
-     * @param clientIndex of the client in the filtered client list whose procedure to delete.
+     * @param clientIndex of the client in the filtered client list, whose procedure you'd like to delete.
      * @param procedureIndex of the procedure in the filtered procedure list to delete
      */
     public DeleteProcCommand(Index clientIndex, Index procedureIndex) {
@@ -85,7 +85,7 @@ public class DeleteProcCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Client} with their {@code Procedures} updated by
+     * Creates and returns a {@code Client} with their {@code Procedure} updated by
      * {@code updatedProcedureList}.
      */
     private Client updateClientProcedures(Client clientToEdit,
@@ -104,7 +104,7 @@ public class DeleteProcCommand extends Command {
     }
 
     /**
-     * Creates and returns a list of {@code Procedures} with the intended {@code Procedure} at
+     * Creates and returns a list of {@code Procedure} with the intended {@code Procedure} at
      * {@code procedureIndex} deleted.
      */
     private List<Procedure> deleteProcedureFromList(List<Procedure> procedureList, Index procedureIndex)
