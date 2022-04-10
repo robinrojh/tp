@@ -41,5 +41,4 @@ destroy CalculateCommandParser
 AddressBookParser --> LogicManager : cc
 deactivate AddressBookParser
 
-deactivate LogicManager
 @enduml
