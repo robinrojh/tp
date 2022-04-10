@@ -34,6 +34,8 @@ Given below are my contributions to the project.
   - Reflected the architectural design (such as diagrams) changes
     - Renamed some classes involving `Person` to `Client`.
     - Added in classes as a result of having additional `Procedure` class.
+  - Described the implementation of listProcOnCommand
+    - Made use of class and sequence diagram to illustrate the enhancement.
 
 - **Contributions to team-based tasks**
   - Conducted product demo for iteration v1.2 and v1.3
