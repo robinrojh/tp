@@ -5,11 +5,13 @@ title: Teo Ming Huang's Project Portfolio Page
 
 ## Project: Networkers
 
-###Overview
+### Overview
 
 Networkers is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-###Summary of my contributions
+Given below are my contributions to the project.
+
+### Summary of my contributions
 
 - **Code contributed:** 
   - **Code contributed:** [My Contribution](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=teominghuang&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
