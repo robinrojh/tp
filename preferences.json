@@ -7,5 +7,5 @@
       "y" : 25
     }
   },
-  "addressBookFilePath" : "data/networkers.json"
+  "addressBookFilePath" : "data\\networkers.json"
 }

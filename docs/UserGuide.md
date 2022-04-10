@@ -34,6 +34,11 @@ done faster than traditional GUI apps.
     
   * **`deleteClient`**`3` : Deletes the 3rd Client shown in the current list.
 
+  * **`deleteProc`** `1 3` : Deletes the 3rd Procedure that belongs to the first Client in the current list.
+
+  * **`editProc`** `1 2 c/67.25` : 
+    Edits the Cost of the 2nd Procedure that belongs to the first Client to $67.25. 
+
   * **`listProc`**`1` : 
     Lists the Procedures associated with the 1st Client shown in the current list.
 
@@ -192,7 +197,7 @@ Deletes a Procedure associated with your Client. This is important as it allows 
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `deleteProc 1 3`
-  - Result shows: `Current Procedure List: [Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.5; Completed: false]`
+  - Result shows: `Deleted Procedure: Information: Run a network diagnostic test; Date: 05/04/2022 11:55; Cost: 10.00; Completed: true`
 
 Before Command:
 
@@ -224,7 +229,7 @@ The main details include the information, the date, and the cost of the Procedur
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`
-  - Result shows: `Edited Procedure: Information: Fix Router; Date: 31/03/2022 09:50; Cost: 67.25; Completed: true, from Client MINISO; Email: miniso@example.com`
+  - Result shows: `Edited Procedure: Information: Fix Router; Date: 31/03/2022 09:50; Cost: 67.25; Completed: true, \nFrom client MINISO; Email: miniso@example.com`
 
 Before Command: 
 

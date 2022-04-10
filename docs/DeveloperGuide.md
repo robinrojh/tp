@@ -460,7 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list Client(s). (UC5)
+1. User requests to list Client(s). (UC6)
 2. User requests to add a Client to the list by specifying its name, number, address, subscription plan, and tag.
 3. Networkers adds the Client. 
    
@@ -482,7 +482,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list Client(s). (UC5)
+1. User requests to list Client(s). (UC6)
 2. User sends in a command to delete the Client from the list.
 3. Networkers deletes existing Client.
 
@@ -500,7 +500,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list Client(s). (UC5)
+1. User requests to list Client(s). (UC6)
 2. User requests to add a Procedure by specifying its related information, cost, and date and time, to a specified Client in the list.
 3. Networkers adds the Procedure associated with the Client.
 
@@ -527,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list Client(s). (UC5)
+1. User requests to list Client(s). (UC6)
 2. User sends in a command to delete a specified Procedure from a specified Client in the list.
 3. Networkers deletes the Procedure from the Client.
 
@@ -554,8 +554,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2d1. Networkers shows an error message.
 
     Use case resumes at step 2.
+  
+**Use case 5: Edit a Procedure from a Client**
 
-**Use case 5: List Client(s) in Networkers**
+**MSS**
+
+1. User requests to list Client(s). (UC6)
+2. User sends in a command to edit a specified Procedure from a specified Client in the list.
+3. Networkers edits the Procedure that belongs to the Client.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The specified Procedure is out of index.
+    * 2a1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The specified Client is out of index.
+    * 2b1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The User requests to edit a non-existing Procedure from an existing Client.
+    * 2c1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+* 2d. The User requests to edit an existing Procedure from a non-existing Client.
+    * 2d1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+* 2e. The related information, cost, or date and time is empty.
+    * 2e1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+* 2f. The specified Client already has an identical Procedure in its Procedure list.
+    * 2f1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case 6: List Client(s) in Networkers**
 
 **MSS**
 
@@ -571,11 +613,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case 6: Listing Procedure(s) of a specified Client**
+**Use case 7: Listing Procedure(s) of a specified Client**
 
 **MSS**
 
-1. User requests to list all Client(s). (UC5)
+1. User requests to list all Client(s). (UC6)
 2. User requests to list Procedure(s) of a specified Client.
 3. Networkers displays the list of Procedures in the Client(s).
 
@@ -588,7 +630,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case 7: Listing all the Procedures that are on a specified day.**
+**Use case 8: Listing all the Procedures that are on a specified day.**
 
 **MSS**
 
@@ -604,7 +646,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case 8: Calculating the cost of all procedures on a specified day**
+**Use case 9: Calculating the cost of all procedures on a specified day**
 
 **MSS**
 
@@ -625,11 +667,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case 9: Editing the details of a Client**
+**Use case 10: Editing the details of a Client**
 
 **MSS**
 
-1. User requests to list all Client(s). (UC5)
+1. User requests to list all Client(s). (UC6)
 2. User sends in a command that requests to edit the details of a Client at a specified index.
 3. Networkers returns a success message as well as an updated Client within the Client list.
 
