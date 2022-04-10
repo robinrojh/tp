@@ -176,6 +176,7 @@ Adds a specified Procedure to a specified Client in your display Client list.
 In Command Line Interface (CLI):
 - `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`
   - This triggers the adding of the Procedure to the first Client.
+  - Result shows: `New Procedure added: Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.50; Completed: false`
 
 In Application: ![addProc](images/addProcGUI.png)
 
