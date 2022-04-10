@@ -381,7 +381,7 @@ The following sequence diagram shows how this operation works:
 Firstly, the users input is parsed by the AddressBookParser and the CalculateCommandParser 
 and a CalculateCommand with the specified date is returned to the logic manager.
 
-![CalculateSequenceDiagram](images/Calculatepart1.png)
+![CalculateSequenceDiagram](images/calculatepart1.png)
 
 Next, the logicManager, calls the calculateCommand's execute() method. 
 For each client in the lastshownlist, if the client contains procedures on the specified date,
@@ -390,7 +390,7 @@ it will be added to the totalCost variable.
 Finally, the totalCost variable is passed to command result in order to return
 the appropriate output.
 
-![CalculateSequenceDiagram](images/Calculatepart2.png)
+![CalculateSequenceDiagram](images/calculatepart2.png)
 
 :information_source: **Note:** The lifeline for `CalculateCommandParser` and `CalculateCommand` should end at the destroy marker (X)
 but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
