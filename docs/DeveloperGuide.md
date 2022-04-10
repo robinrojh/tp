@@ -30,9 +30,9 @@ The intended audience of this document would be
 
 ## **Acknowledgements**
 
-* [addressbook 3](https://se-education.org/addressbook-level3/)
+* This project is based on the [AddressBook-Level3 project](https://se-education.org/addressbook-level3/) created by the SE-EDU initiative.
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: JavaFx, Jackson, JUnit5
 
 --------------------------------------------------------------------------------------------------------------------
 
