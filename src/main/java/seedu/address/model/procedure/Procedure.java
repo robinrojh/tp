@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- * Represents a specific procedure in a clients
+ * Represents a specific procedure in a client
  * Guarantees: immutable; is valid as declared in {@link #isValidProcedure(String)}
  */
 public class Procedure implements Comparable<Procedure> {
