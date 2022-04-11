@@ -114,7 +114,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Client` and `Procedure` objects residing in the `Model`.
 
 ### Logic component
 
@@ -153,7 +153,7 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
-* stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Client` and `Procedure` objects (e.g., results of a search query) as separate _filtered_ lists which are exposed to outsiders as an unmodifiable `ObservableList<Client>` and an unmodifiable `ObservableList<Procedure>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -186,57 +186,63 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Procedure (AddProc)
 
-This mechanism is facilitated by `AddProcCommand`. It extends `Command` taking in a new `Procedure` and `Index` which points to the Client that it wishes to edit. It will also interact with `Storage` in order to store the information about the new Procedure added. This operation is exposed in the `Model` interface as `Model#setProcedures()`.
+This mechanism is facilitated by the `AddProcCommand`. 
+It extends from `Command` and takes in a new `Procedure` and `Index`, which points to the Client that it wishes to add the Procedure to. 
+It will interact with `Storage` to store the information about the new Procedure added. 
+This operation is exposed in the `Model` interface as `Model#setProcedures()`.
 
-In general, the `addProc` command is a command that takes in a string with specified prefixes and a Client index. It will indicate new Procedures that Clients have added to their Procedure list. If an invalid command (whether by index or prefix error), a respective exception will be thrown.
+In general, the `addProc` command is a command that takes in a string with a Client index and its relevant specified prefixes and parameters. 
+It will indicate new Procedures that Clients have added to their Procedure list. 
+If an invalid command (be it by invalid indexes, prefixes, or inputs), the respective errors will be thrown.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `addProc` API call.:
 
 ![AddProcCommand](images/AddProcCommand.png)
 
-Step 1. Once the user types in the command, the `LogicManager` will be called to execute it. It will use `AddressBookParser` to parse the user command.
+Step 1: Once the user types in the command, the `LogicManager` will be called to execute it. It will use `AddressBookParser` to parse the user command.
 
-Step 2. This results in a new `Parser` (more precisely, an object of one of its subclasses e.g., `AddProcCommandParser`) object being constructed.
+Step 2: This results in a new `Parser` (more precisely, an object of one of its subclasses e.g., `AddProcCommandParser`) object being constructed.
 
-Step 3. This will result in a new `Procedure` object (based on the user inputs) and a new `Command` object (specifically `AddProcCommand`) being constructed.
+Step 3: This will result in a new `Procedure` object (based on the user inputs) and a new `Command` object (specifically `AddProcCommand`) being constructed.
 
-Step 4. With this, `LogicManager` will call `AddProcCommand` to execute.
+Step 4: With this, `LogicManager` will call `AddProcCommand` to execute.
 
-Step 5. Within `AddProcCommand`, it will retrieve the `Client` that needs to be added a new `Procedure` and add the new `Procedure` into its Procedure list.
+Step 5: Within `AddProcCommand`, it will retrieve the `Client` that needs to be added a new `Procedure` and add the new `Procedure` into its Procedure list.
 
-Step 6. Once the `Client` has been updated to include the new `Procedure`, it will update `ModelManager` with the updated `Client` to reflect this change.
+Step 6: Once the `Client` has been updated to include the new `Procedure`, it will update `ModelManager` with the updated `Client` to reflect this change.
 
 ### Delete Procedures from a Client (DeleteProc)
 
-The deleteProc mechanism is facilitated by the `DeleteProcCommandParser`.
-The deleteProc mechanism allows deletion of a `Procedure` from an existing `Client` in the address book.
+The deleteProc mechanism is facilitated by the `DeleteProcCommandParser` and the `DeleteProcCommand`.
+The deleteProc mechanism allows deletion of a `Procedure` from an existing `Client` in the address book through interaction with `Storage`.
 The specified `Procedure` is permanently deleted.
-It implements the following operations:
 
-* `DeleteProcCommand#editClientProcedure(Client clientToEdit)` &mdash; Edit an attribute of an existing `Client` and return a new `Client`.
-* `DeleteProcCommand#deleteProcedure(List<Procedure> procedureList)` &mdash; Remove a `Procedure` from the list of `Procedure`
-* `Model#setClient(clientToEdit, editedClient)` &mdash; Replace the existing `Client` with its editted variant.
-* `Model#updateFilteredClientList(Predicate<Client> predicate)` &mdash; Replace the existing `Client` with its editted variant in the `ObservableList`, that helps to update the UI.
+The operation is exposed in the `Model` interface as `Model#setClient(clientToEdit, editedClient)`.
 
-The `editClientProcedure(Client clientToEdit)` operation is exposed in the `Model` interface as `Model#setProcedure()`.
-
-Given below is an example usage scenario and how the deleteProc mechanism behaves at each step.
-
-Step 1. The user finds the `Procedure` that the Client has using `findProc <Index>`
-The UI lists all the `Procedure` associated to the Client and would like to delete one.
-
-![DeleteProcState0](images/DeleteProcState0.png)
-
-Step 2. The user executes `deleteProc 1 1` to delete the 1st `Procedure` associated with the 1st Client in the address book.
-The `deleteProc 1 1` command calls `DeleteProcCommand#(Client clientToEdit)`, which calls the `deleteProcedure(List<Procedure procedureList)` method to remove the `Procedure` from the list.
-This newly-created `Client` is saved locally through the `Model#setClient`, and displayed by updating the `UpdateFilteredClientList`.
-With the `Client` saved, the address book is saved at a new state.
-
-![DeleteProcState1](images/DeleteProcState1.png)
-
-The following sequence diagram shows how this operation works.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for `deleteProc`:
 
 ![DeleteProcSequenceDiagram](images/DeleteProcSequenceDiagram.png)
+
+Given below is an example usage scenario and how the `deleteProc` mechanism behaves at each step.
+
+Step 1: The UI loads when the application starts. The user finds the Procedure to delete.
+
+Step 2: The user then calls `deleteProc 1 1` to delete the first `Procedure` in the Procedure Panel that belongs to the first `Client` in the Client Panel.
+Then, the `LogicManager` will be called to execute the command, and the input is parsed by the `AddressBookParser`.
+
+Step 3: This results in the creation of a new `Parser`, specifically the `DeleteProcCommandParser`. This parser process the input 
+and returns an instance of a `DeleteProcCommand`.
+
+Step 4: With this, the `LogicManager` will call the `DeleteProcCommand` to execute.
+
+Step 5: Within the execution of the `DeleteProcCommand`, it will retrieve the `Client` that contains the `Procedure` to be deleted. 
+Following, it deletes the specific `Procedure` from the list of procedures that belongs to the `Client`, and returns an edited list of `Procedure`.
+
+Step 6: Next, the `procedures` attribute of the `Client` is replaced by the newly-edited list of `Procedure`. This edited list does not contain the
+deleted `Procedure`. A copy of the edited `Client` is returned. 
+
+Step 7: This newly-edited `Client` is then saved locally and stored through the `Model#setClient(Client target, Client editedClient)`. 
+The `ModelManager` is then eventually updated with the deletion of the `Procedure` and this change is reflected in the Procedure Panel.
 
 #### Design considerations:
 
@@ -246,44 +252,47 @@ The following sequence diagram shows how this operation works.
     * Pros: Easy to implement and uses less storage.
     * Cons: Users might find it hard to retrieve pre-existing data of the user.
 
-* **Alternative 2:** Create a deleted status for the `Procedure` and only allow vision of undeleted `Procedure` itself.
-    * Pros: User could easily retrieve previous deleted data.
-    * Cons: Can get storage-expensive, which makes future parsing slower.
+* **Alternative 2:** Create a deleted status for the `Procedure` and only allow vision of undeleted `Procedure` in the Procedure Panel.
+    * Pros: User could easily retrieve deleted data.
+    * Cons: Can get storage-expensive, which makes future operations slower.
 
-### Edit a Procedure from a Client (editProc)
+### Edit a Procedure from a Client (EditProc)
 
-The editProc mechanism is facilitated by the `EditProcCommandParser`.
+The editProc mechanism is facilitated by the `EditProcCommandParser` and the `EditProcCommand`.
 The editProc mechanism allows editing of a `Procedure` from an existing `Client` in the address book.
 The existing data of the Procedure is permanently overwritten and the new `Procedure` will be stored locally after.
-It implements the following operations:
+The specified `Procedure` is permanently overwritten.
 
-* `EditProcCommand#createEditedProcedure(Procedure procedureToEdit, EditProcedureDescriptor editProcedureDescriptor)` &mdash; Edit an attribute of an existing `Procedure` and return a new `Procedure`.
-* `EditProcCommand#updateProcedureList(List<Procedure> procedureList, Procedure edittedProcedure, Index procedureIndex)` &mdash; Create a cloned `procedureList` of an existing `Client`, edits the list with the new `Procedure`, and return it.
-* `EditProcCommand#editClientProcedures(Client clientToEdit)` &mdash; Edits the `Procedures` of an existing `Client` and return a new `Client`.
-* `Model#setClient(clientToEdit, editedClient)` &mdash; Replace the existing `Client` with its editted variant.
-* `Model#updateFilteredClientList(Predicate<Client> predicate)` &mdash; Replace the existing `Client` with its edited variant in the `ObservableList`, that helps to update the UI.
+* The `editClientProcedure(Client clientToEdit)` operation is exposed in the `Model` interface as `Model#setClient(Client target, Client editedClient)`.
 
-* The `editClientProcedure(Client clientToEdit)` operation is exposed in the `Model` interface as `Model#setClient()`.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for `editProc`:
 
-Given below is an example usage scenario and how the editProc mechanism behaves at each step.
+![EditProcSequenceDiagram](images/EditProcSequenceDiagram.png)
 
-Step 1. The user finds the `Procedure` that the Client has using `findProc <Index>`
-The UI lists all the `Procedure` associated to the Client.
+Given below is an example usage scenario and how the `editProc` mechanism behaves at each step.
 
-Step 2. The user executes `editProc 1 1 c/25` to edit the `Cost` of the 1st `Procedure` associated with the 1st Client in the address book.
-The `editProc 1 1 c/25` command calls `EditProcCommand#createEditedProcedure(Procedure procedureToEdit, EditProcedureDescriptor editProcedureDescriptor)` to get a cloned and edited `Procedure` at the client and procedure indice.
-Following, the command calls `EditProcCommand#updateProcedureList(List<Procedure> procedureList, Procedure edittedProcedure, Index procedureIndex)` to get a cloned and edited list of `Procedure`  at the client and procedure indice.
-Lastly, the command calls the `EditProcCommand#editClientProcedures(Client clientToEdit)` to get a cloned and edited `Client` at the client index.
-This newly-created `Client` is saved locally through the `Model#setClient`, and displayed by updating the `UpdateFilteredClientList`.
-With the `Client` saved, the address book is saved at a new state.
+Step 1: UI loads when the application starts. The user finds the Procedure to edit.
 
-The following sequence diagram shows how this operation works.
+Step 2: The user then calls `editProc 1 1 c/25` to edit the `Cost` of the first `Procedure` in the Procedure Panel that belongs to the first `Client` in the Client Panel.
+Then, the `LogicManager` will be called to execute the command, which will be parsed by the `AddressBookParser`.
 
-![DeleteProcSequenceDiagram](images/EditProcSequenceDiagram.png)
+Step 3: This results in the creation of a new `Parser`, specifically the `EditProcCommandParser`. This parser processes the input
+and returns an instance of an `EditProcCommand`.
+
+Step 4: With this, the `LogicManager` will call the `EditProcCommand` to execute.
+
+Step 5: Within the execution of the `EditProcCommand`, it will retrieve the `Client` that contains the `Procedure` to be edited.
+Following, it creates a new `Procedure` with the `Cost` attribute edited and the other attributes remaining the same. 
+
+Step 6: Next, the `Procedure` at the specified procedure index in the client's `procedures` attribute is replaced by the newly-created `Procedure`. 
+A copy of the edited `Client` is returned.
+
+Step 7: This newly-edited `Client` is saved locally and stored through the `Model#setClient`.
+The `ModelManager` is then eventually updated with the edited `Procedure` and this change is reflected in the Procedure Panel.
 
 #### Design considerations:
 
-**Aspect: Will `editProc` permanently overwrite pre-existing data**
+**Aspect: Will `editProc` permanently overwrite pre-existing data?**
 
 * **Alternative 1 (current choice):** Complete overwrite the pre-existing data.
     * Pros: Easy to implement and uses less storage.
