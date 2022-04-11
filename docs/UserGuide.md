@@ -159,7 +159,11 @@ Adds a specified Procedure to a specified Client in your display Client list.
 - `<CLIENT INDEX>` refers to the index number shown in the displayed Client list. 
   - The index **must be** a positive integer 1, 2, 3, …
 - `INFORMATION` refers to the tasks or problems that need to be addressed on the Client’s business site.
-- `COST` is the cost required for the Procedure.
+- `COST` is the cost required for the Procedure. 
+  It must be greater than $0 and less than $100 million dollars. 
+  The rationale behind a cap for cost would be to prevent technicians from inputting numbers that are too large by accident.
+  Contracts that technicians handle on a day-to-day basis are generally small scale and  would be less than $100 million.
+  
 - `DATE_TIME` is the date and time that the Procedure takes place. It accepts inputs in the form of `dd/MM/YYYY HH:MM`, e.g. 20/03/2022 11:30.
 - If the specified Client already has an identical Procedure, the application will inform you that the Procedure has already been added.
   - An identical Procedure refers a Procedure that contains the exact information, date and time, and cost.
@@ -314,7 +318,7 @@ Calculates the cost of all Procedures that happen at any time on a specified dat
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `calculate 06/06/2022`
-  - Result shows: `Total Cost:$655.00`
+  - Result shows: `Total Cost: $655.00`
 
 In Application: ![list](images/calculate.png)
 
