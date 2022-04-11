@@ -227,6 +227,7 @@ The main details include the information, the date, and the cost of the Procedur
 - `[i/INFORMATION]` refers to the informational detail of the Procedures in subsequent servicing trips. 
 - `[d/DATE]` refers to the date of the subsequent servicing trip of your Client.
 - `[c/COST]` refers to the cost incurred from executing the Procedure that will be charged to your Client.
+- The fields in the editProc command follow the same restrictions in the addProc command.
 - Either the information field, the date field, or the cost field **must be** filled up for this feature to run.
 
 **Note:** <br/>
