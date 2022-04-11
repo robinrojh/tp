@@ -32,7 +32,7 @@ The intended audience of this document would be
 
 * This project is based on the [AddressBook-Level3 project](https://se-education.org/addressbook-level3/) created by the SE-EDU initiative.
 
-* Libraries used: JavaFx, Jackson, JUnit5
+* Libraries used: JavaFx, Jackson, JUnit5, PlantUML
 
 --------------------------------------------------------------------------------------------------------------------
 
