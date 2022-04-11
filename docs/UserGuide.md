@@ -169,7 +169,11 @@ Adds a specified Procedure to a specified Client in your displayed Client Panel.
 - `<CLIENT INDEX>` refers to the index number shown in the displayed Client Panel. 
   - The index **must be** a positive integer 1, 2, 3, …
 - `INFORMATION` refers to the tasks or problems that need to be addressed on the Client’s business site.
-- `COST` is the cost required for the Procedure.
+- `COST` is the cost required for the Procedure. 
+  It must be greater than $0 and less than $100 million dollars. 
+  The rationale behind a cap for cost would be to prevent technicians from inputting numbers that are too large by accident.
+  Contracts that technicians handle on a day-to-day basis are generally small scale and  would be less than $100 million.
+  
 - `DATE_TIME` is the date and time that the Procedure takes place. It accepts inputs in the form of `dd/MM/YYYY HH:MM`, e.g. 20/03/2022 11:30.
 - If the specified Client already has an identical Procedure, the application will inform you that the Procedure has already been added.
   - An identical Procedure refers to another Procedure that contains the exact same information, date and time, and cost.
@@ -190,7 +194,6 @@ In Command Line Interface (CLI):
 =======
   - This triggers the adding of the Procedure to the first Client.
   - Result shows: `New Procedure added: Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.50; Completed: false`
->>>>>>> 3ed58548c61e7591a61fe037c566fe772315ec09
 
 In Application: ![addProc](images/addProcGUI.png)
 
@@ -237,6 +240,7 @@ The main details include the information, the date and time, and the cost of the
 - `[i/INFORMATION]` refers to the informational detail of the Procedures in subsequent servicing trips. 
 - `DATE_TIME` is the date and time that the Procedure takes place. It accepts inputs in the form of `dd/MM/YYYY HH:MM`, e.g. 20/03/2022 11:30.
 - `[c/COST]` refers to the cost incurred from executing the Procedure that will be charged to your Client.
+- The fields in the editProc command follow the same restrictions in the addProc command.
 - Either the information field, the date field, or the cost field **must be** filled up for this feature to run.
 
 **Note:** <br/>
@@ -304,15 +308,16 @@ In Command Line Interface (CLI):
 - `listProcOn 06/06/2022`
   - Result shows: 
 ```
-  Listing Procedures on requested date:
-  1. Information: configure internet settings; Date: 26/03/2022 11:30; Cost: $10.50; Completed: false
-   MINISO, located at 3155 Commonwealth Ave W, #03-56-58
-  2. Information: configure POS connections; Date: 26/03/2022 12:00; Cost: $23.50; Completed: false
-   Master Fix Services, located at 3155 Commonwealth Ave W, #B1-10
+Listing Procedures on requested date:
+1. Information: Back up their employee data to the cloud database; Date: 06/06/2022 09:55; Cost: $230.00; Completed: false
+Master Fix Services, located at 3155 Commonwealth Ave W, #B1-10
+2. Information: Back up their employee data to the cloud database; Date: 06/06/2022 09:55; Cost: $230.00; Completed: false
+Mr Bean, located at 3155 Commonwealth Ave W, #B1-K13
+3. Information: Extend international warranty of modem; Date: 06/06/2022 12:25; Cost: $195.00; Completed: false
+Optical 88, located at 3155 Commonwealth Ave W, #05-27
 ```
 
 In Application: ![listProcOn](images/listProcOn.png)
-
 
 ### Calculate the cost of all Procedures on a specified date: `calculate`
 

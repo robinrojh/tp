@@ -39,14 +39,19 @@ public class EditProcCommand extends Command {
     public static final String COMMAND_WORD = "editProc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the Procedure "
-        + "identified by the index number used in the displayed Client list and the index number used "
-        + "in the displayed Procedure list.\n"
-        + "Existing values will be overwritten by the input values.\n"
-        + "Parameters: CLIENT_INDEX (must be a positive integer) "
-        + "PROCEDURE_INDEX (must be a positive integer) "
-        + "[" + PREFIX_INFORMATION + "INFORMATION] "
-        + "[" + PREFIX_DATE + "DATE] "
-        + "[" + PREFIX_COST + "COST] ";
+            + "identified by the index number used in the displayed Client list and the index number used "
+            + "in the displayed Procedure list.\n"
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: CLIENT_INDEX (must be a positive integer) "
+            + "PROCEDURE_INDEX (must be a positive integer) "
+            + "[" + PREFIX_INFORMATION + "INFORMATION] "
+            + "[" + PREFIX_DATE + "DATE] "
+            + "[" + PREFIX_COST + "COST] \n"
+            + "Example: " + COMMAND_WORD + " 1 2 "
+            + PREFIX_INFORMATION + "Install modem "
+            + PREFIX_DATE + "31/03/2022 09:50 "
+            + PREFIX_COST + "67.25 ";
+
 
     public static final String MESSAGE_EDIT_PROCEDURE_SUCCESS = "Edited Procedure: %1$s. "
         + "\n From client: %2$s, at %3$s.";
