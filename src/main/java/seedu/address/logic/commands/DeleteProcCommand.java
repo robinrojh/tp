@@ -27,8 +27,8 @@ import seedu.address.model.tag.Tag;
 public class DeleteProcCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteProc";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the Procedure under a Client"
-            + "by the index numbers used in the displayed client list and the displayed procedure list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the Procedure under a Client "
+            + "by the index numbers used in the Client Panel and the Procedure Panel. "
             + "Existing Procedures indicated (by the input value) will be deleted.\n"
             + "Parameters: INDEX (must be a positive integer and an existing Client)\n"
             + "INDEX (must be a positive integer and an existing Procedure)\n"

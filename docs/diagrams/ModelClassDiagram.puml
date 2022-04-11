@@ -15,6 +15,7 @@ Class UserPrefs
 Class UniqueClientList
 Class Client
 Class Address
+Class Plan
 Class Email
 Class Name
 Class Phone
@@ -43,6 +44,7 @@ UniqueClientList --> "~* all" Client
 Client *--> Name
 Client *--> Phone
 Client *--> Email
+Client *--> Plan
 Client *--> Address
 Client *--> "*" Tag
 Client *--> "*" Procedure

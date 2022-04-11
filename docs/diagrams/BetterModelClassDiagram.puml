@@ -18,6 +18,7 @@ Client *--> Name
 Client *--> Phone
 Client *--> Email
 Client *--> Address
+Client *--> Plan
 Client *--> "*" Tag
 Client *--> "*" Procedure
 @enduml

@@ -210,7 +210,7 @@ Step 6. Once the `Client` has been updated to include the new `Procedure`, it wi
 
 The deleteProc mechanism is facilitated by the `DeleteProcCommandParser`.
 The deleteProc mechanism allows deletion of a `Procedure` from an existing `Client` in the address book.
-The deleteProc is permanently erased and the remaining `Procedure` are stored locally after.
+The specified `Procedure` is permanently deleted.
 It implements the following operations:
 
 * `DeleteProcCommand#editClientProcedure(Client clientToEdit)` &mdash; Edit an attribute of an existing `Client` and return a new `Client`.
@@ -254,7 +254,7 @@ The following sequence diagram shows how this operation works.
 
 The editProc mechanism is facilitated by the `EditProcCommandParser`.
 The editProc mechanism allows editing of a `Procedure` from an existing `Client` in the address book.
-The existing data of the Procedure is permanently overwritten and the remaining `Procedure` are stored locally after.
+The existing data of the Procedure is permanently overwritten and the new `Procedure` will be stored locally after.
 It implements the following operations:
 
 * `EditProcCommand#createEditedProcedure(Procedure procedureToEdit, EditProcedureDescriptor editProcedureDescriptor)` &mdash; Edit an attribute of an existing `Procedure` and return a new `Procedure`.
@@ -273,7 +273,7 @@ The UI lists all the `Procedure` associated to the Client.
 Step 2. The user executes `editProc 1 1 c/25` to edit the `Cost` of the 1st `Procedure` associated with the 1st Client in the address book.
 The `editProc 1 1 c/25` command calls `EditProcCommand#createEditedProcedure(Procedure procedureToEdit, EditProcedureDescriptor editProcedureDescriptor)` to get a cloned and edited `Procedure` at the client and procedure indice.
 Following, the command calls `EditProcCommand#updateProcedureList(List<Procedure> procedureList, Procedure edittedProcedure, Index procedureIndex)` to get a cloned and edited list of `Procedure`  at the client and procedure indice.
-Lastly, the command calls the `EditProcCommand#editClientProcedures(Client clientToEdit) to get a cloned and edited `Client` at the client index.
+Lastly, the command calls the `EditProcCommand#editClientProcedures(Client clientToEdit)` to get a cloned and edited `Client` at the client index.
 This newly-created `Client` is saved locally through the `Model#setClient`, and displayed by updating the `UpdateFilteredClientList`.
 With the `Client` saved, the address book is saved at a new state.
 
