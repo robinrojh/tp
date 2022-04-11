@@ -34,6 +34,8 @@ Given below are my contributions to the project.
   * `AddClient` Command
   * `Calculate` Command
   * Use cases
+  
+<div style="page-break-after: always;"></div>
 
 - **Contributions to the DG:**
   * General standardisation of format and language
