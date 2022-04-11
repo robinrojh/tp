@@ -44,6 +44,7 @@ Below are my contributions to the project.
 #### Contributions to the DG
 
 - Section: **List Procedures By Client (ListProc)**
+- Architecture sequence diagram maintenance
 - User stories for `list` and `listProc` Command
 - Some Non-Functional Requirements (NFR)
 - Section: Appendix updated to match current version
@@ -56,3 +57,13 @@ Below are my contributions to the project.
 #### Review/mentoring contributions
 
 - [Pull Requests Reviewed by me](https://github.com/AY2122S2-CS2103T-W13-1/tp/pulls?q=is%3Apr+reviewed-by%3Arobinrojh+)
+
+#### Excerpts from DG
+
+- ListProc Sequence Diagram:
+
+![listProc Sequence Diagram](../images/ListProcCommandSequenceDiagram.png)
+
+- Colors for Component Managers:
+
+![Components Diagram](../images/ComponentManagers.png)
