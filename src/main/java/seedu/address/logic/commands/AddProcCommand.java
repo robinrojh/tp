@@ -40,7 +40,7 @@ public class AddProcCommand extends Command {
             + PREFIX_INFORMATION + "INFORMATION "
             + PREFIX_COST + "COST "
             + PREFIX_DATE + "DATE \n"
-            + "Example: " + COMMAND_WORD + " 1 2 "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INFORMATION + "Fix Router "
             + PREFIX_COST + "10.5 "
             + PREFIX_DATE + "20/03/2022 11:30 ";

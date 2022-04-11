@@ -129,6 +129,7 @@ public class ModelManager implements Model {
     @Override
     public void setProcedures(List<Procedure> procedures) {
         addressBook.setProcedures(procedures);
+        filteredProcedures = new FilteredList<>(this.addressBook.getProcedureList());
     }
 
     //=========== Filtered Client List Accessors =============================================================
