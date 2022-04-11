@@ -314,7 +314,7 @@ Mr Bean, located at 3155 Commonwealth Ave W, #B1-K13
 Optical 88, located at 3155 Commonwealth Ave W, #05-27
 ```
 
-In Application: ![listProcOn](images/listProcOn.png)
+In Application: ![listProcOn](images/listProcOnNew.png)
 
 ### Calculate the cost of all Procedures on a specified date: `calculate`
 
