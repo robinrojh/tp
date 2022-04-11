@@ -79,7 +79,17 @@ Example is an optional subsection that illustrates how our application responds 
 - Items in square brackets are optional.
   For example, `find KEYWORD [MORE_KEYWORDS]` can be used as `find Apple Inc`.
 
+- Items with … after them can be used multiple times including zero times.
+  e.g. [t/TAG]…  can be used as   (i.e. 0 times), t/new, t/maintenance t/periodic etc.
+
+- Parameters can be in any order.
+  e.g. if the command specifies n/NAME p/PHONE_NUMBER, p/PHONE_NUMBER n/NAME is also acceptable.
+
+- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
+  e.g. if you specify p/12341234 p/56785678, only p/56785678 will be taken.
+
 - All indexes are integer-based, in which the maximum value is 2147483647 (2<sup>31</sup> - 1), as specified by the Java language.
+
 
 ### Add a Client: `addClient`
 
@@ -136,7 +146,8 @@ Edits a Client in Networkers.
 - `[e/EMAIL]` refers to an optional field of editing your Client's email.
 - `[a/ADDRESS]` refers to an optional field of editing your Client's address.
 - `[l/PLAN]` refers to an optional field of editing your Client's subscription plan.
-- `[t/TAG]` refers to an optional field of editing your Client's tag.
+- `[t/TAG]` refers to an optional field of editing your Client's tag. 
+  - You can remove all the person’s tags by typing t/ without specifying any tags after it.
 - In order to trigger this command, at least one of the following fields must be edited: `name`, `phone`, `email`, 
 `address`, `plan`, `tag`.
 - ❗ Note that by editing your Client's details, you will be overwriting their existing data.
@@ -174,7 +185,12 @@ Adds a specified Procedure to a specified Client in your displayed Client Panel.
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`
+<<<<<<< HEAD
   - This triggers the addition of the Procedure to the first Client.
+=======
+  - This triggers the adding of the Procedure to the first Client.
+  - Result shows: `New Procedure added: Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.50; Completed: false`
+>>>>>>> 3ed58548c61e7591a61fe037c566fe772315ec09
 
 In Application: ![addProc](images/addProcGUI.png)
 

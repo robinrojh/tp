@@ -59,7 +59,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-W13-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-W13-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -442,10 +442,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a ...                                                        | I want to ...                                                           | So that I can ...                                                                                                |
 |----------|-----------------------------------------------------------------|-------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | user                                                            | add a Client                                                            | add a Client to my contacts.                                                                                     |
+| `* * *`  | user                                                            | add a Client                                                            | add a Client to my networkers contact book.                                                                      |
 | `* * *`  | user                                                            | delete a Client                                                         | delete an existing Client when the Client no longer engages with the company.                                    |
+| `* * *`  | user                                                            | edit a Client                                                           | edit an existing Client in the networkers contact book.                                                          |
 | `* * *`  | user                                                            | add a Procedure to a Client                                             | add a Procedure associated with the Client.                                                                      |
-| `* * *`  | user                                                            | delete a Procedure from an existing Client                              | delete a Procedure from the existing Client.                                                                     |
+| `* * *`  | user                                                            | delete a Procedure from an existing Client                              | delete a Procedure associated with an existing Client.                                                           |
+| `* * *`  | user                                                            | edit a Procedure from an existing Client                                | edit a Procedure associated with an existing Client.                                                             |
 | `* * *`  | user with many Clients in the address book                      | view all of my Client(s’) contact information                           | have a brief idea about how many Client(s) I have at the moment.                                                 |
 | `* * *`  | user with many Clients and Procedures to remember               | view all of Procedures related to a specified Client                    | view all the Procedures that I have done conducted for this Client and potentially use it for events like audit. |
 | `* * *`  | user with Clients that have details that are constantly in flux | edit the details of a specified Client                                  | ensure that my details of my Clients are up to date                                                              |
@@ -496,7 +498,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case 3: Add a Procedure to a Client**
+**Use case 3: Edit the details of a Client**
+
+**MSS**
+
+1. User requests to list all Client(s). (UC6)
+2. User sends in a command that requests to edit the details of a Client at a specified index.
+3. Networkers returns a success message as well as an updated Client within the Client list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The specified Client is out of index.
+    * 2a1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The field(s) specified for edit is invalid.
+    * 2b1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The edited address tag is a duplicate of another Client's address.
+    * 2c1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+* 2d. The Client's edit parameters are invalid.
+    * 2d1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case 4: Add a Procedure to a Client**
 
 **MSS**
 
@@ -649,33 +684,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. Networkers returns a cost of $0.
 
     Use case ends.
-
-**Use case 10: Editing the details of a Client**
-
-**MSS**
-
-1. User requests to list all Client(s). (UC6)
-2. User sends in a command that requests to edit the details of a Client at a specified index.
-3. Networkers returns a success message as well as an updated Client within the Client list.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The specified Client is out of index.
-    * 2a1. Networkers shows an error message.
-
-      Use case resumes at step 2.
-
-* 2b. The field(s) specified for edit is invalid.
-    * 2b1. Networkers shows an error message.
-
-      Use case resumes at step 2.
-
-* 2c. The edited address tag is a duplicate of another Client's address.
-    * 2c1. Networkers shows an error message.
-
-      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 #### Technical Requirements
