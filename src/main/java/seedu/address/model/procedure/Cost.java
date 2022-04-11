@@ -14,8 +14,9 @@ public class Cost implements Comparable<Cost> {
                     + "3. Cost should follow the format 'dollars.cents'.\n"
                     + "Example: 31.10";
 
-    public static final String VALIDATION_REGEX = "^(?!(?:0|0\\.0|0\\.00)$)[+]?\\d+(\\.\\d|\\.\\d[0-9])?$";
-    public static final BigDecimal MAX = new BigDecimal(100000000);
+    public static final String VALIDATION_REGEX = "^\\d+(?:\\.\\d{1,2})?$";
+    public static final BigDecimal MAX_COST = new BigDecimal(100000000);
+    public static final BigDecimal MIN_COST = new BigDecimal(0);
 
     public final BigDecimal cost;
 
@@ -36,7 +37,7 @@ public class Cost implements Comparable<Cost> {
     public static boolean isValidCost(String test) {
         if (test.matches(VALIDATION_REGEX)) {
             BigDecimal cost = new BigDecimal(test);
-            if (cost.compareTo(MAX) < 0) {
+            if (cost.compareTo(MAX_COST) < 0 && cost.compareTo(MIN_COST) > 0) {
                 return true;
             }
         }
