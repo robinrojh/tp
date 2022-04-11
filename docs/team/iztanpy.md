@@ -13,11 +13,10 @@ Given below are my contributions to the project.
 ### Summary of my contributions
 
 
-- **Code contributed:** [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=iztanpy&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other
-  )
+- **Code contributed:** [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=iztanpy&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+
 
 - **Enhancements implemented:**
-  
   * Created `Procedure` Class as well as related attribute classes. This included
     * `Date` Class
     * `Cost` Class
@@ -28,13 +27,13 @@ Given below are my contributions to the project.
   * Created tests for `Calculate` as well as its parser.
   * Generally cleaned up the code within the application to better fit our theme
   
+
 - **Contributions to the UG:**
   * Introduction
   * Quick Start
   * `AddClient` Command
   * `Calculate` Command
   * Use cases for `AddClient` and `Calculate` Commands
-  
 <div style="page-break-after: always;"></div>
 
 - **Contributions to the DG:**
@@ -44,10 +43,12 @@ Given below are my contributions to the project.
   * Maintained and created `Calculate` Command
   * Worked with Ben to edit the Model architecture in the User Guide (Procedure-specific).
 
+
 - **Contributions to team-based tasks**
-    * creaated jar file for first 2 iterations
+    * Created jar file for first 2 iterations
   
+
 - **Review/mentoring contributions:**
-    * well involved in the reviewing of team members code, which can be accesed [here](https://github.com/AY2122S2-CS2103T-W13-1/tp/pulls?q=is%3Apr+reviewed-by%3A%40me+is%3Aclosed)
+    * Well involved in the reviewing of team members code, which can be accesed [here](https://github.com/AY2122S2-CS2103T-W13-1/tp/pulls?q=is%3Apr+reviewed-by%3A%40me+is%3Aclosed)
   
 
