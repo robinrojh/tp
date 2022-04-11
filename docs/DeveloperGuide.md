@@ -240,7 +240,7 @@ The following sequence diagram shows how this operation works.
 
 #### Design considerations:
 
-**Aspect: Will `deleteProc` permanently delete the `Procedure`**
+**Aspect: Will `deleteProc` permanently delete the `Procedure`?**
 
 * **Alternative 1 (current choice):** Deletes the entire Procedure.
     * Pros: Easy to implement and uses less storage.
@@ -442,10 +442,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a ...                                                        | I want to ...                                                           | So that I can ...                                                                                                |
 |----------|-----------------------------------------------------------------|-------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | user                                                            | add a Client                                                            | add a Client to my contacts.                                                                                     |
+| `* * *`  | user                                                            | add a Client                                                            | add a Client to my networkers contact book.                                                                      |
 | `* * *`  | user                                                            | delete a Client                                                         | delete an existing Client when the Client no longer engages with the company.                                    |
+| `* * *`  | user                                                            | edit a Client                                                           | edit an existing Client in the networkers contact book.                                                          |
 | `* * *`  | user                                                            | add a Procedure to a Client                                             | add a Procedure associated with the Client.                                                                      |
-| `* * *`  | user                                                            | delete a Procedure from an existing Client                              | delete a Procedure from the existing Client.                                                                     |
+| `* * *`  | user                                                            | delete a Procedure from an existing Client                              | delete a Procedure associated with an existing Client.                                                           |
+| `* * *`  | user                                                            | edit a Procedure from an existing Client                                | edit a Procedure associated with an existing Client.                                                             |
 | `* * *`  | user with many Clients in the address book                      | view all of my Client(s’) contact information                           | have a brief idea about how many Client(s) I have at the moment.                                                 |
 | `* * *`  | user with many Clients and Procedures to remember               | view all of Procedures related to a specified Client                    | view all the Procedures that I have done conducted for this Client and potentially use it for events like audit. |
 | `* * *`  | user with Clients that have details that are constantly in flux | edit the details of a specified Client                                  | ensure that my details of my Clients are up to date                                                              |
@@ -460,7 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list Client(s). (UC6)
+1. User requests to list Client(s). (UC7)
 2. User requests to add a Client to the list by specifying its name, number, address, subscription plan, and tag.
 3. Networkers adds the Client. 
    
@@ -482,7 +484,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list Client(s). (UC6)
+1. User requests to list Client(s). (UC7)
 2. User sends in a command to delete the Client from the list.
 3. Networkers deletes existing Client.
 
@@ -496,11 +498,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case 3: Add a Procedure to a Client**
+**Use case 3: Edit the details of a Client**
 
 **MSS**
 
-1. User requests to list Client(s). (UC6)
+1. User requests to list all Client(s). (UC7)
+2. User sends in a command that requests to edit the details of a Client at a specified index.
+3. Networkers returns a success message as well as an updated Client within the Client list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The specified Client is out of index.
+    * 2a1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The field(s) specified for edit is invalid.
+    * 2b1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The edited address tag is a duplicate of another Client's address.
+    * 2c1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+* 2d. The Client's edit parameters are invalid.
+    * 2d1. Networkers shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case 4: Add a Procedure to a Client**
+
+**MSS**
+
+1. User requests to list Client(s). (UC7)
 2. User requests to add a Procedure by specifying its related information, cost, and date and time, to a specified Client in the list.
 3. Networkers adds the Procedure associated with the Client.
 
@@ -523,11 +558,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case 4: Delete a Procedure from a Client**
+**Use case 5: Delete a Procedure from a Client**
 
 **MSS**
 
-1. User requests to list Client(s). (UC6)
+1. User requests to list Client(s). (UC7)
 2. User sends in a command to delete a specified Procedure from a specified Client in the list.
 3. Networkers deletes the Procedure from the Client.
 
@@ -555,11 +590,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
   
-**Use case 5: Edit a Procedure from a Client**
+**Use case 6: Edit a Procedure from a Client**
 
 **MSS**
 
-1. User requests to list Client(s). (UC6)
+1. User requests to list Client(s). (UC7)
 2. User sends in a command to edit a specified Procedure from a specified Client in the list.
 3. Networkers edits the Procedure that belongs to the Client.
 
@@ -577,27 +612,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 2c. The User requests to edit a non-existing Procedure from an existing Client.
+* 2c. The Client's edit information, cost, and date and time are empty.
     * 2c1. Networkers shows an error message.
 
       Use case resumes at step 2.
 
-* 2d. The User requests to edit an existing Procedure from a non-existing Client.
+* 2d. The specified Client already has an identical Procedure in its Procedure list.
     * 2d1. Networkers shows an error message.
 
       Use case resumes at step 2.
 
-* 2e. The related information, cost, or date and time is empty.
-    * 2e1. Networkers shows an error message.
-
-      Use case resumes at step 2.
-
-* 2f. The specified Client already has an identical Procedure in its Procedure list.
-    * 2f1. Networkers shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case 6: List Client(s) in Networkers**
+**Use case 7: List Client(s) in Networkers**
 
 **MSS**
 
@@ -606,18 +631,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
-
-* 2a. The list is empty.
-    * 2a1. Networkers shows a message to indicate empty Client list.
-
-      Use case ends.
-
-**Use case 7: Listing Procedure(s) of a specified Client**
+**Use case 8: Listing Procedure(s) of a specified Client**
 
 **MSS**
 
-1. User requests to list all Client(s). (UC6)
+1. User requests to list all Client(s). (UC7)
 2. User requests to list Procedure(s) of a specified Client.
 3. Networkers displays the list of Procedures in the Client(s).
 
@@ -630,7 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case 8: Listing all the Procedures that are on a specified day.**
+**Use case 9: Listing all the Procedures that are on a specified day.**
 
 **MSS**
 
@@ -646,7 +664,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case 9: Calculating the cost of all procedures on a specified day**
+**Use case 10: Calculating the cost of all procedures on a specified day**
 
 **MSS**
 
@@ -667,33 +685,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case 10: Editing the details of a Client**
-
-**MSS**
-
-1. User requests to list all Client(s). (UC6)
-2. User sends in a command that requests to edit the details of a Client at a specified index.
-3. Networkers returns a success message as well as an updated Client within the Client list.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The specified Client is out of index.
-    * 2a1. Networkers shows an error message.
-
-      Use case resumes at step 2.
-
-* 2b. The tags within the command are invalid (or no tags are given).
-    * 2b1. Networkers shows an error message.
-
-      Use case resumes at step 2.
-
-* 2c. The edited address tag is a duplicate of another Client's address.
-    * 2c1. Networkers shows an error message.
-
-      Use case resumes at step 2.
-
 ### Non-Functional Requirements
 #### Technical Requirements
 1. Networkers should work on any mainstream OS as long as it has Java 11 or above installed.
@@ -703,7 +694,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### Performance Requirements
 1. Networkers should respond within two seconds.
 2. Should be able to hold up to 1000 Client(s) without a noticeable sluggishness in performance for typical usage.
-3. Should be able to hold up to 10 Procedure in each Client without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 50 Procedure in each Client without a noticeable sluggishness in performance for typical usage.
 
 #### Quality Requirements
 1. A User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -714,7 +705,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Client**: Refers to a business entity that the User is responsible for network-related Procedures
-* **Contact**: Refers to information for a Client, including its business name, phone number, and address.
 * **Procedure**: Refers to a network-related task that a User performs for a Client, such as fixing a router and setting up intranet.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -743,10 +733,10 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. Checking initially displayed procedures
+1. Checking initially displayed Procedures
    
-    1. Check if the procedures are from the first client.<br>
-       Expected: The displayed procedures should all be from client at index 1.
+    1. Check if the procedures are from the first Client.<br>
+       Expected: The displayed Procedures should all be from client at index 1.
 
 ### Deleting a Client
 
@@ -777,4 +767,4 @@ testers are expected to do more *exploratory* testing.
     1. Delete the networkers.json in data folder and launch the application <br>
     Expected: the networkers.json should be created on launch
     2. To simulate a corrupted data file, change the value of a field of a Client or a Procedure to a non-String value. Then, launch the application. <br>
-    Expected: The AddressBook opens but does not load any Clients and Procedures with an error message in the log.
+    Expected: The networkers.json opens but does not load any Clients and Procedures with an error message in the log.

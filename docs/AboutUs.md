@@ -28,8 +28,8 @@ You can reach us at the email `networkers@comp.nus.edu.sg`
 [[github](http://github.com/teominghuang)]
 [[portfolio](team/teominghuang.md)]
 
-* Role: To be added soon
-* Responsibilities: To be added soon
+* Role: Developer
+* Responsibilities: Connect Procedure to the different dependencies, and update existing AB3 commands to Networkers.
 
 ### Alexander Er
 
