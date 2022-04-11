@@ -462,7 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list Client(s). (UC6)
+1. User requests to list Client(s). (UC7)
 2. User requests to add a Client to the list by specifying its name, number, address, subscription plan, and tag.
 3. Networkers adds the Client. 
    
@@ -484,7 +484,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list Client(s). (UC6)
+1. User requests to list Client(s). (UC7)
 2. User sends in a command to delete the Client from the list.
 3. Networkers deletes existing Client.
 
@@ -502,7 +502,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all Client(s). (UC6)
+1. User requests to list all Client(s). (UC7)
 2. User sends in a command that requests to edit the details of a Client at a specified index.
 3. Networkers returns a success message as well as an updated Client within the Client list.
 
@@ -535,7 +535,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list Client(s). (UC6)
+1. User requests to list Client(s). (UC7)
 2. User requests to add a Procedure by specifying its related information, cost, and date and time, to a specified Client in the list.
 3. Networkers adds the Procedure associated with the Client.
 
@@ -558,11 +558,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case 4: Delete a Procedure from a Client**
+**Use case 5: Delete a Procedure from a Client**
 
 **MSS**
 
-1. User requests to list Client(s). (UC6)
+1. User requests to list Client(s). (UC7)
 2. User sends in a command to delete a specified Procedure from a specified Client in the list.
 3. Networkers deletes the Procedure from the Client.
 
@@ -590,11 +590,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
   
-**Use case 5: Edit a Procedure from a Client**
+**Use case 6: Edit a Procedure from a Client**
 
 **MSS**
 
-1. User requests to list Client(s). (UC6)
+1. User requests to list Client(s). (UC7)
 2. User sends in a command to edit a specified Procedure from a specified Client in the list.
 3. Networkers edits the Procedure that belongs to the Client.
 
@@ -622,7 +622,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case 6: List Client(s) in Networkers**
+**Use case 7: List Client(s) in Networkers**
 
 **MSS**
 
@@ -631,11 +631,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case 7: Listing Procedure(s) of a specified Client**
+**Use case 8: Listing Procedure(s) of a specified Client**
 
 **MSS**
 
-1. User requests to list all Client(s). (UC6)
+1. User requests to list all Client(s). (UC7)
 2. User requests to list Procedure(s) of a specified Client.
 3. Networkers displays the list of Procedures in the Client(s).
 
@@ -648,7 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case 8: Listing all the Procedures that are on a specified day.**
+**Use case 9: Listing all the Procedures that are on a specified day.**
 
 **MSS**
 
@@ -664,7 +664,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case 9: Calculating the cost of all procedures on a specified day**
+**Use case 10: Calculating the cost of all procedures on a specified day**
 
 **MSS**
 

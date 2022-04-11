@@ -412,23 +412,23 @@ Exits the program.
 
 ## Command Summary
 
-| Command                                         | Syntax                                                                                                          | Example                                                  |
-|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
-| Add Client                                      | `addClient n/<NAME> p/<PHONE_NUMBER> a/<ADDRESS> l/<PLAN>`                                                      | `addClient n/Apple Inc p/9XXXXXXX a/apple road l/50MBps` |
-| Delete Client                                   | `deleteClient <INDEX>`                                                                                          | `deleteClient 1`                                         |
-| Edit Client                                     | `edit <CLIENT INDEX> (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/PLAN] [t/TAG]...` | `edit 1 n/Apple`                                         |
-| Add Procedure                                   | `addProc <CLIENT INDEX> i/INFORMATION c/COST d/DATE_TIME`                                                       | `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`    |
-| Delete Procedure                                | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`                                                                   | `deleteProc 1 3`                                         |
-| Edit Procedure                                  | `editProc <CLIENT INDEX> <PROCEDURE INDEX> [i/INFORMATION] [d/DATE] [c/COST]`                                   | `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`   |
-| List All Clients                                | `list`                                                                                                          | `list`                                                   |
-| List All Procedures of a Client                 | `listProc <CLIENT INDEX>`                                                                                       | `listProc 1`                                             |
-| List All Procedures on Specified Date           | `listProcOn <DATE>`                                                                                             | `listProcOn 23/05/2022`                                  | 
-| Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                                                                              | `calculate 23/02/2022`                                   |
-| Clear All Clients                               | `clear`                                                                                                         | `clear`                                                  |
-| Find Clients by Keyword                         | `find KEYWORD [MORE_KEYWORDS]`                                                                                  | `find Apple Inc`                                         |
-| Mark Procedure as complete                      | `mark <CLIENT INDEX> <PROCEDURE INDEX>`                                                                         | `mark 1 1`                                               |
-| Unmark completed Procedure                      | `unmark <CLIENT INDEX> <PROCEDURE INDEX>`                                                                       | `unmark 1 1`                                             |
-| Exit program                                    | `exit`                                                                                                          | `exit`                                                   |
+| Command                                         | Syntax                                                                                                                 | Example                                                  |
+|-------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|
+| Add Client                                      | `addClient n/<NAME> p/<PHONE_NUMBER> a/<ADDRESS> l/<PLAN>`                                                             | `addClient n/Apple Inc p/9XXXXXXX a/apple road l/50MBps` |
+| Delete Client                                   | `deleteClient <INDEX>`                                                                                                 | `deleteClient 1`                                         |
+| Edit Client                                     | `edit <CLIENT INDEX> (must be a positive integer) [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/PLAN] [t/TAG]...` | `edit 1 n/Apple`                                         |
+| Add Procedure                                   | `addProc <CLIENT INDEX> i/INFORMATION c/COST d/DATE_TIME`                                                              | `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`    |
+| Delete Procedure                                | `deleteProc <CLIENT INDEX> <PROCEDURE INDEX>`                                                                          | `deleteProc 1 3`                                         |
+| Edit Procedure                                  | `editProc <CLIENT INDEX> <PROCEDURE INDEX> [i/INFORMATION] [d/DATE] [c/COST]`                                          | `editProc 1 2 i/Fix Router d/31/03/2022 09:50 c/67.25`   |
+| List All Clients                                | `list`                                                                                                                 | `list`                                                   |
+| List All Procedures of a Client                 | `listProc <CLIENT INDEX>`                                                                                              | `listProc 1`                                             |
+| List All Procedures on Specified Date           | `listProcOn <DATE>`                                                                                                    | `listProcOn 23/05/2022`                                  | 
+| Calculate Cost of Procedures (on specific date) | `calculate <DATE>`                                                                                                     | `calculate 23/02/2022`                                   |
+| Clear All Clients                               | `clear`                                                                                                                | `clear`                                                  |
+| Find Clients by Keyword                         | `find KEYWORD [MORE_KEYWORDS]`                                                                                         | `find Apple Inc`                                         |
+| Mark Procedure as complete                      | `mark <CLIENT INDEX> <PROCEDURE INDEX>`                                                                                | `mark 1 1`                                               |
+| Unmark completed Procedure                      | `unmark <CLIENT INDEX> <PROCEDURE INDEX>`                                                                              | `unmark 1 1`                                             |
+| Exit program                                    | `exit`                                                                                                                 | `exit`                                                   |
 
 ## FAQ
 
