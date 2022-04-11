@@ -15,7 +15,7 @@ done faster than traditional GUI apps.
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer.
 
 2. Download the latest `networkers.jar` from [here](https://github.com/AY2122S2-CS2103T-W13-1/tp/releases).
 
@@ -65,7 +65,7 @@ in rectifying the error.
 For each of the features section, we have divided it into Format, Note, and Example subsections.
 Format subsection mainly discusses how the command should be structured when typing it to the Command Line Interface.
 Note is also an optional subsection that contains more information about the command, but may not be directly connected to the format of the command.
-Example is an optional subsection illustrate how our application responds after typing in and executing the example commands.
+Example is an optional subsection that illustrates how our application responds after typing in and executing the example commands.
 
 ### Notes about command formats:
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
@@ -93,14 +93,14 @@ Add your Client to Networkers. The Client will initially start off with an empty
 - There exists some fields that are mandatory for this function. These fields include their name, phone_number, address and a (subscription) plan.
 
 **Note:** <br/>
-- You can insert any information for the plan attribute. This behavior is intended because there are varying formats specified by the different telecommunications company.
+- You can insert any information for the plan attribute. This behavior is intended because there are varying formats specified by the different telecommunications companies.
 
 > :bulb: **Tip:** Our User Guide uses PLAN NAME + BANDWIDTH for inserting plan attribute, such as PLAN 50GBPs. But feel free to customize!
 
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `addClient n/Apple p/91234561 e/apple@example.com a/311, Bedok Ave 3, #01-15 l/Plan 50GBps t/corporate`
-  - This triggers the addition of a Client into your Client list.
+  - This triggers the addition of a Client to your Client list.
   - Result shows: `New client added: Apple; Phone: 91234561; Email: apple@example.com; Address: 311, Bedok Ave 3, #01-15; Plan: Plan 50GBps; Tags: [corporate]`
 
 In Application: ![Ui](images/addClientGUI.png)
@@ -132,12 +132,12 @@ Edits a Client in Networkers.
 - `edit` refers to the command to edit a Client in Networkers.
 - `<CLIENT INDEX>` refers to the index number shown in the displayed Client list. 
   - The index **must be** a positive integer 1, 2, 3, …
-- `[n/NAME]` refers to an optional field of editing your Client's name.
-- `[p/PHONE]` refers to an optional field of editing your Client's contact number.
-- `[e/EMAIL]` refers to an optional field of editing your Client's email.
-- `[a/ADDRESS]` refers to an optional field of editing your Client's address.
-- `[l/PLAN]` refers to an optional field of editing your Client's subscription plan.
-- `[t/TAG]` refers to an optional field of editing your Client's tag.
+- `[n/NAME]` refers to an optional field for editing your Client's name.
+- `[p/PHONE]` refers to an optional field for editing your Client's contact number.
+- `[e/EMAIL]` refers to an optional field for editing your Client's email.
+- `[a/ADDRESS]` refers to an optional field for editing your Client's address.
+- `[l/PLAN]` refers to an optional field for editing your Client's subscription plan.
+- `[t/TAG]` refers to an optional field for editing your Client's tag.
 - In order to trigger this command, at least one of the following fields must be edited: `name`, `phone`, `email`, 
 `address`, `plan`, `tag`.
 - ❗ Note that by editing your client's details, you will be overwriting their existing data.
@@ -146,7 +146,7 @@ Edits a Client in Networkers.
 In Command Line Interface (CLI):
 - `edit 4 n/Apple`
   - This triggers the editing of the indicated Client.
-  - Result shows: `Edited Client: Apple; Phone: 66595327; Email: optical88@example.com; Address: 3155 Commonwealth Ave W, #05-27; Plan: EXPRESS 200MBps; Tags: [family]`
+  - Result shows: `Edited Client: Apple; Phone: 66595327; Email: optical88@example.com; Address: 3155 Commonwealth Ave W, #05-27; Plan: EXPRESS 200MBps; Tags: [corporate]`
 
 In Application: ![Ui](images/EditClient_After.png)
 
@@ -166,7 +166,7 @@ Adds a specified Procedure to a specified Client in your display Client list.
   
 - `DATE_TIME` is the date and time that the Procedure takes place. It accepts inputs in the form of `dd/MM/YYYY HH:MM`, e.g. 20/03/2022 11:30.
 - If the specified Client already has an identical Procedure, the application will inform you that the Procedure has already been added.
-  - An identical Procedure refers a Procedure that contains the exact information, date and time, and cost.
+  - An identical Procedure refers to a Procedure that contains the exact information, date and time, and cost.
 
 **Note:** <br/>
 - If you were viewing the Procedures of another Client when adding a Procedure, after execution of the command, it will show the list of Procedures for the Client that now has this newly added Procedure.
@@ -179,7 +179,7 @@ Adds a specified Procedure to a specified Client in your display Client list.
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`
-  - This triggers the adding of the Procedure to the first Client.
+  - This triggers the addition of the Procedure to the first Client.
   - Result shows: `New Procedure added: Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.50; Completed: false`
 
 In Application: ![addProc](images/addProcGUI.png)
@@ -197,7 +197,7 @@ Deletes a Procedure associated with your Client. This is important as it allows 
 - A Client’s list of Procedures is also a numbered list.
 
 **Note:** <br/>
-- If you were viewing the Procedures of other Client when deleting a Procedure to a different Client, after execution of the command, it will show the list of Procedures for the Client that now has this newly added Procedure.
+- If you were viewing the Procedures of another Client when deleting a Procedure to a different Client, after execution of the command, it will show the list of Procedures for the Client that now has this newly added Procedure.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
@@ -310,7 +310,7 @@ In Application: ![listProcOn](images/listProcOn.png)
 Calculates the cost of all Procedures that happen at any time on a specified date.
 
 **Format:** `calculate <DATE>`
-- `calculate` refers to the command of calculating cost of all Procedures on a specified date.
+- `calculate` refers to the command of calculating the cost of all Procedures on a specified date.
 - `DATE` is in the format of dd/MM/YYYY, e.g. 23/03/2022. 
   - Error will be thrown if the date is invalid.
 
@@ -426,6 +426,6 @@ There are several cases in which you might face errors when entering a command:
 - Typing in the command word wrongly (e.g. typing `lisst` instead of `list`)
 - Typing in wrong number of inputs (e.g. typing `deleteClient` or `deleteClient 5 2` instead of `deleteClient 2`)
 - Typing in letters for numbers or vice versa (e.g. typing `listProc hello` instead of `listProc 1`)
-- You entered the correct command but wrong inputs (e.g. typing `deleteProc 1 10` when there is no 10th Client)
+- You entered the correct command but with wrong inputs (e.g. typing `deleteProc 1 10` when there is no 10th Client)
 
 The corresponding error messages will be displayed in the result box, so do take a look at them.
