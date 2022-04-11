@@ -39,8 +39,8 @@ public class EditProcCommand extends Command {
     public static final String COMMAND_WORD = "editProc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the Procedure "
-            + "identified by the index number used in the displayed Client list and the index number used "
-            + "in the displayed Procedure list.\n"
+            + "identified by the index number used in the Client Panel and the index number used "
+            + "in the Procedure Panel.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: CLIENT_INDEX (must be a positive integer) "
             + "PROCEDURE_INDEX (must be a positive integer) "
