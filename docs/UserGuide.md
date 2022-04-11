@@ -15,7 +15,7 @@ done faster than traditional GUI apps.
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your computer.
+1. Ensure you have Java `11` or above installed on your computer.
 
 2. Download the latest `networkers.jar` from [here](https://github.com/AY2122S2-CS2103T-W13-1/tp/releases).
 
@@ -141,12 +141,12 @@ Edits a Client in Networkers.
 - `edit` refers to the command to edit a Client in Networkers.
 - `<CLIENT INDEX>` refers to the index number shown in the displayed Client Panel. 
   - The index **must be** a positive integer 1, 2, 3, …
-- `[n/NAME]` refers to an optional field of editing your Client's name.
-- `[p/PHONE]` refers to an optional field of editing your Client's contact number.
-- `[e/EMAIL]` refers to an optional field of editing your Client's email.
-- `[a/ADDRESS]` refers to an optional field of editing your Client's address.
-- `[l/PLAN]` refers to an optional field of editing your Client's subscription plan.
-- `[t/TAG]` refers to an optional field of editing your Client's tag. 
+- `[n/NAME]` refers to an optional field for editing your Client's name.
+- `[p/PHONE]` refers to an optional field for editing your Client's contact number.
+- `[e/EMAIL]` refers to an optional field for editing your Client's email.
+- `[a/ADDRESS]` refers to an optional field for editing your Client's address.
+- `[l/PLAN]` refers to an optional field for editing your Client's subscription plan.
+- `[t/TAG]` refers to an optional field for editing your Client's tag. 
   - You can remove all the person’s tags by typing t/ without specifying any tags after it.
 - In order to trigger this command, at least one of the following fields must be edited: `name`, `phone`, `email`, 
 `address`, `plan`, `tag`.
@@ -176,7 +176,7 @@ Adds a specified Procedure to a specified Client in your displayed Client Panel.
   
 - `DATE_TIME` is the date and time that the Procedure takes place. It accepts inputs in the form of `dd/MM/YYYY HH:MM`, e.g. 20/03/2022 11:30.
 - If the specified Client already has an identical Procedure, the application will inform you that the Procedure has already been added.
-  - An identical Procedure refers to another Procedure that contains the exact same information, date and time, and cost.
+  - An identical Procedure refers to a Procedure that contains the exact same information, date and time, and cost.
 
 **Note:** <br/>
 - If you were viewing the Procedures of another Client when adding a Procedure, after execution of the command, it will show the list of Procedures for the Client that now has this newly added Procedure.
@@ -189,10 +189,7 @@ Adds a specified Procedure to a specified Client in your displayed Client Panel.
 **Example:** <br/>
 In Command Line Interface (CLI):
 - `addProc 1 i/Install modem c/10.5 d/20/03/2022 11:30`
-<<<<<<< HEAD
   - This triggers the addition of the Procedure to the first Client.
-=======
-  - This triggers the adding of the Procedure to the first Client.
   - Result shows: `New Procedure added: Information: Install modem; Date: 20/03/2022 11:30; Cost: 10.50; Completed: false`
 
 In Application: ![addProc](images/addProcGUI.png)
@@ -210,7 +207,7 @@ Deletes a Procedure associated with your Client. This is important as it allows 
 - A Client’s list of Procedures is also a numbered list.
 
 **Note:** <br/>
-- If you were viewing the Procedures of other Client when deleting a Procedure to a different Client, after execution of the command, it will show the list of Procedures for the Client that now has this newly added Procedure.
+- If you were viewing the Procedures of another Client when deleting a Procedure to a different Client, after execution of the command, it will show the list of Procedures for the Client that now has this newly added Procedure.
 
 **Example:** <br/>
 In Command Line Interface (CLI):
@@ -324,7 +321,7 @@ In Application: ![listProcOn](images/listProcOn.png)
 Calculates the cost of all Procedures that happen at any time on a specified date.
 
 **Format:** `calculate <DATE>`
-- `calculate` refers to the command of calculating cost of all Procedures on a specified date.
+- `calculate` refers to the command of calculating the cost of all Procedures on a specified date.
 - `DATE` is in the format of dd/MM/YYYY, e.g. 23/03/2022. 
   - An error will be thrown if the date is invalid.
 
@@ -439,6 +436,6 @@ There are several cases in which you might face errors when entering a command:
 - Typing in the command word wrongly (e.g. typing `lisst` instead of `list`)
 - Typing in wrong number of inputs (e.g. typing `deleteClient` or `deleteClient 5 2` instead of `deleteClient 2`)
 - Typing in letters for numbers or vice versa (e.g. typing `listProc hello` instead of `listProc 1`)
-- You entered the correct command but wrong inputs (e.g. typing `deleteProc 1 10` when there is no 10th Client)
+- You entered the correct command but with invalid inputs (e.g. typing `deleteProc 1 10` when there is no 10th Client)
 
 The corresponding error messages will be displayed in the result box, so do take a look at them.
