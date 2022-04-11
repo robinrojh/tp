@@ -240,7 +240,7 @@ The following sequence diagram shows how this operation works.
 
 #### Design considerations:
 
-**Aspect: Will `deleteProc` permanently delete the `Procedure`**
+**Aspect: Will `deleteProc` permanently delete the `Procedure`?**
 
 * **Alternative 1 (current choice):** Deletes the entire Procedure.
     * Pros: Easy to implement and uses less storage.
